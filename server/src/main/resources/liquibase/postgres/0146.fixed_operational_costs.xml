@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0146.fixed_operational_costs" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE fixed_operational_costs
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				role_id integer DEFAULT NULL,
+				user_id integer DEFAULT NULL,
+				business_unit_id integer DEFAULT NULL,
+				rate_type_id integer DEFAULT NULL,
+				rate double precision,
+				percent_of_time double precision,
+				percent_of_budget double precision,
+				comments text DEFAULT NULL,
+				CONSTRAINT pk_fixed_operational_costs PRIMARY KEY (id)
+				, CONSTRAINT fk_fixed_operational_costs_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_fixed_operational_costs_to_role FOREIGN KEY (role_id) REFERENCES roles (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_fixed_operational_costs_to_user FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_fixed_operational_costs_to_rate_type FOREIGN KEY (rate_type_id) REFERENCES rate_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_fixed_operational_costs_to_business_unit FOREIGN KEY (business_unit_id) REFERENCES business_units (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_fixed_operational_costs_organization_id ON fixed_operational_costs (organization_id);
+			CREATE INDEX i_fixed_operational_costs_business_unit_id ON fixed_operational_costs (business_unit_id);
+			CREATE INDEX i_fixed_operational_costs_role_id ON fixed_operational_costs (role_id);
+			CREATE INDEX i_fixed_operational_costs_user_id ON fixed_operational_costs (user_id);
+			CREATE INDEX i_fixed_operational_costs_rate_type_id ON fixed_operational_costs (rate_type_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="fixed_operational_costs"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

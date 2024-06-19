@@ -1,0 +1,85 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor
+QCLD:110:283,"Does the organization require its own data backup strategy to ensure that it can recover from a service outage, the service provider going out of business or withdrawing the service?",5,Not answered,0,Cloud,Impact,28,YES,Document the testing associated with the data back up strategy.,,,NO,NO,NO,NO,YES,NO
+,,,No,2,,,,,,,,,,,,,
+,,,Yes - Backups not tested,4,,,,,,,,,,,,,
+,,,Yes - Backups tested,6,,,,,,,,,,,,,
+,,,Yes - Backups tested quarterly,10,,,,,,,,,,,,,
+QIVND:7,Are you designing or developing the organization applications or technologies?,5,No,2,VendorInternal,Impact,7,YES,"Check 'Yes' if your company provides project managers, business analysts, developers, testers or any other IT function to the organization.",,,YES,NO,NO,NO,NO,YES
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:8,Have the vendor security requirements been defined?,5,Yes,2,VendorInternal,Impact,8,YES,Check 'Yes' if security requirements were baked into the design.,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+SSDLC:1,Are OWASP Secure Software Development Lifecyle best practices (SSDLC) being followed?,5,Yes,2,VendorInternal,Impact,9,YES,Check 'Yes' if your development team adheres to OWASP Secure Software Development Lifecycle.,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QIVND:50,Are encryption requirements understood?,5,N/A,0,VendorInternal,Impact,10,YES,Check 'Yes' if encryption requirements are documented in your design of the organization IT projects.,,,YES,NO,NO,NO,NO,YES
+,,,Yes,2,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QIVND:51,Do you work with PII Data?,5,No,1,VendorInternal,Impact,16,YES,"Does your firm design, develop, test, deploy or maintain systems with personally identifiable information?",,,YES,NO,NO,NO,NO,YES
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:52,Do you work with Healthcare Data?,5,N/A,0,VendorInternal,Impact,17,YES,"Do you design, develop, test, deploy or maintain systems with  healthcare information?",,,YES,NO,NO,NO,NO,YES
+,,,No,2,,,,,,,,,,,,,
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:53,Do you work with Credit Card Data?,5,N/A,0,VendorInternal,Impact,18,YES,"Do you design, develop, test, deploy or maintain systems with credit card information?",,,YES,NO,NO,NO,NO,YES
+,,,No,2,,,,,,,,,,,,,
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:22,Does your technology component process or store PII data?,5,N/A,0,VendorInternal,Impact,23,YES,"Check 'Yes' if you technology is used by the organization to process or store credit card information.  If this does not apply choose 'N/A'. If no, choose 'No'.",,,YES,NO,NO,YES,YES,NO
+,,,No,2,,,,,,,,,,,,,
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:23,Does your technology component or system process or store Healthcare data?,5,N/A,0,VendorInternal,Impact,24,YES,"Check 'Yes' if your technology system is used by the organization to process or store Healthcare information.  If this does not apply choose 'N/A'. If no, choose 'No'.",,,YES,NO,NO,YES,YES,NO
+,,,No,2,,,,,,,,,,,,,
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:24,Does your technology component or system process or store Credit Card data?,5,N/A,0,VendorInternal,Impact,25,YES,"Check 'Yes' if you technology is used by the organization to process or store credit card information.  If this does not apply choose 'N/A'. If no, choose 'No'.",,,YES,NO,NO,YES,YES,NO
+,,,No,2,,,,,,,,,,,,,
+,,,Yes,10,,,,,,,,,,,,,
+QICLD:31,Attach proof of annual Disaster Recovery Plan testing certification.,5,,,CloudInternal,Impact,31,YES,Attach proof of annual Disaster Recovery Plan testing certification.,,,YES,YES,NO,NO,YES,NO
+QICLD:32,Provide a listing of notifications sent to the customer for system maintenance and system outages.,5,,,CloudInternal,Impact,32,YES,Attach a listing of notifications sent to the customer for system maintenance and system outages.,,,YES,YES,NO,NO,NO,YES
+QICLD:33,Provide a system-generated listing of authorized users of Company and/or Associated Companies.,5,,,CloudInternal,Impact,33,YES,Attach a system-generated listing or excel of authorized users of Company and/or Associated Companies.,,,YES,YES,NO,NO,NO,YES
+QICLD:38,Does the vendor have incident response and management plans in place to minimize the impact of an unauthorized disclosure?,5,Yes,2,CloudInternal,Impact,38,YES,Select 'Yes' if you have an Incident Response plan.,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QICLD:39,"If yes, please attach.",5,,,CloudInternal,Impact,39,YES,Attach the Incident Response plan.,Does the vendor have incident response and management plans in place to minimize the impact of an unauthorized disclosure?|Yes|0|0,,YES,YES,NO,NO,NO,YES
+QICLD:40,Is the service provider's privacy policy consistent with industry standard business requirements?,5,Yes,2,CloudInternal,Impact,40,YES,Select 'Yes' if the policy is accepted by your industry's standard.,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QICLD:41,What criteria would allow the vendor to answer yes?,5,Full disclosure of security program on website,2,CloudInternal,Impact,41,YES,"Select fully, partially or not disclosed on your website.",Is the service provider's privacy policy consistent with industry standard business requirements?|Yes|0|0,,YES,NO,NO,NO,NO,YES
+,,,Partial disclose of security program on website,5,,,,,,,,,,,,,
+,,,No disclosure of security program on website,10,,,,,,,,,,,,,
+QICLD:42,"Does the cloud service provider's customer registration processes provide an appropriate level of assurance in line with the value, criticality and sensitivity of the information to be placed in the cloud service?",5,Yes,2,CloudInternal,Impact,42,YES,Answer 'Yes' if you are using a SSL certificate.,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QICLD:44,Does the vendor have specific requirements to notify the organization in the event of a breach?,5,Yes - The organization notifies the individual whose data has been stolen.,2,CloudInternal,Impact,44,YES,Provide details about who notified the person whose data has been exfiltrated.,,,YES,NO,NO,NO,NO,YES
+,,,Yes - The vendor notifies the individual whose data has been stolen.,8,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QIVND:54,Does the vendor handle production data?,5,Not answered,0,Vendor,Impact,12,YES,Production data carries a higher risk than testing or development data.,,,NO,NO,NO,NO,YES,YES
+,,,No - Testing Data Only,5,,,,,,,,,,,,,
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:55,Who handles the breach notification process?,3,Not answered,0,Vendor,Impact,15,YES,Vendors have more risk than your employees.  This information should be in the vendor contract.,,,NO,NO,NO,NO,YES,NO
+,,,Your organization manages it,2,,,,,,,,,,,,,
+,,,A vendor manages it,10,,,,,,,,,,,,,
+QIVND:56,How many crown jewel assets does the vendor deal with?,5,0 systems,0,Vendor,Impact,16,YES,The more crown jewels the vendor handles the more risk.,,,NO,NO,NO,YES,YES,YES
+,,,1 system,2,,,,,,,,,,,,,
+,,,2 systems,4,,,,,,,,,,,,,
+,,,3 systems,6,,,,,,,,,,,,,
+,,,4 systems,8,,,,,,,,,,,,,
+,,,5 or more systems,10,,,,,,,,,,,,,
+QCLD:20,Does the CSP have incident response and management plans in place to minimize the impact of an unauthorized disclosure that aligns to your companies approach?,5,Yes - fully aligned,2,Cloud,Impact,20,YES,The CSP should be as fully aligned to the firm's own incident response policy and procedures.,,,NO,NO,NO,NO,YES,NO
+,,,Yes - partially aligned,6,,,,,,,,,,,,,
+,,,Not answered,10,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QCLD:21,Is the service provider's privacy policy consistent with our business requirements?,5,Not answered,0,Cloud,Impact,21,YES,The CSP security requirements need to align as closely as possible to the firm's requirements.,,,NO,NO,NO,NO,YES,NO
+,,,Yes - fully aligned,2,,,,,,,,,,,,,
+,,,Yes - partially aligned,6,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QCLD:22,"Does the service provider's customer registration processes provide an appropriate level of assurance in line with the value, criticality and sensitivity of the information to be placed in the cloud service?",5,Not answered,0,Cloud,Impact,22,YES,Privacy policies and compliance with GDPR and other regulations are needed to reduce risk.  Indicate how well your align to the requirements.,,,NO,NO,NO,NO,YES,NO
+,,,Yes - Aligned to all privacy requirements,6,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QCLD:26,Have requirements for the encryption of the information been identified and put in place?,5,Not answered,0,Cloud,Impact,26,YES,Encryption reduces data loss risk significantly.,,,NO,NO,NO,NO,YES,NO
+,,,Yes - understood and in place,2,,,,,,,,,,,,,
+,,,Only understood,6,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QCLD:110:282,"Does the organization have its own business continuity and disaster recovery plan in place to ensure that it can recover from a service outage, the service provider going out of business or withdrawing the service?",5,Not answered,0,Cloud,Impact,27,YES,Provide information on the review process you use.,,,NO,NO,NO,NO,YES,NO
+,,,No,2,,,,,,,,,,,,,
+,,,Yes - Not Annually Reviewed,5,,,,,,,,,,,,,
+,,,Yes - Annually Reviewed,7,,,,,,,,,,,,,
+,,,Yes - Annually Reviewed and Tested,10,,,,,,,,,,,,,
+QCLD:110:283,"Does the organization require its own data backup strategy to ensure that it can recover from a cloud service outage, or the service provider going out of business or withdrawing the service?",5,Not answered,0,Cloud,Impact,28,YES,Backup and recovery is a requirement for the organization to have to ensure service is provided regardless of the cloud service providers outage.   Document if this is tested and how often.,,,NO,NO,NO,NO,YES,NO
+,,,No,2,,,,,,,,,,,,,
+,,,Yes - Backups not tested,4,,,,,,,,,,,,,
+,,,Yes - Backups tested,6,,,,,,,,,,,,,
+,,,Yes - Backups tested quarterly,10,,,,,,,,,,,,,

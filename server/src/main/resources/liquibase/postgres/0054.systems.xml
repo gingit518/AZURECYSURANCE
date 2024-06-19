@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0053-systems" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE systems
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_systems PRIMARY KEY (id)
+				, CONSTRAINT fk_systems_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_systems_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_systems_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_systems_organization ON systems (organization_id);
+			CREATE INDEX i_systems_organization_id_name ON systems (organization_id, name);
+			CREATE INDEX i_systems_name ON systems (name);
+			CREATE INDEX i_systems_created_at ON systems (created_at);
+			CREATE INDEX i_systems_created_by ON systems (created_by_id);
+			CREATE INDEX i_systems_updated_by ON systems (updated_by_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="systems"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

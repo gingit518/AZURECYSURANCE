@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0365.add_org_sec_cert_aouth_fields"
+		author="Andrii Iakovenko">
+		<addColumn tableName="organization_security_certificates">
+			<column name="base_url" type="varchar(255)" />
+			<column name="client_id" type="clob" />
+			<column name="client_secret" type="clob" />
+		</addColumn>
+
+		<rollback>
+			<dropColumn tableName="organization_security_certificates" columnName="base_url" />
+			<dropColumn tableName="organization_security_certificates" columnName="client_id" />
+			<dropColumn tableName="organization_security_certificates" columnName="client_secret" />
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

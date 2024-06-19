@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0378.metric_domains_new_values" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			INSERT INTO metric_domains (id, name, description, code) VALUES
+				(9, 'FFEIC CAT Inherent Risk', '', 'ffeic_cat_inherent_risk')
+				, (10, 'FFEIC CAT Cyber Org Maturity Level', '', 'ffeic_cat_cyber_org_maturity')
+			;
+
+			ALTER SEQUENCE metric_domains_id_seq RESTART WITH 11;
+
+			INSERT INTO variable_types (id, name, relation) VALUES
+				(21, 'FFEIC_CAT_INHERENT_RISK', 'RISK_METRIC')
+				, (22, 'FFEIC_CAT_CYBER_ORG_MATURITY', 'RISK_METRIC')
+			;
+
+			ALTER SEQUENCE variable_types_id_seq RESTART WITH 23;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM metric_domains md WHERE md.id IN (9, 10);
+				DELETE FROM variable_types md WHERE md.id IN (21, 22);
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

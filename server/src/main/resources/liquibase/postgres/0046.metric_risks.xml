@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0046-metric-risks" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE metric_risks
+			(
+				id serial,
+				risk_model_id integer NOT NULL,
+				metric_domain_id integer NOT NULL,
+				question_id integer NOT NULL,
+				question_weight_id integer NOT NULL,
+				risk_type_id integer DEFAULT NULL,
+				vendor_id integer DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_metric_risks PRIMARY KEY (id)
+				, CONSTRAINT fk_metric_risks_to_risk_model FOREIGN KEY (risk_model_id) REFERENCES risk_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_risks_to_metric_domain FOREIGN KEY (metric_domain_id) REFERENCES metric_domains (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_risks_to_question FOREIGN KEY (question_id) REFERENCES qualitative_questions (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_risks_to_weight FOREIGN KEY (question_weight_id) REFERENCES question_weights (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_risks_to_risk_type FOREIGN KEY (risk_type_id) REFERENCES risk_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_risks_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_risks_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_risks_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_metric_risks_risk_model ON metric_risks (risk_model_id);
+			CREATE INDEX i_metric_risks_metric_domain ON metric_risks (metric_domain_id);
+			CREATE INDEX i_metric_risks_question ON metric_risks (question_id);
+			CREATE INDEX i_metric_risks_weight ON metric_risks (question_weight_id);
+			CREATE INDEX i_metric_risks_risk_type ON metric_risks (risk_type_id);
+			CREATE INDEX i_metric_risks_vendor ON metric_risks (vendor_id);
+			CREATE INDEX i_metric_risks_created_at ON metric_risks (created_at);
+			CREATE INDEX i_metric_risks_created_by ON metric_risks (created_by_id);
+			CREATE INDEX i_metric_risks_updated_by ON metric_risks (updated_by_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="metric_risks"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

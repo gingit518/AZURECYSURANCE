@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0170.cybersecurity_tool_to_quant_metric" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE cybersecurity_tool_to_quant_metric
+			(
+				id serial,
+				cybersecurity_tool_id integer NOT NULL,
+				quant_metric_id integer DEFAULT NULL,
+				CONSTRAINT pk_cybersecurity_tool_to_quant_metric PRIMARY KEY (id)
+				, CONSTRAINT fk_cybersecurity_tool_to_quant_metric_to_cybersecurity_tool FOREIGN KEY (cybersecurity_tool_id) REFERENCES cybersecurity_tools (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_cybersecurity_tool_to_quant_metric_to_quant_metric FOREIGN KEY (quant_metric_id) REFERENCES quant_metrics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_cybersecurity_tool_to_quant_metric_to_cybersecurity_tool ON cybersecurity_tool_to_quant_metric (cybersecurity_tool_id);
+			CREATE INDEX i_cybersecurity_tool_to_quant_metric_to_quant_metric ON cybersecurity_tool_to_quant_metric (quant_metric_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROM TABLE cybersecurity_tool_to_quant_metric;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

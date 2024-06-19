@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0067-business_units_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO business_units (id, organization_id, name, description, owner_id, infosec_focal_person_id, created_by_id, updated_by_id) VALUES
+			  (101, 105, 'HR', 'Human Resources', 165, null, 161, 161)
+			, (102, 105, 'Finance', 'Finance', 165, null, 161, 161)
+			, (103, 105, 'Payroll', 'Payroll', 165, null, 161, 161)
+			, (104, 105, 'Sales', 'Sales', 165, null, 161, 161)
+			, (105, 105, 'Marketing', 'Marketing', 165, null, 161, 161)
+			, (106, 105, 'Trading', 'Trading', 165, null, 161, 161)
+			, (107, 105, 'Logistics', 'Logistics', 165, null, 161, 161)
+			, (108, 105, 'Benefits', 'Benefits', 165, null, 161, 161)
+			, (109, 105, 'R&amp;D', 'Research and Development', 165, null, 161, 161)
+			, (110, 105, 'Accounting', 'Accounting', null, 167, 161, 161)
+			, (111, 105, 'Production', 'Production', null, 167, 161, 161)
+			, (112, 105, 'Purchasing', 'Purchasing', null, 167, 161, 161)
+			, (113, 105, 'Cyber Risk', 'Risk', null, 167, 161, 161)
+			, (114, 105, 'Innovation', 'Innovation', null, 167, 161, 161)
+			;
+
+			ALTER SEQUENCE business_units_id_seq RESTART WITH 1024;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

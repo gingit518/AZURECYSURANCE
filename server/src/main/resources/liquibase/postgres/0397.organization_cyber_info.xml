@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0397.organization_cyber_info" author="Eugene A. Kalosha">
+		<sql>
+			ALTER TABLE organizations ADD COLUMN revenue double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN ebitda double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN debt double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN pension_debt double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN credit_rating character varying (64) DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN gross_risk_bearing_capacity double precision DEFAULT NULL;
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

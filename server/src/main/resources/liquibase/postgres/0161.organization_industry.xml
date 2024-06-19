@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0161.organization_industry" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE organizations ADD COLUMN industry_id integer DEFAULT NULL;
+			ALTER TABLE organizations ADD CONSTRAINT fk_organization_to_industry FOREIGN KEY (industry_id) REFERENCES industries (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+			CREATE INDEX i_organization_industry_id ON organizations (industry_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE DROP COLUMN industry_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

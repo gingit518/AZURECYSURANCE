@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0315.technology_category_management" author="Eugene A. Kalosha">
+		<sqlFile path="classpath:liquibase/postgres/0315.technology_category_management.sql" splitStatements="false" />
+		<rollback>
+			<sql>
+				DROP FUNCTION IF EXISTS reassign_technology_category(source_id int, target_id int);
+				DROP FUNCTION IF EXISTS delete_technology_category(source_id int);
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

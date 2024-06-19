@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0337.api_keys" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE api_keys
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				user_id integer NOT NULL,
+				api_key_private character varying (64) NOT NULL,
+				api_key_public character varying (64) NOT NULL,
+				created_at timestamp without time zone DEFAULT NULL,
+				expired_at timestamp without time zone DEFAULT NULL,
+				CONSTRAINT pk_api_keys PRIMARY KEY (id)
+				, CONSTRAINT fk_api_keys_to_user FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_api_keys_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_api_keys_api_key_private ON api_keys (api_key_private);
+			CREATE INDEX i_api_keys_api_key_public ON api_keys (api_key_public);
+			CREATE INDEX i_api_keys_organization_id ON api_keys (organization_id);
+			CREATE INDEX i_api_keys_user_id ON api_keys (user_id);
+		</sql>
+
+		<rollback>
+			DROP TABLE api_keys;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

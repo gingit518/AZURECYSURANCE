@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0168.cybersecurity_tool_to_system" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE cybersecurity_tool_to_system
+			(
+				id serial,
+				cybersecurity_tool_id integer NOT NULL,
+				system_id integer DEFAULT NULL,
+				CONSTRAINT pk_cybersecurity_tool_to_technology PRIMARY KEY (id)
+				, CONSTRAINT fk_cybersecurity_tool_to_system_to_cybersecurity_tool FOREIGN KEY (cybersecurity_tool_id) REFERENCES cybersecurity_tools (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_cybersecurity_tool_to_system_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_cybersecurity_tool_to_system_to_cybersecurity_tool ON cybersecurity_tool_to_system (cybersecurity_tool_id);
+			CREATE INDEX i_cybersecurity_tool_to_system_to_system ON cybersecurity_tool_to_system (system_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE DROP COLUMN cybersecurity_tool_to_system;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

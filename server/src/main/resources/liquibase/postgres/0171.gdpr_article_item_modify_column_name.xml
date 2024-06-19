@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0171.gdpr_article_item_modify_column_name" author="Eugene A. Kalosha">
+		<sql>
+			ALTER TABLE gdpr_article ALTER COLUMN name SET DATA TYPE character varying (512);
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0422.regulation_changes" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_of_not_to_be_subjected_to_fully_automated_decision_making  boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_access boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_appeal boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_consent boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_correct boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_data_portability boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_delete boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_not_be_discriminated_against boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_opt_in_of_all_sensitive_data_processing boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_opt_down_of_all_specific_processing boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_portability boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_private_action boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_refresh_consent boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_re_seek_consent boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_restrict_of_processing boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_revoke_consent boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_object boolean DEFAULT FALSE;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS data_security_requirements boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS exercising_consumer_rights boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS notices_of_changes_to_privacy_policy boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS processing_agreements_required_btw_controllers_and_service_providers boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS protections_for_sensitive_pi boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS protection_assessments boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS transparency_and_purpose_requirements boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS universal_opt_out_mechanism boolean DEFAULT FALSE;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_of_not_to_be_subjected_to_fully_automated_decision_making ;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_access;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_correct;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_delete;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_opt_in_of_all_sensitive_data_processing;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_opt_down_of_all_specific_processing;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_portability;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

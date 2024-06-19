@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0339.data_domains_to_data_classes" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE data_domain_to_data_type_classification
+			(
+				id serial,
+				data_domain_id integer NOT NULL,
+				data_type_classification_id integer DEFAULT NULL,
+				CONSTRAINT pk_data_domain_to_data_type_classification PRIMARY KEY (id)
+				, CONSTRAINT fk_data_domain_to_data_type_classification_to_data_domain FOREIGN KEY (data_domain_id) REFERENCES data_domains (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_data_domain_to_data_type_classification_to_data_type_classification FOREIGN KEY (data_type_classification_id) REFERENCES data_type_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_data_domain_to_data_type_classification_data_domain ON data_domain_to_data_type_classification (data_domain_id);
+			CREATE INDEX i_data_domain_to_data_type_classification_data_type_classification ON data_domain_to_data_type_classification (data_type_classification_id);
+
+		</sql>
+
+		<rollback>
+			<dropTable tableName="data_domain_to_data_type_classification"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0061-questions_to_risk_types" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE questions_to_risk_types
+			(
+				id serial,
+				question_id integer NOT NULL,
+				risk_type_id integer DEFAULT NULL,
+				CONSTRAINT pk_questions_to_risk_types PRIMARY KEY (id)
+				, CONSTRAINT fk_questions_to_risk_types_to_question FOREIGN KEY (question_id) REFERENCES qualitative_questions (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_questions_to_risk_types_to_risk_type FOREIGN KEY (risk_type_id) REFERENCES risk_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_questions_to_risk_types_question ON questions_to_risk_types (question_id);
+			CREATE INDEX i_questions_to_risk_types_risk_type ON questions_to_risk_types (risk_type_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="questions_to_risk_types"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

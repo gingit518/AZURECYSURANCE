@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0258.idp_users" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TYPE IdpType as ENUM ('GOOGLE', 'MICROSOFT');
+
+			CREATE TABLE idp_users
+			(
+				id serial,
+				idp_id IdpType NOT NULL,
+				user_id integer NOT NULL,
+				idp_user_identity character varying (128) NOT NULL,
+
+				CONSTRAINT pk_idp_users PRIMARY KEY (id)
+				, CONSTRAINT fk_idp_users_to_user FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_idp_users_user ON idp_users (user_id);
+			CREATE INDEX i_idp_users_idp_user_identity ON idp_users (idp_user_identity);
+			CREATE UNIQUE INDEX ui_idp_users_idp_id_user_identity ON idp_users (idp_id, idp_user_identity);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS idp_users;
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

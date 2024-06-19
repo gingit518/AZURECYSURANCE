@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0034-question-weights-data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO question_weights (id, value, name, description) VALUES
+			  (1, 0, '0', 'Not Applicable')
+			, (2, 1, '1', 'The most mature choice on the questionnaire.')
+			, (3, 2, '2', 'The 2nd most mature answer.')
+			, (4, 3, '3', 'The 3rd most mature answer.')
+			, (5, 4, '4', 'The 4th most mature answer.')
+			, (6, 5, '5', 'The least mature choice on the questionnaire.')
+			;
+
+			ALTER SEQUENCE question_weights_id_seq RESTART WITH 7;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM question_weights;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

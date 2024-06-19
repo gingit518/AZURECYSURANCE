@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0305.external_analytics" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TYPE ExternalAnalyticsType AS ENUM ('QLIK', 'KEEN_IO', 'PROCESS');
+
+			CREATE TABLE external_analytics
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				external_analytics_type ExternalAnalyticsType DEFAULT NULL,
+				name character varying (127) DEFAULT NULL,
+				description text DEFAULT NULL,
+				CONSTRAINT pk_external_analytics PRIMARY KEY (id)
+				, CONSTRAINT fk_external_analytics_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_external_analytics_organization ON external_analytics (organization_id);
+
+			CREATE TABLE external_analytics_parameters
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				external_analytics_id integer DEFAULT NULL,
+				name character varying (127) DEFAULT NULL,
+				value text DEFAULT NULL,
+				CONSTRAINT pk_external_analytics_parameters PRIMARY KEY (id)
+				, CONSTRAINT fk_external_analytics_parameters_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_external_analytics_parameters_to_external_analytics FOREIGN KEY (external_analytics_id) REFERENCES external_analytics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_external_analytics_parameters_organization ON external_analytics_parameters (organization_id);
+			CREATE INDEX i_external_analytics_parameters_external_analytics ON external_analytics_parameters (external_analytics_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE external_analytics_params;
+				DROP TABLE external_analytics;
+				DROP TYPE ExternalAnalyticsType;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0219.policies_technologies_notes_version" author="Daniel A. Kolesnik">
+		<sql>
+
+			ALTER TABLE technologies ADD COLUMN version character varying (255) NOT NULL DEFAULT '';
+
+			ALTER TABLE technologies ADD COLUMN notes text NOT NULL DEFAULT '';
+
+			ALTER TABLE policies DROP COLUMN version;
+
+			ALTER TABLE policies ADD COLUMN version character varying (255) NOT NULL DEFAULT '';
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				ALTER TABLE technologies DROP COLUMN version;
+
+				ALTER TABLE technologies DROP COLUMN notes;
+
+			</sql>
+		</rollback>
+	</changeSet>
+</databaseChangeLog>

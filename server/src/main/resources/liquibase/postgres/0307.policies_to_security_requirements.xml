@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0307.policies_to_security_requirements" author="Oleh Dmytrenko">
+
+		<sql>
+			CREATE TABLE policies_to_security_requirements
+			(
+			id serial NOT NULL,
+			policy_id integer NOT NULL,
+			security_requirement_id integer DEFAULT NULL,
+			CONSTRAINT pk_policies_to_security_requirements PRIMARY KEY (id)
+			, CONSTRAINT fk_policies_to_security_requirements_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			, CONSTRAINT fk_policies_to_security_requirements_to_security_requirements FOREIGN KEY (security_requirement_id) REFERENCES security_requirements (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_policies_to_security_requirements_policy_id ON policies_to_security_requirements (policy_id);
+			CREATE INDEX i_policies_to_security_requirements_security_requirement_id ON policies_to_security_requirements (security_requirement_id);
+			CREATE INDEX i_pk_policies_to_security_requirements ON policies_to_security_requirements (id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="policies_to_security_requirements"/>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>
+

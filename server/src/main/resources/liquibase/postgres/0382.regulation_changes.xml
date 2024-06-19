@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0382.regulation_changes" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS criminal_penalties boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS criminal_penalties_comment character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS civil_penalties boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS civil_penalties_comment character varying (255) DEFAULT NULL;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS exemption_for_employee boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS non_profits_covered boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS sectoral_laws_carveout character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS state_level_preemption character varying (255) DEFAULT NULL;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS data_breach_notification boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS data_minimization boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS data_protection_officer boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS international_data_transfer_restrictions boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS legal_basis_of_processing boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS notice_transparency_requirements boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS privacy_by_design boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS processor_service_provider_requirements boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS prohibition_on_discrimination boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS purpose_limitation boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS records_of_processing boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS registration_with_authorities boolean DEFAULT FALSE;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS fining_authority boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS private_right_of_action boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS rule_making_authority boolean DEFAULT FALSE;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS age_based_opt_in_right boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_of_not_to_be_subjected_to_fully_automated_decision_making  boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_access boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_correct boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_delete boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_opt_in_of_all_sensitive_data_processing boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_opt_down_of_all_specific_processing boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS right_to_portability boolean DEFAULT FALSE;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS responding_to_requests boolean DEFAULT FALSE;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS type_of_disclosure character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS disclosure_specifications text DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS disclosure_time_requirements int DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS disclosure_time_unit int DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS disclosure_time_requirements_days boolean DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS disclosure_type_requirements text DEFAULT NULL;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS aggregated_or_deidentified_data_definition character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS aggregated_or_deidentified_data_use character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS classification character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS data_retention integer DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS data_retention_time_unit integer DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS purpose_limitations character varying (255) DEFAULT NULL;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS access_control character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS encryption_requirements character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS notification_requirements_text character varying (255) DEFAULT NULL;
+			CREATE TYPE CadenceType as ENUM ('None', 'Quarterly', 'B_Annual', 'Annual', 'Every2years');
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS pen_test_cadence CadenceType DEFAULT 'None';
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS vulnerability_scan_cadence CadenceType DEFAULT 'None';
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS policies_and_procedures_review CadenceType DEFAULT 'None';
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS risk_impact_assessments CadenceType DEFAULT 'None';
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS details_of_vendor_program character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS vendor_due_diligence_requirements character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS mfa boolean DEFAULT FALSE;
+
+			CREATE TABLE IF NOT EXISTS regulation_ages
+			(
+				id serial,
+				regulation_id integer DEFAULT NULL,
+				age integer DEFAULT NULL,
+				comments text DEFAULT NULL,
+
+				CONSTRAINT pk_regulation_ages PRIMARY KEY (id)
+				, CONSTRAINT fk_regulation_ages FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX IF NOT EXISTS i_regulation_ages ON regulation_ages (regulation_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE regulations DROP COLUMN IF EXISTS criminal_penalties;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS criminal_penalties_comment;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS civil_penalties;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS civil_penalties_comment;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS exemption_for_employee;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS non_profits_covered;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS sectoral_laws_carveout;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS state_level_preemption;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS data_breach_notification;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS data_minimization;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS data_protection_officer;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS international_data_transfer_restrictions;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS legal_basis_of_processing;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS notice_transparency_requirements;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS privacy_by_design;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS processor_service_provider_requirements;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS prohibition_on_discrimination;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS purpose_limitation;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS records_of_processing;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS registration_with_authorities;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS fining_authority;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS private_right_of_action;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS rule_making_authority;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS age_based_opt_in_right;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_of_not_to_be_subjected_to_fully_automated_decision_making ;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_access;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_correct;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_delete;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_opt_in_of_all_sensitive_data_processing;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_opt_down_of_all_specific_processing;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS right_to_portability;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS responding_to_requests;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS type_of_disclosure;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS disclosure_specifications;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS disclosure_time_requirements;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS disclosure_time_unit;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS disclosure_time_requirements_days;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS disclosure_type_requirements;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS aggregated_or_deidentified_data_definition;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS aggregated_or_deidentified_data_use;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS classification;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS data_retention;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS data_retention_time_unit;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS purpose_limitations;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS access_control;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS encryption_requirements;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS notification_requirements_text;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS pen_test_cadence;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS vulnerability_scan_cadence;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS policies_and_procedures_review;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS risk_impact_assessments;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS details_of_vendor_program;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS vendor_due_diligence_requirements;
+				ALTER TABLE regulations DROP COLUMN IF EXISTS mfa;
+				DROP TABLE IF EXISTS regulation_ages;
+				DROP TYPE IF EXISTS CadenceType;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

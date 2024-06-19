@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0394.quant_regulations" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE quant_metrics_to_industries
+			(
+			id serial,
+			quant_metric_id integer NOT NULL,
+			industry_id integer NOT NULL,
+			CONSTRAINT pk_quant_metrics_to_industries PRIMARY KEY (id)
+			, CONSTRAINT fk_quant_metrics_to_industries_to_quant_metric FOREIGN KEY (quant_metric_id) REFERENCES quant_metrics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			, CONSTRAINT fk_quant_metrics_to_industries_to_industry FOREIGN KEY (industry_id) REFERENCES industries (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_quant_metrics_to_industries_to_quant_metric ON quant_metrics_to_industries (quant_metric_id);
+			CREATE INDEX i_quant_metrics_to_industries_to_industry ON quant_metrics_to_industries (industry_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE quant_metrics_to_industries;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

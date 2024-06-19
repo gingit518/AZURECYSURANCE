@@ -1,0 +1,6 @@
+Constant,Scope,Value,Default Value,Language
+SCORING_METRICS$EDIT_METRIC,UI,Edit Metric Domain,Edit Metric Domain,eng
+SCORING_METRICS$SCORING_METRIC,UI,Metric Domain,Metric Domain,eng
+SCORING_METRICS$TITLE,UI,Metric Domain,Metric Domain,eng
+SCORING_METRICS$METRIC_DOMAIN,UI,Metric Domain,Metric Domain,eng
+SCORING_METRICS$METRIC_DOMAIN_REQUIRED,UI,Metric Domain is required,Metric Domain is required,eng

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0104-findings_update" author="Eugene A. Kalosha">
+
+		<sql>
+			DROP TABLE IF EXISTS findings;
+			CREATE TABLE findings
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				technology_category_id integer DEFAULT NULL,
+				control_subcategory_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				percentage float DEFAULT NULL,
+				value float DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_findings PRIMARY KEY (id)
+				, CONSTRAINT fk_findings_to_control_subcategory FOREIGN KEY (control_subcategory_id) REFERENCES control_subcategories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_findings_to_technology_category FOREIGN KEY (technology_category_id) REFERENCES technology_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_findings_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_findings_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_findings_technology_category ON findings (technology_category_id);
+			CREATE INDEX i_findings_control_subcategory ON findings (control_subcategory_id);
+			CREATE INDEX i_findings_organization_name ON findings (organization_id, name);
+			CREATE INDEX ui_findings_organization_control_subcategory ON findings (organization_id, control_subcategory_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="findings"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0328.document_and_variable_changes" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE document_access_tokens ALTER COLUMN document_id DROP NOT NULL;
+			ALTER TABLE variable_types ADD COLUMN code character varying (61) DEFAULT NULL;
+			CREATE INDEX ui_variable_types_code ON variable_types (code);
+			UPDATE variable_types SET code = name;
+
+			INSERT INTO variable_types (id,"name",relation,code) VALUES
+			(1,'Constant','QUANT_METRIC','CONSTANT'),
+			(2,'Process Revenue','QUANT_METRIC','PROCESS_REVENUE'),
+			(3,'System number of Records','QUANT_METRIC','SYSTEM_NUMBER_OF_REC'),
+			(4,'Organization Revenue','QUANT_METRIC','ORGANIZATION_REVENUE'),
+			(5,'Likelihood','RISK_METRIC','LIKELIHOOD'),
+			(6,'Impact','RISK_METRIC','IMPACT'),
+			(7,'Amplified Reputation','RISK_METRIC','AMPLIFIED_REPUTATION'),
+			(8,'Amplified Operational','RISK_METRIC','AMPLIFIED_OPERATIONAL'),
+			(9,'Amplified Legal','RISK_METRIC','AMPLIFIED_LEGAL'),
+			(10,'Constant','RISK_METRIC','CONSTANT'),
+			(11,'Confidentiality','RISK_METRIC','CONFIDENTIALITY'),
+			(12,'Integrity','RISK_METRIC','INTEGRITY'),
+			(13,'Market Capitalization','QUANT_METRIC','MARKET_CAPITALIZATION'),
+			(14,'RTO','QUANT_METRIC','RTO'),
+			(15,'RRTO','QUANT_METRIC','RRTO'),
+			(16,'Risk model Constant','QUANT_METRIC','RISK_MODEL_CONSTANT'),
+			(17,'Quantification Metric','QUANT_METRIC','QUANT_METRIC'),
+			(18,'Organization record Price','QUANT_METRIC','ORGANIZATION_RECORD_PRICE'),
+			(19,'Mitigation Risk','RISK_METRIC','MITIGATION_RISK'),
+			(20,'Cybersecurity Maturity','RISK_METRIC','CYBERSECURITY_MATURITY')
+
+			ON CONFLICT (id)
+			DO UPDATE
+			SET name=EXCLUDED.name
+			;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,31 @@
+Constant,Scope,Value,Default Value,Language
+ORGANIZATION$CYBER_INSURANCE_INFORMATION,UI,Cyber Insurance Information,Cyber Insurance Information
+ORGANIZATION$CYBER_INSURANCE_LIMIT_AND_GENERAL,UI,Limit & General Information,Limit & General Information
+ORGANIZATION$CYBER_INSURANCE_SUBLIMITS,UI,Sublimits,Sublimits
+ORGANIZATION$MAXIMUM_WRITTEN_PREMIUM,UI,Maximum written premium,Maximum written premium
+ORGANIZATION$RANSOMWARE_SUBLIMIT,UI,Current Ransomware Sublimit,Current Ransomware Sublimit
+ORGANIZATION$PRIVACY_GDPR_SUBLIMIT,UI,Current Privacy (GDPR) Sublimit,Current Privacy (GDPR) Sublimit
+ORGANIZATION$PRIVACY_CCPA_SUBLIMIT,UI,Current Privacy (CCPA) Sublimit,Current Privacy (CCPA) Sublimit
+ORGANIZATION$DDOS_SUBLIMIT,UI,Current DDoS Sublimit,Current DDoS Sublimit
+POLICY_MANAGEMENT$POLICY_NAME,UI,Policy Name,Policy Name
+SCORING_QUESTIONS$ALLOW_COMMENT_TO_ANSWER,UI,Allow Comment To Answer,Allow Comment To Answer
+DRILLDOWNS$SYSTEM_QUANT$SYSTEM$SUMMARY$INDUSTRIES_HEADER,SERVER,Industries,Industries
+ORGANIZATION$NET_RISK_BEARING_CAPACITY,UI,Net Risk Bearing Capacity,Net Risk Bearing Capacity
+ORGANIZATION$REVENUE,UI,Revenue,Revenue
+ORGANIZATION$EBITDA,UI,EBITDA,EBITDA
+ORGANIZATION$DEBT,UI,Debt,Debt
+ORGANIZATION$PENSION_DEBT,UI,Pension Debt,Pension Debt
+ORGANIZATION$CREDIT_RATING,UI,Credit Rating,Credit Rating
+ORGANIZATION$GROSS_RISK_BEARING_CAPACITY,UI,Gross Risk Bearing Capacity,Gross Risk Bearing Capacity
+SCORING_QUESTIONS$COLOR_CODING$MOST,UI,Most,Most
+SCORING_QUESTIONS$COLOR_CODING$SIGNIFICANT,UI,Significant,Significant
+SCORING_QUESTIONS$COLOR_CODING$MODERATE,UI,Moderate,Moderate
+SCORING_QUESTIONS$COLOR_CODING$LEAST,UI,Least,Least
+SCORING_QUESTIONS$COLOR_CODING$MINIMAL,UI,Minimal,Minimal
+ORGANIZATION$MAXIMUM_CARRIER_LIMIT,UI,Maximum Carrier Limit,Maximum Carrier Limit
+DASHBOARDS$VENDOR_QUESTION_STATUS$NAME,DASHBOARD,Vendor Cyber Risk Scoring to be Completed,Vendor Cyber Risk Scoring to be Completed
+AUTHORIZATION$MFA_TOTP_NOTIFICATION,UI,Please use your Authenticator application to obtain OTP code and authorize,Please use your Authenticator application to obtain OTP code and authorize,Please use your Authenticator application to obtain OTP code and authorize,Please use your Authenticator application to obtain OTP code and authorize
+POLICY_MANAGEMENT$ADD_REVIEW_TEXT,UI,Please add your review notices,UI,Please add your review notices
+POLICY_MANAGEMENT$REVIEWS,UI,Policy Reviews,Policy Reviews
+POLICY_MANAGEMENT$REVIEW,UI,Policy Review,Policy Review
+POLICY_MANAGEMENT$REVIEW_CREATE_GREETING,UI,Thank you for Policy Review,Thank you for Policy Review

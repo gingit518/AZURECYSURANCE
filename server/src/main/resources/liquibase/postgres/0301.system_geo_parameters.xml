@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0301.system_geo_parameters" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE system_geo_parameters
+			(
+				id serial,
+				system_id integer DEFAULT NULL,
+				country_id integer DEFAULT NULL,
+				state_id integer DEFAULT NULL,
+				number_of_rec_processed double precision DEFAULT NULL,
+				CONSTRAINT pk_system_geo_parameters PRIMARY KEY (id)
+				, CONSTRAINT fk_system_geo_parameters_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_system_geo_parameters_to_country FOREIGN KEY (country_id) REFERENCES countries (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_system_geo_parameters_to_state FOREIGN KEY (state_id) REFERENCES states (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_system_geo_parameters_system ON system_geo_parameters (system_id);
+			CREATE INDEX i_system_geo_parameters_country ON system_geo_parameters (country_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE system_geo_parameters;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

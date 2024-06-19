@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0044-qual-metrics_domains" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE qual_metrics ADD COLUMN metric_domain_id integer DEFAULT NULL;
+			ALTER TABLE qual_metrics ADD CONSTRAINT fk_qual_metrics_to_metric_domains FOREIGN KEY (metric_domain_id) REFERENCES metric_domains (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+			CREATE INDEX i_qual_metrics_metric_domain ON qual_metrics (metric_domain_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE qual_metrics DROP COLUMN metric_domain_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

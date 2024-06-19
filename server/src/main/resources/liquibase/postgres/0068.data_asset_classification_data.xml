@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0068-data_asset_classifications_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO data_asset_classifications (id, organization_id, name, description, created_by_id, updated_by_id) VALUES
+			  (101, 105, 'Crown Jewel', 'Crown jewel assets refer to a company''s most prized or valuable assets in terms of its profitability and future prospects. A failure of this type of system results in the company going out of business.  Examples include: Safety-Critical Systems - A system whose failure may result in injury, loss of life or serious environmental damage. An example of a safety-critical system is a control system for a chemical manufacturing plant. Mission-Critical Systems - A system whose failure may result in the failure of some goal-directed activity. An example of a mission-critical system is a navigational system for a spacecraft. Transactional Systems - A system whose failure may result in the failure of some goal-directed activity. An example is a transactional system is one that processes privacy data when the company sells trust. (i.e. Equifax)', 161, 161)
+			, (102, 105, 'Business Critical', 'A business-critical system is a system whose failure may result in very high costs for the business using that system. An example of a business-critical system is the customer accounting system in a bank.', 161, 161)
+			, (103, 105, 'Business Crucial', 'A business crucial system is a system whose failure is not critical but has significant impact.', 161, 161)
+			;
+
+			ALTER SEQUENCE data_asset_classifications_id_seq RESTART WITH 1024;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

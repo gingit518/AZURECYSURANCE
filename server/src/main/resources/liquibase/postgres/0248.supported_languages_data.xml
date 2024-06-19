@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0248.supported_languages_data" author="Daniel A. Kolesnik">
+
+		<sql>
+
+<!--
+ 	ISO CODES (639-3 standard used) - https://iso639-3.sil.org/code_tables/639/data
+ -->
+
+INSERT INTO supported_languages (id, iso_code, locale, name, charset) VALUES (1, 'eng', 'en_US', 'English', NULL);
+INSERT INTO supported_languages (id, iso_code, locale, name, charset) VALUES (2, 'heb', 'he', 'עברית', NULL);
+INSERT INTO supported_languages (id, iso_code, locale, name, charset) VALUES (3, 'rus', 'ru', 'Русский', NULL);
+
+			ALTER SEQUENCE supported_languages_id_seq RESTART WITH 4;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

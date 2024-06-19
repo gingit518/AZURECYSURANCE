@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0208.tasks_estimations_update" author="Eugene A. Kalosha">
+		<sql>
+			ALTER TABLE tasks ADD COLUMN estimated_hours float DEFAULT NULL;
+			ALTER TABLE tasks ADD COLUMN actual_hours float DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE tasks DROP COLUMN estimated_hours;
+				ALTER TABLE tasks DROP COLUMN actual_hours;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,102 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor,Allows Comment To Answers,Use Color Coding
+CSMAT:1,What level of cybersecurity governance maturity does your organization have?,5,None,1,Organization,Cybersecurity Maturity,1,NO,"Cybersecurity governance maturity ranges from None, IT Involvement, BU Involvement, Information Technology and Business Unit Involvement to Board Involvement. The more senior management involved the more mature governance the firm has.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,IT Involvement,2,,,,,
+"",,,BU Involvement,3,,,,,
+"",,,IT and BU  Involvement,4,,,,,
+"",,,Board Involvement,5,,,,,
+CSMAT:2,What level of cyber risk reporting maturity does your organization have?,5,None,1,Organization,Cybersecurity Maturity,2,NO,"Reporting cyber risk can be nonexistent, elementary with spreadsheets from Information Technology , or spreadsheets that are Business Unit focused, elevating to integrated data driven reporting and up to integration with the Enterprise Risk Management systems.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,IT focused Spreadsheets,2,,,,,
+"",,,BU Focused Spreadsheets,3,,,,,
+"",,,Data Driven (integrated),4,,,,,
+"",,,Highly Data Driven (integrated),5,,,,,
+CSMAT:3,What level of cyber risk management focus does your organization have?,5,None,1,Organization,Cybersecurity Maturity,3,NO,"Most companies start with vulnerabilities, move up to incident focus and then integrate cyber risk and Enterprise Risk Management (ERM).",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Vulnerability Focused,2,,,,,
+"",,,"Audit, Incident Focused, some risk",3,,,,,
+"",,,Some integrated Cyber Risk Management,4,,,,,
+"",,,Cyber Integrated with ERM,5,,,,,
+CSMAT:4,What level of CISO reporting structure does your organization have?,5,No CISO,1,Organization,Cybersecurity Maturity,4,NO,"Most reporting is to the CIO, however as more roles are added the reporting shifts to COO, CFO or CRO and finally at the board level.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Reports to CIO,2,,,,,
+"",,,Reports to COO or CFO,3,,,,,
+"",,,Reports to CRO,4,,,,,
+"",,,Reports to Board,5,,,,,
+CSMAT:5,What level of cybersecurity investments does your organization have?,5,Minimal,1,Organization,Cybersecurity Maturity,5,NO,"Companies invest to relieve their pain points.  The first hint of pain is from the compliance team, which moves to a more incident focused maturity, to an audit maturity and then to an integration focus.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Compliance Focused,2,,,,,
+"",,,Incident Response Focused,3,,,,,
+"",,,Audit Focused,4,,,,,
+"",,,Integration Focused,5,,,,,
+CSMAT:6,What level of cybersecurity strategy does your organization have?,5,None,1,Organization,Cybersecurity Maturity,6,NO,"Companies start with a network focused stretch and then add layered tools, advancing into threat intelligence and business process automation coupled with AI.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Basic Network Focus,2,,,,,
+"",,,Layered Tools,3,,,,,
+"",,,Threat Intelligence,4,,,,,
+"",,,"AI, Business Process Automation",5,,,,,
+CSMAT:7,What level of cybersecurity team members does your organization have?,5,None,1,Organization,Cybersecurity Maturity,7,NO,"Pen testing is where most companies begin the level of skills with their teams, moving to vulnerability scanning, then Security Operations team skills, afterwards supplementing their teams from outside specialty services and then bringing that skill set back in house.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Vulnerability Focused Only - Pen testing,2,,,,,
+"",,,Vulnerability Focused - Pen testing and SOC Team,3,,,,,
+"",,,Previous level with outsourced specialty teams,4,,,,,
+"",,,Previous level with teams moving back inhouse for specialty services,5,,,,,
+CSMAT:8,What level of cybersecurity tools does your organization have?,5,Level 1: None,1,Organization,Cybersecurity Maturity,8,NO,"Firewalls, IDS and VMS are the first tools implemented, followed by SIEM, the SOC team (bule, red) and integrated with Cyber Risk tools.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,"Level 2: Firewalls, IDS, some VMS",2,,,,,
+"",,,Level 3: Level 2 + some SIEM,3,,,,,
+"",,,Level 4: Level 3 + outsourced SOC,4,,,,,
+"",,,Level 5: All tools,5,,,,,
+CSMAT:9,What level of vendor cyber risk management program does your organization have?,5,None,1,Organization,Cybersecurity Maturity,9,NO,"Companies start with excel, add macros, then move to a Third Party Risk Management (TPRM) application and lastly integrate it with security tools.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Excel Spreadsheets,2,,,,,
+"",,,Excel Macros,3,,,,,
+"",,,Vendor risk applications,4,,,,,
+"",,,Vendor risk applications Integrated with cybersecurity tools,5,,,,,
+CSMAT:10,What level of cybersecurity decision making does your organization have?,5,None,1,Organization,Cybersecurity Maturity,10,NO,"Cybersecurity decision making starts with a single manager, moves to a C-Level sign off, and then multiple C Level signoffs and lastly to the board.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Single Manager,2,,,,,
+"",,,Single C-level,3,,,,,
+"",,,C-Level +,4,,,,,
+"",,,Board,5,,,,,
+CSMAT:11,What type of cybersecurity lead does your organization have?,5,None,1,Organization,Cybersecurity Maturity,11,NO,"Most companies begin their cyber security team with an IT person, then move into having a compliance manager in place, followed by a security manager and ultimately a CISO.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,IT Person,2,,,,,
+"",,,Compliance Manager,3,,,,,
+"",,,Security Manager,4,,,,,
+"",,,CISO,5,,,,,
+CSMAT:12,What type of privacy lead does your organization have?,5,None,1,Organization,Cybersecurity Maturity,12,NO,"Companies typically start using a CIO as a privacy lead then migrate to using a attorney afterwards as they mature they will use a CISO perhaps, and as they mature to the fullest capacity a Data Privacy or Chief Privacy Officer.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,CIO,2,,,,,
+"",,,Lawyer,3,,,,,
+"",,,CISO,4,,,,,
+"",,,DPO/CPO,5,,,,,
+CSMAT:13,What level of inherent risk does your organization have?,5,Small,1,Organization,Cybersecurity Maturity,13,NO,As the company grows in size the organization's digital footprint increases the attack surface and the company assumes more inherent risk.,,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Medium,2,,,,,
+"",,,Medium or Large,3,,,,,
+"",,,Large,4,,,,,
+"",,,Largest,5,,,,,
+CSMAT:14,What level of cloud cybersecurity program does your organization have?,5,None,1,Organization,Cybersecurity Maturity,14,NO,"In the beginning most companies rely solely on the cloud service provider for their cloud security. As they realize that the cloud service is not fully responsible, they obtain a limited knowledge of their cloud security requirements which allows them to budget to hire staff to ensure the controls they own are in place.  Later they will mature to  having a full cloud service cybersecurity program in place.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Reliance on the CSP,2,,,,,
+"",,,Limited knowledge of Cloud Security,3,,,,,
+"",,,Some staff for limited cloud security,4,,,,,
+"",,,Cloud Cybersecurity Program in place,5,,,,,
+CSMAT:15,How does your company identify the amount of cyber insurance you need?,5,None,1,Organization,Cybersecurity Maturity,15,NO,"Many companies start with no cybersecurity insurance, however most of their third parties may compel them to consider getting cyber insurance in order to stay on their vendor list. Some companies will ask their attorney to weigh in on the decision, others will go to the cyber insurance broker who will use comparable companies to suggest the proper limit, and lastly the more mature companies will do a cyber limits adequacy study.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Whatever the client tells us,2,,,,,
+"",,,Suggested by attorney,3,,,,,
+"",,,Suggested by broker,4,,,,,
+"",,,Cyber limits adequacy study,5,,,,,
+CSMAT:16,What level of digital asset management program does your organization have?,5,None,1,Organization,Cybersecurity Maturity,16,NO,"Digital asset management programs typically start out with an excel based approach. Once companies have over 10 systems or vendors this becomes an unmanageable effort.  This is when they switch to a system based approach. As they mature, they understand that this approach needs to be integrated to provide a continuous update.  Later they understand that it needs to be integrated with the cyber risk management system.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Excel,2,,,,,
+"",,,System based,3,,,,,
+"",,,Integrated system based,4,,,,,
+"",,,Integrated Cyber Risk Management system based,5,,,,,
+CSMAT:17,What level of compliance program does your organization have?,5,None,1,Organization,Cybersecurity Maturity,17,NO,Companies usually start with a check box compliance effort which is the minimal amount they need to do. They move into a more advanced level of compliance program where they're understanding that the checkbox approach does not work. Robust programs are integrating in their compliance with their cybersecurity program. Zealous efforts are where compliance is integrated in across cybersecurity and privacy and ending all the siloed efforts of their organization.,,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Minimal - check box mentality,2,,,,,
+"",,,Medium - moving out of check box mentality,3,,,,,
+"",,,Robust - integrating with cybersecurity,4,,,,,
+"",,,Zealous - integrating with cybersecurity & privacy teams,5,,,,,
+CSMAT:18,What level of user accountability does your organization have?,5,None,1,Organization,Cybersecurity Maturity,18,NO,Companies typically have cyber security or privacy policies in place and then move into a organizational Phishing exercise with their users. There's a mature they add organizational training around cyber security regulation and risk and lastly they start to do regular tabletop exercises.,,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Cyber Policies Only,2,,,,,
+"",,,Cyber Polices & Training,3,,,,,
+"",,,"Cyber Policies, Phishing  & Org Training",4,,,,,
+"",,,"Cyber Policies, Phishing, Org Training & Table-Tops",5,,,,,
+Background Risk: 1,Are background checks done on employees and contractors?,5,No,2,Organization,Cybersecurity Maturity,19,YES,Provide the details of how your company performs background checks on all employees and contractors.,,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Yes  - Criminal Only,4,,,,,
+"",,,Yes - Credit Check Only,4,,,,,
+"",,,Yes - Criminal and Drug Test,4,,,,,
+"",,,Yes - Criminal and Credit Check,10,,,,,
+"",,,Not answered,10,,,,,
+CSMAT:20,What level of cybersecurity product posture does your organization have?,5,None,1,Organization,Cybersecurity Maturity,20,NO,"Initially, companies tend to have little customization in their cyber security products. They then mature into a level of customization that allows them to have more specificity to their requirements. Evolving into highly customized and then innovative cybersecurity products.",,,NO,NO,NO,NO,NO,NO,NO,YES
+"",,,Little Customization,2,,,,,
+"",,,Some Customization,3,,,,,
+"",,,Highly Customized,4,,,,,
+"",,,Innovative,5,,,,,

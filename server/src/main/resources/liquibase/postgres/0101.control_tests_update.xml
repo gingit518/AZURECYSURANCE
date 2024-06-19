@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0101-control_tests_update" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE control_tests ADD COLUMN assessment_type_id integer DEFAULT NULL;
+			ALTER TABLE control_tests ADD CONSTRAINT fk_control_tests_to_assessment_types FOREIGN KEY (assessment_type_id) REFERENCES assessment_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+			CREATE INDEX i_control_tests_assessment_type_id ON control_tests (assessment_type_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE control_tests DROP COLUMN assessment_type_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

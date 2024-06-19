@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0154-budget_dates" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE fixed_operational_costs ADD COLUMN IF NOT EXISTS cost_date timestamp without time zone NOT NULL DEFAULT now();
+			ALTER TABLE fixed_capital_costs ADD COLUMN IF NOT EXISTS cost_date timestamp without time zone NOT NULL DEFAULT now();
+			ALTER TABLE variable_costs ADD COLUMN IF NOT EXISTS cost_date timestamp without time zone NOT NULL DEFAULT now();
+
+			CREATE INDEX i_fixed_operational_costs_cost_date ON fixed_operational_costs (cost_date);
+			CREATE INDEX i_fixed_capital_costs_cost_date ON fixed_capital_costs (cost_date);
+			CREATE INDEX i_variable_costs_cost_date ON variable_costs (cost_date);
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

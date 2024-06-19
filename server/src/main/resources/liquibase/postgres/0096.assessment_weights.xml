@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0096-assessment_weights" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE assessment_weights
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				control_subcategory_id integer DEFAULT NULL,
+				name character varying (63) NOT NULL DEFAULT '',
+				description character varying (255) DEFAULT NULL,
+				value integer DEFAULT NULL,
+				CONSTRAINT pk_assessment_weights PRIMARY KEY (id)
+				, CONSTRAINT fk_assessment_weights_to_control_subcategory FOREIGN KEY (control_subcategory_id) REFERENCES control_subcategories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessment_weights_control_subcategory ON assessment_weights (control_subcategory_id);
+			CREATE INDEX i_assessment_weights_organization_name ON assessment_weights (organization_id, name);
+			CREATE INDEX i_assessment_weights_name ON assessment_weights (name);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="assessment_weights"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

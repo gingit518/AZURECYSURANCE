@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0106-associate_systems" author="Eugene A. Kalosha">
+
+		<sql>
+			DROP TABLE IF EXISTS associate_systems;
+			CREATE TABLE associate_systems
+			(
+				id serial,
+				system_id integer DEFAULT NULL,
+				associate_vendor_id integer DEFAULT NULL,
+				CONSTRAINT pk_associate_systems PRIMARY KEY (id)
+				, CONSTRAINT fk_associate_systems_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_associate_systems_to_associate_vendor FOREIGN KEY (associate_vendor_id) REFERENCES associate_vendors (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_associate_systems_system ON associate_systems (system_id);
+			CREATE INDEX i_associate_systems_vendor ON associate_systems (associate_vendor_id);
+			CREATE UNIQUE INDEX ui_associate_systems_system_vendor ON associate_systems (system_id, associate_vendor_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="associate_systems"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

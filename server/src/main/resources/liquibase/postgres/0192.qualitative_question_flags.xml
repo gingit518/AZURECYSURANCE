@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0192.qualitative_question_flags" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE qualitative_questions ADD COLUMN allow_text_as_answer boolean DEFAULT false;
+			ALTER TABLE question_answers_to_systems ADD COLUMN answer_text TEXT DEFAULT NULL;
+			ALTER TABLE question_answers_to_vendors ADD COLUMN answer_text TEXT DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE question_answers_to_vendors DROP COLUMN answer_text;
+				ALTER TABLE question_answers_to_systems DROP COLUMN answer_text;
+				ALTER TABLE qualitative_questions DROP COLUMN allow_text_as_answer;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0282.regulations_data" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			DELETE FROM regulations_to_data_type_classifications;
+			DELETE FROM regulations_to_industries;
+			DELETE FROM regulations_to_technologies;
+			DELETE FROM regulations_to_countries;
+			DELETE FROM regulations_to_states;
+			DELETE FROM quants_to_regulations;
+			DELETE FROM quant_metrics_to_regulations;
+
+			ALTER SEQUENCE regulations_to_data_type_classifications_id_seq RESTART WITH 1;
+			ALTER SEQUENCE regulations_to_industries_id_seq RESTART WITH 1;
+			ALTER SEQUENCE regulations_to_technologies_id_seq RESTART WITH 1;
+			ALTER SEQUENCE regulations_to_countries_id_seq RESTART WITH 1;
+			ALTER SEQUENCE regulations_to_states_id_seq RESTART WITH 1;
+			ALTER SEQUENCE quants_to_regulations_id_seq RESTART WITH 1;
+			ALTER SEQUENCE quant_metrics_to_regulations_id_seq RESTART WITH 1;
+
+			DELETE FROM regulations;
+
+			-- 'NONE', 'US', 'US_STATE', 'EU', 'INTERNATIONAL'
+			INSERT INTO regulations (
+				id,
+				name,
+				jurisdiction_type,
+				acronym,
+				description,
+				body,
+				regulated_party,
+				protected_party,
+				protected_information,
+				is_data_type,
+				is_industry,
+				is_technology,
+				is_geography
+			) VALUES
+			(
+				1,
+				'Healthcare Insurance Portability and Accounting Act',
+				'US',
+				'HIPAA',
+				'The Health Insurance Portability and Accountability Act of 1996 is a United States federal statute signed into law on August 21, 1996. It was created primarily to modernize the flow of healthcare information, stipulate how personally identifiable information maintained by the healthcare and healthcare insurance industries should be protected from fraud and theft, and address limitations on healthcare insurance coverage.',
+				'Department of Health and Human Services',
+				'HIPAA covered entities are healthcare providers, health plans, and healthcare clearinghouses that electronically transmit health information for transactions covered by HHS standards. insurance companies, company health plans, government programs that pay for healthcare, and HMO''s. Healthcare clearinghouses include transcription service companies that format data to make it compliant and organizations that process non-standard health information.',
+				'Healthcare providers include hospitals and clinics, doctors, dentists, chiropractors, psychologists, pharmacies and nursing homes. Health plans include health',
+				'Individually identifiable health information',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				2,
+				'Cybersecurity Maturity Model Capability',
+				'US',
+				'CMMC',
+				'The Cybersecurity Maturity Model Certification (CMMC) is a training, certification, and third party assessment program of cybersecurity in the United States government Defense Industrial Base (DIB)[1] aimed at measuring the maturity of an organization''s cybersecurity processes (process institutionalization) toward demonstrating compliance with the protection of Federal Contract Information (FCI) and Controlled Unclassified Information (CUI). The CMMC puts an end to self-assessment and requires a third party assessor to verify the cybersecurity maturation level.',
+				'US Department of Defense (DoD)',
+				'DoD Primary Suppliers',
+				'DoD',
+				'Controlled Unclassified Information',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				3,
+				'Family Educational Rights and Privacy Act',
+				'US',
+				'FERPA',
+				'The Family Educational Rights and Privacy Act (FERPA) (20 U.S.C. § 1232g; 34 CFR Part 99) is a Federal law that protects the privacy of student education records. The law applies to all schools that receive funds under an applicable program of the U.S. Department of Education.',
+				'US Department of Education',
+				'Any public or private elementary, secondary, or post-secondary school.  Any state or local education agency that receives funds from US Department of Education.',
+				'Students',
+				'Student PII',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				4,
+				'Federal Communication Commission',
+				'US',
+				'FCC',
+				'The FCC''s responsibility is to ensure the reliability and resiliency of the Nation''s communications network and to promote public safety through communications. The FCC, because of its relationship with the nation''s communications network service providers, is particularly well positioned to work with industry to secure the networks upon which the Internet depends.',
+				'Federal Communication Commission',
+				'Telecommunications Firms',
+				'US Consumer',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				5,
+				'Federal Information Systems Management Act',
+				'US',
+				'FISMA',
+				'The act requires each federal agency to develop, document, and implement an agency-wide program to provide information security for the information and information systems that support the operations and assets of the agency, including those provided or managed by another agency, contractor, or other source.',
+				'Department of Homeland Security (DHS)',
+				'Federal Agencies',
+				'US Citizens',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				6,
+				'Federal Trade Commission Act',
+				'US',
+				'FTC',
+				'Section 5(a) of the Federal Trade Commission Act (FTC Act) (15 USC §45) prohibits "unfair or deceptive acts or practices in or affecting commerce"',
+				'Federal Trade Commission (FTC)',
+				'Public and Private US Corporations',
+				'US Consumer',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				7,
+				'Graham Leach Bliley Act',
+				'US',
+				'GLBA',
+				'The Gramm-Leach-Bliley Act requires financial institutions – companies that offer consumers financial products or services like loans, financial or investment advice, or insurance – to explain their information-sharing practices to their customers and to safeguard sensitive data',
+				'Federal Trade Commission (FTC)',
+				'US Financial Institutions',
+				'US Consumer',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				8,
+				'SEC cybersecurity guidance',
+				'US',
+				'SEC',
+				'The SEC uses its civil law authority to bring cyber-related enforcement actions that protect investors, hold bad actors accountable, and deter future wrongdoing. The Division of Enforcement''s Cyber Unit was established in September 2017 and has substantial cyber-related expertise. The Cyber Unit focuses on violations involving digital assets, initial coin offerings and cryptocurrencies; cybersecurity controls at regulated entities; issuer disclosures of cybersecurity incidents and risks; trading on the basis of hacked nonpublic information; and cyber-related manipulations, such as brokerage account takeovers and market manipulations using electronic and social media platforms.',
+				'Securities and Exchange Commission',
+				'Financial Services Firms',
+				'Consumer',
+				'PII, Financial',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				9,
+				'California Consumer Protection Act',
+				'US_STATE',
+				'CCPA',
+				'The California Consumer Privacy Act is a state statute intended to enhance privacy rights and consumer protection for residents of California,',
+				'CA Attorney General',
+				'Private and Public Companies that has a gross annual revenue of over $25 million in the preceding calendar year, or Buy, receive, or sell the personal information of 100,000 or more California residents, households, or devices, or Derive 50% or more of their annual revenue from selling or sharing California residents'' personal information.',
+				'CA Resident',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				10,
+				'California Privacy Rights Act',
+				'US_STATE',
+				'CPRA',
+				'The California Privacy Rights Act (CPRA) amends the CCPA to specifically regulate behavioral advertising that uses personal information to target California residents with marketing based on profiling.',
+				'CA Attorney General',
+				'Private and Public Companies that has a gross annual revenue of over $25 million in the preceding calendar year, or Buy, receive, or sell the personal information of 100,000 or more California residents, households, or devices, or Derive 50% or more of their annual revenue from selling or sharing California residents'' personal information.',
+				'CA Resident',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				11,
+				'Colorado Privacy Act',
+				'US_STATE',
+				'CPA',
+				'The CPA will grant Colorado residents the right to access, correct, and delete the personal data held by organizations subject to the law. It also will give Colorado residents the right to opt-out of the processing of their personal data for purposes of targeted advertising, sale of their personal data, and profiling in furtherance of decisions that produce legal or similarly significant effects on the consumer. In ensuring that they are prepared to comply with the CPA, many companies should be able to build upon the compliance measures they have developed for the California and Virginia laws to a significant extent.',
+				'CO Attorney General',
+				'Private and Public Companies that conducts business in CO or produces or delivers commercial products for serves that are intetentially tarted to residents of CO; and satisfies one or both of the following thresholds (I) controls or process the personal data of 100,000 consumes or more during a calendar year; or (II) derives revenue or receives a discount o the price of goods or services from the sale of personal data and process or controls the person data of 25,000 consumers or more.',
+				'CO Resident ',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				12,
+				'23 NYCRR Part 500',
+				'US_STATE',
+				'NYS DFS Part 500',
+				'A regulation establishing cybersecurity requirements for financial services companies.',
+				'NYS Department of Financial Services',
+				'NYS Financial Services and Insurance Companies',
+				'NYS Financial Services Customer',
+				'US Financial and Personal Identifiable Data',
+				true,
+				true,
+				false,
+				true
+			)
+			, (
+				13,
+				'New York Shield Act',
+				'US_STATE',
+				'NY Shield Act',
+				'NY "Stop Hacks and Improve Electronic Data Security” Shield Act applies to NY Businesses and all companies holding New York resident data. Requires businesses to adopt reasonable safeguards to protect the security, confidentiality, and integrity of private information and does not mandate specific safeguards',
+				'NYS Attorney General',
+				'Person or Business holding Private Information',
+				'NYS Residents',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				14,
+				'Virginia Consumer Data Protection Act',
+				'US_STATE',
+				'VCDPA',
+				'The VCDPA requires that controllers obtain consent before processing a consumer’s sensitive data,[15] defined as including “personal data revealing racial or ethnic origin, religious beliefs, mental or physical health diagnosis, sexual orientation, or citizenship or immigration status”; genetic or biometric data processed for the purpose of uniquely identifying a natural person; the personal data collected from a known child; and precise geolocation data (as defined by the VCDPA).',
+				'VA Attorney General',
+				'Private and Public Companies who process personal data of at least 25,000 consumers',
+				'VA residents',
+				'US Personal Identifiable Data',
+				true,
+				false,
+				false,
+				true
+			)
+			, (
+				15,
+				'Insurance Data Security Act - Model Law',
+				'US_STATE',
+				'MDL-668',
+				'The  purpose  and  intent  of  this  Act  is  to  establish  standards  for  data  security  and  standards  for  the investigation of and notification to the Commissioner of a Cybersecurity Event applicable to Licensees.',
+				'National Association of Insurance Commissioners',
+				'Insurance Companies “Licensee” means any Person licensed, authorized to operate, or registered, or required to be licensed, authorized, or registered pursuant to the insurance laws of this State but shall not include a purchasing group or a risk retention group chartered and licensed in a state other than this State or a Licensee that is acting as an assuming insurer that is domiciled in another state or jurisdiction. And “Third-Party Service Provider” means a Person, not otherwise defined as a Licensee, that contracts with a Licensee to maintain, process, store or otherwise is permitted access to Nonpublic Information through its provision of services to the Licensee',
+				'Insurance Customer',
+				'US Personal Identifiable Data',
+				true,
+				true,
+				false,
+				true
+			)
+			, (
+				16,
+				'Payment Card Industry Data Security Standard',
+				'INTERNATIONAL',
+				'PCI-DSS',
+				'The Payment Card Industry Data Security Standard is an information security standard for organizations that handle branded credit cards from the major card schemes.',
+				'Payment Card Industry Security Standards Council',
+				'All entities involved in payment card processing—including merchants, processors, acquirers, issuers, and service provider. All other entities that store, process or transmit cardholder data and/or sensitive authentication data.',
+				'Cardholder',
+				'Cardholder Data',
+				true,
+				true,
+				false,
+				false
+			)
+			, (
+				17,
+				'General Data Protection Regulation',
+				'EU',
+				'GDPR',
+				'The General Data Protection Regulation 2016/679 is a regulation in EU law on data protection and privacy in the European Union and the European Economic Area. It also addresses the transfer of personal data outside the EU and EEA areas',
+				'EU Supervisory Authority',
+				'All companies globally that process EU citizen data',
+				'EU Citizen',
+				'Privacy',
+				true,
+				false,
+				false,
+				true
+			)
+			;
+			ALTER SEQUENCE regulations_id_seq RESTART WITH 18;
+
+			-- California - 3972
+			-- NY - 4006
+			-- Colorado - 3973
+			-- Virginia - 4019
+			ALTER SEQUENCE regulations_to_countries_id_seq RESTART WITH 1;
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (1, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (2, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (3, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (4, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (5, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (6, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (7, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (8, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (9, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (10, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (11, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (12, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (13, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (14, 229);
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (15, 229);
+
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 15); -- Austria
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 22); -- Belgium
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 34); -- Bulgaria
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 55); -- Croatia
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 57); -- Cyprus
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 58); -- Czech Republic
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 59); -- Denmark
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 69); -- Estonia
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 75); -- Finland
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 76); -- France
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 84); -- Germany
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 87); -- Greece
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 101); -- Hungary
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 107); -- Ireland
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 109); -- Italy
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 121); -- Latvia
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 127); -- Lithuania
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 128); -- Luxembourg
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 136); -- Malta
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 154); -- Netherlands
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 175); -- Poland
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 176); -- Portugal
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 180); -- Romania
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 197); -- Slovakia
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 198); -- Slovenia
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 203); -- Spain
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 209); -- Sweden
+
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 102); -- Iceland
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 126); -- Lichtenstein
+			INSERT INTO regulations_to_countries (regulation_id, country_id) VALUES (17, 164); -- Norway
+
+			ALTER SEQUENCE regulations_to_states_id_seq RESTART WITH 1;
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (9, 3972);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (10, 3972);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (11, 3973);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (12, 4006);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (13, 4006);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (14, 4019);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 3967);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 3974);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 3976);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 3985);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 3988);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 3991);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 3993);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 3997);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 4000);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 4002);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 4007);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 4014);
+			INSERT INTO regulations_to_states (regulation_id, state_id) VALUES (15, 4019);
+
+
+			INSERT INTO data_type_classifications (id, name, description) VALUES (115, 'CUI', 'Controlled Unclassified Information') ON CONFLICT DO NOTHING;
+
+			ALTER SEQUENCE regulations_to_data_type_classifications_id_seq RESTART WITH 1;
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (1, 103); -- HIPAA
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (2, 115); -- CMMC
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (3, 102); -- FERPA
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (4, 102); -- FCC
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (5, 102); -- FISMA
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (6, 102); -- FTC
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (7, 102); -- GLBA
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (8, 102); -- SEC
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (8, 113); -- SEC
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (9, 102); -- CCPA
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (10, 102); -- CPRA
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (11, 102); -- CPA
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (12, 102); -- NYS DFS Part 500
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (12, 113); -- NYS DFS Part 500
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (13, 102); -- NY Shield Act
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (14, 102); -- VCDPA
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (15, 102); -- MDL-668
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (16, 107); -- PCI-DSS
+			INSERT INTO regulations_to_data_type_classifications (regulation_id, data_type_classification_id) VALUES (17, 101); -- GDPR
+
+
+			INSERT INTO industries (id, name, naics_code, naics_code_upper) VALUES (21, 'Financial Transactions Processing, Reserve, and Clearinghouse Activities', 522320, 52) ON CONFLICT DO NOTHING;
+
+			ALTER SEQUENCE regulations_to_industries_id_seq RESTART WITH 1;
+			INSERT INTO regulations_to_industries (regulation_id, industry_id) VALUES (1, 10); -- 23 NYCRR Part 500
+			INSERT INTO regulations_to_industries (regulation_id, industry_id) VALUES (1, 10); -- MDL-668
+			INSERT INTO regulations_to_industries (regulation_id, industry_id) VALUES (1, 21); -- PCI-DSS
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

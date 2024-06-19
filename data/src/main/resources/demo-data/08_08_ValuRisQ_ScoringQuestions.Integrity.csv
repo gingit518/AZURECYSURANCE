@@ -1,0 +1,5 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor
+QSYS:9,What is the classification of the asset type?,5,Not answered,0,System,Integrity,9,YES,"Crown jewels have the highest risk, then business critical and then business crucial.",,,NO,NO,NO,NO,YES,NO
+"",,,Business Crucial,2,,,,,
+"",,,Business Critical,6,,,,,
+"",,,Crown Jewel,10,,,,,

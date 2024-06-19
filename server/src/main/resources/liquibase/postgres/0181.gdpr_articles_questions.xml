@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0181.gdpr_articles_questions" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE gdpr_article ADD COLUMN question text DEFAULT NULL;
+			ALTER TABLE gdpr_article ADD COLUMN best_practice text DEFAULT NULL;
+			ALTER TABLE gdpr_article_paragraph ADD COLUMN question text DEFAULT NULL;
+			ALTER TABLE gdpr_article_paragraph ADD COLUMN best_practice text DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE gdpr_article DROP COLUMN question;
+				ALTER TABLE gdpr_article DROP COLUMN best_practice;
+				ALTER TABLE gdpr_article_paragraph DROP COLUMN question;
+				ALTER TABLE gdpr_article_paragraph DROP COLUMN best_practice;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

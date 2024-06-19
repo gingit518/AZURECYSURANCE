@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0297.new_question_types" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TYPE QuestionType RENAME TO QuestionType__;
+			CREATE TYPE QuestionType AS ENUM (
+				'Organization',
+				'System',
+				'Vendor',
+				'Cloud',
+				'Both',
+				'GDPRSystem',
+				'GDPROrganization',
+				'VendorInternal',
+				'CloudInternal',
+				'ControlTest',
+				'CMMC'
+			);
+
+			ALTER TABLE qualitative_questions
+				ALTER COLUMN vendor_type DROP DEFAULT,
+				ALTER COLUMN vendor_type type QuestionType using vendor_type::text::QuestionType,
+				ALTER COLUMN vendor_type SET DEFAULT 'System';
+
+			DROP TYPE QuestionType__;
+
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

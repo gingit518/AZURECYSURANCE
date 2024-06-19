@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0401.regulation_changes" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE regulations_to_carveout
+			(
+				id serial,
+				regulation_id integer DEFAULT NULL,
+				industry_id integer NOT NULL,
+
+				CONSTRAINT pk_regulations_to_carveout PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_carveout_to_industry FOREIGN KEY (industry_id) REFERENCES industries (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_carveout_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_to_carveout_to_industry ON regulations_to_carveout (industry_id);
+			CREATE INDEX i_regulations_to_carveout_regulation ON regulations_to_carveout (regulation_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS regulations_to_carveout;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

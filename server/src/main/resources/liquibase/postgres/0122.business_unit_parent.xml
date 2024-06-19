@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0122-business_unit-parent" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE business_units ADD COLUMN parent_id integer DEFAULT NULL;
+			ALTER TABLE business_units ADD CONSTRAINT fk_business_units_to_parent_business_units FOREIGN KEY (parent_id) REFERENCES business_units (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_business_unit_parent ON business_units (parent_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE business_units DROP COLUMN parent_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0227.control_test_results_to_tasks" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE organization_requirement_control_test_result_to_task
+			(
+				id serial,
+				organization_control_test_result_id integer NOT NULL,
+				task_id integer DEFAULT NULL,
+
+				CONSTRAINT pk_organization_requirement_control_test_result_to_task PRIMARY KEY (id)
+				, CONSTRAINT fk_organization_requirement_control_test_result_to_task_to_control_test FOREIGN KEY (organization_control_test_result_id) REFERENCES organization_requirement_control_test_results (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_organization_requirement_control_test_result_to_task_to_task FOREIGN KEY (task_id) REFERENCES tasks (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_organization_requirement_control_test_result_to_task_to_control_test ON organization_requirement_control_test_result_to_task (organization_control_test_result_id);
+			CREATE INDEX i_organization_requirement_control_test_result_to_task_to_task ON organization_requirement_control_test_result_to_task (task_id);
+
+			CREATE TABLE system_requirement_control_test_result_to_task
+			(
+				id serial,
+				system_control_test_result_id integer NOT NULL,
+				task_id integer DEFAULT NULL,
+
+				CONSTRAINT pk_system_requirement_control_test_result_to_task PRIMARY KEY (id)
+				, CONSTRAINT fk_system_requirement_control_test_result_to_task_to_control_test FOREIGN KEY (system_control_test_result_id) REFERENCES system_requirement_control_test_results (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_system_requirement_control_test_result_to_task_to_task FOREIGN KEY (task_id) REFERENCES tasks (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_system_requirement_control_test_result_to_task_to_control_test ON system_requirement_control_test_result_to_task (system_control_test_result_id);
+			CREATE INDEX i_system_requirement_control_test_result_to_task_to_task ON system_requirement_control_test_result_to_task (task_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE organization_requirement_control_test_result_to_task;
+				DROP TABLE system_requirement_control_test_result_to_task;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

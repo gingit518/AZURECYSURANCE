@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0150-cyber_roles" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE cyber_roles
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_cyber_roles PRIMARY KEY (id)
+				, CONSTRAINT fk_cyber_roles_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_cyber_roles_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_cyber_roles_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_cyber_roles_organization ON cyber_roles (organization_id);
+			CREATE INDEX i_cyber_roles_organization_id_name ON cyber_roles (organization_id, name);
+			CREATE INDEX i_cyber_roles_name ON cyber_roles (name);
+			CREATE INDEX i_cyber_roles_created_at ON cyber_roles (created_at);
+			CREATE INDEX i_cyber_roles_created_by ON cyber_roles (created_by_id);
+			CREATE INDEX i_cyber_roles_updated_by ON cyber_roles (updated_by_id);
+
+			INSERT INTO cyber_roles (id, organization_id, name, description) VALUES
+			  (1, null, 'Board Member', 'Mandated to establish policies for corporate management and make decisions on major company issues. Fiduciary duty to protect the business assets.')
+			, (2, null, 'Chief Risk Officer (CRO)', 'Owns Enterprise Risk Management and Cyber Risk')
+			, (3, null, 'Chief Information Security Officer (CISO)', 'Establishes and maintains the enterprise vision, strategy, and program to ensure information assets and technologies are adequately protected.')
+			, (4, null, 'Data Privacy Officer (DPO)', 'Responsibility is to ensure that the company or organization is correctly protecting individual''s personal data according to current legislation.')
+			, (5, null, 'Compliance Manager', 'Ensures the company complies with its outside regulatory requirements and internal policies.')
+			, (6, null, 'Business Owner', 'Owns the systems and processes, accepts risk, defines cyber risk thresholds.')
+			, (7, null, 'Auditor', 'Responsible for developing, planning, and executing IT audit programs based on risk assessments in a highly integrated audit environment.')
+			, (8, null, 'Legal Team Member', 'Owns cyber breach communications, approves cyber policies and works with team during a breach response.')
+			, (9, null, 'Remediator', 'Works to fix control assessment findings, incidents and vulnerabilities.')
+			, (10, null, 'Vendor Manager', 'Owns vendor management.')
+			, (11, null, 'SOC Analyst', 'Analyzes incidents and vulnerabilities for false positives in the infrastructure (software, hardware, networks) from cybersecurity tools, defines countermeasures to remedy the detected incidents and vulnerabilities. They may assist in the planning and implementation of security solutions.')
+			, (12, null, 'Security Engineer', 'Performs cybersecurity monitoring, including forensic and log analysis to detect security incidents, and helps to mount incident response. May investigate new technologies and processes to increase cyber resiliency.')
+			, (13, null, 'SOC Manager', 'Manages SOC and team')
+			, (14, null, 'Security Architect', 'Designs the security infrastructure and roadmap for the organization in terms of cybersecurity tools.')
+			, (15, null, 'System Administrator', 'Architects and manages permissions for the organization''s security systems.')
+			, (16, null, 'Breach Response Analyst', 'Analyzes and assesses damage to the digital assets as a result of security incidents, examines available recovery tools and processes, and recommends solutions.')
+			, (17, null, 'Intrusion Detection Specialist', 'Monitors the digital assets to identify events and traffic indicators that signal intrusion. Documents the damage caused by detected intrusions and recommends safeguards against similar intrusions.')
+			, (18, null, 'Computer Security Incident Responder', 'A member of team that provides table top exercises and rapid response to security attacks such as viruses and denial-of-service attacks.')
+			, (19, null, 'Advanced Threat Prevention Technician', 'Analyzes computer viruses and uses advanced threat prevention software to prevent them from delivering their payload.')
+			, (20, null, 'Penetration Tester', 'Performs penetration testing to identify vulnerabilities and recommend safeguards as preemptive measures. Uses white hack skills to exploit vulnerabilities.')
+			;
+			ALTER SEQUENCE cyber_roles_id_seq RESTART WITH 21;
+		</sql>
+
+		<rollback>
+			<dropTable tableName="cyber_roles"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

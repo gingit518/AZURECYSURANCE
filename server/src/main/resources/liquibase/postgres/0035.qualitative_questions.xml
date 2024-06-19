@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0035-qualification-questions" author="Eugene A. Kalosha">
+
+		<sql>
+
+			DROP TYPE IF EXISTS VendorType;
+			CREATE TYPE VendorType as ENUM ('Organization', 'Vendor', 'Both');
+
+			CREATE TABLE qualitative_questions
+			(
+				id serial,
+				question text NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				vendor_type VendorType DEFAULT 'Organization',
+				risk_model_id integer NOT NULL,
+				qualification_metric_id integer NOT NULL,
+				ordinal integer DEFAULT 0,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_qualitative_questions PRIMARY KEY (id)
+				, CONSTRAINT fk_qualitative_questions_to_risk_models FOREIGN KEY (risk_model_id) REFERENCES risk_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_qualitative_questions_to_qual_metrics FOREIGN KEY (qualification_metric_id) REFERENCES qual_metrics (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_qualitative_questions_to_users_created FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_qualitative_questions_to_users_updated FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_qualitative_questions_question ON qualitative_questions (question);
+			CREATE INDEX i_qualitative_questions_risk_model ON qualitative_questions (risk_model_id);
+			CREATE INDEX i_qualitative_questions_qualification_metric ON qualitative_questions (qualification_metric_id);
+			CREATE INDEX i_qualitative_questions_risk_model_ordinal ON qualitative_questions (risk_model_id, ordinal);
+			CREATE INDEX i_qualitative_questions_created_by ON qualitative_questions (created_by_id);
+			CREATE INDEX i_qualitative_questions_updated_by ON qualitative_questions (updated_by_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="qualitative_questions"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

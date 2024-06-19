@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0395.contracts" author="Eugene A. Kalosha">
+		<sql>
+			INSERT INTO permissions (name, permission_group, title, item_order) VALUES
+			('contract_read', 'Vendor Contract', 'Read', 81)
+			, ('contract_create', 'Vendor Contract', 'Create', 82)
+			, ('contract_update', 'Vendor Contract', 'Update', 83)
+			, ('contract_delete', 'Vendor Contract', 'Delete', 84)
+			ON CONFLICT (id) DO UPDATE SET permission_group = excluded.permission_group, title = excluded.title, item_order = excluded.item_order;
+
+			CREATE TABLE contracts
+			(
+			id serial,
+			organization_id integer DEFAULT NULL,
+			name character varying (255) NOT NULL DEFAULT '',
+			description text DEFAULT NULL,
+			number character varying (255) NOT NULL DEFAULT '',
+			document_id integer DEFAULT NULL,
+			start_date timestamp without time zone NOT NULL DEFAULT now(),
+			expiry_date timestamp without time zone NOT NULL DEFAULT now(),
+			created_at timestamp without time zone NOT NULL DEFAULT now(),
+			updated_at timestamp without time zone NOT NULL DEFAULT now(),
+			created_by_id integer DEFAULT NULL,
+			updated_by_id integer DEFAULT NULL,
+			CONSTRAINT pk_contracts PRIMARY KEY (id)
+			, CONSTRAINT fk_contracts_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			, CONSTRAINT fk_contracts_to_documents FOREIGN KEY (document_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			, CONSTRAINT fk_contracts_to_users_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			, CONSTRAINT fk_contracts_to_users_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_contracts_organization ON contracts (organization_id);
+			CREATE INDEX i_contracts_name ON contracts (name);
+			CREATE INDEX i_contracts_description ON contracts (description);
+			CREATE INDEX i_contracts_number ON contracts (number);
+			CREATE INDEX i_contracts_document_id ON contracts (start_date);
+			CREATE INDEX i_contracts_start_date ON contracts (start_date);
+			CREATE INDEX i_contracts_expiry_date ON contracts (expiry_date);
+			CREATE INDEX i_contracts_created_at ON contracts (created_at);
+			CREATE INDEX i_contracts_updated_at ON contracts (updated_at);
+			CREATE INDEX i_contracts_created_by_id ON contracts (created_by_id);
+			CREATE INDEX i_contracts_updated_by_id ON contracts (updated_by_id);
+
+		</sql>
+		<rollback>
+			<sql>
+				DELETE FROM permissions WHERE name IN ('contract_read', 'contract_create', 'contract_update', 'contract_delete');
+				DROP TABLE IF EXISTS contracts;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0360.add_organizations_metadata_table" author="Oleksandr Serozhenko">
+		<sql>
+			CREATE TABLE organizations_metadata (
+			id serial,
+			organization_id int4 NOT NULL,
+			key character varying (255) NOT NULL,
+			value character varying (4096),
+
+			CONSTRAINT pk_organizations_metadata PRIMARY KEY (id),
+			CONSTRAINT fk_organizations_metadata_to_organizations FOREIGN KEY
+			(organization_id)
+			REFERENCES organizations(id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+
+			CREATE INDEX i_organizations_metadata_organization_id ON
+			organizations_metadata USING btree (organization_id);
+			CREATE UNIQUE INDEX ui_organizations_metadata_organization_id_key ON
+			organizations_metadata (organization_id, key);
+		</sql>
+		<rollback>
+			DROP TABLE IF EXISTS organizations_metadata;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

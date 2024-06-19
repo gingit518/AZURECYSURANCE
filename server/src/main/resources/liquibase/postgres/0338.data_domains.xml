@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0338.data_domains" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE data_domains
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				CONSTRAINT pk_data_domains PRIMARY KEY (id)
+				, CONSTRAINT fk_data_domains_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_data_domains_organization ON data_domains (organization_id);
+			CREATE INDEX i_data_domains_organization_id_name ON data_domains (organization_id, name);
+			CREATE INDEX i_data_domains_name ON data_domains (name);
+
+			CREATE TABLE data_domain_to_system
+			(
+				id serial,
+				data_domain_id integer NOT NULL,
+				system_id integer DEFAULT NULL,
+				CONSTRAINT pk_data_domain_to_system PRIMARY KEY (id)
+				, CONSTRAINT fk_data_domain_to_system_to_data_domain FOREIGN KEY (data_domain_id) REFERENCES data_domains (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_data_domain_to_system_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_data_domain_to_system_data_domain ON data_domain_to_system (data_domain_id);
+			CREATE INDEX i_data_domain_to_system_system ON data_domain_to_system (system_id);
+
+			CREATE TABLE data_domain_to_technology
+			(
+				id serial,
+				data_domain_id integer NOT NULL,
+				technology_id integer DEFAULT NULL,
+				CONSTRAINT pk_data_domain_to_technology PRIMARY KEY (id)
+				, CONSTRAINT fk_data_domain_to_technology_to_data_domain FOREIGN KEY (data_domain_id) REFERENCES data_domains (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_data_domain_to_technology_to_technology FOREIGN KEY (technology_id) REFERENCES technologies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_data_domain_to_technology_data_domain ON data_domain_to_technology (data_domain_id);
+			CREATE INDEX i_data_domain_to_technology_technology ON data_domain_to_technology (technology_id);
+
+		</sql>
+
+		<rollback>
+			<dropTable tableName="data_domain_to_system"/>
+			<dropTable tableName="data_domain_to_technology"/>
+			<dropTable tableName="data_domains"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

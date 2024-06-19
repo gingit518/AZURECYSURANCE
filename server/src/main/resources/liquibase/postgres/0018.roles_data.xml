@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0018-roles-data" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE roles ALTER COLUMN description SET DATA TYPE character varying (512);
+
+INSERT INTO roles (id, name, description) VALUES
+(170, 'CEO', 'Chief Executive Officer (CEO) responsible to increase the value of the company.'),
+(171, 'CRO', 'Chief Risk Officer (CRO) is responsible for the enterprise risk of the company including cyber risk management.'),
+(172, 'CISO', 'Chief Information Security Officer (CISO). A CISO is a senior-level executive within an organization responsible for establishing and maintaining the enterprise vision, strategy, and cyber security program to ensure digital assets are adequately protected.'),
+(173, 'CLM', 'Compliance Manager. A compliance manager or officer is an employee whose responsibilities include ensuring the company complies with its outside regulatory requirements and internal policies.'),
+(174, 'DPO', 'The DPO must ensure that the organization complies with GDPR regulation if it processes EU citizen privacy data regardless of where it is located.  The DPO must have a deep knowledge of the GDPR and an awareness where possible regulatory breaches may occur.'),
+(175, 'REM', 'Remediator. Fixes vulnerabitlities, incidents and cyber security findings.'),
+(176, 'SYSOWN', 'System Owner. Is repsonsible for all decisions regarding the use and maintenance of the system.'),
+(177, 'INFOSEC', 'InfoSec Focal Person. Is the point person that works with a system or process from the information security team.'),
+(178, 'TSM', 'Task Manager. Owns a specific task or activity in the organization.'),
+(179, 'PM', 'Project Manager. Manages a specific project in an organization.'),
+(180, 'BUO', 'BU Owner. Is responsible for all decisions regarding the use and maintenance of the business unit.'),
+(181, 'AUD', 'Auditor. IT Auditors are responsible for developing, planning, and executing IT audit programs based on risk assessments in a highly integrated audit environment.'),
+(182, 'RISKMAN', 'Risk Manager. Responsible to create the risk model. Manages risk of a specific nature.'),
+(183, 'PRCOWN', 'Process Owner. Is responsible for all decisions regarding the use and maintenance of the process.');
+
+			ALTER SEQUENCE roles_id_seq RESTART WITH 186;
+
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

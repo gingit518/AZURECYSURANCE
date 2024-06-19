@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0021-default-org-admin" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO user_roles (user_id, role_id) VALUES (110, 128);
+		</sql>
+
+		<rollback>
+			INSERT FROM user_roles WHERE user_id = 110 AND role_id = 128;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

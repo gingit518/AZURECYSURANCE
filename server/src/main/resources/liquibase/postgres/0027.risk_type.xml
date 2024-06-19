@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0026-category-domains" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE risk_types
+			(
+				id serial,
+				name character varying (127) NOT NULL,
+				description text DEFAULT NULL,
+				category_domain_id integer NOT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_risk_types PRIMARY KEY (id)
+				, CONSTRAINT fk_risk_types_to_category_domains FOREIGN KEY (category_domain_id) REFERENCES category_domains (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_risk_types_name ON risk_types (name);
+			CREATE INDEX i_risk_types_category_domain_id ON risk_types (category_domain_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="risk_types"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

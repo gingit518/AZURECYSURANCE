@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0070-systems_updated" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TYPE SystemStatus as ENUM ('ACTIVE', 'PENDING', 'DISABLED');
+			DROP TABLE IF EXISTS systems;
+			CREATE TABLE systems
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				system_status SystemStatus DEFAULT 'ACTIVE',
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				owner_id integer DEFAULT NULL,
+				infosec_focal_person_id integer DEFAULT NULL,
+				business_unit_id integer DEFAULT NULL,
+				data_asset_classification_id integer DEFAULT NULL,
+				number_of_rec_processed float DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_systems PRIMARY KEY (id)
+				, CONSTRAINT fk_systems_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_systems_to_owner_id FOREIGN KEY (owner_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_systems_to_infosec_focal_person_id FOREIGN KEY (infosec_focal_person_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_systems_to_business_unit FOREIGN KEY (business_unit_id) REFERENCES business_units (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_systems_to_data_asset_classification FOREIGN KEY (data_asset_classification_id) REFERENCES data_asset_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_systems_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_systems_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_systems_organization ON systems (organization_id);
+			CREATE INDEX i_systems_organization_id_name ON systems (organization_id, name);
+			CREATE INDEX i_systems_name ON systems (name);
+			CREATE INDEX i_systems_owner ON systems (owner_id);
+			CREATE INDEX i_systems_infosec_focal_person ON systems (infosec_focal_person_id);
+			CREATE INDEX i_systems_business_unit ON systems (business_unit_id);
+			CREATE INDEX i_systems_data_asset_classification ON systems (data_asset_classification_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="systems"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

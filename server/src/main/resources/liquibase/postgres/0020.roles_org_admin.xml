@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0020-org-admin-role" author="Eugene A. Kalosha">
+
+		<sql>
+
+			INSERT INTO roles (id, name, description) VALUES
+			(128, 'ORGADMIN', 'Organization Admin. May handle any operations inside organization.');
+
+		</sql>
+
+		<rollback>
+			DELETE FROM roles WHERE id = 128;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

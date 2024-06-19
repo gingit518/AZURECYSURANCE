@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0364.permissions" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE permissions ADD COLUMN item_order integer DEFAULT 0;
+			ALTER TABLE permissions ADD COLUMN permission_group character varying (127);
+			ALTER TABLE permissions ADD COLUMN title character varying (127);
+			ALTER TABLE permissions ADD COLUMN url character varying (255);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE permissions DROP COLUMN permission_group;
+				ALTER TABLE permissions DROP COLUMN title;
+				ALTER TABLE permissions DROP COLUMN item_order;
+				ALTER TABLE permissions DROP COLUMN url;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

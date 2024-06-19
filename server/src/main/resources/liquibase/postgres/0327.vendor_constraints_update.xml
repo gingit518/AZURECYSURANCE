@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0327.vendor_constraints_update" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE metric_risks DROP CONSTRAINT fk_metric_risks_to_vendor,
+			ADD CONSTRAINT fk_metric_risks_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE likelihood_metrics DROP CONSTRAINT fk_likelihood_metrics_to_vendor,
+			ADD CONSTRAINT fk_likelihood_metrics_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE questions_to_vendors DROP CONSTRAINT fk_questions_to_vendors_to_vendor,
+			ADD CONSTRAINT fk_questions_to_vendors_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE users_to_vendors DROP CONSTRAINT fk_users_to_vendors_to_vendor,
+			ADD CONSTRAINT fk_users_to_vendors_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE vendor_to_technology DROP CONSTRAINT fk_vendor_to_technology_to_vendor,
+			ADD CONSTRAINT fk_vendor_to_technology_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE associate_vendors DROP CONSTRAINT fk_associate_vendors_to_vendor,
+			ADD CONSTRAINT fk_associate_vendors_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

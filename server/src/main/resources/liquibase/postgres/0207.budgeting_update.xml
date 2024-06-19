@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0207.budgeting_update" author="Eugene A. Kalosha">
+		<sql>
+			ALTER TABLE fixed_capital_costs ADD COLUMN license_users float DEFAULT 0;
+			ALTER TABLE fixed_capital_costs ADD COLUMN license_cpus float DEFAULT 0;
+			ALTER TABLE fixed_capital_costs ADD COLUMN start_date timestamp without time zone DEFAULT NULL;
+			ALTER TABLE fixed_capital_costs ADD COLUMN end_date timestamp without time zone DEFAULT NULL;
+
+			ALTER TABLE fixed_operational_costs ADD COLUMN task_id integer DEFAULT NULL;
+			CREATE INDEX i_fixed_operational_costs_task ON fixed_operational_costs (task_id);
+			ALTER TABLE fixed_operational_costs ADD CONSTRAINT fk_fixed_operational_costs_task FOREIGN KEY (task_id) REFERENCES tasks (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			CREATE TABLE variable_costs_to_fixed_capital_costs
+			(
+				id serial,
+				variable_costs_id integer DEFAULT NULL,
+				fixed_capital_costs_id integer DEFAULT NULL,
+				CONSTRAINT pk_variable_costs_to_fixed_capital_costs PRIMARY KEY (id)
+				, CONSTRAINT fk_variable_costs_to_fcc_to_variable_costs FOREIGN KEY (variable_costs_id) REFERENCES variable_costs (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_variable_costs_to_fcc_to_fixed_capital_costs FOREIGN KEY (fixed_capital_costs_id) REFERENCES fixed_capital_costs (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_variable_costs_to_fcc_variable_costs ON variable_costs_to_fixed_capital_costs (variable_costs_id);
+			CREATE INDEX i_variable_costs_to_fcc_fixed_capital_costs ON variable_costs_to_fixed_capital_costs (fixed_capital_costs_id);
+
+			CREATE TABLE variable_costs_to_fixed_operational_costs
+			(
+				id serial,
+				variable_costs_id integer DEFAULT NULL,
+				fixed_operational_costs_id integer DEFAULT NULL,
+				CONSTRAINT pk_variable_costs_to_fixed_operational_costs PRIMARY KEY (id)
+				, CONSTRAINT fk_variable_costs_to_foc_to_variable_costs FOREIGN KEY (variable_costs_id) REFERENCES variable_costs (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_variable_costs_to_foc_to_fixed_operational_costs FOREIGN KEY (fixed_operational_costs_id) REFERENCES fixed_operational_costs (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_variable_costs_to_foc_variable_costs ON variable_costs_to_fixed_operational_costs (variable_costs_id);
+			CREATE INDEX i_variable_costs_to_foc_fixed_operational_costs ON variable_costs_to_fixed_operational_costs (fixed_operational_costs_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE variable_costs_to_fixed_capital_costs;
+				DROP TABLE variable_costs_to_fixed_operational_costs;
+				ALTER TABLE fixed_capital_costs DROP COLUMN license_users;
+				ALTER TABLE fixed_capital_costs DROP COLUMN license_cpus;
+				ALTER TABLE fixed_capital_costs DROP COLUMN start_date;
+				ALTER TABLE fixed_capital_costs DROP COLUMN end_date;
+				ALTER TABLE fixed_operational_costs DROP COLUMN task_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0384.news_feed.xml" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE news
+			(
+			id serial,
+			title character varying (255) DEFAULT NULL,
+			description text DEFAULT NULL,
+			news_url character varying (255) DEFAULT NULL,
+			date_of_news timestamp without time zone NOT NULL DEFAULT now(),
+			expired_date timestamp without time zone NOT NULL DEFAULT now(),
+			created_at timestamp without time zone NOT NULL DEFAULT now(),
+			updated_at timestamp without time zone NOT NULL DEFAULT now(),
+
+			CONSTRAINT pk_news_id PRIMARY KEY (id)
+			);
+			CREATE INDEX i_news_title ON news (title);
+			CREATE INDEX i_news_description ON news (description);
+			CREATE INDEX i_news_url ON news (news_url);
+			CREATE INDEX i_date_of_news ON news (date_of_news);
+			CREATE INDEX i_news_expired_date ON news (expired_date);
+			CREATE INDEX i_news_created_at ON news (created_at);
+			CREATE INDEX i_news_updated_at ON news (updated_at);
+
+			CREATE TABLE webinars
+			(
+			id serial,
+			title character varying (255) DEFAULT NULL,
+			description text DEFAULT NULL,
+			webinar_url character varying (255) DEFAULT NULL,
+			date_of_webinar timestamp without time zone NOT NULL DEFAULT now(),
+			expired_date timestamp without time zone NOT NULL DEFAULT now(),
+			created_at timestamp without time zone NOT NULL DEFAULT now(),
+			updated_at timestamp without time zone NOT NULL DEFAULT now(),
+
+			CONSTRAINT pk_webinar_id PRIMARY KEY (id)
+			);
+			CREATE INDEX i_webinar_title ON webinars (title);
+			CREATE INDEX i_webinar_description ON webinars (description);
+			CREATE INDEX i_webinar_url ON webinars (webinar_url);
+			CREATE INDEX i_date_of_webinar ON webinars (date_of_webinar);
+			CREATE INDEX i_webinar_expired_date ON webinars (expired_date);
+			CREATE INDEX i_webinar_created_at ON webinars (created_at);
+			CREATE INDEX i_webinar_updated_at ON webinars (updated_at);
+
+			CREATE TABLE pace_courses
+			(
+			id serial,
+			title character varying (255) DEFAULT NULL,
+			description text DEFAULT NULL,
+			pace_course_url character varying (255) DEFAULT NULL,
+			date_of_pace_course timestamp without time zone NOT NULL DEFAULT now(),
+			expired_date timestamp without time zone NOT NULL DEFAULT now(),
+			created_at timestamp without time zone NOT NULL DEFAULT now(),
+			updated_at timestamp without time zone NOT NULL DEFAULT now(),
+
+			CONSTRAINT pk_pace_course_id PRIMARY KEY (id)
+			);
+			CREATE INDEX i_pace_course_title ON pace_courses (title);
+			CREATE INDEX i_pace_course_description ON pace_courses (description);
+			CREATE INDEX i_pace_course_url ON pace_courses (pace_course_url);
+			CREATE INDEX i_date_of_pace_course ON pace_courses (date_of_pace_course);
+			CREATE INDEX i_pace_course_expired_date ON pace_courses (expired_date);
+			CREATE INDEX i_pace_course_created_at ON pace_courses (created_at);
+			CREATE INDEX i_pace_course_updated_at ON pace_courses (updated_at);
+
+			CREATE TABLE whats_new
+			(
+			id serial,
+			title character varying (255) DEFAULT NULL,
+			description text DEFAULT NULL,
+			whats_new_url character varying (255) DEFAULT NULL,
+			date_of_whats_new timestamp without time zone NOT NULL DEFAULT now(),
+			expired_date timestamp without time zone NOT NULL DEFAULT now(),
+			created_at timestamp without time zone NOT NULL DEFAULT now(),
+			updated_at timestamp without time zone NOT NULL DEFAULT now(),
+
+			CONSTRAINT pk_whats_new_id PRIMARY KEY (id)
+			);
+			CREATE INDEX i_whats_new_title ON whats_new (title);
+			CREATE INDEX i_whats_new_description ON whats_new (description);
+			CREATE INDEX i_whats_new_url ON whats_new (whats_new_url);
+			CREATE INDEX i_date_of_whats_new ON whats_new (date_of_whats_new);
+			CREATE INDEX i_whats_new_expired_date ON whats_new (expired_date);
+			CREATE INDEX i_whats_new_created_at ON whats_new (created_at);
+			CREATE INDEX i_whats_new_updated_at ON whats_new (updated_at);
+
+
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS news;
+				DROP TABLE IF EXISTS webinars;
+				DROP TABLE IF EXISTS pace_courses;
+				DROP TABLE IF EXISTS whats_new;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

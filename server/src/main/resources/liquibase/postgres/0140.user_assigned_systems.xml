@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0140.user_assigned_systems" author="Eugene A. Kalosha">
+
+		<sql>
+			DROP TABLE IF EXISTS user_assigned_systems;
+			CREATE TABLE user_assigned_systems
+			(
+				id serial,
+				user_id integer DEFAULT NULL,
+				system_id integer DEFAULT NULL,
+				CONSTRAINT pk_user_assigned_systems PRIMARY KEY (id)
+				, CONSTRAINT fk_user_assigned_systems_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_user_assigned_systems_to_user FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_user_assigned_systems_user ON user_assigned_systems (user_id);
+			CREATE INDEX i_user_assigned_systems_system ON user_assigned_systems (system_id);
+			CREATE UNIQUE INDEX ui_user_assigned_systems_system_user ON user_assigned_systems (system_id, user_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="user_assigned_systems"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0236.assessments_changes" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE assessments DROP COLUMN IF EXISTS system_id;
+			ALTER TABLE assessments DROP COLUMN IF EXISTS process_id;
+			ALTER TABLE assessments DROP COLUMN IF EXISTS technology_category_id;
+			ALTER TABLE assessments ADD COLUMN is_all_selected boolean NOT NULL DEFAULT false;
+
+			CREATE TABLE assessment_to_system
+			(
+				id serial,
+				assessment_id integer NOT NULL,
+				system_id integer DEFAULT NULL,
+				CONSTRAINT pk_assessment_to_system PRIMARY KEY (id)
+				, CONSTRAINT fk_assessment_to_system_to_assessment FOREIGN KEY (assessment_id) REFERENCES assessments (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessment_to_system_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessment_to_system_assessment ON assessment_to_system (assessment_id);
+			CREATE INDEX i_assessment_to_system_system ON assessment_to_system (system_id);
+
+			CREATE TABLE assessment_to_process
+			(
+				id serial,
+				assessment_id integer NOT NULL,
+				process_id integer DEFAULT NULL,
+				CONSTRAINT pk_assessment_to_process PRIMARY KEY (id)
+				, CONSTRAINT fk_assessment_to_process_to_assessment FOREIGN KEY (assessment_id) REFERENCES assessments (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessment_to_process_to_process FOREIGN KEY (process_id) REFERENCES process (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessment_to_process_assessment ON assessment_to_process (assessment_id);
+			CREATE INDEX i_assessment_to_process_process ON assessment_to_process (process_id);
+
+			CREATE TABLE assessment_to_technology_category
+			(
+				id serial,
+				assessment_id integer NOT NULL,
+				technology_category_id integer DEFAULT NULL,
+				CONSTRAINT pk_assessment_to_technology_category PRIMARY KEY (id)
+				, CONSTRAINT fk_assessment_to_technology_category_to_assessment FOREIGN KEY (assessment_id) REFERENCES assessments (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessment_to_technology_category_to_technology_category FOREIGN KEY (technology_category_id) REFERENCES technology_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessment_to_technology_category_assessment ON assessment_to_technology_category (assessment_id);
+			CREATE INDEX i_assessment_to_technology_category_technology_category ON assessment_to_technology_category (technology_category_id);
+
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				DROP TABLE assessment_to_system;
+				DROP TABLE assessment_to_process;
+				DROP TABLE assessment_to_technology_category;
+				ALTER TABLE assessments DROP COLUMN IF EXISTS is_all_selected;
+
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

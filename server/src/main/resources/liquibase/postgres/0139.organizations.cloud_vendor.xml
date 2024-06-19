@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0139_organizations_is_cloud_vendor" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE organizations ADD COLUMN is_cloud_vendor boolean DEFAULT false;
+			CREATE INDEX i_organization_root_parent_and_cloud_vendor ON organizations (root_parent_id, is_cloud_vendor);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE DROP COLUMN is_cloud_vendor;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

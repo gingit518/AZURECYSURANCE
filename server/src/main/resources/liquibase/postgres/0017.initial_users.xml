@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0016-user-organization" author="Eugene A. Kalosha">
+
+		<sql>
+
+INSERT INTO public.users (id, first_name, last_name, email, password, corporate_phone, mobile_phone, enabled, expired, credentials_expired, locked, created_at, updated_at, expiration_date, credentials_expiration_date, notes, organization_id) VALUES
+(150, 'Ariel ', 'Evans', 'ariel@evansresource.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-222-1234', '1-929-217-0318', true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 102),
+(151, 'Adam', 'Cottini', 'adam@ajg.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-293-2811', '1-917-933-3822', true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, 'Sponsor', 108),
+(152, 'Roy', 'Zur', 'roy@cyberint.co.il', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '972-58-412-0028', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 103),
+(153, 'Walter', 'Marmo', 'walter.marmo@euroselmoma.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '39-0112481121', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 104),
+(154, 'Bill', 'Maher', 'bmaher@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2983', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(155, 'Ariel ', 'Gorelik', 'agorelik@amtrust.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-973-3822', '1-914-288-3222', true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, 'Sponsor', 106),
+(156, 'Daniel', 'Ilan', 'dilan@cleary.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-3221', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 107),
+(157, 'Joe', 'Smith', 'Joe@toyota.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-865-233-2221', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 101),
+(158, 'Garin', 'Pace', 'garin.pace@aig.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-722-3611', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, 'Sponsor', 109),
+(159, 'Mary', 'Jones', 'mjones@mckinsey.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-822-9621', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 110),
+(160, 'Yoav', 'Intrator', 'yoav.intrator@jpmorgan.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '972-58-600-0537', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 111),
+(161, 'Robert', 'Constant', 'rconstant@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2983', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, 'Sponsor', 105),
+(162, 'Trevor', 'Noah', 'tnoah@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2984', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(163, 'Marilyn', 'Monroe', 'mmonroe@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2985', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(164, 'Tim', 'Robbins', 'trobbins@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2986', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(165, 'Anita', 'Hill', 'ahill@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2987', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(166, 'Margo', 'Kidder', 'mkidder@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2989', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(167, 'Chris ', 'Reeve', 'creeve@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2901', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(168, 'Tom', 'Cruise', 'tcruise@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2902', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(169, 'Nicole', 'Kidman', 'nkidman@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-876-2903', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(110, 'Diva', 'Dog', 'ddog@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-456-1234', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(104, 'Mo', 'Some', 'msome@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-987-2244', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(101, 'Armin', 'Zadakbar', 'azadakbar@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-982-2200', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(107, 'Peach', 'Pie', 'ppie@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-965-2098', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(112, 'Austin', 'Boy', 'aboy@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-864-1111', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(113, 'Misty', 'Dogina', 'mdogina@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-864-1112', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105),
+(175, 'Yoav', 'Smoav', 'ysmoav@jefferies.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba', '1-212-522-2188', NULL, true, false, false, false, '2018-11-05 20:49:19.087973', '2018-11-05 20:49:19.087973', NULL, NULL, NULL, 105);
+
+ALTER SEQUENCE users_id_seq RESTART WITH 65536;
+
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

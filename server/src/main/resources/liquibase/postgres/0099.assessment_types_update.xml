@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0099-assessment_types_update" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE assessment_types ADD COLUMN organization_id integer DEFAULT NULL;
+			ALTER TABLE assessment_types ADD CONSTRAINT fk_assessment_types_to_organizations FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+			CREATE INDEX i_assessment_types_organization ON assessment_types (organization_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE assessment_types DROP COLUMN organization_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

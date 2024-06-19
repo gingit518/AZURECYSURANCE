@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0383.user_messages.xml" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TYPE MessageStatus as ENUM ('Sent', 'Received', 'Read');
+
+			CREATE TABLE user_messages
+			(
+			id serial,
+			from_user Integer NOT NULL,
+			to_user Integer NOT NULL,
+			created_at timestamp without time zone NOT NULL DEFAULT now(),
+			updated_at timestamp without time zone NOT NULL DEFAULT now(),
+			subject character varying (255) DEFAULT NULL,
+			body text DEFAULT NULL,
+			status MessageStatus DEFAULT 'Sent',
+
+			CONSTRAINT pk_message_id PRIMARY KEY (id),
+			CONSTRAINT fk_message_from_user FOREIGN KEY (from_user) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+			CONSTRAINT fk_message_to_user FOREIGN KEY (to_user) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_message_from_user ON user_messages (from_user);
+			CREATE INDEX i_message_to_user ON user_messages (to_user);
+			CREATE INDEX i_message_created_at ON user_messages (created_at);
+			CREATE INDEX i_message_updated_at ON user_messages (updated_at);
+			CREATE INDEX i_message_subject ON user_messages (subject);
+			CREATE INDEX i_message_body ON user_messages (created_at);
+			CREATE INDEX i_message_status ON user_messages (status);
+			CREATE INDEX i_message_from_user_created_at ON user_messages (from_user, created_at);
+
+			CREATE TABLE message_attachments
+			(
+			id serial,
+			message_id integer NOT NULL,
+			document_id integer NOT NULL,
+
+			CONSTRAINT pk_message_attachment_id PRIMARY KEY (id),
+			CONSTRAINT fk_message_attachment_message_id FOREIGN KEY (message_id) REFERENCES user_messages (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+			CONSTRAINT fk_message_attachment_document_id FOREIGN KEY (document_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+
+			CREATE INDEX i_attachment_message_id ON message_attachments (message_id);
+			CREATE INDEX i_attachment_document_id ON message_attachments (document_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TYPE MessageStatus;
+				DROP TABLE IF EXISTS user_messages;
+				DROP TABLE IF EXISTS message_attachments;
+
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

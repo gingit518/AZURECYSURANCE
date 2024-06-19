@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0391.capital_costs_to_technologies" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE fixed_capital_costs ADD COLUMN technology_id integer DEFAULT NULL;
+			ALTER TABLE fixed_capital_costs ADD CONSTRAINT fk_capital_costs_to_technologies FOREIGN KEY (technology_id) REFERENCES
+			technologies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_capital_costs_to_technology ON fixed_capital_costs (technology_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				ALTER TABLE fixed_capital_costs DROP COLUMN technology_id;
+
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

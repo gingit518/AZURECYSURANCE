@@ -1,0 +1,9 @@
+Organization Name,Description,Parent Organization,Status,Contact Name,Contact Email,Industry,Technologies,Website URL,Phone Number,Country,State,City,Address 1,Address 2,Currency,Language,ZIP or Postal Code,TAX ID,VAT Number,Notes,Average Revenue,Links to Contracts in Policy Management
+Subsidiary USA,United States Branch,,,,,,,https://company-demo.com,111111111111,United States,,,,,,,,,,,2000000000,
+Subsidiary Europe,Europe Branch,,,,,,,https://company-demo.eu,35909999999,France,,,,,,,,,,,100000000,
+Subsidiary Israel,Israel Branch,,,,,,,https://company-demo.il,76555444456,Israel,,,,,,,,,,,50000000,
+New York Department,New York Department,Subsidiary USA,,,,,,,,United States,New York,,,,,,,,,,,
+California Department,California Department,Subsidiary USA,,,,,,,,United States,California,,,,,,,,,,,
+Colorado Department,Colorado Department,Subsidiary USA,,,,,,,,United States,Colorado,,,,,,,,,,,
+Paris Department,Paris Department,Subsidiary Europe,,,,,,,,France,,,,,,,,,,,,
+Warsaw Department,Warsaw Department,Subsidiary Europe,,,,,,,,Poland,,Warsaw,,,,,,,,,,

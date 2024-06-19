@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0332.technologies_risk" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE technologies ADD COLUMN risk_reduction double precision DEFAULT 0;
+			UPDATE technologies SET risk_reduction = 0 WHERE risk_reduction IS NULL;
+
+			ALTER TABLE technologies ADD COLUMN risk_reduction_percent double precision DEFAULT 0;
+			UPDATE technologies SET risk_reduction_percent = 0 WHERE risk_reduction_percent IS NULL;
+
+			ALTER TABLE technologies ADD COLUMN tool_price double precision DEFAULT 0;
+			UPDATE technologies SET tool_price = 0 WHERE tool_price IS NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE technologies DROP COLUMN risk_reduction;
+				ALTER TABLE technologies DROP COLUMN risk_reduction_percent;
+				ALTER TABLE technologies DROP COLUMN tool_price;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

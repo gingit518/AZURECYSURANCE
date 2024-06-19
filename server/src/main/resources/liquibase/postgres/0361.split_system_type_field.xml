@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0361.split_system_type_field" author="Andrii Iakovenko">
+	
+		<sql>
+			CREATE TYPE "deploymenttype" AS ENUM ('NONE', 'ON_PREMISE', 'CLOUD');
+			CREATE TYPE "systemtype_new" AS ENUM ('NONE', 'COTS', 'CUSTOM_COTS', 'HOME_GROWN', 'MOBILE');
+
+            -- update systems table
+			ALTER TABLE systems ADD deployment_type deploymenttype NOT NULL DEFAULT 'NONE';
+
+			UPDATE systems SET deployment_type = 'CLOUD', system_type = 'NONE' WHERE system_type = 'CLOUD';
+			UPDATE systems SET deployment_type = 'ON_PREMISE', system_type = 'NONE' WHERE system_type = 'ON_PREMISE';
+			UPDATE systems SET is_etl = true, system_type = 'NONE' WHERE system_type = 'ETL';
+			UPDATE systems SET is_ma_asset = true, system_type = 'NONE' WHERE system_type = 'MA';
+
+			ALTER TABLE systems ALTER COLUMN system_type TYPE systemtype_new USING (system_type::text::systemtype_new);
+
+			-- update bigid_dstype_system_type_mappings table
+			UPDATE bigid_dstype_system_type_mappings SET system_type = 'NONE' WHERE system_type IN ('CLOUD', 'ON_PREMISE', 'ETL', 'MA');
+			ALTER TABLE bigid_dstype_system_type_mappings ALTER COLUMN system_type TYPE systemtype_new USING (system_type::text::systemtype_new);
+
+			-- update systemtype type
+			DROP TYPE systemtype;
+			ALTER TYPE systemtype_new RENAME TO systemtype;
+		</sql>
+
+		<rollback>
+			<sql>
+				CREATE TYPE public."systemtype" AS ENUM ('NONE', 'ON_PREMISE', 'CLOUD', 'ETL', 'MA', 'COTS', 'HOME_GROWN');
+
+				-- update systems table
+				UPDATE systems SET system_type = 'NONE' WHERE system_type IN ('CUSTOM_COTS', 'MOBILE');
+				UPDATE systems SET system_type = 'CLOUD' WHERE deployment_type = 'CLOUD';
+				UPDATE systems SET system_type = 'ON_PREMISE' WHERE deployment_type = 'ON_PREMISE';
+				UPDATE systems SET system_type = 'MA' WHERE is_ma_asset = true;
+				UPDATE systems SET system_type = 'ETL' WHERE is_etl = true;
+
+				ALTER TABLE systems ALTER COLUMN system_type TYPE systemtype_new USING (system_type::text::systemtype_new);
+				ALTER TABLE systems DROP COLUMN deployment_type;
+
+				-- update bigid_dstype_system_type_mappings table
+				UPDATE bigid_dstype_system_type_mappings SET system_type = 'NONE' WHERE system_type IN ('CUSTOM_COTS', 'MOBILE');
+				ALTER TABLE bigid_dstype_system_type_mappings ALTER COLUMN system_type TYPE systemtype_new USING (system_type::text::systemtype_new);
+
+				-- update systemtype type
+				DROP TYPE systemtype;
+				ALTER TYPE systemtype_new RENAME TO systemtype;
+
+				DROP TYPE "deploymenttype";
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

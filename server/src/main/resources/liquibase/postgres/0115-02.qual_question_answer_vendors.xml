@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0115-02-qual_question_answers_vendors" author="Eugene A. Kalosha">
+
+		<sql>
+
+			DELETE FROM question_answers_to_vendors WHERE vendor_id IN (102);
+			
+			INSERT INTO question_answers_to_vendors (question_id, answer_id, vendor_id) VALUES
+			(209, 554, 102)
+			, (210, 556, 102)
+			, (214, 576, 102)
+			, (215, 584, 102)
+			, (217, 592, 102)
+			, (218, 602, 102)
+			, (219, 606, 102)
+			, (221, 617, 102)
+			, (225, 641, 102)
+			, (226, 643, 102)
+			, (227, 646, 102)
+			, (228, 649, 102)
+			, (229, 653, 102)
+			, (230, 658, 102)
+			, (231, 663, 102)
+			, (233, 665, 102)
+			, (234, 673, 102)
+			;
+
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

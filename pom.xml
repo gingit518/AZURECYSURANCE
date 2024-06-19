@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>server-applications</artifactId>
+	<groupId>com.cyberintech.vrisk</groupId>
+	<packaging>pom</packaging>
+	<name>VRisk Server Applications</name>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<modules>
+		<module>build-tools</module>
+		<module>data</module>
+		<module>server</module>
+		<module>web-security</module>
+		<module>workflows</module>
+    	<module>integrations</module>
+		<module>api</module>
+		<module>idp</module>
+	</modules>
+
+	<properties>
+		<java.version>17</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!--Plugins versions -->
+		<!-- https://mvnrepository.com/artifact/org.owasp/dependency-check-maven -->
+		<plugin.dependency-check-maven.version>7.1.1</plugin.dependency-check-maven.version>
+		<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+		<plugin.jacoco-maven-plugin.version>0.8.8</plugin.jacoco-maven-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
+		<plugin.maven-checkstyle-plugin.version>3.1.2</plugin.maven-checkstyle-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+		<plugin.maven-compiler-plugin.version>3.10.1</plugin.maven-compiler-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-failsafe-plugin -->
+		<plugin.maven-failsafe-plugin.version>3.0.0-M7</plugin.maven-failsafe-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+		<plugin.maven-jar-plugin.version>3.2.2</plugin.maven-jar-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-pmd-plugin -->
+		<plugin.maven-pmd-plugin.version>3.17.0</plugin.maven-pmd-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-project-info-reports-plugin -->
+		<plugin.maven-project-info-reports-plugin.version>3.3.0</plugin.maven-project-info-reports-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
+		<plugin.maven-resources-plugin.version>3.2.0</plugin.maven-resources-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+		<plugin.maven-surefire-plugin.version>3.0.0-M7</plugin.maven-surefire-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
+		<plugin.maven-war-plugin.version>3.3.2</plugin.maven-war-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+		<plugin.sonar-maven-plugin.version>3.9.1.2184</plugin.sonar-maven-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/versions-maven-plugin -->
+		<plugin.versions-maven-plugin.version>2.11.0</plugin.versions-maven-plugin.version>
+		<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/xml-maven-plugin -->
+		<plugin.xml-maven-plugin.version>1.0.2</plugin.xml-maven-plugin.version>
+
+		<!--Dependencies versions -->
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<apache.commons-codec.version>1.15</apache.commons-codec.version>
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-compress -->
+		<apache.commons-compress.version>1.26.0</apache.commons-compress.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+		<apache.commons-csv.version>1.9.0</apache.commons-csv.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<apache.commons-lang3.version>3.12.0</apache.commons-lang3.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
+		<apache.commons-math3.version>3.6.1</apache.commons-math3.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<apache.poi.version>5.2.2</apache.poi.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<apache.httpclient.version>4.5.13</apache.httpclient.version>
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+		<aws.sdk.version>1.12.270</aws.sdk.version>
+		<!-- https://repo1.maven.org/maven2/com/azure/azure-sdk-bom/1.2.14/-->
+		<azure.sdk.version>1.2.14</azure.sdk.version>
+		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+		<bcprov-jdk18on.version>1.78</bcprov-jdk18on.version>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<commons-io.version>2.11.0</commons-io.version>
+		<!-- TODO update EhCache -->
+		<!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
+		<ehcache.version>3.10.0</ehcache.version>
+		<!-- https://mvnrepository.com/artifact/com.google.api-client/google-api-client -->
+		<google-api-client.version>1.35.2</google-api-client.version>
+		<guava.version>32.0.0-android</guava.version>
+		<!-- https://mvnrepository.com/artifact/org.graalvm.js/js -->
+		<graalvm.version>22.2.0</graalvm.version>
+		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<hikari.version>5.0.1</hikari.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.ignite/ignite-spring -->
+		<ignite.version>2.13.0</ignite.version>
+		<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
+		<javassist.version>3.29.0-GA</javassist.version>
+		<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+		<javax.persistence.version>2.2</javax.persistence.version>
+		<!-- https://mvnrepository.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api -->
+		<javax.ws-rs-api.version>3.1.0</javax.ws-rs-api.version>
+		<!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
+		<jaxb-runtime.version>4.0.0</jaxb-runtime.version>
+		<jaxb-api.version>4.0.0</jaxb-api.version>
+		<!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+		<joda-time.version>2.10.14</joda-time.version>
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
+		<jwt.version>0.11.5</jwt.version>
+		<!-- https://mvnrepository.com/artifact/io.keen/keen-client-api-java -->
+		<keenio.sdk.version>5.6.0</keenio.sdk.version>
+		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+		<!-- TODO update Liquibase -->
+		<liquibase.version>3.5.3</liquibase.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<log4j.version>2.17.2</log4j.version>
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+		<logback.version>1.2.13</logback.version>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<lombok.version>1.18.24</lombok.version>
+		<!-- https://mvnrepository.com/artifact/com.microsoft.graph/microsoft-graph -->
+		<!-- TODO update MS Graph -->
+		<microsoft-graph.version>1.5.0</microsoft-graph.version>
+		<microsoft-azure.version>1.13.10</microsoft-azure.version>
+		<!-- https://mvnrepository.com/artifact/org.modelmapper.extensions/modelmapper-spring -->
+		<modelmapper.version>3.1.0</modelmapper.version>
+		<netty-codec-http.version>4.1.108.Final</netty-codec-http.version>
+		<!-- https://mvnrepository.com/artifact/com.okta.jwt/okta-jwt-verifier -->
+		<okta-jwt.version>0.5.7</okta-jwt.version>
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<postgresql.version>42.4.4</postgresql.version>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<slf4j.version>1.7.36</slf4j.version>
+		<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+		<snakeyaml.version>2.2</snakeyaml.version>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+		<!-- TODO update Spring Boot to 2.7.0 -->
+		<spring.boot.version>2.7.18</spring.boot.version>
+		<spring.boot.starter.version>2.7.18</spring.boot.starter.version>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-security-core -->
+		<spring-framework.version>5.3.34</spring-framework.version>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<spring-security.version>5.7.12</spring-security.version>
+		<tomcat.version>9.0.86</tomcat.version>
+		<!-- https://spring.io/projects/spring-security-oauth -->
+		<!-- TODO replace Spring Security oAuth2 with Spring Security and Spring
+			Authorization Server -->
+		<!-- <spring.security.oauth2.version>2.3.4.RELEASE</spring.security.oauth2.version> -->
+		<!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-models -->
+		<swagger.version>2.2.1</swagger.version>
+		<springdoc.version>1.6.9</springdoc.version>
+		<!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio -->
+		<twillio.version>8.32.0</twillio.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.amazonaws</groupId>
+				<artifactId>aws-java-sdk-bom</artifactId>
+				<version>${aws.sdk.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.azure</groupId>
+				<artifactId>azure-sdk-bom</artifactId>
+				<version>${azure.sdk.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-http</artifactId>
+				<version>${netty-codec-http.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-codec-http2</artifactId>
+				<version>${netty-codec-http.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.modelmapper.extensions</groupId>
+				<artifactId>modelmapper-spring</artifactId>
+				<version>${modelmapper.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.starter.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!--
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth2</artifactId>
+				<version>${spring.security.oauth2.version}</version>
+			</dependency>
+			-->
+			<!-- Override some Spring Boot libraries -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-actuator</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-validation</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-core</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-websocket</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+
+			<!-- Spring Framework Dependencies -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jcl</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jms</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-messaging</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring-framework.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring-framework.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Spring Security Dependencies -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-crypto</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-oauth2-client</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-oauth2-core</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-oauth2-jose</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-oauth2-resource-server</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-test</artifactId>
+				<version>${spring-security.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!--
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-oauth2-client</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			-->
+			<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-logging</artifactId>
+				<exclusions> <exclusion> <groupId>ch.qos.logback</groupId> <artifactId>logback-classic</artifactId>
+				</exclusion> <exclusion> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-to-slf4j</artifactId>
+				</exclusion> <exclusion> <groupId>org.slf4j</groupId> <artifactId>jul-to-slf4j</artifactId>
+				</exclusion> </exclusions> </dependency> -->
+			<!-- JDBC connection pool -->
+			<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>javax.persistence-api</artifactId>
+				<version>${javax.persistence.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<version>${hikari.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql.version}</version>
+			</dependency>
+			<!-- Cache, Ignite Cache, ehCache -->
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.version}</version>
+			</dependency>
+			<!--
+			<dependency>
+				<groupId>org.apache.ignite</groupId>
+				<artifactId>ignite-spring</artifactId>
+				<version>${ignite.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ignite</groupId>
+				<artifactId>ignite-rest-http</artifactId>
+				<version>${ignite.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-reload4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			-->
+
+			<!-- Apache Commons -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-compress</artifactId>
+				<version>${apache.commons-compress.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-csv</artifactId>
+				<version>${apache.commons-csv.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${apache.commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-math3</artifactId>
+				<version>${apache.commons-math3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
+
+			<!-- Others -->
+			<dependency>
+				<groupId>jakarta.ws.rs</groupId>
+				<artifactId>jakarta.ws.rs-api</artifactId>
+				<version>${javax.ws-rs-api.version}</version>
+			</dependency>
+
+			<!-- Used to work with the newer excel file format - `.xlsx` -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${apache.poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcpkix-jdk18on</artifactId>
+				<version>${bcprov-jdk18on.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk18on</artifactId>
+				<version>${bcprov-jdk18on.version}</version>
+			</dependency>
+			<!--
+			<dependency>
+				<groupId>jakarta.xml.bind</groupId>
+				<artifactId>jakarta.xml.bind-api</artifactId>
+				<version>${jaxb-runtime.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jaxb</groupId>
+				<artifactId>jaxb-runtime</artifactId>
+				<version>${jaxb-runtime.version}</version>
+			</dependency>
+			-->
+
+			<!-- Analytics -->
+			<dependency>
+				<groupId>io.keen</groupId>
+				<artifactId>keen-client-api-java</artifactId>
+				<version>${keenio.sdk.version}</version>
+			</dependency>
+
+			<!-- SMS / Phone -->
+			<dependency>
+				<groupId>com.twilio.sdk</groupId>
+				<artifactId>twilio</artifactId>
+				<version>${twillio.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>javax.xml.bind</groupId>
+						<artifactId>jaxb-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${apache.httpclient.version}</version>
+			</dependency>
+
+			<!-- Google -->
+			<dependency>
+				<groupId>com.google.api-client</groupId>
+				<artifactId>google-api-client</artifactId>
+				<version>${google-api-client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>3.5.3</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>3.5.3</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
+			<!-- Microsoft -->
+			<dependency>
+				<groupId>com.microsoft.graph</groupId>
+				<artifactId>microsoft-graph</artifactId>
+				<version>${microsoft-graph.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.microsoft.azure/msal4j -->
+			<dependency>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>msal4j</artifactId>
+				<version>${microsoft-azure.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.amazon.ion/ion-java -->
+			<dependency>
+				<groupId>com.amazon.ion</groupId>
+				<artifactId>ion-java</artifactId>
+				<version>1.10.5</version>
+			</dependency>
+			<dependency>
+				<groupId>com.squareup.okio</groupId>
+				<artifactId>okio</artifactId>
+				<version>3.4.0</version>
+			</dependency>
+
+			<!-- JSON Web Token (JWT) -->
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-api</artifactId>
+				<version>${jwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-impl</artifactId>
+				<version>${jwt.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-jackson</artifactId>
+				<version>${jwt.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+			<dependency>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>${snakeyaml.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>mvnrepository</id>
+			<name>MVN Repository</name>
+			<url>https://repo1.maven.org/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<argLine>
+						--illegal-access=permit
+					</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<configuration>
+					<generateBackupPoms>false</generateBackupPoms>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${plugin.maven-compiler-plugin.version}</version>
+					<configuration>
+						<release>${java.version}</release>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${plugin.maven-failsafe-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${plugin.maven-jar-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>${plugin.maven-pmd-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${plugin.maven-resources-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${plugin.maven-surefire-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>${plugin.versions-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>xml-maven-plugin</artifactId>
+					<version>${plugin.xml-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${plugin.jacoco-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>${plugin.sonar-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring.boot.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.owasp</groupId>
+					<artifactId>dependency-check-maven</artifactId>
+					<version>${plugin.dependency-check-maven.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>no-unit-tests</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<skipTests>true</skipTests>
+							<argLine>-Xmx4G</argLine>
+							<argLine>
+								--illegal-access=permit
+							</argLine>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>coverage</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>sonar</id>
+			<properties>
+				<sonar.java.pmd.reportPaths>api/target/pmd.xml,server/target/pmd.xml</sonar.java.pmd.reportPaths>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-pmd-plugin</artifactId>
+						<configuration>
+							<rulesets>
+								<ruleset>vrisk/pmd-ruleset.xml</ruleset>
+							</rulesets>
+							<printFailingErrors>true</printFailingErrors>
+							<failOnViolation>false</failOnViolation>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>com.cyberintech.vrisk</groupId>
+								<artifactId>build-tools</artifactId>
+								<version>0.0.1-SNAPSHOT</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					<plugin>
+						<groupId>org.sonarsource.scanner.maven</groupId>
+						<artifactId>sonar-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>deps</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.java.pmd.reportPaths>api/target/pmd.xml,api/target/dependency-check-report-pmd.xml,server/target/pmd.xml,server/api/target/dependency-check-report-pmd.xml</sonar.java.pmd.reportPaths>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.owasp</groupId>
+						<artifactId>dependency-check-maven</artifactId>
+						<configuration>
+							<centralAnalyzerEnabled>false</centralAnalyzerEnabled>
+							<formats>
+								<format>xml</format>
+								<format>html</format>
+							</formats>
+							<prettyPrint>true</prettyPrint>
+							<versionCheckEnabled>true</versionCheckEnabled>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>${project.groupId}</groupId>
+											<artifactId>build-tools</artifactId>
+											<version>0.0.1-SNAPSHOT</version>
+											<outputDirectory>${project.build.directory}/xsl</outputDirectory>
+											<includes>**\/*.xsl</includes>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>xml-maven-plugin</artifactId>
+						<configuration>
+							<transformationSets>
+								<transformationSet>
+									<dir>target</dir>
+									<includes>
+										<include>dependency-check-report.xml</include>
+									</includes>
+									<stylesheet>${project.build.directory}/xsl/vrisk/dependencycheck_to_pmd.xsl</stylesheet>
+									<outputDir>target</outputDir>
+									<fileMappers>
+										<fileMapper
+											implementation="org.codehaus.plexus.components.io.filemappers.MergeFileMapper">
+											<targetName>dependency-check-report-pmd.xml</targetName>
+										</fileMapper>
+									</fileMappers>
+								</transformationSet>
+							</transformationSets>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>transform</goal>
+								</goals>
+								<phase>verify</phase>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>net.sf.saxon</groupId>
+								<artifactId>saxon</artifactId>
+								<version>8.7</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<rulesets>
+						<ruleset>vrisk/pmd-ruleset.xml</ruleset>
+					</rulesets>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>pmd</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>

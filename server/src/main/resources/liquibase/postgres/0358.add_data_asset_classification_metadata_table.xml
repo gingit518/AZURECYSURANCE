@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0358.add_data_asset_classifications_metadata_table" author="Oleksandr Serozhenko">
+		<sql>
+			CREATE TABLE data_asset_classifications_metadata (
+			id serial,
+			data_asset_classification_id int4 NOT NULL,
+			key character varying (255) NOT NULL,
+			value character varying (4096),
+
+			CONSTRAINT pk_data_asset_classifications_metadata PRIMARY KEY (id),
+			CONSTRAINT fk_data_asset_classifications_metadata_to_data_asset_classifications FOREIGN KEY
+			(data_asset_classification_id)
+			REFERENCES data_asset_classifications(id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+
+			CREATE INDEX i_data_asset_classifications_metadata_data_asset_classification_id ON
+			data_asset_classifications_metadata USING btree (data_asset_classification_id);
+			CREATE UNIQUE INDEX ui_data_asset_classifications_metadata_data_asset_classification_id_key ON
+			data_asset_classifications_metadata (data_asset_classification_id, key);
+		</sql>
+		<rollback>
+			DROP TABLE IF EXISTS data_asset_classifications_metadata;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

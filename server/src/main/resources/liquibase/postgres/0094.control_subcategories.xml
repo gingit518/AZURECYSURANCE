@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0094-control_subcategories" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE control_subcategories
+			(
+				id serial,
+				control_category_id integer DEFAULT NULL,
+				name character varying (63) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				CONSTRAINT pk_control_subcategories PRIMARY KEY (id)
+				, CONSTRAINT fk_control_subcategories_to_control_category FOREIGN KEY (control_category_id) REFERENCES control_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_control_subcategories_control_category ON control_subcategories (control_category_id);
+			CREATE INDEX i_control_subcategories_name ON control_subcategories (name);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="control_subcategories"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

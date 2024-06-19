@@ -1,0 +1,623 @@
+Constant,Scope,Value,Default Value
+ASSESSMENT_FINDINGS$ASSESSMENT_FINDING,UI,"Реестр рисков","Risk registry"
+ASSESSMENT_FINDINGS$CREATE_FINDING,UI,"Создать реестр рисков","Create risk registry"
+ASSESSMENT_FINDINGS$EDIT_FINDING,UI,"Редактировать реестр рисков","Edit risk registry"
+ASSESSMENT_FINDINGS$LINK_TYPE,UI,Тип связи,Link type
+ASSESSMENT_FINDINGS$TITLE,UI,"Реестр рисков","Risk registry"
+ASSESSMENTS$ASSESSMENT,UI,Оценка,Assessment
+ASSESSMENTS$ASSESSMENT_LEVEL,UI,Уровень оценки,Assessment level
+ASSESSMENTS$ASSESSMENT_WEIGHT,UI,"Вес оценки, %","Assessment weight, %"
+ASSESSMENTS$ASSESSMENT_WEIGHTS,UI,Веса оценки,Assessment weights
+ASSESSMENTS$CREATE_ASSESSMENT,UI,Создать оценку,Create assessment
+ASSESSMENTS$EDIT_ASSESSMENT,UI,Редактировать оценку,Edit assessment
+ASSESSMENTS$TITLE,UI,Оценки,Assessments
+ASSESSMENTS$TYPE_HEADER,UI,Тип,Type
+ASSET_CLASSES$ASSET_CLASS,UI,Класс активов,Asset class
+ASSET_CLASSES$CREATE_CLASS,UI,Создать класс активов,Create asset class
+ASSET_CLASSES$EDIT_CLASS,UI,Редактировать класс активов,Edit asset class
+ASSET_CLASSES$TITLE,UI,Классы активов,Asset classes
+ASSOCIATE_MODELS$ASSOCIATE_MODEL,UI,Связанная модель,Associate model
+ASSOCIATE_MODELS$CREATE_MODEL,UI,Создать связанную модель,Create associate model
+ASSOCIATE_MODELS$EDIT_MODEL,UI,Редактировать связанную модель,Edit associate model
+ASSOCIATE_MODELS$TITLE,UI,Связанные модели,Associate models
+ASSOCIATE_SYSTEMS$ASSOCIATE_SYSTEM,UI,Связанная система,Associate system
+ASSOCIATE_SYSTEMS$CREATE_SYSTEM,UI,Создать связанную систему,Create associate system
+ASSOCIATE_SYSTEMS$EDIT_SYSTEM,UI,Редактировать связанную систему,Edit associate system
+ASSOCIATE_SYSTEMS$TITLE,UI,Связанные системы,Associate systems
+ASSOCIATE_SYSTEMS$VENDOR_ID_REQUIRED,UI,'Идетификатор вендора' обязателен,Vendor id is required
+AUDIT_LOGS$AUDITOR_EMAIL,UI,Электронная почта аудитора:,Auditor email:
+AUDIT_LOGS$AUDITOR_NAME,UI,Имя аудитора:,Auditor name:
+AUDIT_LOGS$CHANGED_ITEM,UI,измененный объект,changed item
+AUDIT_LOGS$DATE_FROM,UI,Период с,Date from
+AUDIT_LOGS$DATE_RANGE,UI,Диапазон дат,Date range
+AUDIT_LOGS$DATE_TO,UI,Период по,Date to
+AUDIT_LOGS$DETAILS,UI,Лог,Audit log details
+AUDIT_LOGS$DIFF,UI,Изменения,Diff
+AUDIT_LOGS$FROM,UI,с,from
+AUDIT_LOGS$IN_ORGANIZATION,UI,в организации,in organization
+AUDIT_LOGS$ITEM_TYPE,UI,Тип объекта,Item type
+AUDIT_LOGS$ITEM_TYPE_COLON,UI,Тип объекта:,Item type:
+AUDIT_LOGS$MODIFIED_ITEMS,UI,Изменненые объекты,Modified items
+AUDIT_LOGS$NEW_VALUE,UI,Новое значение,New value
+AUDIT_LOGS$OLD_VALUE,UI,Старое значение,Old value
+AUDIT_LOGS$OPERATION_TYPE,UI,Тип операции,Operation type
+AUDIT_LOGS$OPERATION_TYPE_COLON,UI,Тип операции:,Operation type:
+AUDIT_LOGS$PROPERTY,UI,Свойство,Property
+AUDIT_LOGS$START_SEARCH,UI,начните поиск,change something
+AUDIT_LOGS$TILL,UI,до,till
+AUDIT_LOGS$TITLE,UI,Журнал аудита,Audit logs
+AUDIT_LOGS$UPDATED_DATE,UI,Дата обновления,Updated date
+AUDIT_LOGS$UPDATED_DATE_COLON,UI,Дата обновления:,Updated date:
+AUTHORIZATION$CHANGE_PASSWORD,UI,Изменить пароль,Change password
+AUTHORIZATION$EMAIL_CONFIRMATION,UI,Подтверждение электонной почты,Email Confirmation
+AUTHORIZATION$FORGOT_PASSWORD,UI,Забыли пароль,Forgot password
+AUTHORIZATION$LOGIN,UI,Войти,Login
+AUTHORIZATION$MFA_NOTIFICATION,UI,"Вам был отправлен код безопасности. Пожалуйста, введите код и попробуйте снова",Security code has been sent to you. Please enter code and try again
+AUTHORIZATION$SIGN_IN,UI,Войти в систему,Sign in
+AUTHORIZATION$SIGN_OUT,UI,Выйти,Sign out
+AUTHORIZATION$SIGN_UP,UI,Зарегистрироваться,Sign up
+BUSINESS_INTERRUPTION$TITLE,UI,Прерывания бизнеса,Business interruption
+BUSINESS_UNITS$BUSINESS_UNIT,UI,Бизнес-единица,Business unit
+BUSINESS_UNITS$BUSINESS_UNIT_COLON,UI,Бизнес-единица:,Business unit:
+BUSINESS_UNITS$BUSINESS_UNIT_REQUIRED,UI,'Бизнес-единица' обязательна,Business unit is required
+BUSINESS_UNITS$CREATE_UNIT,UI,Создать бизнес-единицу,Create unit
+BUSINESS_UNITS$EDIT_UNIT,UI,Редактировать бизнес-единицу,Edit unit
+BUSINESS_UNITS$INFOSEC_FOCAL_PERSON,UI,Контактное лицо по информационной безопасности,Infosec Focal Person
+BUSINESS_UNITS$OWNED_PROCESSES,UI,Собственные процессы,Owned Processes
+BUSINESS_UNITS$PARENT_UNIT,UI,Родительская единица,Parent unit
+BUSINESS_UNITS$TITLE,UI,Бизнес-единицы,Business units
+BUSINESS_UNITS$USED_PROCESSES,UI,Используемые процессы,Used Processes
+CATEGORIES$CATEGORY,UI,Категория,Category
+CATEGORIES$CREATE_CATEGORY,UI,Создать категорию,Create category
+CATEGORIES$EDIT_CATEGORY,UI,Редактировать категорию,Edit category
+CATEGORIES$RISK_TYPES,UI,Типы рисков,Risk types
+CATEGORIES$RISK_TYPES_REQUIRED,UI,По крайней мере один тип должен быть определен,At least one type should be defined
+CATEGORIES$TITLE,UI,Категории,Categories
+CHANGE_PASSWORD$CONFIRM_PASSWORD,UI,Подтверждение пароля,Confirm password
+CHANGE_PASSWORD$CONFIRM_PASSWORD_INVALID,UI,Пароль и его подтверждение не совпадают,Passwords confirmation do not match with password
+CHANGE_PASSWORD$CONFIRM_PASSWORD_REQUIRED,UI,'Подтверждение пароля' обязательно,Password confirmation is required
+CHANGE_PASSWORD$INVALID_TOKEN,UI,"Токен запроса для этой страницы недействителен. Возможно, он уже использовался или срок его действия истек, поскольку он устарел. Пожалуйста, вернитесь на страницу 'Забыли пароль' и повторите попытку.","The request token for this page is invalid. It may have already been used, or expired because it is too old.Please go back to the forgot password page and try again."
+CHANGE_PASSWORD$NEW_PASSWORD,UI,Новый пароль,New password
+CHANGE_PASSWORD$NEW_PASSWORD_HELP_TEXT,UI,"Пароль должен быть длиной не менее 8 символов и содержать как минимум одну строчную букву, одну заглавную букву, одну цифру и один спецсимвол","Passwords must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"
+CHANGE_PASSWORD$NEW_PASSWORD_INVALID,UI,Невалидный пароль,Invalid password
+CHANGE_PASSWORD$OLD_PASSWORD,UI,Старый пароль,Old password
+CHANGE_PASSWORD$OLD_PASSWORD_REQUIRED,UI,'Пароль' обязателен,Old password is required
+CHANGE_PASSWORD$SUCCESS_MESSAGE,UI,Ваш пароль был успешно изменен,Your password has been successfully changed
+CLOUD_SCORING$TITLE,UI,Скоринг облачных вендоров,Cloud scoring
+CONTROL_FUNCTIONS$CONTROL_FUNCTION,UI,Контрольная функция,Control function
+CONTROL_FUNCTIONS$CONTROL_FUNCTION_REQUIRED,UI,'Контрольная функция' обязательна,Control function is required
+CONTROL_FUNCTIONS$CREATE_FUNCTION,UI,Создать контрольную функцию,Create control function
+CONTROL_FUNCTIONS$EDIT_FUNCTION,UI,Редактировать контрольную функцию,Edit control function
+CONTROL_FUNCTIONS$TITLE,UI,Контрольные функции,Control functions
+CONTROL_GUIDELINES$CONTROL_GUIDELINE,UI,Контрольная директива,Control guideline
+CONTROL_GUIDELINES$CONTROL_GUIDELINE_REQUIRED,UI,'Контрольная директива' обязательна,Control guideline is required
+CONTROL_GUIDELINES$CREATE_GUIDELINE,UI,Создать директиву,Create guideline
+CONTROL_GUIDELINES$EDIT_GUIDELINE,UI,Редактировать директиву,Edit guideline
+CONTROL_GUIDELINES$TITLE,UI,Контрольные директивы,Control guidelines
+CONTROL_TESTS$CONTROL_TEST,UI,Контрольный тест,Control test
+CONTROL_TESTS$CONTROL_TEST_REQUIRED,UI,'Контрольный тест' обязателен,Control test is required
+CONTROL_TESTS$CREATE_TEST,UI,Создать контрольный тест,Create control test
+CONTROL_TESTS$EDIT_TEST,UI,Редактировать контрольный тест,Edit control test
+CONTROL_TESTS$TITLE,UI,Контрольные тесты,Control tests
+CYBER_RISK_SCORING$TITLE,UI,Скоринг кибер-рисков,Cyber risk scoring
+CYBER_ROLES$CREATE_ROLE,UI,Создать кибер-роль,Create cyber role
+CYBER_ROLES$CYBER_ROLE,UI,Кибер-роль,Cyber role
+CYBER_ROLES$EDIT_ROLE,UI,Редактировать кибер-роль,Edit cyber role
+CYBER_ROLES$TITLE,UI,Кибер-роли,Cyber roles
+DASHBOARDS_FILTER$PRIVACY_DATA,UI,Приватные данные,Privacy data
+DASHBOARDS$SORT_BY,UI,Сортировать по:,Sort by:
+DASHBOARDS$TOTAL_EXPOSURE,UI,Общее воздействие:,Total exposure:
+DATA_CLASSES$CREATE_CLASS,UI,Создать класс данных,Create data class
+DATA_CLASSES$DATA_CLASS,UI,Класс данных,Data class
+DATA_CLASSES$EDIT_CLASS,UI,Редактировать класс данных,Edit data class
+DATA_CLASSES$TITLE,UI,Классы данных,Data classes
+DATA_EXFILTRATION$TITLE,UI,Эксфильтрация данных,Data exfiltration
+DOMAINS$DIALOG_TITLE,UI,Добавить домен в риск-модель,Add domain to risk model
+DOMAINS$DOMAIN,UI,Домен,Domain
+DOMAINS$DOMAIN_REQUIRED,UI,'Домен' обязателен,Domain is required
+DOMAINS$MANAGED_BY,UI,Ответственный,Managed by
+DOMAINS$NO_AVAILABLE_DOMAINS,UI,Сейчас нет доступных доменов,There is no available domains right now
+DOMAINS$TITLE,UI,Домены,Domains
+DROPZONE$ALLOWED_SINGLE_CSV,UI,"Разрешена загрузка одного файла с расширением .csv, .xlsx или .xlsm","Allowed the upload of single file with .csv, .xlsx or .xlsm extension"
+DROPZONE$DEFAULT_MESSAGE,UI,Нажмите здесь или перенесите файлы для загрузки!,Click here or drop files to upload!
+DROPZONE$NO_STATUS,UI,Нет статуса,No status
+EMAIL_CONFIRMATION$FAIL,UI,"Токен запроса для этой страницы недействителен. Возможно, он уже использовался или срок его действия истек, поскольку он устарел. Пожалуйста, вернитесь на сайт или в приложение, которое отправило вас сюда, и попробуйте снова.","The request token for this page is invalid. It may have already been used, or expired because it is too old. Please go back to the site or application that sent you here and try again."
+EMAIL_CONFIRMATION$SUCCESS,UI,Адрес электронной почты был успешно подтвержден. Добро пожаловать!,The email address was successfully verified. Welcome aboard!
+EXPOSURE_METRICS$CREATE_METRIC,UI,Создать метрику уязвимости,Create exposure metric
+EXPOSURE_METRICS$EDIT_METRIC,UI,Редактировать метрику уязвимости,Edit exposure metric
+EXPOSURE_METRICS$EXPOSURE_METRIC,UI,Метрика уязвимости,Exposure metric
+EXPOSURE_METRICS$TITLE,UI,Метрики уязвимости,Exposure metrics
+EXPOSURE_MODELS$EXPOSURE_MODEL,UI,Модель уязвимости,Exposure model
+EXPOSURE_MODELS$EXPOSURE_MODEL_REQUIRED,UI,'Модель уязвимости' обязательна,Exposure model is required
+EXPOSURE_MODELS$TITLE,UI,Модели уязвимости,Exposure models
+FIXED_CAPITAL_COSTS$CREATE_COST,UI,Создать капитальные расходы,Create capital cost
+FIXED_CAPITAL_COSTS$EDIT_COST,UI,Редактировать капитальные расходы,Edit capital cost
+FIXED_CAPITAL_COSTS$LICENSE_COST,UI,Цена лицензии,License cost
+FIXED_CAPITAL_COSTS$LICENSE_TYPE,UI,Тип лицензии,License type
+FIXED_CAPITAL_COSTS$NUMBER_OF_CPUS,UI,Количество CPUs,Number of CPUs
+FIXED_CAPITAL_COSTS$NUMBER_OF_USERS,UI,Количество пользователей,Number of users
+FIXED_CAPITAL_COSTS$TITLE,UI,Фиксированные капитальные расходы,Fixed capital costs
+FIXED_OPERATIONAL_COSTS$COST_CENTER,UI,Центр расходов,Cost center
+FIXED_OPERATIONAL_COSTS$COST_CENTER_COLON,UI,Центр расходов:,Cost center:
+FIXED_OPERATIONAL_COSTS$CREATE_COST,UI,Создать операционные расходы,Create operational cost
+FIXED_OPERATIONAL_COSTS$EDIT_COST,UI,Редактировать операционные расходы,Edit operational cost
+FIXED_OPERATIONAL_COSTS$PERSON,UI,Лицо,Person
+FIXED_OPERATIONAL_COSTS$PERSON_COLON,UI,Лицо:,Person:
+FIXED_OPERATIONAL_COSTS$SEARCH_BY_COST_CENTER,UI,Поиск по 'центру расходов',Search by cost center
+FIXED_OPERATIONAL_COSTS$TITLE,UI,Фиксированные операционные расходы,Fixed operational costs
+FORGOT_PASSWORD$DESCRIPTION,UI,"Пожалуйста, введите свой адрес электронной почты и мы вышлем вам письмо для сброса пароля.","Please enter your email address, and we'll send you a password reset email."
+FORGOT_PASSWORD$RESET_PASSWORD,UI,Сброс пароля,Reset password
+FORGOT_PASSWORD$TITLE,UI,Забыли пароль?,Forgot password?
+GDPR$ARTICLE,UI,Статья,Article
+GDPR$ARTICLE_COLON,UI,Статья:,Article:
+GDPR$ARTICLES,UI,Статьи,Articles
+GDPR$ARTICLES_COLON,UI,Статьи:,Articles:
+GDPR$ARTICLES_NUMBER,UI,Количество статей:,Articles number:
+GDPR$ARTICLES_PROCESSED,UI,Статей обработано:,Articles processed:
+GDPR$CHAPTER,UI,Глава,Chapter
+GDPR$CHAPTER_COLON,UI,Глава:,Chapter:
+GDPR$COMPLIANCE,UI,Соответствие,Compliance
+GDPR$COMPLIANCE_COLON,UI,Соответствие:,Compliance:
+GDPR$COMPLIANCE_LOG,UI,Журнал GDPR-соответствий,GDPR Compliance log
+GDPR$DOCUMENT_TYPE,UI,Тип документа,Document type
+GDPR$EDIT_COMPLIANCE,UI,Редактировать соответствие,Edit compliance
+GDPR$EDIT_DOCUMENT,UI,Редактировать свидетельство,Edit document
+GDPR$EVIDENCE_DOCUMENTS,UI,GDPR-свидетельства,GDPR Evidence documents
+GDPR$FILES_NUMBER,UI,Количество файлов:,Files number:
+GDPR$GDPR,UI,GDPR,GDPR
+GDPR$NO_DOCUMENTS,UI,Документы еще не были добавлены,There is no added documents yet
+GDPR$ORGANIZATION_COMPLIANCE,UI,GDPR-соответствия организации,GDPR Organization compliance
+GDPR$PARAGRAPH,UI,Параграф,Paragraph
+GDPR$PARAGRAPH_COLON,UI,Параграф:,Paragraph:
+GDPR$QUESTIONS_ANSWERED,UI,Вопросов отвечено,Questions answered
+GDPR$QUESTIONS_APPLIED,UI,Вопросов задано,Questions applied
+GDPR$SEARCH_BY_ARTICLE,UI,Поиск по 'статье',Search by article
+GDPR$SECTION,UI,Раздел,Section
+GDPR$SYSTEM_COMPLIANCE,UI,GDPR-соответствия системы,GDPR System compliance
+GDPR$SYSTEM_COMPLIANCE_DRILLDOWN,UI,Подробнее о GDPR-соответствиях для системы {0},GDPR Compliance drilldown for {0} system
+GDPR$SYSTEM_COMPLIANCE_LOG,UI,Журнал GDPR-соответствий для системы {0},GDPR Compliance log for {0} system
+GDPR$TEMPLATE,UI,Шаблон,Template
+GLOBALS$ADD,UI,Добавить,Add
+GLOBALS$ADVANCED_SEARCH,UI,Расширенный поиск,Advanced search
+GLOBALS$AGREE,UI,Согласиться,Agree
+GLOBALS$ALL_ITEMS,UI,Все элементы,All items
+GLOBALS$APPLY,UI,Применить,Apply
+GLOBALS$AUDIT,UI,"Аудит","Audit"
+GLOBALS$BACK,UI,Назад,Back
+GLOBALS$CANCEL,UI,Отмена,Cancel
+GLOBALS$CHANGE_LANGUAGE,UI,Сменить язык,Change language
+GLOBALS$CLOSE,UI,Закрыть,Close
+GLOBALS$CODE,UI,Код,Code
+GLOBALS$CODE_REQUIRED,UI,Код обязателен,Code is required
+GLOBALS$COMMENT,UI,"Комментарий","Comment"
+GLOBALS$COMMENTS,UI,Комментарии,Comments
+GLOBALS$CREATE,UI,Создать,Create
+GLOBALS$CREATED,UI,Дата создания,Created
+GLOBALS$CREATED_BY,UI,Создано,Created by
+GLOBALS$CREDENTIALS_EXPIRED,UI,Учетные данные истекли,Credentials expired
+GLOBALS$DEFAULT_CONFIRMATION,UI,Вы уверены?,Are you sure?
+GLOBALS$DELETE,UI,Удалить,Delete
+GLOBALS$DELETION_CONFIRMATION,UI,Удалить этот элемент?,Delete this item?
+GLOBALS$DESCRIPTION,UI,Описание,Description
+GLOBALS$DETAILS,UI,Детали,Details
+GLOBALS$DISAGREE,UI,Отказаться,Disagree
+GLOBALS$DOCUMENT,UI,Документ,Document
+GLOBALS$DOCUMENT_COLON,UI,Документ:,Document:
+GLOBALS$DOCUMENTS,UI,Документы,Documents
+GLOBALS$DOCUMENTS_COLON,UI,Документы:,Documents:
+GLOBALS$DOCUMENT_UPLOAD,UI,Загрузка документа,Document upload
+GLOBALS$DOWNLOAD,UI,Скачать,Download
+GLOBALS$DOWNLOAD_DATA,UI,Скачать данные,Download data
+GLOBALS$DOWNLOAD_TEMPLATE,UI,Скачать шаблон,Download template
+GLOBALS$DRILLDOWN,UI,Подробнее,Drilldown
+GLOBALS$EDIT,UI,Редактировать,Edit
+GLOBALS$END_DATE,UI,Дата окончания,End date
+GLOBALS$ERROR,UI,Ошибка,Error
+GLOBALS$INFOSEC_FOCAL_PERSON,UI,Контактное лицо по информационной безопасности,Infosec Focal Person
+GLOBALS$LIST,UI,Список,List
+GLOBALS$LOADING,UI,Загрузка...,Loading...
+GLOBALS$LOG,UI,Журнал,Log
+GLOBALS$NAME,UI,Название,Name
+GLOBALS$NAME_REQUIRED,UI,'Название' обязательно,Name is required
+GLOBALS$NO_CHANGES,UI,Нет изменений,No changes
+GLOBALS$NO_DATA,UI,Нет данных,There is no data
+GLOBALS$NO_QUESTIONS_FOUND,UI,Вопросов не найдено,No questions found
+GLOBALS$NOTES,UI,Заметки,Notes
+GLOBALS$NO_VALUE,UI,Нет значения,No value
+GLOBALS$OWNER,UI,Владелец,Owner
+GLOBALS$OWNER_REQUIRED,UI,'Владелец' обязателен,Owner is required
+GLOBALS$PASSWORD,UI,Пароль,Password
+GLOBALS$PASSWORD_INVALID,UI,Пароль должен содержать не менее 8 символов,Password must contain at least 8 symbol character
+GLOBALS$PASSWORD_REQUIRED,UI,'Пароль' обязателен,Password is required
+GLOBALS$PERCENTAGE,UI,Процент,Percentage
+GLOBALS$PERCENTAGE_ERROR,UI,Значение должно быть в диапазоне от 0 до 100,Value must be between 0 and 100
+GLOBALS$PERCENTAGE_REQUIRED,UI,'Процент' обязателен,Percentage is required
+GLOBALS$QUESTIONS,UI,Вопросы,Questions
+GLOBALS$RESET,UI,Сбросить,Reset
+GLOBALS$SAVE,UI,Сохранить,Save
+GLOBALS$SCHEME,UI,Схема,Scheme
+GLOBALS$SEARCH,UI,Поиск,Search
+GLOBALS$SEARCH_BY_NAME,UI,Поиск по 'названию',Search by name
+GLOBALS$SETUP,UI,Установить,Setup
+GLOBALS$START_DATE,UI,Дата начала,Start date
+GLOBALS$STATUS,UI,Статус,Status
+GLOBALS$STATUS_REQUIRED,UI,'Статус' обязателен,Status is required
+GLOBALS$SUCCESSFUL_DATA_UPDATE,UI,Данные были успешно обновлены,Data was successfully updated
+GLOBALS$SUCCESSFUL_FILE_UPLOAD,UI,Файл был успешно загружен,File was successfully upload
+GLOBALS$SUCCESSFUL_ITEM_CREATE,UI,Объект был успешно создан,Item was successfully created
+GLOBALS$TEMPLATE,UI,Шаблон,Template
+GLOBALS$TOGGLE_MENU,UI,Переключить меню,Toggle menu
+GLOBALS$TOTAL_COSTS,UI,Суммарные затраты,Total costs
+GLOBALS$TOTAL_COSTS_COLON,UI,Суммарные затраты:,Total costs:
+GLOBALS$UNDER_DEVELOPMENT,UI,Этот функционал находится в стадии разработки,This functionality is under development
+GLOBALS$UNSAVED_DATA,UI,Несохраненные данные,Unsaved data
+GLOBALS$UNSAVED_DATA_MESSAGE,UI,"У вас есть несохраненные данные на этой странице. Вы уверены, что хотите покинуть страницу? Все несохраненные данные будут потеряны!",You have unsaved data on this page. Are you sure you want to leave the page? All unsaved data will be lost!
+GLOBALS$UPDATED,UI,Дата обновления,Updated
+GLOBALS$UPDATED_BY,UI,Обновлено,Updated by
+GLOBALS$UPLOAD,UI,Загрузить,Upload
+GLOBALS$UPLOAD_CSV,UI,Загрузить CSV,Upload CSV
+GLOBALS$VALUE,UI,Значение,Value
+GLOBALS$VALUE_REQUIRED,UI,'Значение' обязательно,Value is required
+GLOBALS$VERSION,UI,Версия,Version
+HOME_PAGE$DESCRIPTION,UI,Управление кибер-рисками,Cyber Risk Management and Risk Engine
+HOME_PAGE$TITLE,UI,Добро пожаловать в {0} !,Welcome to {0} !
+IMPORT_AND_EXPORT$BUSINESS_UNITS,UI,Импорт/экспорт бизнес-единиц,Business units import/export
+IMPORT_AND_EXPORT$CONTROL_GUIDELINES,UI,Импорт/экспорт контрольных директив,Control guidelines import/export
+IMPORT_AND_EXPORT$DATA_IMPORT,UI,Импорт данных,Data import
+IMPORT_AND_EXPORT$GDPR_ARTICLES,UI,Импорт/экспорт GDPR-статей,GDPR Articles import/export
+IMPORT_AND_EXPORT$GDPR_EVIDENCE_ARTICLES,UI,Импорт/экспорт GDPR-свидетельств,GDPR Evidence articles import/export
+IMPORT_AND_EXPORT$SCORING_QUESTIONS,UI,Импорт/экспорт оценочных вопросов,Scoring questions import/export
+IMPORT_AND_EXPORT$SECURITY_FRAMEWORKS,UI,Импорт/экспорт систем безопасности,Security frameworks import/export
+IMPORT_AND_EXPORT$SECURITY_FRAMEWORKS_CHOICE,UI,Выберите систему безопасности,Choose security framework
+IMPORT_AND_EXPORT$SECURITY_REQUIREMENTS,UI,Импорт/экспорт требований безопасности,Security requirements import/export
+IMPORT_AND_EXPORT$SUBSIDIARY_ORGANIZATIONS,UI,Импорт/экспорт филиалов,Subsidiary organizations import/export
+IMPORT_AND_EXPORT$SYSTEM_RISK,UI,Импорт/экспорт системных рисков,Systems risk import/export
+IMPORT_AND_EXPORT$TITLE,UI,Импорт/экспорт,Import/Export
+IMPORT_AND_EXPORT$VENDORS,UI,Импорт/экспорт вендоров,Vendors import/export
+"!LANGUAGE$CODE",UI,rus,eng
+"!LANGUAGE$DIRECTION",UI,ltr,ltr
+"!LANGUAGE$ENUM",UI,RUSSIAN,ENGLISH
+"!LANGUAGE$SELF_NAME",UI,Russian,English
+MENU$ADMINISTRATION,UI,Администрирование,Administration
+MENU$CYBER_BUDGET,UI,Кибер-бюджет,Cyber budget
+MENU$DASHBOARDS,UI,Дашборды,Dashboards
+MENU$GDPR_ARTICLES,UI,GDPR-статьи,GDPR Articles
+MENU$GDPR_DOCUMENTS_MAPPING,UI,Привязка GDPR-документов,GDPR Documents Mapping
+MENU$GDPR_EVIDENCE_DOCUMENTS,UI,Свидетельства,Evidence documents
+MENU$GDPR_ORGANIZATION_COMPLIANCE,UI,Соответствия организации,Organization compliance
+MENU$GDPR_SYSTEM_COMPLIANCE,UI,Соответствия систем,System compliance
+MENU$HOME_PAGE,UI,Домашняя страница,Home page
+MENU$PRIVACY_IMPACT_ASSESSMENT,UI,Оценка влияния на конфиденциальность,Privacy impact assessment
+MENU$RISK_METRICS,UI,Риск-метрики,Risk metrics
+MENU$SECURITY_ASSESSMENTS,UI,Оценка безопасности,Security assessments
+MENU$SETTINGS,UI,Настройки,Settings
+MENU$SYSTEMS_RISK,UI,Системные риски,System risk
+MENU$VENDOR_MANAGEMENT,UI,Управление вендорами,Vendor management
+METRIC_FORMULA$ADD_OPERATION,UI,Добавить операцию '{operation}',Add '{operation}' operation
+METRIC_FORMULA$ADD_VARIABLE,UI,Добавить переменную '{variable}',Add '{variable}' variable
+METRIC_FORMULA$EDIT_DIALOG_TITLE,UI,Редактировать элемент метрики,Edit metric item
+METRIC_FORMULA$FORMULA,UI,Формула,Formula
+METRIC_FORMULA$FORMULA_ITEMS_REQUIRED,UI,По крайней мере один элемент формулы должен быть определен,At least one formula item should be defined
+METRIC_FORMULA$METRIC_FORMULA,UI,Метрическая формула,Metric formula
+METRIC_FORMULA$MOVE_BACKWARD,UI,Переместить назад,Move backward
+METRIC_FORMULA$MOVE_FORWARD,UI,Переместить вперед,Move forward
+METRIC_FORMULA$OPERATION,UI,Операция,Operation
+METRIC_FORMULA$OPERATION_REQUIRED,UI,'Операция' обязательна,Operation is required
+METRIC_FORMULA$OPERATIONS,UI,Операции,Operations
+METRIC_FORMULA$VARIABLES,UI,Переменные,Variables
+METRIC_FORMULA$VARIABLE_TYPE,UI,Тип переменной,Variable type
+METRIC_FORMULA$VARIABLE_TYPE_REQUIRED,UI,'Тип переменной' обязателен,Variable type is required
+ORGANIZATION$ADDRESS_1,UI,Адрес №1,Address №1
+ORGANIZATION$ADDRESS_2,UI,Адрес №2,Address №2
+ORGANIZATION$ANNUAL_REVENUE,UI,Годовой доход,Annual revenue
+ORGANIZATION$CITY,UI,Город,City
+ORGANIZATION_CONTROL_TEST_RESULTS$AUDIT_RESULT,UI,"Аудит результата контрольного теста","Audit control test result"
+ORGANIZATION_CONTROL_TEST_RESULTS$AUDITORS_COMMENTS,UI,"Комментарии аудиторов","Auditors comments"
+ORGANIZATION_CONTROL_TEST_RESULTS$CONTROL_TEST_RESULT,UI,Результат контрольного теста,Control test result
+ORGANIZATION_CONTROL_TEST_RESULTS$EDIT_RESULT,UI,Редактировать результат контрольного теста,Edit control test result
+ORGANIZATION_CONTROL_TEST_RESULTS$EVIDENCE_IS_NOT_SUFFICIENT,UI,"Доказательств не достаточно","Evidence is not sufficient"
+ORGANIZATION_CONTROL_TEST_RESULTS$EVIDENCE_IS_SUFFICIENT,UI,"Доказательств достаточно","Evidence is sufficient"
+ORGANIZATION_CONTROL_TEST_RESULTS$TITLE,UI,Результаты контрольных тестов организации,Organization control test results
+ORGANIZATION$COUNTRY,UI,Страна,Country
+ORGANIZATION$CURRENCY,UI,Валюта,Currency
+ORGANIZATION$DESCRIPTION,UI,Описание,Description
+ORGANIZATION$LANGUAGE,UI,Язык,Language
+ORGANIZATION$MARKET_CAPITALIZATION,UI,Рыночная капитализация,Market capitalization
+ORGANIZATION$NAME,UI,Название,Name
+ORGANIZATION$PHONE_NUMBER,UI,Телефон,Phone number
+ORGANIZATION$PUBLIC_COMPANY,UI,Публичная компания,Public company
+ORGANIZATION_RISK_SCORING$TITLE,UI,Скоринг рисков организации,Organization risk scoring
+ORGANIZATION$RISK_THRESHOLD,UI,Порог риска,Risk threshold
+ORGANIZATION$SITE,UI,Адрес сайта,Website URL
+ORGANIZATION$STATE,UI,Область,State
+ORGANIZATION$SUPPORTED_LANGUAGES,UI,Поддерживаемые языки,Supported languages
+ORGANIZATION$TAX_ID,UI,ИНН,TAX ID
+ORGANIZATION$TITLE,UI,Организация,Organization
+ORGANIZATION$VAT,UI,Номер НДС,VAT number
+ORGANIZATION$ZIP,UI,ZIP или почтовый индекс,ZIP or Postal Code
+PAGINATION$CURRENT_PAGE,UI,Текущая страница,Current page
+PAGINATION$FIRST_PAGE,UI,Первая страница,First page
+PAGINATION$LAST_PAGE,UI,Последняя страница,Last page
+PAGINATION$NEXT_PAGE,UI,Следующая страница,Next page
+PAGINATION$PAGES_LABEL,UI,Страница {0} из {1},Page {0} from {1}
+PAGINATION$PREVIOUS_PAGE,UI,Предыдущая страница,Previous page
+PAGINATION$SIZE,UI,Кол-во,Size
+PAGINATION$TOTAL_PAGES,UI,Всего страниц,Total pages
+POLICY_MANAGEMENT$ANNUAL_REVIEW,UI,Годовой отчет,Annual review
+POLICY_MANAGEMENT$ANNUAL_REVIEW_DATE,UI,Дата годового отчета,Annual review date
+POLICY_MANAGEMENT$APPROVAL,UI,Утверждение,Approval
+POLICY_MANAGEMENT$APPROVED,UI,Дата утверждения,Approved
+POLICY_MANAGEMENT$APPROVED_BY,UI,Утверждено,Approve by
+POLICY_MANAGEMENT$CREATE_POLICY,UI,Создать политику,Create policy
+POLICY_MANAGEMENT$EDIT_POLICY,UI,Редактировать политику,Edit policy
+POLICY_MANAGEMENT$GDPR_ARTICLES,UI,GDPR-статьи,GDPR articles
+POLICY_MANAGEMENT$POLICY,UI,Политика,Policy
+POLICY_MANAGEMENT$TITLE,UI,Управление политикой,Policy management
+PROCESSES$BUSINESS_UNIT_OWNS,UI,Собственные бизнес-единицы,Business unit owns
+PROCESSES$CREATE_PROCESS,UI,Создать процесс,Create process
+PROCESSES$EDIT_PROCESS,UI,Редактировать процесс,Edit process
+PROCESSES$PROCESS,UI,Процесс,Process
+PROCESSES$REVENUE_PROCESSED,UI,Доходов обработано (в час),Revenue processed (By Hour)
+PROCESSES$SEARCH_BY_PROCESS,UI,Поиск по 'процессу',Search by process
+PROCESSES$TITLE,UI,Процессы,Processes
+PROCESSES$USES_BUSINESS_UNITS,UI,Используемые бизнес-единицы,Uses business units
+PROFILE$PROFILE,UI,Профиль,Profile
+PROFILE$TITLE,UI,Редактировать профиль,Edit profile
+REASSIGN$REASSIGN,UI,Переназначить,Reassign
+REASSIGN$REASSIGN_OWNER,UI,Переназначить владельца,Reassign owner
+REASSIGN$REASSIGN_QUESTIONS,UI,Переназначить вопросы,Reassign questions
+REGULATORY_EXPOSURES$ORGANIZATION_REVENUE,UI,Выручка организации,Organization revenue
+REGULATORY_EXPOSURES$TITLE,UI,Регуляторные уязвимости,Regulatory exposures
+RISK_METRICS$CREATE_METRIC,UI,Создать риск-метрику,Create risk metric
+RISK_METRICS$EDIT_METRIC,UI,Редактировать риск-метрику,Edit risk metric
+RISK_METRICS$IS_RESIDUAL,UI,Использовать метрику как неотъемлемый риск,Use metric as Inherent Risk
+RISK_METRICS$RISK_METRIC,UI,Риск-метрика,Risk metric
+RISK_METRICS$TITLE,UI,Риск-метрики,Risk metrics
+RISK_MODEL$CHANGE_MODEL,UI,"Изменить риск-модель","Change risk model"
+RISK_MODEL$DIALOG_TITLE,UI,Выбрать модель,Select model
+RISK_MODEL$TITLE,UI,Риск-модель,Risk model
+SCORING_METRICS$CREATE_METRIC,UI,"Создать оценку воздействия на конфиденциальность","Create privacy impact assessment"
+SCORING_METRICS$EDIT_METRIC,UI,Редактировать оценку воздействия на конфиденциальность","Edit privacy impact assessment"
+SCORING_METRICS$METRIC_DOMAIN,UI,"Область оценки","Assessment domain"
+SCORING_METRICS$METRIC_DOMAIN_REQUIRED,UI,"'Область оценки' обязательна","Assessment domain is required"
+SCORING_METRICS$METRIC_REQUIRED,UI,"'Оценка' обязательна","Assessment is required"
+SCORING_METRICS$SCORING_METRIC,UI,"Оценка воздействия на конфиденциальность","Privacy impact assessment"
+SCORING_METRICS$TITLE,UI,"Оценки воздействия на конфиденциальность","Privacy impact assessments"
+SCORING_QUESTIONS$ALLOW_TEXT_AS_ANSWER,UI,Разрешить текст как ответ,Allow Text As Answer
+SCORING_QUESTIONS$ALLOW_UPLOAD_AS_ANSWER,UI,Загрузить ответы,Upload answers
+SCORING_QUESTIONS$ALL_VENDORS_AND_SYSTEMS,UI,Все вендоры/системы,All vendors/systems
+SCORING_QUESTIONS$ANSWER,UI,Ответ,Answer
+SCORING_QUESTIONS$ANSWER_REQUIRED,UI,'Ответ' обязателен,Answer is required
+SCORING_QUESTIONS$ANSWERS,UI,Ответы,Answers
+SCORING_QUESTIONS$ANSWER_TEXT,UI,Текст ответа,Answer text
+SCORING_QUESTIONS$ANSWER_WEIGHT,UI,Вес ответа,Answer weight
+SCORING_QUESTIONS$APPLIES_ONLY_FOR,UI,Применяется только для:,Applies only for:
+SCORING_QUESTIONS$BRANCHING_LOGIC,UI,Логика ветвления,Branching logic
+SCORING_QUESTIONS$CREATE_QUESTION,UI,Создать вопрос,Create question
+SCORING_QUESTIONS$DOWNLOAD_ANSWERS_AS_CSV,UI,Скачать ответы в формате CSV,Download answers as CSV
+SCORING_QUESTIONS$EDIT_QUESTION,UI,Редактировать вопрос,Edit question
+SCORING_QUESTIONS$INTERNAL,UI,Внутренний,Internal
+SCORING_QUESTIONS$QUESTION,UI,Вопрос,Question
+SCORING_QUESTIONS$QUESTION_REQUIRED,UI,'Вопрос' обязателен,Question is required
+SCORING_QUESTIONS$QUESTION_TYPE,UI,Тип вопроса,Question type
+SCORING_QUESTIONS$QUESTION_WEIGHT,UI,Вес вопроса,Question weight
+SCORING_QUESTIONS$QUESTION_WEIGHT_REQUIRED,UI,'Вес вопроса' обязателен,Question weight is required
+SCORING_QUESTIONS$SCORING_TYPE,UI,Тип оценки,Scoring type
+SCORING_QUESTIONS$SCORING_TYPE_REQUIRED,UI,'Тип оценки' обязателен,Scoring type is required
+SCORING_QUESTIONS$SELECT_ANSWER,UI,Выбрать ответ,Select answer
+SCORING_QUESTIONS$TITLE,UI,Оценочные вопросы,Scoring questions
+SECURITY_FRAMEWORKS$CREATE_FRAMEWORK,UI,Создать систему,Create framework
+SECURITY_FRAMEWORKS$EDIT_FRAMEWORK,UI,Редактировать систему,Edit framework
+SECURITY_FRAMEWORKS$SECURITY_FRAMEWORK,UI,Система безопасности,Security framework
+SECURITY_FRAMEWORKS$SECURITY_FRAMEWORK_REQUIRED,UI,Система безопасности обязательна,Security framework is required
+SECURITY_FRAMEWORKS$TITLE,UI,Системы безопасности,Security frameworks
+SECURITY_REQUIREMENTS$ADD_FRAMEWORK,UI,Все системы безопасности,Add security framework
+SECURITY_REQUIREMENTS$ALL_REQUIREMENTS,UI,Все требования,All requirements
+SECURITY_REQUIREMENTS$CONTROL_TESTING_PROCEDURE,UI,Подробная процедура контрольного тестирования,Detailed control testing procedure
+SECURITY_REQUIREMENTS$CREATE_REQUIREMENT,UI,Создать требование,Create requirement
+SECURITY_REQUIREMENTS$EDIT_REQUIREMENT,UI,Редактировать требование,Edit requirement
+SECURITY_REQUIREMENTS$FRAMEWORK_MAPPING,UI,Привязка систем,Framework mapping
+SECURITY_REQUIREMENTS$PROGRAM_AREA,UI,Программная область,Program Area
+SECURITY_REQUIREMENTS$RISK_STATEMENTS,UI,Примеры заявлений о риске,Risk statement examples
+SECURITY_REQUIREMENTS$SEARCH_BY_CODE,UI,Поиск по 'коду',Search by code
+SECURITY_REQUIREMENTS$SEARCH_BY_REQUIREMENT,UI,Поиск по 'требованию',Search by requirement
+SECURITY_REQUIREMENTS$SECURITY_CONTROL_FAMILY,UI,Контрольное семейство безопасности,Security control family
+SECURITY_REQUIREMENTS$SECURITY_CONTROL_NAME,UI,Контрольное имя безопасности,Security control name
+SECURITY_REQUIREMENTS$SECURITY_REQUIREMENT,UI,Требование безопасности,Security requirement
+SECURITY_REQUIREMENTS$SECURITY_REQUIREMENT_COLON,UI,Требование безопасности:,Security requirement:
+SECURITY_REQUIREMENTS$TITLE,UI,Требования безопасности,Security requirements
+SECURITY_TOOLS$CREATE_TOOL,UI,Создать инструмент безопасности,Create security tool
+SECURITY_TOOLS$EDIT_TOOL,UI,Редактировать инструмент безопасности,Edit security tool
+SECURITY_TOOLS$RISK_REDUCTION,UI,Сокращение рисков,Risk reduction
+SECURITY_TOOLS$RISK_REDUCTION_PERCENTAGES,UI,"Сокращение рисков, %","Risk reduction, %"
+SECURITY_TOOLS$SEARCH_BY_SECURITY_TOOL,UI,Поиск по 'инструменту безопасности',Search by security tool
+SECURITY_TOOLS$SECURITY_TOOL,UI,Инструмент безопасности,Security tool
+SECURITY_TOOLS$SECURITY_TOOL_REQUIRED,UI,'Инструмент безопасности' обязателен,Security tool is required
+SECURITY_TOOLS$TITLE,UI,Инструменты безопасности,Security tools
+SECURITY_TOOLS$TOOL_PRICE,UI,Цена инструмента,Tool price
+SETTINGS$TITLE,UI,Настройки,Settings
+SIGN_UP$DESCRIPTION,UI,"Извините, но этот функционал в настоящее время недоступен ...","Sorry, but this functionality currently unavailable..."
+SUBSIDIARY_ORGANIZATIONS$CREATE_SUBSIDIARY,UI,Создать филиал,Create subsidiary
+SUBSIDIARY_ORGANIZATIONS$EDIT_SUBSIDIARY,UI,Изменить филиал,Edit subsidiary
+SUBSIDIARY_ORGANIZATIONS$PARENT,UI,Родительская компания,Parent
+SUBSIDIARY_ORGANIZATIONS$SUBSIDIARY,UI,Филиал,Subsidiary
+SUBSIDIARY_ORGANIZATIONS$TITLE,UI,Филиалы,Subsidiary organizations
+SYSTEM_CONTROL_TEST_RESULTS$CONTROL_TEST_RESULT,UI,Результат контрольного теста системы,System control test result
+SYSTEM_CONTROL_TEST_RESULTS$DRILLDOWN,UI,Подробнее о результатах контрольных тестов для системы {0},System control test results drilldown for {0} system
+SYSTEM_CONTROL_TEST_RESULTS$EDIT_RESULT,UI,Редактировать результат контрольного теста системы,Edit system control test result
+SYSTEM_CONTROL_TEST_RESULTS$TITLE,UI,Результаты контрольных тестов системы,System control test results
+SYSTEM_RISK_REDUCTION$TITLE,UI,Снижение системного риска,System risk reduction
+SYSTEMS$ALL_SYSTEMS,UI,Все системы,All systems
+SYSTEMS$CREATE_SYSTEM,UI,Создать систему,Create system
+SYSTEMS$CYBER_SECURITY_TOOLS,UI,Инструменты кибер-безопасности,Cyber security tools
+SYSTEMS$EDIT_SYSTEM,UI,Редактировать систему,Edit system
+SYSTEMS$IS_ETL,UI,ETL система,Is ETL?
+SYSTEMS$M_AND_A_ASSET,UI,M & A актив,M & A asset
+SYSTEMS$RECORDS_PROCESSED,UI,Записей обработано,Records Processed
+SYSTEMS$RPO,UI,RPO,RPO
+SYSTEMS$RTO,UI,RTO,RTO
+SYSTEMS$SEARCH_BY_SYSTEM,UI,Поиск по системе,Search by system
+SYSTEMS$SYSTEM,UI,Система,System
+SYSTEMS$TITLE,UI,Системы,Systems
+TASKS$ACTUAL_END_DATE,UI,Фактическая дата окончания,Actual end date
+TASKS$ACTUAL_END_DATE_COLON,UI,Фактическая дата окончания:,Actual end date:
+TASKS$ACTUAL_START_DATE,UI,Фактическая дата начала,Actual start date
+TASKS$ACTUAL_START_DATE_COLON,UI,Фактическая дата начала:,Actual start date:
+TASKS$ASSIGNEE,UI,Ответственный за задачу,Task assignee
+TASKS$CATEGORY,UI,Категория задачи,Task category
+TASKS$CATEGORY_PLACEHOLDER,UI,Создать / выбрать категорию,Create/select category
+TASKS$CREATE_TASK,UI,Создать задачу,Create task
+TASKS$EDIT_TASK,UI,Редактировать задачу,Edit task
+TASKS$ESTIMATED_END_DATE,UI,Предполагаемая дата окончания,Estimated end date
+TASKS$ESTIMATED_END_DATE_COLON,UI,Предполагаемая дата окончания:,Estimated end date:
+TASKS$ESTIMATED_HOURS,UI,Расчетные часы,Estimated hours
+TASKS$ESTIMATED_HOURS_COLON,UI,Расчетные часы:,Estimated hours:
+TASKS$ESTIMATED_START_DATE,UI,Предполагаемая дата начала,Estimated start date
+TASKS$ESTIMATED_START_DATE_COLON,UI,Предполагаемая дата начала:,Estimated start date:
+TASKS$MANAGER,UI,Менеджер задачи,Task manager
+TASKS$PRIORITY,UI,Приоритет,Priority
+TASKS$PROJECT,UI,Проект,Project
+TASKS$PROJECT_PLACEHOLDER,UI,Создать / выбрать проект,Create/select project
+TASKS$STATUS_PERCENTAGES,UI,"Статус, %","Status, %"
+TASKS$TASK,UI,Задача,Task
+TASKS$TASK_REQUIRED,UI,'Задача' обязательна,Task is required
+TASKS$TITLE,UI,Задачи,Tasks
+TECHNOLOGIES$CREATE_TECHNOLOGY,UI,Создать технологию,Create technology
+TECHNOLOGIES$EDIT_TECHNOLOGY,UI,Редактировать технологию,Edit technology
+TECHNOLOGIES$TECHNOLOGY,UI,Технология,Technology
+TECHNOLOGIES$TITLE,UI,Технологии,Technologies
+TECHNOLOGY_CATEGORIES$CREATE_TECHNOLOGY_CATEGORY,UI,Создать технологическую категорию,Create technology category
+TECHNOLOGY_CATEGORIES$EDIT_TECHNOLOGY_CATEGORY,UI,Редактировать технологическую категорию,Edit technology category
+TECHNOLOGY_CATEGORIES$TECHNOLOGY_CATEGORY,UI,Технологическая категория,Technology category
+TECHNOLOGY_CATEGORIES$TECHNOLOGY_CATEGORY_REQUIRED,UI,'Технологическая категория' обязательна,Technology category is required
+TECHNOLOGY_CATEGORIES$TITLE,UI,Технологические категории,Technology categories
+USERS$CONFIRM_RESET_PASSWORD,UI,Подтверждение сброса пароля,Confirm reset password
+USERS$CORPORATE_PHONE,UI,Корпоративный телефон,Corporate phone
+USERS$CREATE_USER,UI,Создать пользователя,Create user
+USERS$CREDENTIALS_EXPIRATION_DATE,UI,Срок действия учетных данных,Credentials expiration date
+USERS$CREDENTIALS_EXPIRATION_DATE_HELP_TEXT,UI,Дата истечения срока действия учетных данных,Date when credentials will expire
+USERS$EDIT_USER,UI,Редактировать пользователя,Edit user
+USERS$EMAIL,UI,Электронная почта,Email
+USERS$EMAIL_COLON,UI,Электронная почта:,Email:
+USERS$EMAIL_INVALID,UI,Невалидный адрес электронной почты,Invalid email address
+USERS$EMAIL_REQUIRED,UI,'Электронная почта' обязательна,Email is required
+USERS$ENABLED,UI,Разрешенный,Enabled
+USERS$ENABLE_USER,UI,Разрешить пользователя,Enable user
+USER_SETTINGS$EDIT_SETTINGS,UI,Редактировать настройки пользователя,Edit user settings
+USER_SETTINGS$EMPLOYMENT_TYPE,UI,Вид трудоустройства,Employment type
+USER_SETTINGS$EMPLOYMENT_TYPE_REQUIRED,UI,'Вид трудоустройства' обязателен,Employment type is required
+USER_SETTINGS$NAME,UI,Имя:,Name:
+USER_SETTINGS$RATE,UI,Ставка,Rate
+USER_SETTINGS$RATE_COLON,UI,Ставка:,Rate:
+USER_SETTINGS$RATES,UI,Пользовательские ставки,User rates
+USER_SETTINGS$RATE_TYPE,UI,Тип ставки,Rate type
+USER_SETTINGS$RATE_TYPE_COLON,UI,Тип ставки:,Rate type:
+USER_SETTINGS$TITLE,UI,Пользовательские настройки,User settings
+USERS$EXPIRATION_DATE,UI,Дата окончания срока,Expiration date
+USERS$EXPIRATION_DATE_HELP_TEXT,UI,Дата истечения срока действия аккаунта,Date when account will expire
+USERS$EXPIRED_USER,UI,"Пользователь, срок действия которого истек",Expired user
+USERS$EXPIRED_USER_CREDENTIALS,UI,Учетные данные пользователя с истекшим сроком действия,Expired user credentials
+USERS$FIRST_NAME,UI,Имя,First name
+USERS$FIRST_NAME_REQUIRED,UI,'Имя' обязательно,First name is required
+USERS$LAST_NAME,UI,Фамилия,Last name
+USERS$LOCK_USER,UI,Блокировать пользователя,Lock user
+USERS$MOBILE_PHONE,UI,Мобильный телефон,Mobile phone
+USERS$RESET_PASSWORD_MESSAGE,UI,"После сброса пароля существующие сеансы пользователя будут стерты, а на вашу почту будет отправлено письмо для смены пароля. Пожалуйста, обратите внимание - каждый вызов сброса пароля сделает это снова и сделает недействительным предыдущее письмо.",Resetting user password - clear existing user sessions and send email to change password. Please note - each call of reset password do it again. And invalidate previous email.
+USERS$ROLE,UI,Роль,Role
+USERS$ROLES,UI,Роли,Roles
+USERS$ROLES_COLON,UI,Роли:,Roles:
+USERS$ROLES_REQUIRED,UI,По крайней мере одна роль должна быть определена,At least one role should be defined
+USERS$SEARCH_BY_EMAIL,UI,Поиск по 'почте',Search by email
+USERS$SEARCH_BY_FIRST_NAME,UI,Поиск по 'имени',Search by first name
+USERS$SEARCH_BY_LAST_NAME,UI,Поиск по 'фамилии',Search by last name
+USERS$SEARCH_BY_NAME_OR_EMAIL,UI,Поиск по 'имени' или 'почте',Search by name or email
+USERS$SUCCESSFUL_RESET_PASSWORD,UI,Ваш пароль был успешно аннулирован. Письмо было отправлено на почту:,"Your password has been successfully reset. Email has been sent to the email: "
+USERS$TITLE,UI,Пользователи,Users
+USERS$TITLE_FIELD,UI,Звание,Title
+USERS$USER,UI,Пользователь,User
+USERS$USER_REQUIRED,UI,'Пользователь' обязателен,User is required
+VARIABLE_COSTS$COST_TYPE,UI,Тип затрат,Cost type
+VARIABLE_COSTS$COST_TYPE_REQUIRED,UI,'Тип затрат' обязателен,Cost type is required
+VARIABLE_COSTS$CREATE_COST,UI,Создать переменные затраты,Create variable cost
+VARIABLE_COSTS$EDIT_COST,UI,Редактировать переменные затраты,Edit variable cost
+VARIABLE_COSTS$EQUIPMENT_COST,UI,Стоимость оборудования,Equipment cost
+VARIABLE_COSTS$PERSONNEL_COST,UI,Стоимость персонала,Personnel cost
+VARIABLE_COSTS$TITLE,UI,Переменные затраты,Variable costs
+VENDORS$ALL_VENDORS,UI,Все вендоры,All vendors
+VENDORS$CLOUD_VENDOR,UI,Облачный вендор,Cloud vendor
+VENDORS$CREATE_VENDOR,UI,Создать вендор,Create vendor
+VENDORS$EDIT_VENDOR,UI,Редактировать вендор,Edit vendor
+VENDORS$INDUSTRY,UI,Индустрия,Industry
+VENDORS$INTERNAL_QUESTIONS,UI,Вопросы 2 уровня,Level 2 Questions
+VENDORS$SCORING_QUESTIONS,UI,Вопросы 1 уровня,Level 1 Questions
+VENDORS$SEARCH_BY_VENDOR,UI,Поиск по 'вендору',Search by vendor
+VENDORS$SERVICE_VENDOR,UI,Вендор услуг,Service vendor
+VENDORS$SYSTEM_VENDOR,UI,Вендор систем,System vendor
+VENDORS$TECHNOLOGY_VENDOR,UI,Вендор технологий,Technology vendor
+VENDORS$TITLE,UI,Вендоры,Vendors
+VENDORS$VENDOR,UI,Вендор,Vendor
+VENDORS$VENDOR_COLON,UI,Вендор:,Vendor:
+VENDORS$VENDOR_TYPE,UI,Тип вендора,Vendor type
+VULNERABILITIES$CREATE_VULNERABILITY,UI,Создать уязвимость,Create vulnerability
+VULNERABILITIES$EDIT_VULNERABILITY,UI,Редактировать уязвимость,Edit vulnerability
+VULNERABILITIES$SCORE,UI,Счет,Score
+VULNERABILITIES$TITLE,UI,Уязвимости,Vulnerabilities
+VULNERABILITIES$VULNERABILITY,UI,Уязвимость,Vulnerability
+WELCOME$DESCRIPTION,UI,Не стесняйтесь присоединяться к нам!,Feel free join to us!
+WELCOME$TITLE,UI,Приятно видеть вас здесь!,It's nice to see you here!
+CONTROL_MATURITIES$TITLE,UI,"Уровни готовности","Control maturities"
+CONTROL_MATURITIES$WEIGHT,UI,"Вес, %","Weight, %"
+CONTROL_MATURITIES$CONTROL_MATURITY,UI,"Уровень готовности","Control maturity"
+CONTROL_MATURITIES$CREATE_MATURITY,UI,"Создать уровень готовности","Create control maturity"
+CONTROL_MATURITIES$EDIT_MATURITY,UI,"Изменить уровень готовности","Edit control maturity"
+CONTROL_MATURITIES$CONTROL_MATURITY_REQUIRED,UI,"'Уровень готовности' обязателен","Control maturity is required"
+SECURITY_ASSESSMENTS$TITLE,UI,"Оценки безопасности","Security assessments"
+SECURITY_ASSESSMENTS$SECURITY_ASSESSMENT,UI,"Оценка безопасности","Security assessment"
+SECURITY_ASSESSMENTS$CREATE_ASSESSMENT,UI,"Создать оценку","Create assessment"
+SECURITY_ASSESSMENTS$EDIT_ASSESSMENT,UI,"Редактировать оценку","Edit assessment"
+SECURITY_ASSESSMENTS$SECURITY_ASSESSMENT_REQUIRED,UI,"Оценка безопасности обязательна","Security assessment is required"
+ORGANIZATION$INSURANCE_LIMIT,UI,"Суммарный лимит страхования","Aggregate insurance limit"
+MENU$DIGITAL_ASSETS,UI,"Цифровые активы","Digital assets"
+MENU$DATA_CAPTURE,UI,"Сбор данных","Data Gathering"
+MENU$DOCUMENTATION_MANAGEMENT,UI,"Управление документацией","Documentation management"
+MENU$DIGITAL_ASSET_INVENTORY,UI,"Инвентаризация цифровых активов","Digital asset inventory"
+DOMAINS$DIALOG_TITLE_CREATE,UI,"Создать новый домен","Create new domain"
+CONSTANTS$TITLE,UI,"Константы","Constants"
+CONSTANTS$CONSTANT,UI,"Константа","Constant"
+CONSTANTS$CREATE_CONSTANT,UI,"Создать константу","Create constant"
+CONSTANTS$EDIT_CONSTANT,UI,"Редактировать константу","Edit constant"
+METRIC_FORMULA$ADD_CONSTANT,UI,"Добавить константу '{constant}'","Add '{constant}' constant"
+METRIC_FORMULA$ADD_QUANT_METRIC,UI,"Добавить квант метрику '{quantMetric}'","Add '{quantMetric}' quantification metric"
+QUANTIFICATION_METRICS$TITLE,UI,"Квант метрики","Quantification metrics"
+SETTINGS$ORGANIZATION,UI,"Настройка организации","Organization settings"
+ORGANIZATION$RECORD_PRICE_LIMIT,UI,"Ценовой предел","Record price limit"
+MY_TASKS$TITLE,UI,"Мои задачи","My tasks"
+GLOBALS$THRESHOLD,UI,"Порог","Threshold"
+SECURITY_TOOLS$LICENSE_COST,UI,"Стоимость лицензии","License cost"
+USER_SETTINGS$ALLOCATED,UI,"Выделено, %","Allocated, %"
+USER_SETTINGS$BLENDED_RATE_PER_HOUR,UI,"Смешанная ставка/в час","Blended rate/per hour"
+SUBSIDIARY_ORGANIZATIONS$SCHEME,UI,"Схема филиалов","Subsidiary organizations scheme"
+BUSINESS_UNITS$SCHEME,UI,"Схема бизнес-единиц","Business units scheme"
+DATA_EXFILTRATION$CREATE_EXFILTRATION,UI,"Создать эксфильтрацию данных","Create exfiltration"
+DATA_EXFILTRATION$EDIT_EXFILTRATION,UI,"Редактировать эксфильтрацию данных","Edit exfiltration"
+BUSINESS_INTERRUPTION$CREATE_INTERRUPTION,UI,"Создать прерыв бизнеса","Create interruption"
+BUSINESS_INTERRUPTION$EDIT_INTERRUPTION,UI,"Редактировать прерыв бизнеса","Edit interruption"
+REGULATORY_EXPOSURES$CREATE_EXPOSURE,UI,"Создать уязвимость","Create exposure"
+REGULATORY_EXPOSURES$EDIT_EXPOSURE,UI,"Изменить уязвимость","Edit exposure"
+DOMAINS$CREATE_DOMAIN,UI,"Создать домен","Create domain"
+DOMAINS$EDIT_DOMAIN,UI,"Изменить домен","Edit domain"
+DOMAINS$EDIT_DOMAIN,UI,"Изменить домен","Edit domain"
+EXPOSURE_MODELS$CREATE_MODEL,UI,"Создать модель","Create model"
+EXPOSURE_MODELS$EDIT_MODEL,UI,"Редактировать модель","Edit model"
+ORGANIZATION_CONTROL_TEST_RESULTS$CREATE_RESULT,UI,"Создать результат контрольного теста","Create control test result"
+SYSTEM_CONTROL_TEST_RESULTS$DRILLDOWN_TITLE,UI,"Подробнее о результатах контрольных тестов","System control test results drilldown"
+GDPR$CREATE_COMPLIANCE,UI,"Создать соответствие","Create compliance"
+GDPR$CREATE_DOCUMENT,UI,"Создать свидетельство","Create document"
+GDPR$SYSTEM_COMPLIANCE_DRILLDOWN_TITLE,UI,"Подробнее о GDPR-соответствиях","GDPR Compliance drilldown"
+ORGANIZATION$CYBER_INSURANCE_DEDUCTIBLE,UI,"Франшиза киберстраховки","Cyber insurance deductible"
+DATA_EXFILTRATION$RECORDS_PROCESSED,UI,"Записей обработано","Records processed"
+EXPOSURE_MODELS,UI,"Правила","Regulations"
+SYSTEMS$GEO_RECORDS_PROCESSED,UI,"Обработано географических записей","Geo Records Processed"
+EXPOSURE_MODELS$EXPOSURE_LEVEL,UI,"Уровень воздействия","Exposure level"
+METRIC_DOMAIN$TITLE,UI,"Домен Метрики","Metric Domain"
+CYBERSECURITY_MATURITY$TITLE,UI,"Готовность кибер-безопасности","Cyber security maturity"

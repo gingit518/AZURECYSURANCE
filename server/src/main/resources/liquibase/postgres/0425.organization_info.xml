@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0425.organization_info" author="Eugene A. Kalosha">
+		<sql>
+
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS number_of_employees integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS number_of_independent_contractors integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS revenue_in_2021 double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS revenue_in_2022 double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS revenue_in_2023 double precision DEFAULT NULL;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN IF EXISTS number_of_employees;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS number_of_independent_contractors;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS revenue_in_2021;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS revenue_in_2022;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS revenue_in_2023;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

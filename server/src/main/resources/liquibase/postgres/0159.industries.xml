@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0159-industries" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE industries
+			(
+				id serial,
+				parent_id integer DEFAULT NULL,
+				naics_code integer NOT NULL,
+				naics_code_upper integer DEFAULT NULL,
+				name character varying DEFAULT NULL,
+				CONSTRAINT pk_industries PRIMARY KEY (id)
+			);
+			CREATE INDEX i_industries_name ON industries (name);
+			CREATE INDEX i_industries_parent_id ON industries (parent_id);
+			CREATE INDEX i_industries_naics_code ON industries (naics_code);
+			CREATE INDEX i_industries_naics_codes_range ON industries (naics_code, naics_code_upper);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="industries"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

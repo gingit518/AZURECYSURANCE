@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0037-answer-weights" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE answer_weights
+			(
+				id serial,
+				name character varying (127) NOT NULL,
+				description text DEFAULT NULL,
+				value integer NOT NULL,
+				CONSTRAINT pk_answer_weights PRIMARY KEY (id)
+			);
+			CREATE INDEX i_answer_weights_name ON answer_weights (name);
+			CREATE INDEX i_answer_weights_value ON answer_weights (value);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="answer_weights"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

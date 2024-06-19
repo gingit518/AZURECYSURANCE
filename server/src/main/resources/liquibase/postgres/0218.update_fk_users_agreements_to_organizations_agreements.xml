@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0218.update_fk_users_agreements_to_organizations_agreements" author="Daniel A. Kolesnik">
+		<sql>
+
+			ALTER TABLE users_agreements
+			DROP CONSTRAINT fk_users_agreements_to_organizations_agreements,
+			ADD CONSTRAINT fk_users_agreements_to_organizations_agreements
+				FOREIGN KEY (organization_agreement_id)
+				REFERENCES organizations_agreements (id)
+				MATCH SIMPLE
+				ON UPDATE CASCADE
+				ON DELETE CASCADE;
+
+			ALTER TABLE users_agreements
+			DROP CONSTRAINT fk_users_agreements_to_users,
+			ADD CONSTRAINT fk_users_agreements_to_users
+				FOREIGN KEY (user_id)
+				REFERENCES users (id)
+				MATCH SIMPLE
+				ON UPDATE CASCADE
+				ON DELETE CASCADE;
+
+		</sql>
+	</changeSet>
+</databaseChangeLog>

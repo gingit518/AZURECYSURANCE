@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0423.regulation_changes" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE documents ALTER COLUMN organization_id DROP NOT NULL;
+
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS document_id int DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS revenue_requirement float DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS personal_data_processed_number int DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS personal_data_gross_revenue_percent int DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS personal_data_processed_number_for_gross_revenue int DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS entry_level_exemptions varchar(64) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS data_specific_exemptions varchar(64) DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

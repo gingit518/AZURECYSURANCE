@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0375.policies_improvements" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE policies_to_related_policies
+			(
+				id serial,
+				related_policy_id integer DEFAULT NULL,
+				policy_id integer DEFAULT NULL,
+				CONSTRAINT pk_policies_to_related_policies PRIMARY KEY (id)
+				, CONSTRAINT fk_policies_to_related_policies_to_related_policy FOREIGN KEY (related_policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_policies_to_related_policies_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_policies_to_related_policies_related_policy ON policies_to_related_policies (related_policy_id);
+			CREATE INDEX i_policies_to_related_policies_policy ON policies_to_related_policies (policy_id);
+
+			CREATE TABLE policies_to_cyber_roles
+			(
+				id serial,
+				cyber_role_id integer DEFAULT NULL,
+				policy_id integer DEFAULT NULL,
+				CONSTRAINT pk_policies_to_cyber_roles PRIMARY KEY (id)
+				, CONSTRAINT fk_policies_to_cyber_roles_to_cyber_role FOREIGN KEY (cyber_role_id) REFERENCES cyber_roles (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_policies_to_cyber_roles_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_policies_to_cyber_roles_cyber_role ON policies_to_cyber_roles (cyber_role_id);
+			CREATE INDEX i_policies_to_cyber_roles_policy ON policies_to_cyber_roles (policy_id);
+
+			CREATE TABLE policy_statements
+			(
+				id serial,
+				statement TEXT NOT NULL,
+				policy_id integer DEFAULT NULL,
+				CONSTRAINT pk_policy_statements PRIMARY KEY (id)
+				, CONSTRAINT fk_policy_statements_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_policy_statements_policy ON policy_statements (policy_id);
+
+			CREATE TABLE policy_statements_to_security_requirements
+			(
+				id serial,
+				security_requirement_id integer DEFAULT NULL,
+				policy_statement_id integer DEFAULT NULL,
+				CONSTRAINT pk_policy_statements_to_security_requirements PRIMARY KEY (id)
+				, CONSTRAINT fk_policy_statements_to_security_requirements_to_security_requirements FOREIGN KEY (security_requirement_id) REFERENCES security_requirements (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_policy_statements_to_security_requirements_to_policies FOREIGN KEY (policy_statement_id) REFERENCES policy_statements (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_policy_statements_to_security_requirements_security_requirement ON policy_statements_to_security_requirements (security_requirement_id);
+			CREATE INDEX i_policy_statements_to_security_requirements_policy ON policy_statements_to_security_requirements (policy_statement_id);
+
+			ALTER TABLE policies ADD COLUMN IF NOT EXISTS overview text DEFAULT NULL;
+			ALTER TABLE policies ADD COLUMN IF NOT EXISTS purpose text DEFAULT NULL;
+			ALTER TABLE policies ADD COLUMN IF NOT EXISTS scope text DEFAULT NULL;
+			ALTER TABLE policies ADD COLUMN IF NOT EXISTS enforcement text DEFAULT NULL;
+			ALTER TABLE policies ADD COLUMN IF NOT EXISTS exceptions text DEFAULT NULL;
+			ALTER TABLE policies ADD COLUMN IF NOT EXISTS definitions text DEFAULT NULL;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE policies_to_related_policies;
+				DROP TABLE policies_to_cyber_roles;
+				DROP TABLE policy_statements_to_security_requirements;
+				DROP TABLE policy_statements;
+				ALTER TABLE policies DROP COLUMN IF EXISTS overview;
+				ALTER TABLE policies DROP COLUMN IF EXISTS purpose;
+				ALTER TABLE policies DROP COLUMN IF EXISTS scope;
+				ALTER TABLE policies DROP COLUMN IF EXISTS enforcement;
+				ALTER TABLE policies DROP COLUMN IF EXISTS exceptions;
+				ALTER TABLE policies DROP COLUMN IF EXISTS definitions;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

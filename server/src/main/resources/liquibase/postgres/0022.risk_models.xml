@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0022-risk-models" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE risk_models
+			(
+				id serial,
+				name character varying (127) NOT NULL DEFAULT 'BASE',
+				description text DEFAULT NULL,
+				organization_id integer NOT NULL,
+				sequenceNum integer DEFAULT 0,
+				CONSTRAINT pk_risk_models PRIMARY KEY (id),
+				CONSTRAINT fk_risk_models_to_organizations FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_risk_models_name ON risk_models (name);
+			CREATE INDEX i_risk_models_organization ON risk_models (organization_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="risk_models"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0416.technology_assets" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE technology_assets (
+				id serial NOT NULL,
+				organization_id integer NULL,
+				technology_asset_status systemstatus NULL DEFAULT 'ACTIVE'::systemstatus,
+				"name" varchar(255) NOT NULL DEFAULT ''::character varying,
+				description text NULL,
+				owner_id integer NULL,
+				infosec_focal_person_id integer NULL,
+				business_unit_id integer NULL,
+				technology_category_id integer NULL,
+				technology_subcategory_id integer NULL,
+				technology_class_type_id integer NULL,
+				technology_id integer NULL,
+				manufacturer_id integer NULL,
+				number_of_rec_processed float8 NULL,
+				created_by_id integer NULL,
+				updated_by_id integer NULL,
+				created_at timestamp NULL DEFAULT now(),
+				updated_at timestamp NULL DEFAULT now(),
+				is_ma_asset bool NULL DEFAULT false,
+				is_etl bool NULL DEFAULT false,
+				rto float8 NULL,
+				rpo float8 NULL,
+				cost_to_restore float8 NULL,
+				technology_asset_type systemtype NULL,
+				version_number varchar(255) NULL DEFAULT NULL::character varying,
+				deployment_type deploymenttype NULL,
+				os_name varchar(255) NULL DEFAULT NULL::character varying,
+				serial_number varchar(255) NULL DEFAULT NULL::character varying,
+				eol_date timestamp NULL,
+				warranty_expiration timestamp NULL,
+				asset_name varchar(255) NULL DEFAULT NULL::character varying,
+				ip_address varchar(64) NULL DEFAULT NULL::character varying,
+				asset_domain_function varchar(64) NULL DEFAULT NULL::character varying,
+				discovery_source varchar(127) NULL DEFAULT NULL::character varying,
+				device_id varchar(127) NULL DEFAULT NULL::character varying,
+				hardware_substatus varchar(64) NULL DEFAULT NULL::character varying,
+				owner_type varchar(127) NULL DEFAULT NULL::character varying,
+				"location" varchar(127) NULL DEFAULT NULL::character varying,
+				CONSTRAINT pk_technology_assets PRIMARY KEY (id),
+				CONSTRAINT fk_technology_assets_to_business_unit FOREIGN KEY (business_unit_id) REFERENCES business_units(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE,
+				CONSTRAINT fk_technology_assets_to_created_by FOREIGN KEY (created_by_id) REFERENCES users(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE SET NULL,
+				CONSTRAINT fk_technology_assets_to_technology_category FOREIGN KEY (technology_category_id) REFERENCES technology_categories(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE SET NULL,
+				CONSTRAINT fk_technology_assets_to_technology_subcategory FOREIGN KEY (technology_subcategory_id) REFERENCES technology_subcategories(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE SET NULL,
+				CONSTRAINT fk_technology_assets_to_technology_class_type FOREIGN KEY (technology_class_type_id) REFERENCES technology_class_types(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE SET NULL,
+				CONSTRAINT fk_technology_assets_to_technology FOREIGN KEY (technology_id) REFERENCES technologies(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE SET NULL,
+				CONSTRAINT fk_technology_assets_to_infosec_focal_person_id FOREIGN KEY (infosec_focal_person_id) REFERENCES users(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE SET NULL,
+				CONSTRAINT fk_technology_assets_to_manufacturer FOREIGN KEY (manufacturer_id) REFERENCES organizations(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE,
+				CONSTRAINT fk_technology_assets_to_organization FOREIGN KEY (organization_id) REFERENCES organizations(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE,
+				CONSTRAINT fk_technology_assets_to_owner_id FOREIGN KEY (owner_id) REFERENCES users(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE SET NULL,
+				CONSTRAINT fk_technology_assets_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE SET NULL
+			);
+			CREATE INDEX i_technology_assets_business_unit ON technology_assets USING btree (business_unit_id);
+			CREATE INDEX i_technology_assets_technology_category ON technology_assets USING btree (technology_category_id);
+			CREATE INDEX i_technology_assets_technology_subcategory ON technology_assets USING btree (technology_subcategory_id);
+			CREATE INDEX i_technology_assets_technology_class_type ON technology_assets USING btree (technology_class_type_id);
+			CREATE INDEX i_technology_assets_technology ON technology_assets USING btree (technology_id);
+			CREATE INDEX i_technology_assets_infosec_focal_person ON technology_assets USING btree (infosec_focal_person_id);
+			CREATE INDEX i_technology_assets_name ON technology_assets USING btree (name);
+			CREATE INDEX i_technology_assets_manufacturer ON technology_assets USING btree (manufacturer_id);
+			CREATE INDEX i_technology_assets_organization ON technology_assets USING btree (organization_id);
+			CREATE INDEX i_technology_assets_organization_id_name ON technology_assets USING btree (organization_id, name);
+			CREATE INDEX i_technology_assets_owner ON technology_assets USING btree (owner_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS technology_assets;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

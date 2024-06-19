@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0256.task_linkages" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE tasks ADD COLUMN linkage_type integer DEFAULT NULL;
+
+			CREATE TABLE assessments_to_tasks
+			(
+				id serial,
+				assessment_id integer NOT NULL,
+				task_id integer NOT NULL,
+
+				CONSTRAINT pk_assessments_to_tasks PRIMARY KEY (id)
+				, CONSTRAINT fk_assessments_to_tasks_to_assessment FOREIGN KEY (assessment_id) REFERENCES assessments (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessments_to_tasks_to_task FOREIGN KEY (task_id) REFERENCES tasks (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessments_to_tasks_assessment ON assessments_to_tasks (assessment_id);
+			CREATE INDEX i_assessments_to_tasks_task ON assessments_to_tasks (task_id);
+
+			CREATE TABLE findings_to_tasks
+			(
+				id serial,
+				finding_id integer NOT NULL,
+				task_id integer NOT NULL,
+
+				CONSTRAINT pk_findings_to_tasks PRIMARY KEY (id)
+				, CONSTRAINT fk_findings_to_tasks_to_finding FOREIGN KEY (finding_id) REFERENCES findings (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_findings_to_task FOREIGN KEY (task_id) REFERENCES tasks (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_findings_to_tasks_finding ON findings_to_tasks (finding_id);
+			CREATE INDEX i_findings_to_tasks_task ON findings_to_tasks (task_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE tasks DROP COLUMN IF EXISTS linkage_type;
+				DROP TABLE IF EXISTS assessments_to_tasks;
+				DROP TABLE IF EXISTS findings_to_tasks;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

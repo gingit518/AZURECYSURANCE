@@ -1,0 +1,630 @@
+Constant,Scope,Value,Default Value
+ASSESSMENT_FINDINGS$ASSESSMENT_FINDING,UI,"Risk registry","Risk registry"
+ASSESSMENT_FINDINGS$CREATE_FINDING,UI,"Create risk registry","Create risk registry"
+ASSESSMENT_FINDINGS$EDIT_FINDING,UI,"Edit risk registry","Edit risk registry"
+ASSESSMENT_FINDINGS$LINK_TYPE,UI,Link type,Link type
+ASSESSMENT_FINDINGS$TITLE,UI,"Risk registry","Risk registry"
+ASSESSMENTS$ASSESSMENT,UI,Assessment,Assessment
+ASSESSMENTS$ASSESSMENT_LEVEL,UI,Assessment level,Assessment level
+ASSESSMENTS$ASSESSMENT_WEIGHT,UI,"Assessment weight, %","Assessment weight, %"
+ASSESSMENTS$ASSESSMENT_WEIGHTS,UI,Assessment weights,Assessment weights
+ASSESSMENTS$CREATE_ASSESSMENT,UI,Create assessment,Create assessment
+ASSESSMENTS$EDIT_ASSESSMENT,UI,Edit assessment,Edit assessment
+ASSESSMENTS$TITLE,UI,Assessments,Assessments
+ASSESSMENTS$TYPE_HEADER,UI,Type,Type
+ASSET_CLASSES$ASSET_CLASS,UI,Asset class,Asset class
+ASSET_CLASSES$CREATE_CLASS,UI,Create asset class,Create asset class
+ASSET_CLASSES$EDIT_CLASS,UI,Edit asset class,Edit asset class
+ASSET_CLASSES$TITLE,UI,Asset classes,Asset classes
+ASSOCIATE_MODELS$ASSOCIATE_MODEL,UI,Associate model,Associate model
+ASSOCIATE_MODELS$CREATE_MODEL,UI,Create associate model,Create associate model
+ASSOCIATE_MODELS$EDIT_MODEL,UI,Edit associate model,Edit associate model
+ASSOCIATE_MODELS$TITLE,UI,Associate models,Associate models
+ASSOCIATE_SYSTEMS$ASSOCIATE_SYSTEM,UI,Associate system,Associate system
+ASSOCIATE_SYSTEMS$CREATE_SYSTEM,UI,Create associate system,Create associate system
+ASSOCIATE_SYSTEMS$EDIT_SYSTEM,UI,Edit associate system,Edit associate system
+ASSOCIATE_SYSTEMS$TITLE,UI,Associate systems,Associate systems
+ASSOCIATE_SYSTEMS$VENDOR_ID_REQUIRED,UI,Vendor id is required,Vendor id is required
+AUDIT_LOGS$AUDITOR_EMAIL,UI,Auditor email:,Auditor email:
+AUDIT_LOGS$AUDITOR_NAME,UI,Auditor name:,Auditor name:
+AUDIT_LOGS$CHANGED_ITEM,UI,changed item,changed item
+AUDIT_LOGS$DATE_FROM,UI,Date from,Date from
+AUDIT_LOGS$DATE_RANGE,UI,Date range,Date range
+AUDIT_LOGS$DATE_TO,UI,Date to,Date to
+AUDIT_LOGS$DETAILS,UI,Audit log details,Audit log details
+AUDIT_LOGS$DIFF,UI,Diff,Diff
+AUDIT_LOGS$FROM,UI,from,from
+AUDIT_LOGS$IN_ORGANIZATION,UI,in organization,in organization
+AUDIT_LOGS$ITEM_TYPE,UI,Item type,Item type
+AUDIT_LOGS$ITEM_TYPE_COLON,UI,Item type:,Item type:
+AUDIT_LOGS$MODIFIED_ITEMS,UI,Modified items,Modified items
+AUDIT_LOGS$NEW_VALUE,UI,New value,New value
+AUDIT_LOGS$OLD_VALUE,UI,Old value,Old value
+AUDIT_LOGS$OPERATION_TYPE,UI,Operation type,Operation type
+AUDIT_LOGS$OPERATION_TYPE_COLON,UI,Operation type:,Operation type:
+AUDIT_LOGS$PROPERTY,UI,Property,Property
+AUDIT_LOGS$START_SEARCH,UI,change something,change something
+AUDIT_LOGS$TILL,UI,till,till
+AUDIT_LOGS$TITLE,UI,Audit logs,Audit logs
+AUDIT_LOGS$UPDATED_DATE,UI,Updated date,Updated date
+AUDIT_LOGS$UPDATED_DATE_COLON,UI,Updated date:,Updated date:
+AUTHORIZATION$CHANGE_PASSWORD,UI,Change password,Change password
+AUTHORIZATION$EMAIL_CONFIRMATION,UI,Email Confirmation,Email Confirmation
+AUTHORIZATION$FORGOT_PASSWORD,UI,Forgot password,Forgot password
+AUTHORIZATION$LOGIN,UI,Login,Login
+AUTHORIZATION$MFA_NOTIFICATION,UI,Security code has been sent to you. Please enter code and try again,Security code has been sent to you. Please enter code and try again
+AUTHORIZATION$SIGN_IN,UI,Sign in,Sign in
+AUTHORIZATION$SIGN_OUT,UI,Sign out,Sign out
+AUTHORIZATION$SIGN_UP,UI,Sign up,Sign up
+BUSINESS_INTERRUPTION$TITLE,UI,Business interruption,Business interruption
+BUSINESS_UNITS$BUSINESS_UNIT,UI,Business unit,Business unit
+BUSINESS_UNITS$BUSINESS_UNIT_COLON,UI,Business unit:,Business unit:
+BUSINESS_UNITS$BUSINESS_UNIT_REQUIRED,UI,Business unit is required,Business unit is required
+BUSINESS_UNITS$CREATE_UNIT,UI,Create unit,Create unit
+BUSINESS_UNITS$EDIT_UNIT,UI,Edit unit,Edit unit
+BUSINESS_UNITS$INFOSEC_FOCAL_PERSON,UI,Infosec Focal Person,Infosec Focal Person
+BUSINESS_UNITS$OWNED_PROCESSES,UI,Owned Processes,Owned Processes
+BUSINESS_UNITS$PARENT_UNIT,UI,Parent unit,Parent unit
+BUSINESS_UNITS$TITLE,UI,Business units,Business units
+BUSINESS_UNITS$USED_PROCESSES,UI,Used Processes,Used Processes
+CATEGORIES$CATEGORY,UI,Category,Category
+CATEGORIES$CREATE_CATEGORY,UI,Create category,Create category
+CATEGORIES$EDIT_CATEGORY,UI,Edit category,Edit category
+CATEGORIES$RISK_TYPES,UI,Risk types,Risk types
+CATEGORIES$RISK_TYPES_REQUIRED,UI,At least one type should be defined,At least one type should be defined
+CATEGORIES$TITLE,UI,Categories,Categories
+CHANGE_PASSWORD$CONFIRM_PASSWORD,UI,Confirm password,Confirm password
+CHANGE_PASSWORD$CONFIRM_PASSWORD_INVALID,UI,Passwords confirmation do not match with password,Passwords confirmation do not match with password
+CHANGE_PASSWORD$CONFIRM_PASSWORD_REQUIRED,UI,Password confirmation is required,Password confirmation is required
+CHANGE_PASSWORD$INVALID_TOKEN,UI,"The request token for this page is invalid. It may have already been used, or expired because it is too old.Please go back to the forgot password page and try again.","The request token for this page is invalid. It may have already been used, or expired because it is too old.Please go back to the forgot password page and try again."
+CHANGE_PASSWORD$NEW_PASSWORD,UI,New password,New password
+CHANGE_PASSWORD$NEW_PASSWORD_HELP_TEXT,UI,"Passwords must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character","Passwords must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"
+CHANGE_PASSWORD$NEW_PASSWORD_INVALID,UI,Invalid password,Invalid password
+CHANGE_PASSWORD$OLD_PASSWORD,UI,Old password,Old password
+CHANGE_PASSWORD$OLD_PASSWORD_REQUIRED,UI,Old password is required,Old password is required
+CHANGE_PASSWORD$SUCCESS_MESSAGE,UI,Your password has been successfully changed,Your password has been successfully changed
+CLOUD_SCORING$TITLE,UI,Cloud scoring,Cloud scoring
+CONTROL_FUNCTIONS$CONTROL_FUNCTION,UI,Control function,Control function
+CONTROL_FUNCTIONS$CONTROL_FUNCTION_REQUIRED,UI,Control function is required,Control function is required
+CONTROL_FUNCTIONS$CREATE_FUNCTION,UI,Create control function,Create control function
+CONTROL_FUNCTIONS$EDIT_FUNCTION,UI,Edit control function,Edit control function
+CONTROL_FUNCTIONS$TITLE,UI,Control functions,Control functions
+CONTROL_GUIDELINES$CONTROL_GUIDELINE,UI,Control guideline,Control guideline
+CONTROL_GUIDELINES$CONTROL_GUIDELINE_REQUIRED,UI,Control guideline is required,Control guideline is required
+CONTROL_GUIDELINES$CREATE_GUIDELINE,UI,Create guideline,Create guideline
+CONTROL_GUIDELINES$EDIT_GUIDELINE,UI,Edit guideline,Edit guideline
+CONTROL_GUIDELINES$TITLE,UI,Control guidelines,Control guidelines
+CONTROL_TESTS$CONTROL_TEST,UI,Control test,Control test
+CONTROL_TESTS$CONTROL_TEST_REQUIRED,UI,Control test is required,Control test is required
+CONTROL_TESTS$CREATE_TEST,UI,Create control test,Create control test
+CONTROL_TESTS$EDIT_TEST,UI,Edit control test,Edit control test
+CONTROL_TESTS$TITLE,UI,Control tests,Control tests
+CYBER_RISK_SCORING$TITLE,UI,Cyber risk scoring,Cyber risk scoring
+CYBER_ROLES$CREATE_ROLE,UI,Create cyber role,Create cyber role
+CYBER_ROLES$CYBER_ROLE,UI,Cyber role,Cyber role
+CYBER_ROLES$EDIT_ROLE,UI,Edit cyber role,Edit cyber role
+CYBER_ROLES$TITLE,UI,Cyber roles,Cyber roles
+DASHBOARDS_FILTER$PRIVACY_DATA,UI,Privacy data,Privacy data
+DASHBOARDS$SORT_BY,UI,Sort by:,Sort by:
+DASHBOARDS$TOTAL_EXPOSURE,UI,Total exposure:,Total exposure:
+DATA_CLASSES$CREATE_CLASS,UI,Create data class,Create data class
+DATA_CLASSES$DATA_CLASS,UI,Data class,Data class
+DATA_CLASSES$EDIT_CLASS,UI,Edit data class,Edit data class
+DATA_CLASSES$TITLE,UI,Data classes,Data classes
+DATA_EXFILTRATION$TITLE,UI,Data exfiltration,Data exfiltration
+DOMAINS$DIALOG_TITLE,UI,Add domain to risk model,Add domain to risk model
+DOMAINS$DOMAIN,UI,Domain,Domain
+DOMAINS$DOMAIN_REQUIRED,UI,Domain is required,Domain is required
+DOMAINS$MANAGED_BY,UI,Managed by,Managed by
+DOMAINS$NO_AVAILABLE_DOMAINS,UI,There is no available domains right now,There is no available domains right now
+DOMAINS$TITLE,UI,Domains,Domains
+DROPZONE$ALLOWED_SINGLE_CSV,UI,"Allowed the upload of single file with .csv, .xlsx or .xlsm extension","Allowed the upload of single file with .csv, .xlsx or .xlsm extension"
+DROPZONE$DEFAULT_MESSAGE,UI,Click here or drop files to upload!,Click here or drop files to upload!
+DROPZONE$NO_STATUS,UI,No status,No status
+EMAIL_CONFIRMATION$FAIL,UI,"The request token for this page is invalid. It may have already been used, or expired because it is too old. Please go back to the site or application that sent you here and try again.","The request token for this page is invalid. It may have already been used, or expired because it is too old. Please go back to the site or application that sent you here and try again."
+EMAIL_CONFIRMATION$SUCCESS,UI,The email address was successfully verified. Welcome aboard!,The email address was successfully verified. Welcome aboard!
+EXPOSURE_METRICS$CREATE_METRIC,UI,Create exposure metric,Create exposure metric
+EXPOSURE_METRICS$EDIT_METRIC,UI,Edit exposure metric,Edit exposure metric
+EXPOSURE_METRICS$EXPOSURE_METRIC,UI,Exposure metric,Exposure metric
+EXPOSURE_METRICS$TITLE,UI,Exposure metrics,Exposure metrics
+EXPOSURE_MODELS$EXPOSURE_MODEL,UI,Exposure model,Exposure model
+EXPOSURE_MODELS$EXPOSURE_MODEL_REQUIRED,UI,Exposure model is required,Exposure model is required
+EXPOSURE_MODELS$TITLE,UI,Exposure models,Exposure models
+FIXED_CAPITAL_COSTS$CREATE_COST,UI,Create capital cost,Create capital cost
+FIXED_CAPITAL_COSTS$EDIT_COST,UI,Edit capital cost,Edit capital cost
+FIXED_CAPITAL_COSTS$LICENSE_COST,UI,License cost,License cost
+FIXED_CAPITAL_COSTS$LICENSE_TYPE,UI,License type,License type
+FIXED_CAPITAL_COSTS$NUMBER_OF_CPUS,UI,Number of CPUs,Number of CPUs
+FIXED_CAPITAL_COSTS$NUMBER_OF_USERS,UI,Number of users,Number of users
+FIXED_CAPITAL_COSTS$TITLE,UI,Fixed capital costs,Fixed capital costs
+FIXED_OPERATIONAL_COSTS$COST_CENTER,UI,Cost center,Cost center
+FIXED_OPERATIONAL_COSTS$COST_CENTER_COLON,UI,Cost center:,Cost center:
+FIXED_OPERATIONAL_COSTS$CREATE_COST,UI,Create operational cost,Create operational cost
+FIXED_OPERATIONAL_COSTS$EDIT_COST,UI,Edit operational cost,Edit operational cost
+FIXED_OPERATIONAL_COSTS$PERSON,UI,Person,Person
+FIXED_OPERATIONAL_COSTS$PERSON_COLON,UI,Person:,Person:
+FIXED_OPERATIONAL_COSTS$SEARCH_BY_COST_CENTER,UI,Search by cost center,Search by cost center
+FIXED_OPERATIONAL_COSTS$TITLE,UI,Fixed operational costs,Fixed operational costs
+FORGOT_PASSWORD$DESCRIPTION,UI,"Please enter your email address, and we'll send you a password reset email.","Please enter your email address, and we'll send you a password reset email."
+FORGOT_PASSWORD$RESET_PASSWORD,UI,Reset password,Reset password
+FORGOT_PASSWORD$TITLE,UI,Forgot password?,Forgot password?
+GDPR$ARTICLE,UI,Article,Article
+GDPR$ARTICLE_COLON,UI,Article:,Article:
+GDPR$ARTICLES,UI,Articles,Articles
+GDPR$ARTICLES_COLON,UI,Articles:,Articles:
+GDPR$ARTICLES_NUMBER,UI,Articles number:,Articles number:
+GDPR$ARTICLES_PROCESSED,UI,Articles processed:,Articles processed:
+GDPR$CHAPTER,UI,Chapter,Chapter
+GDPR$CHAPTER_COLON,UI,Chapter:,Chapter:
+GDPR$COMPLIANCE,UI,Compliance,Compliance
+GDPR$COMPLIANCE_COLON,UI,Compliance:,Compliance:
+GDPR$COMPLIANCE_LOG,UI,GDPR Compliance log,GDPR Compliance log
+GDPR$DOCUMENT_TYPE,UI,Document type,Document type
+GDPR$EDIT_COMPLIANCE,UI,Edit compliance,Edit compliance
+GDPR$EDIT_DOCUMENT,UI,Edit document,Edit document
+GDPR$EVIDENCE_DOCUMENTS,UI,GDPR Evidence documents,GDPR Evidence documents
+GDPR$FILES_NUMBER,UI,Files number:,Files number:
+GDPR$GDPR,UI,GDPR,GDPR
+GDPR$NO_DOCUMENTS,UI,There is no added documents yet,There is no added documents yet
+GDPR$ORGANIZATION_COMPLIANCE,UI,GDPR Organization compliance,GDPR Organization compliance
+GDPR$PARAGRAPH,UI,Paragraph,Paragraph
+GDPR$PARAGRAPH_COLON,UI,Paragraph:,Paragraph:
+GDPR$QUESTIONS_ANSWERED,UI,Questions answered,Questions answered
+GDPR$QUESTIONS_APPLIED,UI,Questions applied,Questions applied
+GDPR$SEARCH_BY_ARTICLE,UI,Search by article,Search by article
+GDPR$SECTION,UI,Section,Section
+GDPR$SYSTEM_COMPLIANCE,UI,GDPR System compliance,GDPR System compliance
+GDPR$SYSTEM_COMPLIANCE_DRILLDOWN,UI,GDPR Compliance drilldown for {0} system,GDPR Compliance drilldown for {0} system
+GDPR$SYSTEM_COMPLIANCE_LOG,UI,GDPR Compliance log for {0} system,GDPR Compliance log for {0} system
+GDPR$TEMPLATE,UI,Template,Template
+GLOBALS$ADD,UI,Add,Add
+GLOBALS$ADVANCED_SEARCH,UI,Advanced search,Advanced search
+GLOBALS$AGREE,UI,Agree,Agree
+GLOBALS$ALL_ITEMS,UI,All items,All items
+GLOBALS$APPLY,UI,Apply,Apply
+GLOBALS$AUDIT,UI,"Audit","Audit"
+GLOBALS$BACK,UI,Back,Back
+GLOBALS$CANCEL,UI,Cancel,Cancel
+GLOBALS$CHANGE_LANGUAGE,UI,Change language,Change language
+GLOBALS$CLOSE,UI,Close,Close
+GLOBALS$CODE,UI,Code,Code
+GLOBALS$CODE_REQUIRED,UI,Code is required,Code is required
+GLOBALS$COMMENT,UI,"Comment","Comment"
+GLOBALS$COMMENTS,UI,Comments,Comments
+GLOBALS$CREATE,UI,Create,Create
+GLOBALS$CREATED,UI,Created,Created
+GLOBALS$CREATED_BY,UI,Created by,Created by
+GLOBALS$CREDENTIALS_EXPIRED,UI,Credentials expired,Credentials expired
+GLOBALS$DEFAULT_CONFIRMATION,UI,Are you sure?,Are you sure?
+GLOBALS$DELETE,UI,Delete,Delete
+GLOBALS$DELETION_CONFIRMATION,UI,Delete this item?,Delete this item?
+GLOBALS$DESCRIPTION,UI,Description,Description
+GLOBALS$DETAILS,UI,Details,Details
+GLOBALS$DISAGREE,UI,Disagree,Disagree
+GLOBALS$DOCUMENT,UI,Document,Document
+GLOBALS$DOCUMENT_COLON,UI,Document:,Document:
+GLOBALS$DOCUMENTS,UI,Documents,Documents
+GLOBALS$DOCUMENTS_COLON,UI,Documents:,Documents:
+GLOBALS$DOCUMENT_UPLOAD,UI,Document upload,Document upload
+GLOBALS$DOWNLOAD,UI,Download,Download
+GLOBALS$DOWNLOAD_DATA,UI,Download data,Download data
+GLOBALS$DOWNLOAD_TEMPLATE,UI,Download template,Download template
+GLOBALS$DRILLDOWN,UI,Drilldown,Drilldown
+GLOBALS$EDIT,UI,Edit,Edit
+GLOBALS$END_DATE,UI,End date,End date
+GLOBALS$ERROR,UI,Error,Error
+GLOBALS$INFOSEC_FOCAL_PERSON,UI,Infosec Focal Person,Infosec Focal Person
+GLOBALS$LIST,UI,List,List
+GLOBALS$LOADING,UI,Loading...,Loading...
+GLOBALS$LOG,UI,Log,Log
+GLOBALS$NAME,UI,Name,Name
+GLOBALS$NAME_REQUIRED,UI,Name is required,Name is required
+GLOBALS$NO_CHANGES,UI,No changes,No changes
+GLOBALS$NO_DATA,UI,There is no data,There is no data
+GLOBALS$NO_QUESTIONS_FOUND,UI,No questions found,No questions found
+GLOBALS$NOTES,UI,Notes,Notes
+GLOBALS$NO_VALUE,UI,No value,No value
+GLOBALS$OWNER,UI,Owner,Owner
+GLOBALS$OWNER_REQUIRED,UI,Owner is required,Owner is required
+GLOBALS$PASSWORD,UI,Password,Password
+GLOBALS$PASSWORD_INVALID,UI,Password must contain at least 8 symbol character,Password must contain at least 8 symbol character
+GLOBALS$PASSWORD_REQUIRED,UI,Password is required,Password is required
+GLOBALS$PERCENTAGE,UI,Percentage,Percentage
+GLOBALS$PERCENTAGE_ERROR,UI,Value must be between 0 and 100,Value must be between 0 and 100
+GLOBALS$PERCENTAGE_REQUIRED,UI,Percentage is required,Percentage is required
+GLOBALS$QUESTIONS,UI,Questions,Questions
+GLOBALS$RESET,UI,Reset,Reset
+GLOBALS$SAVE,UI,Save,Save
+GLOBALS$SCHEME,UI,Scheme,Scheme
+GLOBALS$SEARCH,UI,Search,Search
+GLOBALS$SEARCH_BY_NAME,UI,Search by name,Search by name
+GLOBALS$SETUP,UI,Setup,Setup
+GLOBALS$START_DATE,UI,Start date,Start date
+GLOBALS$STATUS,UI,Status,Status
+GLOBALS$STATUS_REQUIRED,UI,Status is required,Status is required
+GLOBALS$SUCCESSFUL_DATA_UPDATE,UI,Data was successfully updated,Data was successfully updated
+GLOBALS$SUCCESSFUL_FILE_UPLOAD,UI,File was successfully upload,File was successfully upload
+GLOBALS$SUCCESSFUL_ITEM_CREATE,UI,Item was successfully created,Item was successfully created
+GLOBALS$TEMPLATE,UI,Template,Template
+GLOBALS$TOGGLE_MENU,UI,Toggle menu,Toggle menu
+GLOBALS$TOTAL_COSTS,UI,Total costs,Total costs
+GLOBALS$TOTAL_COSTS_COLON,UI,Total costs:,Total costs:
+GLOBALS$UNDER_DEVELOPMENT,UI,This functionality is under development,This functionality is under development
+GLOBALS$UNSAVED_DATA,UI,Unsaved data,Unsaved data
+GLOBALS$UNSAVED_DATA_MESSAGE,UI,You have unsaved data on this page. Are you sure you want to leave the page? All unsaved data will be lost!,You have unsaved data on this page. Are you sure you want to leave the page? All unsaved data will be lost!
+GLOBALS$UPDATED,UI,Updated,Updated
+GLOBALS$UPDATED_BY,UI,Updated by,Updated by
+GLOBALS$UPLOAD,UI,Upload,Upload
+GLOBALS$UPLOAD_CSV,UI,Upload CSV,Upload CSV
+GLOBALS$VALUE,UI,Value,Value
+GLOBALS$VALUE_REQUIRED,UI,Value is required,Value is required
+GLOBALS$VERSION,UI,Version,Version
+HOME_PAGE$DESCRIPTION,UI,Cyber Risk Management and Risk Engine,Cyber Risk Management and Risk Engine
+HOME_PAGE$TITLE,UI,Welcome to {0} !,Welcome to {0} !
+IMPORT_AND_EXPORT$BUSINESS_UNITS,UI,Business units import/export,Business units import/export
+IMPORT_AND_EXPORT$CONTROL_GUIDELINES,UI,Control guidelines import/export,Control guidelines import/export
+IMPORT_AND_EXPORT$DATA_IMPORT,UI,Data import,Data import
+IMPORT_AND_EXPORT$GDPR_ARTICLES,UI,GDPR Articles import/export,GDPR Articles import/export
+IMPORT_AND_EXPORT$GDPR_EVIDENCE_ARTICLES,UI,GDPR Evidence articles import/export,GDPR Evidence articles import/export
+IMPORT_AND_EXPORT$PROCESSES,UI,Processes import/export,Processes import/export
+IMPORT_AND_EXPORT$SCORING_QUESTIONS,UI,Scoring questions import/export,Scoring questions import/export
+IMPORT_AND_EXPORT$SECURITY_FRAMEWORKS,UI,Security frameworks import/export,Security frameworks import/export
+IMPORT_AND_EXPORT$SECURITY_FRAMEWORKS_CHOICE,UI,Choose security framework,Choose security framework
+IMPORT_AND_EXPORT$SECURITY_REQUIREMENTS,UI,Security requirements import/export,Security requirements import/export
+IMPORT_AND_EXPORT$SUBSIDIARY_ORGANIZATIONS,UI,Subsidiary organizations import/export,Subsidiary organizations import/export
+IMPORT_AND_EXPORT$SYSTEM_RISK,UI,Systems risk import/export,Systems risk import/export
+IMPORT_AND_EXPORT$TECHNOLOGIES,UI,Technologies import/export,Technologies import/export
+IMPORT_AND_EXPORT$TITLE,UI,Import/Export,Import/Export
+IMPORT_AND_EXPORT$VENDORS,UI,Vendors import/export,Vendors import/export
+!LANGUAGE$CODE,UI,eng,eng
+!LANGUAGE$DIRECTION,UI,ltr,ltr
+!LANGUAGE$ENUM,UI,ENGLISH,ENGLISH
+!LANGUAGE$SELF_NAME,UI,English,English
+MENU$ADMINISTRATION,UI,Administration,Administration
+MENU$CYBER_BUDGET,UI,Cyber budget,Cyber budget
+MENU$DASHBOARDS,UI,Dashboards,Dashboards
+MENU$GDPR_ARTICLES,UI,GDPR Articles,GDPR Articles
+MENU$GDPR_DOCUMENTS_MAPPING,UI,GDPR Documents Mapping,GDPR Documents Mapping
+MENU$GDPR_EVIDENCE_DOCUMENTS,UI,Evidence documents,Evidence documents
+MENU$GDPR_ORGANIZATION_COMPLIANCE,UI,Organization compliance,Organization compliance
+MENU$GDPR_SYSTEM_COMPLIANCE,UI,System compliance,System compliance
+MENU$HOME_PAGE,UI,Home page,Home page
+MENU$PRIVACY_IMPACT_ASSESSMENT,UI,Privacy impact assessment,Privacy impact assessment
+MENU$RISK_METRICS,UI,Risk metrics,Risk metrics
+MENU$SECURITY_ASSESSMENTS,UI,Security assessments,Security assessments
+MENU$SETTINGS,UI,Settings,Settings
+MENU$SYSTEMS_RISK,UI,System risk,System risk
+MENU$VENDOR_MANAGEMENT,UI,Vendor management,Vendor management
+METRIC_FORMULA$ADD_OPERATION,UI,Add '{operation}' operation,Add '{operation}' operation
+METRIC_FORMULA$ADD_VARIABLE,UI,Add '{variable}' variable,Add '{variable}' variable
+METRIC_FORMULA$EDIT_DIALOG_TITLE,UI,Edit metric item,Edit metric item
+METRIC_FORMULA$FORMULA,UI,Formula,Formula
+METRIC_FORMULA$FORMULA_ITEMS_REQUIRED,UI,At least one formula item should be defined,At least one formula item should be defined
+METRIC_FORMULA$METRIC_FORMULA,UI,Metric formula,Metric formula
+METRIC_FORMULA$MOVE_BACKWARD,UI,Move backward,Move backward
+METRIC_FORMULA$MOVE_FORWARD,UI,Move forward,Move forward
+METRIC_FORMULA$OPERATION,UI,Operation,Operation
+METRIC_FORMULA$OPERATION_REQUIRED,UI,Operation is required,Operation is required
+METRIC_FORMULA$OPERATIONS,UI,Operations,Operations
+METRIC_FORMULA$VARIABLES,UI,Variables,Variables
+METRIC_FORMULA$VARIABLE_TYPE,UI,Variable type,Variable type
+METRIC_FORMULA$VARIABLE_TYPE_REQUIRED,UI,Variable type is required,Variable type is required
+ORGANIZATION$ADDRESS_1,UI,Address №1,Address №1
+ORGANIZATION$ADDRESS_2,UI,Address №2,Address №2
+ORGANIZATION$ANNUAL_REVENUE,UI,Annual revenue,Annual revenue
+ORGANIZATION$CITY,UI,City,City
+ORGANIZATION_CONTROL_TEST_RESULTS$AUDIT_RESULT,UI,"Audit control test result","Audit control test result"
+ORGANIZATION_CONTROL_TEST_RESULTS$AUDITORS_COMMENTS,UI,"Auditors comments","Auditors comments"
+ORGANIZATION_CONTROL_TEST_RESULTS$CONTROL_TEST_RESULT,UI,Control test result,Control test result
+ORGANIZATION_CONTROL_TEST_RESULTS$EDIT_RESULT,UI,Edit control test result,Edit control test result
+ORGANIZATION_CONTROL_TEST_RESULTS$EVIDENCE_IS_SUFFICIENT,UI,"Evidence is sufficient","Evidence is sufficient"
+ORGANIZATION_CONTROL_TEST_RESULTS$EVIDENCE_IS_NOT_SUFFICIENT,UI,"Evidence is not sufficient","Evidence is not sufficient"
+ORGANIZATION_CONTROL_TEST_RESULTS$TITLE,UI,Organization control test results,Organization control test results
+ORGANIZATION$COUNTRY,UI,Country,Country
+ORGANIZATION$CURRENCY,UI,Currency,Currency
+ORGANIZATION$DESCRIPTION,UI,Description,Description
+ORGANIZATION$LANGUAGE,UI,Language,Language
+ORGANIZATION$MARKET_CAPITALIZATION,UI,Market capitalization,Market capitalization
+ORGANIZATION$NAME,UI,Name,Name
+ORGANIZATION$PHONE_NUMBER,UI,Phone number,Phone number
+ORGANIZATION$PUBLIC_COMPANY,UI,Public company,Public company
+ORGANIZATION_RISK_SCORING$TITLE,UI,Organization risk scoring,Organization risk scoring
+ORGANIZATION$RISK_THRESHOLD,UI,Risk threshold,Risk threshold
+ORGANIZATION$SITE,UI,Website URL,Website URL
+ORGANIZATION$STATE,UI,State,State
+ORGANIZATION$SUPPORTED_LANGUAGES,UI,Supported languages,Supported languages
+ORGANIZATION$TAX_ID,UI,TAX ID,TAX ID
+ORGANIZATION$TITLE,UI,Organization,Organization
+ORGANIZATION$VAT,UI,VAT number,VAT number
+ORGANIZATION$ZIP,UI,ZIP or Postal Code,ZIP or Postal Code
+PAGINATION$CURRENT_PAGE,UI,Current page,Current page
+PAGINATION$FIRST_PAGE,UI,First page,First page
+PAGINATION$LAST_PAGE,UI,Last page,Last page
+PAGINATION$NEXT_PAGE,UI,Next page,Next page
+PAGINATION$PAGES_LABEL,UI,Page {0} from {1},Page {0} from {1}
+PAGINATION$PREVIOUS_PAGE,UI,Previous page,Previous page
+PAGINATION$SIZE,UI,Size,Size
+PAGINATION$TOTAL_PAGES,UI,Total pages,Total pages
+POLICY_MANAGEMENT$ANNUAL_REVIEW,UI,Annual review,Annual review
+POLICY_MANAGEMENT$ANNUAL_REVIEW_DATE,UI,Annual review date,Annual review date
+POLICY_MANAGEMENT$APPROVAL,UI,Approval,Approval
+POLICY_MANAGEMENT$APPROVED,UI,Approved,Approved
+POLICY_MANAGEMENT$APPROVED_BY,UI,Approve by,Approve by
+POLICY_MANAGEMENT$CREATE_POLICY,UI,Create policy,Create policy
+POLICY_MANAGEMENT$EDIT_POLICY,UI,Edit policy,Edit policy
+POLICY_MANAGEMENT$GDPR_ARTICLES,UI,GDPR articles,GDPR articles
+POLICY_MANAGEMENT$POLICY,UI,Policy,Policy
+POLICY_MANAGEMENT$TITLE,UI,Policy management,Policy management
+PROCESSES$BUSINESS_UNIT_OWNS,UI,Business unit owns,Business unit owns
+PROCESSES$CREATE_PROCESS,UI,Create process,Create process
+PROCESSES$EDIT_PROCESS,UI,Edit process,Edit process
+PROCESSES$PROCESS,UI,Process,Process
+PROCESSES$REVENUE_PROCESSED,UI,Revenue processed (By Hour),Revenue processed (By Hour)
+PROCESSES$SEARCH_BY_PROCESS,UI,Search by process,Search by process
+PROCESSES$TITLE,UI,Processes,Processes
+PROCESSES$USES_BUSINESS_UNITS,UI,Uses business units,Uses business units
+PROFILE$PROFILE,UI,Profile,Profile
+PROFILE$TITLE,UI,Edit profile,Edit profile
+REASSIGN$REASSIGN,UI,Reassign,Reassign
+REASSIGN$REASSIGN_OWNER,UI,Reassign owner,Reassign owner
+REASSIGN$REASSIGN_QUESTIONS,UI,Reassign questions,Reassign questions
+REGULATORY_EXPOSURES$ORGANIZATION_REVENUE,UI,Organization revenue,Organization revenue
+REGULATORY_EXPOSURES$TITLE,UI,Regulatory exposures,Regulatory exposures
+RISK_METRICS$CREATE_METRIC,UI,Create risk metric,Create risk metric
+RISK_METRICS$EDIT_METRIC,UI,Edit risk metric,Edit risk metric
+RISK_METRICS$IS_RESIDUAL,UI,Use metric as Inherent Risk,Use metric as Inherent Risk
+RISK_METRICS$RISK_METRIC,UI,Risk metric,Risk metric
+RISK_METRICS$TITLE,UI,Risk metrics,Risk metrics
+RISK_MODEL$CHANGE_MODEL,UI,Change risk model,Change risk model
+RISK_MODEL$DIALOG_TITLE,UI,Select model,Select model
+RISK_MODEL$TITLE,UI,Risk model,Risk model
+SCORING_METRICS$CREATE_METRIC,UI,"Create privacy impact assessment","Create privacy impact assessment"
+SCORING_METRICS$EDIT_METRIC,UI,"Edit privacy impact assessment","Edit privacy impact assessment"
+SCORING_METRICS$METRIC_DOMAIN,UI,"Assessment domain","Assessment domain"
+SCORING_METRICS$METRIC_DOMAIN_REQUIRED,UI,"Assessment domain is required","Assessment domain is required"
+SCORING_METRICS$METRIC_REQUIRED,UI,"Assessment is required","Assessment is required"
+SCORING_METRICS$SCORING_METRIC,UI,"Privacy impact assessment","Privacy impact assessment"
+SCORING_METRICS$TITLE,UI,"Privacy impact assessments","Privacy impact assessments"
+SCORING_QUESTIONS$ALLOW_TEXT_AS_ANSWER,UI,Allow Text As Answer,Allow Text As Answer
+SCORING_QUESTIONS$ALLOW_UPLOAD_AS_ANSWER,UI,Upload answers,Upload answers
+SCORING_QUESTIONS$ALL_VENDORS_AND_SYSTEMS,UI,All vendors/systems,All vendors/systems
+SCORING_QUESTIONS$ANSWER,UI,Answer,Answer
+SCORING_QUESTIONS$ANSWER_REQUIRED,UI,Answer is required,Answer is required
+SCORING_QUESTIONS$ANSWERS,UI,Answers,Answers
+SCORING_QUESTIONS$ANSWER_TEXT,UI,Answer text,Answer text
+SCORING_QUESTIONS$ANSWER_WEIGHT,UI,Answer weight,Answer weight
+SCORING_QUESTIONS$APPLIES_ONLY_FOR,UI,Applies only for:,Applies only for:
+SCORING_QUESTIONS$BRANCHING_LOGIC,UI,Branching logic,Branching logic
+SCORING_QUESTIONS$CREATE_QUESTION,UI,Create question,Create question
+SCORING_QUESTIONS$DOWNLOAD_ANSWERS_AS_CSV,UI,Download answers as CSV,Download answers as CSV
+SCORING_QUESTIONS$EDIT_QUESTION,UI,Edit question,Edit question
+SCORING_QUESTIONS$INTERNAL,UI,Internal,Internal
+SCORING_QUESTIONS$QUESTION,UI,Question,Question
+SCORING_QUESTIONS$QUESTION_REQUIRED,UI,Question is required,Question is required
+SCORING_QUESTIONS$QUESTION_TYPE,UI,Question type,Question type
+SCORING_QUESTIONS$QUESTION_WEIGHT,UI,Question weight,Question weight
+SCORING_QUESTIONS$QUESTION_WEIGHT_REQUIRED,UI,Question weight is required,Question weight is required
+SCORING_QUESTIONS$SCORING_TYPE,UI,Scoring type,Scoring type
+SCORING_QUESTIONS$SCORING_TYPE_REQUIRED,UI,Scoring type is required,Scoring type is required
+SCORING_QUESTIONS$SELECT_ANSWER,UI,Select answer,Select answer
+SCORING_QUESTIONS$TITLE,UI,Scoring questions,Scoring questions
+SECURITY_FRAMEWORKS$CREATE_FRAMEWORK,UI,Create framework,Create framework
+SECURITY_FRAMEWORKS$EDIT_FRAMEWORK,UI,Edit framework,Edit framework
+SECURITY_FRAMEWORKS$SECURITY_FRAMEWORK,UI,Security framework,Security framework
+SECURITY_FRAMEWORKS$SECURITY_FRAMEWORK_REQUIRED,UI,Security framework is required,Security framework is required
+SECURITY_FRAMEWORKS$TITLE,UI,Security frameworks,Security frameworks
+SECURITY_REQUIREMENTS$ADD_FRAMEWORK,UI,Add security framework,Add security framework
+SECURITY_REQUIREMENTS$ALL_REQUIREMENTS,UI,All requirements,All requirements
+SECURITY_REQUIREMENTS$CONTROL_TESTING_PROCEDURE,UI,Detailed control testing procedure,Detailed control testing procedure
+SECURITY_REQUIREMENTS$CREATE_REQUIREMENT,UI,Create requirement,Create requirement
+SECURITY_REQUIREMENTS$EDIT_REQUIREMENT,UI,Edit requirement,Edit requirement
+SECURITY_REQUIREMENTS$FRAMEWORK_MAPPING,UI,Framework mapping,Framework mapping
+SECURITY_REQUIREMENTS$PROGRAM_AREA,UI,Program Area,Program Area
+SECURITY_REQUIREMENTS$RISK_STATEMENTS,UI,Risk statement examples,Risk statement examples
+SECURITY_REQUIREMENTS$SEARCH_BY_CODE,UI,Search by code,Search by code
+SECURITY_REQUIREMENTS$SEARCH_BY_REQUIREMENT,UI,Search by requirement,Search by requirement
+SECURITY_REQUIREMENTS$SECURITY_CONTROL_FAMILY,UI,Security control family,Security control family
+SECURITY_REQUIREMENTS$SECURITY_CONTROL_NAME,UI,Security control name,Security control name
+SECURITY_REQUIREMENTS$SECURITY_REQUIREMENT,UI,Security requirement,Security requirement
+SECURITY_REQUIREMENTS$SECURITY_REQUIREMENT_COLON,UI,Security requirement:,Security requirement:
+SECURITY_REQUIREMENTS$TITLE,UI,Security requirements,Security requirements
+SECURITY_TOOLS$CREATE_TOOL,UI,Create security tool,Create security tool
+SECURITY_TOOLS$EDIT_TOOL,UI,Edit security tool,Edit security tool
+SECURITY_TOOLS$RISK_REDUCTION,UI,Risk reduction,Risk reduction
+SECURITY_TOOLS$RISK_REDUCTION_PERCENTAGES,UI,"Risk reduction, %","Risk reduction, %"
+SECURITY_TOOLS$SEARCH_BY_SECURITY_TOOL,UI,Search by security tool,Search by security tool
+SECURITY_TOOLS$SECURITY_TOOL,UI,Security tool,Security tool
+SECURITY_TOOLS$SECURITY_TOOL_REQUIRED,UI,Security tool is required,Security tool is required
+SECURITY_TOOLS$TITLE,UI,Security tools,Security tools
+SECURITY_TOOLS$TOOL_PRICE,UI,Tool price,Tool price
+SETTINGS$TITLE,UI,Settings,Settings
+SIGN_UP$DESCRIPTION,UI,"Sorry, but this functionality currently unavailable...","Sorry, but this functionality currently unavailable..."
+SUBSIDIARY_ORGANIZATIONS$CREATE_SUBSIDIARY,UI,Create subsidiary,Create subsidiary
+SUBSIDIARY_ORGANIZATIONS$EDIT_SUBSIDIARY,UI,Edit subsidiary,Edit subsidiary
+SUBSIDIARY_ORGANIZATIONS$PARENT,UI,Parent,Parent
+SUBSIDIARY_ORGANIZATIONS$SUBSIDIARY,UI,Subsidiary,Subsidiary
+SUBSIDIARY_ORGANIZATIONS$TITLE,UI,Subsidiary organizations,Subsidiary organizations
+SYSTEM_CONTROL_TEST_RESULTS$CONTROL_TEST_RESULT,UI,System control test result,System control test result
+SYSTEM_CONTROL_TEST_RESULTS$DRILLDOWN,UI,System control test results drilldown for {0} system,System control test results drilldown for {0} system
+SYSTEM_CONTROL_TEST_RESULTS$EDIT_RESULT,UI,Edit system control test result,Edit system control test result
+SYSTEM_CONTROL_TEST_RESULTS$TITLE,UI,System control test results,System control test results
+SYSTEM_RISK_REDUCTION$TITLE,UI,System risk reduction,System risk reduction
+SYSTEMS$ALL_SYSTEMS,UI,All systems,All systems
+SYSTEMS$CREATE_SYSTEM,UI,Create system,Create system
+SYSTEMS$CYBER_SECURITY_TOOLS,UI,Cyber security tools,Cyber security tools
+SYSTEMS$EDIT_SYSTEM,UI,Edit system,Edit system
+SYSTEMS$IS_ETL,UI,Is ETL?,Is ETL?
+SYSTEMS$M_AND_A_ASSET,UI,M & A asset,M & A asset
+SYSTEMS$RECORDS_PROCESSED,UI,Records Processed,Records Processed
+SYSTEMS$RPO,UI,RPO,RPO
+SYSTEMS$RTO,UI,RTO,RTO
+SYSTEMS$SEARCH_BY_SYSTEM,UI,Search by system,Search by system
+SYSTEMS$SYSTEM,UI,System,System
+SYSTEMS$TITLE,UI,Systems,Systems
+TASKS$ACTUAL_END_DATE,UI,Actual end date,Actual end date
+TASKS$ACTUAL_END_DATE_COLON,UI,Actual end date:,Actual end date:
+TASKS$ACTUAL_START_DATE,UI,Actual start date,Actual start date
+TASKS$ACTUAL_START_DATE_COLON,UI,Actual start date:,Actual start date:
+TASKS$ASSIGNEE,UI,Task assignee,Task assignee
+TASKS$CATEGORY,UI,Task category,Task category
+TASKS$CATEGORY_PLACEHOLDER,UI,Create/select category,Create/select category
+TASKS$CREATE_TASK,UI,Create task,Create task
+TASKS$EDIT_TASK,UI,Edit task,Edit task
+TASKS$ESTIMATED_END_DATE,UI,Estimated end date,Estimated end date
+TASKS$ESTIMATED_END_DATE_COLON,UI,Estimated end date:,Estimated end date:
+TASKS$ESTIMATED_HOURS,UI,Estimated hours,Estimated hours
+TASKS$ESTIMATED_HOURS_COLON,UI,Estimated hours:,Estimated hours:
+TASKS$ESTIMATED_START_DATE,UI,Estimated start date,Estimated start date
+TASKS$ESTIMATED_START_DATE_COLON,UI,Estimated start date:,Estimated start date:
+TASKS_MANAGEMENT$CREATE_TASK,UI,Create new task,Create new task
+TASKS_MANAGEMENT$DESCRIPTION,UI,Select an existing task or create a new one,Select an existing task or create a new one
+TASKS_MANAGEMENT$SELECT_TASK,UI,Select task,Select task
+TASKS_MANAGEMENT$TITLE,UI,Tasks management,Tasks management
+TASKS$MANAGER,UI,Task manager,Task manager
+TASKS$PRIORITY,UI,Priority,Priority
+TASKS$PROJECT,UI,Project,Project
+TASKS$PROJECT_PLACEHOLDER,UI,Create/select project,Create/select project
+TASKS$STATUS_PERCENTAGES,UI,"Status, %","Status, %"
+TASKS$TASK,UI,Task,Task
+TASKS$TASK_REQUIRED,UI,Task is required,Task is required
+TASKS$TITLE,UI,Tasks,Tasks
+TECHNOLOGIES$CREATE_TECHNOLOGY,UI,Create technology,Create technology
+TECHNOLOGIES$EDIT_TECHNOLOGY,UI,Edit technology,Edit technology
+TECHNOLOGIES$TECHNOLOGY,UI,Technology,Technology
+TECHNOLOGIES$TITLE,UI,Technologies,Technologies
+TECHNOLOGY_CATEGORIES$CREATE_TECHNOLOGY_CATEGORY,UI,Create technology category,Create technology category
+TECHNOLOGY_CATEGORIES$EDIT_TECHNOLOGY_CATEGORY,UI,Edit technology category,Edit technology category
+TECHNOLOGY_CATEGORIES$TECHNOLOGY_CATEGORY,UI,Technology category,Technology category
+TECHNOLOGY_CATEGORIES$TECHNOLOGY_CATEGORY_REQUIRED,UI,Technology category is required,Technology category is required
+TECHNOLOGY_CATEGORIES$TITLE,UI,Technology categories,Technology categories
+USERS$CONFIRM_RESET_PASSWORD,UI,Confirm reset password,Confirm reset password
+USERS$CORPORATE_PHONE,UI,Corporate phone,Corporate phone
+USERS$CREATE_USER,UI,Create user,Create user
+USERS$CREDENTIALS_EXPIRATION_DATE,UI,Credentials expiration date,Credentials expiration date
+USERS$CREDENTIALS_EXPIRATION_DATE_HELP_TEXT,UI,Date when credentials will expire,Date when credentials will expire
+USERS$EDIT_USER,UI,Edit user,Edit user
+USERS$EMAIL,UI,Email,Email
+USERS$EMAIL_COLON,UI,Email:,Email:
+USERS$EMAIL_INVALID,UI,Invalid email address,Invalid email address
+USERS$EMAIL_REQUIRED,UI,Email is required,Email is required
+USERS$ENABLED,UI,Enabled,Enabled
+USERS$ENABLE_USER,UI,Enable user,Enable user
+USER_SETTINGS$EDIT_SETTINGS,UI,Edit user settings,Edit user settings
+USER_SETTINGS$EMPLOYMENT_TYPE,UI,Employment type,Employment type
+USER_SETTINGS$EMPLOYMENT_TYPE_REQUIRED,UI,Employment type is required,Employment type is required
+USER_SETTINGS$NAME,UI,Name:,Name:
+USER_SETTINGS$RATE,UI,Rate,Rate
+USER_SETTINGS$RATE_COLON,UI,Rate:,Rate:
+USER_SETTINGS$RATES,UI,User rates,User rates
+USER_SETTINGS$RATE_TYPE,UI,Rate type,Rate type
+USER_SETTINGS$RATE_TYPE_COLON,UI,Rate type:,Rate type:
+USER_SETTINGS$TITLE,UI,User settings,User settings
+USERS$EXPIRATION_DATE,UI,Expiration date,Expiration date
+USERS$EXPIRATION_DATE_HELP_TEXT,UI,Date when account will expire,Date when account will expire
+USERS$EXPIRED_USER,UI,Expired user,Expired user
+USERS$EXPIRED_USER_CREDENTIALS,UI,Expired user credentials,Expired user credentials
+USERS$FIRST_NAME,UI,First name,First name
+USERS$FIRST_NAME_REQUIRED,UI,First name is required,First name is required
+USERS$LAST_NAME,UI,Last name,Last name
+USERS$LOCK_USER,UI,Lock user,Lock user
+USERS$MOBILE_PHONE,UI,Mobile phone,Mobile phone
+USERS$RESET_PASSWORD_MESSAGE,UI,Resetting user password - clear existing user sessions and send email to change password. Please note - each call of reset password do it again. And invalidate previous email.,Resetting user password - clear existing user sessions and send email to change password. Please note - each call of reset password do it again. And invalidate previous email.
+USERS$ROLE,UI,Role,Role
+USERS$ROLES,UI,Roles,Roles
+USERS$ROLES_COLON,UI,Roles:,Roles:
+USERS$ROLES_REQUIRED,UI,At least one role should be defined,At least one role should be defined
+USERS$SEARCH_BY_EMAIL,UI,Search by email,Search by email
+USERS$SEARCH_BY_FIRST_NAME,UI,Search by first name,Search by first name
+USERS$SEARCH_BY_LAST_NAME,UI,Search by last name,Search by last name
+USERS$SEARCH_BY_NAME_OR_EMAIL,UI,Search by name or email,Search by name or email
+USERS$SUCCESSFUL_RESET_PASSWORD,UI,Your password has been successfully reset. Email has been sent to the email: ,Your password has been successfully reset. Email has been sent to the email:
+USERS$TITLE,UI,Users,Users
+USERS$TITLE_FIELD,UI,Title,Title
+USERS$USER,UI,User,User
+USERS$USER_REQUIRED,UI,User is required,User is required
+VARIABLE_COSTS$COST_TYPE,UI,Cost type,Cost type
+VARIABLE_COSTS$COST_TYPE_REQUIRED,UI,Cost type is required,Cost type is required
+VARIABLE_COSTS$CREATE_COST,UI,Create variable cost,Create variable cost
+VARIABLE_COSTS$EDIT_COST,UI,Edit variable cost,Edit variable cost
+VARIABLE_COSTS$EQUIPMENT_COST,UI,Equipment cost,Equipment cost
+VARIABLE_COSTS$PERSONNEL_COST,UI,Personnel cost,Personnel cost
+VARIABLE_COSTS$TITLE,UI,Variable costs,Variable costs
+VENDORS$ALL_VENDORS,UI,All vendors,All vendors
+VENDORS$CLOUD_VENDOR,UI,Cloud vendor,Cloud vendor
+VENDORS$CREATE_VENDOR,UI,Create vendor,Create vendor
+VENDORS$EDIT_VENDOR,UI,Edit vendor,Edit vendor
+VENDORS$INDUSTRY,UI,Industry,Industry
+VENDORS$INTERNAL_QUESTIONS,UI,Level 2 Questions,Level 2 Questions
+VENDORS$SCORING_QUESTIONS,UI,Level 1 Questions,Level 1 Questions
+VENDORS$SEARCH_BY_VENDOR,UI,Search by vendor,Search by vendor
+VENDORS$SERVICE_VENDOR,UI,Service vendor,Service vendor
+VENDORS$SYSTEM_VENDOR,UI,System vendor,System vendor
+VENDORS$TECHNOLOGY_VENDOR,UI,Technology vendor,Technology vendor
+VENDORS$TITLE,UI,Vendors,Vendors
+VENDORS$VENDOR,UI,Vendor,Vendor
+VENDORS$VENDOR_COLON,UI,Vendor:,Vendor:
+VENDORS$VENDOR_TYPE,UI,Vendor type,Vendor type
+VULNERABILITIES$CREATE_VULNERABILITY,UI,Create vulnerability,Create vulnerability
+VULNERABILITIES$EDIT_VULNERABILITY,UI,Edit vulnerability,Edit vulnerability
+VULNERABILITIES$SCORE,UI,Score,Score
+VULNERABILITIES$TITLE,UI,Vulnerabilities,Vulnerabilities
+VULNERABILITIES$VULNERABILITY,UI,Vulnerability,Vulnerability
+WELCOME$DESCRIPTION,UI,Feel free join to us!,Feel free join to us!
+WELCOME$TITLE,UI,It's nice to see you here!,It's nice to see you here!
+CONTROL_MATURITIES$TITLE,UI,Control maturities,Control maturities
+CONTROL_MATURITIES$WEIGHT,UI,"Weight, %","Weight, %"
+CONTROL_MATURITIES$CONTROL_MATURITY,UI,Control maturity,Control maturity
+CONTROL_MATURITIES$CREATE_MATURITY,UI,Create control maturity,Create control maturity
+CONTROL_MATURITIES$EDIT_MATURITY,UI,Edit control maturity,Edit control maturity
+CONTROL_MATURITIES$CONTROL_MATURITY_REQUIRED,UI,Control maturity is required,Control maturity is required
+SECURITY_ASSESSMENTS$TITLE,UI,Security assessments,Security assessments
+SECURITY_ASSESSMENTS$SECURITY_ASSESSMENT,UI,Security assessment,Security assessment
+SECURITY_ASSESSMENTS$CREATE_ASSESSMENT,UI,Create assessment,Create assessment
+SECURITY_ASSESSMENTS$EDIT_ASSESSMENT,UI,Edit assessment,Edit assessment
+SECURITY_ASSESSMENTS$SECURITY_ASSESSMENT_REQUIRED,UI,Security assessment is required,Security assessment is required
+ORGANIZATION$INSURANCE_LIMIT,UI,"Aggregate insurance limit","Aggregate insurance limit"
+MENU$DIGITAL_ASSETS,UI,"Digital assets","Digital assets"
+MENU$DATA_CAPTURE,UI,"Data Gathering","Data Gathering"
+MENU$DOCUMENTATION_MANAGEMENT,UI,"Documentation management","Documentation management"
+MENU$DIGITAL_ASSET_INVENTORY,UI,"Digital asset inventory","Digital asset inventory"
+DOMAINS$DIALOG_TITLE_CREATE,UI,"Create new domain","Create new domain"
+CONSTANTS$TITLE,UI,"Constants","Constants"
+CONSTANTS$CONSTANT,UI,"Constant","Constant"
+CONSTANTS$CREATE_CONSTANT,UI,"Create constant","Create constant"
+CONSTANTS$EDIT_CONSTANT,UI,"Edit constant","Edit constant"
+METRIC_FORMULA$ADD_CONSTANT,UI,"Add '{constant}' constant","Add '{constant}' constant"
+METRIC_FORMULA$ADD_QUANT_METRIC,UI,"Add '{quantMetric}' quantification metric","Add '{quantMetric}' quantification metric"
+QUANTIFICATION_METRICS$TITLE,UI,"Quantification metrics","Quantification metrics"
+SETTINGS$ORGANIZATION,UI,"Organization settings","Organization settings"
+ORGANIZATION$RECORD_PRICE_LIMIT,UI,"Record price limit","Record price limit"
+MY_TASKS$TITLE,UI,"My tasks","My tasks"
+GLOBALS$THRESHOLD,UI,"Threshold","Threshold"
+SECURITY_TOOLS$LICENSE_COST,UI,"License cost","License cost"
+USER_SETTINGS$ALLOCATED,UI,"Allocated, %","Allocated, %"
+USER_SETTINGS$BLENDED_RATE_PER_HOUR,UI,"Blended rate/per hour","Blended rate/per hour"
+SUBSIDIARY_ORGANIZATIONS$SCHEME,UI,"Subsidiary organizations scheme","Subsidiary organizations scheme"
+BUSINESS_UNITS$SCHEME,UI,"Business units scheme","Business units scheme"
+DATA_EXFILTRATION$CREATE_EXFILTRATION,UI,"Create exfiltration","Create exfiltration"
+DATA_EXFILTRATION$EDIT_EXFILTRATION,UI,"Edit exfiltration","Edit exfiltration"
+BUSINESS_INTERRUPTION$CREATE_INTERRUPTION,UI,"Create interruption","Create interruption"
+BUSINESS_INTERRUPTION$EDIT_INTERRUPTION,UI,"Edit interruption","Edit interruption"
+REGULATORY_EXPOSURES$CREATE_EXPOSURE,UI,"Create exposure","Create exposure"
+REGULATORY_EXPOSURES$EDIT_EXPOSURE,UI,"Edit exposure","Edit exposure"
+DOMAINS$CREATE_DOMAIN,UI,"Create domain","Create domain"
+DOMAINS$EDIT_DOMAIN,UI,"Edit domain","Edit domain"
+DOMAINS$EDIT_DOMAIN,UI,"Edit domain","Edit domain"
+EXPOSURE_MODELS$CREATE_MODEL,UI,"Create model","Create model"
+EXPOSURE_MODELS$EDIT_MODEL,UI,"Edit model","Edit model"
+ORGANIZATION_CONTROL_TEST_RESULTS$CREATE_RESULT,UI,"Create control test result","Create control test result"
+SYSTEM_CONTROL_TEST_RESULTS$DRILLDOWN_TITLE,UI,"System control test results drilldown","System control test results drilldown"
+GDPR$CREATE_COMPLIANCE,UI,"Create compliance","Create compliance"
+GDPR$CREATE_DOCUMENT,UI,"Create document","Create document"
+GDPR$SYSTEM_COMPLIANCE_DRILLDOWN_TITLE,UI,"GDPR Compliance drilldown","GDPR Compliance drilldown"
+ORGANIZATION$CYBER_INSURANCE_DEDUCTIBLE,UI,"Cyber insurance deductible","Cyber insurance deductible"
+DATA_EXFILTRATION$RECORDS_PROCESSED,UI,"Records processed","Records processed"
+EXPOSURE_MODELS$REGULATIONS,UI,"Regulations","Regulations"
+SYSTEMS$GEO_RECORDS_PROCESSED,UI,"Geo Records Processed","Geo Records Processed"
+EXPOSURE_MODELS$EXPOSURE_LEVEL,UI,"Exposure level","Exposure level"
+METRIC_DOMAIN$TITLE,UI,"Metric Domain","Metric Domain"
+CYBERSECURITY_MATURITY$TITLE,UI,"Cybersecurity maturity","Cybersecurity maturity"
+

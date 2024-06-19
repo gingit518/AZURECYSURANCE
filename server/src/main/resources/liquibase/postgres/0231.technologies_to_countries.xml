@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0231.technologies_to_countries" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE technologies ADD COLUMN country_id integer DEFAULT NULL;
+
+			ALTER TABLE technologies ADD CONSTRAINT fk_technologies_to_countries FOREIGN KEY (country_id) REFERENCES countries (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+			CREATE INDEX i_technology_country_id ON technologies (country_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE technologies DROP COLUMN IF EXISTS country_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

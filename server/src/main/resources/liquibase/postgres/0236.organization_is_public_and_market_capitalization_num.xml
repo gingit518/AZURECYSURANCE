@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0236.organization_is_public_and_market_capitalization_num" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE organizations ADD COLUMN is_public_company boolean DEFAULT false;
+
+			ALTER TABLE organizations ADD COLUMN market_capitalization_number double precision DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN IF EXISTS is_public_company;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS market_capitalization_number;
+
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

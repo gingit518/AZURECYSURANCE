@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0228.formulas" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE formulas
+			(
+				id serial,
+				formula text DEFAULT NULL,
+				name character varying (127) DEFAULT NULL,
+				description text DEFAULT NULL,
+				organization_id integer DEFAULT NULL,
+
+				CONSTRAINT pk_formulas PRIMARY KEY (id)
+				, CONSTRAINT fk_formulas_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_formulas_organization ON formulas (organization_id);
+			CREATE INDEX i_formulas_name ON formulas (name);
+
+			CREATE TABLE formula_items
+			(
+				id serial,
+				formula_id integer DEFAULT NULL,
+				ordinal integer DEFAULT 0,
+				name character varying (127) DEFAULT NULL,
+				description text DEFAULT NULL,
+				variable_type_id integer DEFAULT NULL,
+				value float DEFAULT NULL,
+				is_operation boolean DEFAULT false,
+				operation VariableOperation DEFAULT NULL,
+
+				CONSTRAINT pk_formula_items PRIMARY KEY (id)
+				, CONSTRAINT fk_formula_items_to_formula FOREIGN KEY (formula_id) REFERENCES formulas (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_formula_items_to_variable_type FOREIGN KEY (variable_type_id) REFERENCES variable_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+
+			);
+			CREATE INDEX i_formula_item_formula ON formula_items (formula_id);
+			CREATE INDEX i_formula_items_variable_type_id ON formula_items (variable_type_id);
+
+			CREATE TYPE VariableTypeRelation as ENUM ('QUANT_METRIC', 'RISK_METRIC');
+			ALTER TABLE variable_types ADD COLUMN relation VariableTypeRelation;
+			UPDATE variable_types SET relation = 'QUANT_METRIC' WHERE relation IS NULL;
+
+			DROP INDEX IF EXISTS ui_variable_types_name;
+
+			INSERT INTO variable_types (id, name, relation) VALUES
+				(5, 'LIKELIHOOD', 'RISK_METRIC'),
+				(6, 'IMPACT', 'RISK_METRIC'),
+				(7, 'AMPLIFIED_REPUTATION', 'RISK_METRIC'),
+				(8, 'AMPLIFIED_OPERATIONAL', 'RISK_METRIC'),
+				(9, 'AMPLIFIED_LEGAL', 'RISK_METRIC'),
+				(10, 'CONSTANT', 'RISK_METRIC');
+
+			ALTER SEQUENCE variable_types_id_seq RESTART WITH 11;
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE formulas;
+				DROP TABLE formula_items;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

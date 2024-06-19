@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0151.fixed_operational_costs_cyber_roles" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE fixed_operational_costs ADD COLUMN cyber_role_id integer DEFAULT NULL;
+			ALTER TABLE fixed_operational_costs ADD CONSTRAINT fk_fixed_operational_costs_to_cyber_role_id FOREIGN KEY (cyber_role_id) REFERENCES cyber_roles (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_fixed_operational_costs_cyber_role ON fixed_operational_costs (cyber_role_id);
+
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

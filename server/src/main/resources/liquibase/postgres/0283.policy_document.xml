@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0283.policy_document" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE policies ADD COLUMN IF NOT EXISTS document_id integer DEFAULT NULL;
+
+			ALTER TABLE policies ADD CONSTRAINT fk_policies_to_document FOREIGN KEY (document_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			CREATE INDEX i_policies_document ON policies (document_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP INDEX IF EXISTS i_policies_document;
+				ALTER TABLE policies DROP CONSTRAINT IF EXISTS fk_policies_to_document;
+				ALTER TABLE policies DROP COLUMN IF EXISTS document_id;
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

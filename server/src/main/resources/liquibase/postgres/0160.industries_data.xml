@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0160-industries_data" author="Eugene A. Kalosha">
+
+		<sql>
+
+			INSERT INTO industries VALUES (1, NULL, 11, NULL, 'Agriculture, Forestry, Fishing and Hunting');
+			INSERT INTO industries VALUES (2, NULL, 21, NULL, 'Mining');
+			INSERT INTO industries VALUES (3, NULL, 22, NULL, 'Utilities');
+			INSERT INTO industries VALUES (4, NULL, 23, NULL, 'Construction');
+			INSERT INTO industries VALUES (5, NULL, 31, 33, 'Manufacturing');
+			INSERT INTO industries VALUES (6, NULL, 42, NULL, 'Wholesale Trade');
+			INSERT INTO industries VALUES (7, NULL, 44, 45, 'Retail Trade');
+			INSERT INTO industries VALUES (8, NULL, 48, 49, 'Transportation and Warehousing');
+			INSERT INTO industries VALUES (9, NULL, 51, NULL, 'Information');
+			INSERT INTO industries VALUES (10, NULL, 52, NULL, 'Finance and Insurance');
+			INSERT INTO industries VALUES (11, NULL, 53, NULL, 'Real Estate Rental and Leasing');
+			INSERT INTO industries VALUES (12, NULL, 54, NULL, 'Professional, Scientific, and Technical Services');
+			INSERT INTO industries VALUES (13, NULL, 55, NULL, 'Management of Companies and Enterprises');
+			INSERT INTO industries VALUES (14, NULL, 56, NULL, 'Administrative and Support and Waste Management and Remediation Services');
+			INSERT INTO industries VALUES (15, NULL, 61, NULL, 'Educational Services');
+			INSERT INTO industries VALUES (16, NULL, 62, NULL, 'Health Care and Social Assistance');
+			INSERT INTO industries VALUES (17, NULL, 71, NULL, 'Arts, Entertainment, and Recreation');
+			INSERT INTO industries VALUES (18, NULL, 72, NULL, 'Accommodation and Food Services');
+			INSERT INTO industries VALUES (19, NULL, 81, NULL, 'Other Services (except Public Administration)');
+			INSERT INTO industries VALUES (20, NULL, 92, NULL, 'Public Administration');
+
+			ALTER SEQUENCE industries_id_seq RESTART WITH 21;
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

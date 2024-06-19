@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0089_assessments_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO assessments (id, organization_id, assessment_level_id, assessment_type_id, name, description, created_by_id, updated_by_id) VALUES
+			  (101, 105, null, 1, 'ERG Vendor Assessment', 'NIST Cyber Security Framework', 161, 161)
+			, (102, 105, null, 2, 'SAP Assessment', 'NIST Org Assessment', 161, 161)
+			, (103, 105, null, 3, 'SF Assessment', 'ISO', 161, 161)
+			, (104, 105, null, 4, 'Patient Registration Process Assessment', 'Healthcare Insurance Portability Accounting Act', 161, 161)
+			, (105, 105, null, 5, 'Credit Card Processing System Assessment', 'Payment Card Industry Data Security Standard', 161, 161)
+			;
+
+			ALTER SEQUENCE assessments_id_seq RESTART WITH 106;
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

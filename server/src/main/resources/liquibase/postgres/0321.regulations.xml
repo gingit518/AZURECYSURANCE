@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0321.regulations" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE regulations_to_technology_categories
+			(
+			    id serial,
+				regulation_id integer DEFAULT NULL,
+				technology_category_id integer NOT NULL,
+
+			    CONSTRAINT pk_regulations_to_technology_categories PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_technology_categories_to_data_type_class FOREIGN KEY (technology_category_id) REFERENCES technology_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_technology_categories_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_to_technology_categories_data_type_class ON regulations_to_technology_categories (technology_category_id);
+			CREATE INDEX i_regulations_to_technology_categories_regulation ON regulations_to_technology_categories (regulation_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS regulations_to_technology_categories;
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

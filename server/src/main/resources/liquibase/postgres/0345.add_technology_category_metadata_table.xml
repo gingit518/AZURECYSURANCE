@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0345.add_technology_category_metadata_table" author="Oleksandr Serozhenko">
+		<sql>
+			CREATE TABLE technology_categories_metadata (
+			id serial,
+			technology_category_id int4 NOT NULL,
+			key character varying (255) NOT NULL,
+			value character varying (4096),
+
+			CONSTRAINT pk_technology_categories_metadata PRIMARY KEY (id),
+			CONSTRAINT fk_technology_categories_metadata_to_technology_categories FOREIGN KEY (technology_category_id)
+			REFERENCES technology_categories(id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+
+			CREATE INDEX i_technology_categories_metadata_technology_category_id ON
+			technology_categories_metadata USING btree (technology_category_id);
+			CREATE UNIQUE INDEX ui_technology_categories_metadata_technology_category_id_key ON
+			technology_categories_metadata (technology_category_id, key);
+		</sql>
+		<rollback>
+			DROP TABLE IF EXISTS technology_categories_metadata;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

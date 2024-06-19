@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:remove="all">Template for HTML email for Reassign System</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<p>Hello, <span th:text="${name}"></span>!</p>
+
+	<p>You were assigned as owner/manager of [<span th:text="${systemName}"></span>] system in ValuRisQ Application.</p>
+
+	<p>Please login and fill Data Exfiltration and Cyber Risk Scores for this system.</p>
+
+	<p th:if="${isDataExfiltration}">Click <a th:href="${dataExfiltrationLink}">here</a> to fill Data Exfiltration or copy and paste this URL to browser <span th:text="${dataExfiltrationLink}"></span></p>
+
+	<p>Click <a th:href="${impactLink}">here</a> to fill IMPACT or copy and paste this URL to browser <span th:text="${impactLink}"></span></p>
+
+	<p>Click <a th:href="${likelihoodLink}">here</a> to fill LIKELIHOOD or copy and paste this URL to browser <span th:text="${likelihoodLink}"></span></p>
+
+	<p>
+		Regards, <br />
+		<em>The ValuRisQ Team</em>
+	</p>
+</body>
+</html>

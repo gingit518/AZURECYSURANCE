@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0029-quant-metrics" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE quant_metrics
+			(
+				id serial,
+				name character varying (127) NOT NULL DEFAULT 'BASE',
+				description text DEFAULT NULL,
+				risk_model_id integer NOT NULL,
+				ordinal integer DEFAULT 0,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_quant_metrics PRIMARY KEY (id)
+				, CONSTRAINT fk_quant_metrics_to_risk_models FOREIGN KEY (risk_model_id) REFERENCES risk_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_quant_metrics_to_users_created FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_quant_metrics_to_users_updated FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_quant_metrics_name ON quant_metrics (name);
+			CREATE INDEX i_quant_metrics_risk_model ON quant_metrics (risk_model_id);
+			CREATE INDEX i_quant_metrics_risk_model_ordinal ON quant_metrics (risk_model_id, ordinal);
+			CREATE INDEX i_quant_metrics_created_by ON quant_metrics (created_by_id);
+			CREATE INDEX i_quant_metrics_updated_by ON quant_metrics (updated_by_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="quant_metrics"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

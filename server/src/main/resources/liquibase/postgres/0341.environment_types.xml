@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0341.environment_types" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE environment_types
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				CONSTRAINT pk_environment_types PRIMARY KEY (id)
+				, CONSTRAINT fk_environment_types_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_environment_types_organization ON environment_types (organization_id);
+			CREATE INDEX i_environment_types_organization_id_name ON environment_types (organization_id, name);
+			CREATE INDEX i_environment_types_name ON environment_types (name);
+
+			ALTER TABLE technologies ADD COLUMN environment_type_id integer DEFAULT NULL;
+			ALTER TABLE technologies ADD CONSTRAINT fk_technologies_to_environment_types FOREIGN KEY (environment_type_id) REFERENCES environment_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+			INSERT INTO environment_types (id, name, description) VALUES (1, 'Production', 'Production ready environments');
+			INSERT INTO environment_types (id, name, description) VALUES (2, 'QA', 'Quality Assurance environments');
+			INSERT INTO environment_types (id, name, description) VALUES (3, 'Beta', 'Beta version environments');
+			INSERT INTO environment_types (id, name, description) VALUES (4, 'Development', 'Development version environments, used for continuous development process.');
+			INSERT INTO environment_types (id, name, description) VALUES (5, 'Test', 'Testing environments');
+			INSERT INTO environment_types (id, name, description) VALUES (6, 'Staging', 'Staging environments');
+			INSERT INTO environment_types (id, name, description) VALUES (7, 'Sandbox', 'Sandbox environments');
+			ALTER SEQUENCE environment_types_id_seq RESTART WITH 8;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE technologies DROP COLUMN environment_type_id;
+			</sql>
+			<dropTable tableName="environment_types"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

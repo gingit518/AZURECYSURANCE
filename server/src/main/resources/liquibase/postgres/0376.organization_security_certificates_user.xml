@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0376.organization_security_certificates_user" author="Oleksandr Serozhenko">
+		<sql>
+			alter table organization_security_certificates add column user_id integer default null;
+			alter table organization_security_certificates add CONSTRAINT fk_organization_security_certificates_to_user FOREIGN KEY
+			(user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE;
+		</sql>
+		<rollback>
+			ALTER TABLE organization_security_certificates DROP COLUMN user_id;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

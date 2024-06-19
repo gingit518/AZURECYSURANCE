@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0077-technology_to_system" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE technology_to_system
+			(
+				id serial,
+				technology_id integer NOT NULL,
+				system_id integer DEFAULT NULL,
+				CONSTRAINT pk_technology_to_system PRIMARY KEY (id)
+				, CONSTRAINT fk_technology_to_system_to_technology FOREIGN KEY (technology_id) REFERENCES technologies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_technology_to_system_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_technology_to_system_technology ON technology_to_system (technology_id);
+			CREATE INDEX i_technology_to_system_system ON technology_to_system (system_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="technology_to_system"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

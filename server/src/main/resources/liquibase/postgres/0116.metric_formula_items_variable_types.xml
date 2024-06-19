@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0116-metric_formula_items_variable_types" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE variable_types
+			(
+				id serial,
+				name character varying (61) DEFAULT NULL,
+				CONSTRAINT pk_variable_types PRIMARY KEY (id)
+			);
+			CREATE UNIQUE INDEX ui_variable_types_name ON variable_types (name);
+
+			INSERT INTO variable_types (id, name) VALUES
+			(1, 'CONSTANT')
+			, (2, 'PROCESS_REVENUE')
+			, (3, 'SYSTEM_NUMBER_OF_REC')
+			, (4, 'ORGANIZATION_REVENUE')
+			;
+
+			ALTER TABLE metric_formula_items ADD COLUMN variable_type_id integer DEFAULT NULL;
+			ALTER TABLE metric_formula_items ADD CONSTRAINT fk_metric_formula_items_to_variable_type FOREIGN KEY (variable_type_id) REFERENCES variable_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_metric_formula_items_variable_type_id ON metric_formula_items (variable_type_id);
+
+			UPDATE metric_formula_items SET variable_type_id = 1 WHERE variable_type = 'CONSTANT';
+			UPDATE metric_formula_items SET variable_type_id = 2 WHERE variable_type = 'PROCESS_REVENUE';
+			UPDATE metric_formula_items SET variable_type_id = 3 WHERE variable_type = 'SYSTEM_NUMBER_OF_REC';
+
+			ALTER TABLE metric_formula_items DROP COLUMN IF EXISTS variable_type;
+
+		</sql>
+
+		<rollback>
+			<dropTable tableName="metric_formula_items"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

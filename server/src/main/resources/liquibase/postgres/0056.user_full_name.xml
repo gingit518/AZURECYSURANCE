@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0056-user_full_name" author="Eugene A. Kalosha">
+
+		<sqlFile path="classpath:liquibase/postgres/0056.user_full_name.sql" splitStatements="false" />
+
+		<rollback>
+			<sql>
+				DROP TRIGGER IF EXISTS t_user_firt_last_name_update ON users;
+				DROP FUNCTION IF EXISTS f_user_update_firt_last_name();
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

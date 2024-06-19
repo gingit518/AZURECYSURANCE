@@ -1,0 +1,101 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor
+QGDPR:1:1,Is there a mechanism that identifies GDPR data in each system?,5,"Yes, fully in place for the organization",0,GDPROrganization,Impact,1,YES,"Data in scope for GDPR can be identified with an automated tool or manually.  If manually an excel mapping can be used to document systems, technologies and data types. See this excel for an example.  Data can be uploaded from excel or an asset management system to the ValuRisQ product Organizational Module.",,,NO,NO,NO,NO,NO,NO
+"",,,90% - Partially in place for the organization,1,,,,,
+"",,,80% - Partially in place for the organization,2,,,,,
+"",,,70% - Partially in place for the organization,3,,,,,
+"",,,60% - Partially in place for the organization,4,,,,,
+"",,,50% - Partially in place for the organization,5,,,,,
+"",,,40% - Partially in place for the organization,6,,,,,
+"",,,30% - Partially in place for the organization,7,,,,,
+"",,,20% - Partially in place for the organization,8,,,,,
+"",,,10% - Partially in place for the organization,9,,,,,
+"",,,Not in place for the organization,10,,,,,
+QGDPR:1:2,Is there a mechanism for identifying which systems are processing personal data wholly or partly by automated means?,5,"Yes, fully automated",1,GDPRSystem,Impact,2,YES,"System data mapping can be done in Vrisk, excel or another asset management application.",,,NO,NO,NO,NO,NO,NO
+"",,,Partially automated,4,,,,,
+"",,,Not automated,10,,,,,
+QGDPR:1:3,Is there a mechanism in place for identifying systems that process personal data for people in the European Union whether is it processed in the EU or elsewhere?,5,"Yes, for this system",0,GDPRSystem,Impact,3,YES,"System data at the level of geography is available in VRisk, otherwise you have to further map in excel down to where the person resides.",,,NO,NO,NO,NO,NO,NO
+"",,,"Work in progress, for this system",6,,,,,
+"",,,"No, for this system",10,,,,,
+QGDPR:2:5a,"Is there a mechanism in place that ensures personal data is  processed lawfully, fairly and transparently?",5,Yes,0,GDPROrganization,Impact,4,YES,"Audit annually by legal team of data processing processes and procedures. See Privacy Notice, Audit Checklist for Compliance Procedure in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:2:5b,"Is personal data collected for specified, explicit and legitimate purposes only?",5,Yes,0,GDPROrganization,Impact,5,YES,"Audit annually by legal team of data processing processes and procedures. See Privacy Notice, Audit Checklist for Compliance Procedure in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:5c,"Is personal data adequate, relevant and limited?",5,Yes,0,GDPROrganization,Impact,6,YES,"Audit annually by legal team of data processing processes and procedures. See Privacy Notice, Audit Checklist for Compliance Procedure in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:6a,Is there a mechanism in place to ensure that  the stated purpose is clear?  And is there consent to process?,5,Yes,0,GDPRSystem,Impact,10,YES,The data subject consent form should state  that the data subject is granting the organization and third-party processors authority to process my personal data for an explicit purpose and  the legitimate reason for processing their personal data. See the Data Subject Consent Form in Vrisk.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:6b,Is it required by a contract?,5,Yes,0,GDPROrganization,Impact,11,YES,The data subject consent form should state  that the data subject is granting the organization and third-party processors authority to process my personal data for an explicit purpose and  the legitimate reason for processing their personal data. See the Data Subject Consent Form in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:6c,Is it necessary for other compliance reasons?,5,Yes,0,GDPROrganization,Impact,12,YES,The data subject consent form should state  that the data subject is granting the organization and third-party processors authority to process my personal data for an explicit purpose and  the legitimate reason for processing their personal data. See the Data Subject Consent Form in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:6d,Is it necessary to protect someone's vital interests?,5,Yes,0,GDPROrganization,Impact,13,YES,The data subject consent form should state  that the data subject is granting the organization and third-party processors authority to process my personal data for an explicit purpose and  the legitimate reason for processing their personal data. See the Data Subject Consent Form in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:6e,Is it required for public interest or an official authority?,5,Yes,0,GDPROrganization,Impact,14,YES,The data subject consent form should state  that the data subject is granting the organization and third-party processors authority to process my personal data for an explicit purpose and  the legitimate reason for processing their personal data. See the Data Subject Consent Form in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:6f,Is it limited due to the subject is a child?,5,Yes,0,GDPROrganization,Impact,15,YES,The data subject consent form should state  that the data subject is granting the organization and third-party processors authority to process my personal data for an explicit purpose and  the legitimate reason for processing their personal data. See the Data Subject Consent Form in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:7,Is there a mechanism to verify the data subject's consent was freely given and they can withdraw it easily at any time?,5,Yes,0,GDPROrganization,Impact,16,YES,Withdrawal ability should also be in the data subject consent form.  See the Data Subject Consent Form in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:2:8,Is there a mechanism that allows for special restrictions apply to consent by/for children?,5,Yes,0,GDPROrganization,Impact,17,YES,Use the children's consent form.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:2:9,"Has consent been given to sensitive data processing in regards to a person's race, political opinions, religion, sexuality, genetic info and other biometrics?",5,Yes,0,GDPROrganization,Impact,18,YES,Systems and databases should be inventoried to identify where these sensitive data processing is done. Additional controls are required on these data elements.  Encryption is most widely used.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:10,Is there a mechanism for specific circumstances relating to criminal convictions and offenses?,5,Yes,0,GDPRSystem,Impact,19,YES,If this relates to your type of business a specific identifier must be used to flag this type of sensitive criminal information.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:2:11,Is there a mechanism in place to not know the identity of the person?,5,Yes,0,GDPRSystem,Impact,20,YES,"In the online context, the GDPR explicitly says that identification should include the digital identification of a data subject, for example, through an authentication mechanism, such as the same credentials, used by the data subject to log in to the online service offered by the data controller. Consider also industry recognized standards, which are widely available, such as that of NIST's digital identity guidelines. ",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:12,"Is there a mechanism in place for communications with data subjects that ensures they are transparent, clear and easily understood?",5,Yes,0,GDPROrganization,Impact,21,YES,"This includes using the data protection policy, subject access request record procedure, subject access request form, parental consent form, parental consent withdrawal form and subject access request procedure.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:13,"Is there a mechanism for the provision of fair processing information in terms of if their info will be exported (especially outside the EU), how long the info will be held, their rights and how to enquire/complain etc?",5,Yes,0,GDPROrganization,Impact,22,YES,Privacy notices inform individuals about how organizations use their personal data and their rights under the Data Protection Act. They also allow organizations to meet their obligations under the act to provide fair processing information to such individuals. See the Retention of Records Procedure and Privacy Notice in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:14,Is there a mechanism in place for similar notification requirements to Article 13 if personal info is obtained indirectly (e.g. a commercial mailing list)?,5,Yes,0,GDPROrganization,Impact,23,YES,"Article 13 sets forth information data subjects should receive at the time when personal data are obtained, and includes a list too long for most opt-in notices.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:15,"Is there a mechanism in place for people to find out whether the organization holds their personal info, what it is being used for, to whom it may be disclosed etc., and be informed of the right to complain, get it corrected, insist on it being erased etc.?",5,Yes,0,GDPROrganization,Impact,24,YES,"The subject access request forms allows the data subject to request this information and must include a phone number, email and addresses to communicate to the organization to complain and/or request erasure.  For the company to be able to know how to answer all these questions there needs to be several processes in place to identify where the data lives, how it is used, and have the ability to erase it. See the Subject Access Request Record Procedure in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:16,"Is there a mechanism in place for people to get their personal info corrected, completed, clarified etc.?",5,Yes,0,GDPROrganization,Impact,25,YES,"The subject access request forms allows the data subject to request to update their information and must include a phone number, email and addresses to communicate to the organization to complain and/or request erasure.  For the company to be able to correct the data and verify completion there must be a procedure in place to find the data, update the data and provide an audit trail. See the Audit Schedule and Audit Lead Report in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:17,Is there a mechanism in place for people to have a right to be forgotten i.e. to have their personal info erased and no longer used?,5,Yes,0,GDPROrganization,Impact,26,YES,"The subject access request forms allows the data subject to request erasure. For the company to be able to erase the data and verify completion there must be a procedure in place to find the data, erase the data and provide an audit trail. See the Operations Procedure in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:18,Is there a mechanism in place for people to have a right to restrict processing of their personal info?,5,Yes,0,GDPROrganization,Impact,27,YES,"The subject access request forms allow the data subject to request the right to restrict the processing of their personal info. For the company to be able to right to restrict processing of the personal info, there must be a procedure in place to find the data, restrict the processing of the data and provide an audit trail. See the Withdrawal of Consent Procedure in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:19,"Is there a mechanism in place for people to know the outcome of requests to have their personal info corrected, completed, erased, restricted etc.?",5,Yes,0,GDPROrganization,Impact,28,YES,"The procedures for erasure, correction and restriction should have an explicit process to inform the data subject of the completion of their requests. See the Operations Procedure in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:20,Is there a mechanism in place for people to obtain a usable 'portable' electronic copy of their personal data to pass to a different controller?,5,Yes,0,GDPROrganization,Impact,29,YES,There must be a electronic media for data subject procedure in place to provide the data subject with a file of their personal data. See the Data Portability Procedure in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:21,Is there a mechanism in place for people to object to their information being used for profiling and marketing purposes?,5,Yes,0,GDPROrganization,Impact,30,YES,"There must be a process in place to allow the data subject to object via phone, email and mail.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:22,Is there a mechanism in place to insist that key decisions arising from automatic processing of their personal info are manually reviewed/reconsidered?,5,Yes,0,GDPROrganization,Impact,31,YES,There must be a documented process in place with business rules that review the effectiveness of the automatic processing of personal data.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:3:23,Is there a mechanism in place to identify national laws that may modify or override various rights and restrictions for national security and other purposes?,5,Yes,0,GDPROrganization,Impact,32,YES,The Data Protection Officer must be abreast of all national laws and how these laws override rights and restrictions for national security or other purposes.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:31,Is there a policy in place to ensure that organizations cooperate with the authorities e.g. privacy or data protection ombudsmen?,5,Yes,0,GDPROrganization,Impact,40,YES,The DPO must have a process and procedure in place that has identified authorities and the means to contact them and cooperate with them. See Contact with Authorities Work Instruction in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:33,Is there a mechanism in place to notify the authorities promptly (within 3 days of becoming aware of them unless delays are justified) for privacy breaches that have exposed or harmed personal information?,5,Yes,0,GDPROrganization,Impact,42,YES,See Personal Data Breach Notification Procedure in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:34,Is there a mechanism in place to notify the authorities promptly for privacy breaches that have exposed or harmed personal info and hence are likely to harm their interests 'without undue delay'?,5,Yes,0,GDPROrganization,Impact,43,YES,See Personal Data Breach Notification Procedure in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:35,"Is there a mechanism in place to access privacy risks including potential impacts, particularly where new technologies/systems/arrangements are being considered, or otherwise where risks may be? Is there a mechanism to rank 'Significantly risky situation'?",5,Yes,0,GDPRSystem,Impact,44,YES,Utilize the VRisk Privacy Impact Assessment.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:36,"Is there a mechanism to notify authorities for privacy risks assessed as ""high""?",5,Yes,0,GDPRSystem,Impact,45,YES,See Contact with Authorities Work Instruction in Vrisk.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,

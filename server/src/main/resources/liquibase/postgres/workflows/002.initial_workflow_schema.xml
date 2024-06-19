@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="001.initial_workflow_schema" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE workflow_process_definition
+			(
+				id serial,
+				organization_id integer NULL,
+				revision integer NULL,
+				version integer NULL,
+				category varchar(255) NULL,
+				name varchar(255) NULL,
+				key varchar(127) NOT NULL,
+				deployment_id varchar(64) NULL,
+				startable bool NOT NULL DEFAULT true,
+				CONSTRAINT pk_workflow_process_definition PRIMARY KEY (id)
+				, CONSTRAINT fk_workflow_process_definition_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_workflow_process_definition_to_organization ON workflow_process_definition (organization_id);
+
+			CREATE TABLE workflow_job_definition
+			(
+				id serial,
+				organization_id integer NULL,
+				revision integer NULL,
+				version integer NULL,
+				category varchar(255) NULL,
+				name varchar(255) NULL,
+				key varchar(127) NOT NULL,
+				deployment_id varchar(64) NULL,
+				startable bool NOT NULL DEFAULT true,
+				CONSTRAINT pk_workflow_job_definition PRIMARY KEY (id)
+				, CONSTRAINT fk_workflow_job_definition_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_workflow_job_definition_to_organization ON workflow_job_definition (organization_id);
+
+			CREATE TABLE workflow_execution
+			(
+				id serial,
+				organization_id integer NULL,
+				parent_id integer NULL,
+				status integer NULL,
+				started_at timestamp without time zone NOT NULL DEFAULT now(),
+				finished_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_workflow_execution PRIMARY KEY (id)
+				, CONSTRAINT fk_workflow_execution_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_workflow_execution_to_organization ON workflow_execution (organization_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE workflow_job_definition;
+				DROP TABLE workflow_process_definition;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0177.document_path_size" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE documents ADD COLUMN remote_path character varying (255);
+			ALTER TABLE documents ADD COLUMN md5hash character varying (64);
+			ALTER TABLE documents ADD COLUMN item_type int DEFAULT NULL;
+			ALTER TABLE gdpr_system_article_status_log ADD COLUMN document_uid character varying DEFAULT NULL;
+			ALTER TABLE gdpr_system_article_status_log ADD COLUMN remote_path character varying DEFAULT NULL;
+
+			CREATE INDEX i_documents_remote_path_for_organization ON documents (organization_id, remote_path);
+			CREATE INDEX i_documents_md5hash_for_organization ON documents (organization_id, md5hash);
+			CREATE INDEX i_documents_item_type_for_organization ON documents (organization_id, item_type);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE documents DROP COLUMN remote_path;
+				ALTER TABLE documents DROP COLUMN md5hash;
+				ALTER TABLE documents DROP COLUMN item_type;
+				ALTER TABLE gdpr_system_article_status_log DROP COLUMN document_uid;
+				ALTER TABLE gdpr_system_article_status_log DROP COLUMN remote_path;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

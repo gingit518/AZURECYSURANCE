@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0074-process_to_system" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE process_to_system
+			(
+				id serial,
+				process_id integer NOT NULL,
+				system_id integer DEFAULT NULL,
+				CONSTRAINT pk_process_to_system PRIMARY KEY (id)
+				, CONSTRAINT fk_process_to_system_to_process FOREIGN KEY (process_id) REFERENCES process (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_process_to_system_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_process_to_system_process ON process_to_system (process_id);
+			CREATE INDEX i_process_to_system_system ON process_to_system (system_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="process_to_system"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0073-process_to_data_type" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE process_to_data_type
+			(
+				id serial,
+				process_id integer NOT NULL,
+				data_type_id integer DEFAULT NULL,
+				CONSTRAINT pk_process_to_data_type PRIMARY KEY (id)
+				, CONSTRAINT fk_process_to_data_type_to_process FOREIGN KEY (process_id) REFERENCES process (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_process_to_data_type_to_data_type FOREIGN KEY (data_type_id) REFERENCES data_type_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_process_to_data_type_process ON process_to_data_type (process_id);
+			CREATE INDEX i_process_to_data_type_data_type ON process_to_data_type (data_type_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="process_to_data_type"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

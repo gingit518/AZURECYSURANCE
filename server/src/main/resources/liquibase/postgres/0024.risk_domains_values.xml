@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0024-risk-domains-values" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO risk_domains (id, name, description) VALUES (101, 'Cyber', 'The exposure to the possibility of loss from a cyber-attack or incident.');
+			INSERT INTO risk_domains (id, name, description) VALUES (102, 'Operational', 'Unexpected failure in your company''s day-to-day operations.');
+			INSERT INTO risk_domains (id, name, description) VALUES (103, 'Strategic', 'The company''s strategy becomes less effective and the company struggles to reach its goals as a result');
+			INSERT INTO risk_domains (id, name, description) VALUES (104, 'Compliance', 'Non alignment with regulations and laws');
+			INSERT INTO risk_domains (id, name, description) VALUES (105, 'Financial', 'Money flowing in and out of your business, and the possibility of a sudden financial loss.');
+			INSERT INTO risk_domains (id, name, description) VALUES (106, 'Reputational', 'Loss of trust');
+			INSERT INTO risk_domains (id, name, description) VALUES (107, 'Legal', 'Lawsuits and legal fees');
+
+			ALTER SEQUENCE risk_domains_id_seq RESTART WITH 108;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM risk_domains;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

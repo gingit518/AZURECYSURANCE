@@ -1,0 +1,88 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor
+QGDPR:2:5d,Is personal data accurate?,5,Yes,0,GDPROrganization,Likelihood,7,YES,"Audit annually by legal team of data processing processes and procedures. See Privacy Notice, Audit Checklist for Compliance Procedure in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:5e,Is personal data kept no longer than needed?,5,Yes,0,GDPRSystem,Likelihood,8,YES,"Audit annually by legal team of data processing processes and procedures. See Privacy Notice, Audit Checklist for Compliance Procedure in Vrisk.",,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:2:5f,Is the system measured to ensure it is processed securely in terms of integrity and confidentiality?,5,Yes,0,GDPRSystem,Likelihood,9,YES,"Audit annually by legal team of data processing processes and procedures. See Privacy Notice, Audit Checklist for Compliance Procedure in Vrisk.",,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:24,"Is there a data protection officer (DPO) in place that acts as the ""controller"" and is responsible for implementing appropriate privacy controls (including policies and codes of conduct) considering the risks, rights and other requirements of the GDPR?",5,Yes,0,GDPROrganization,Likelihood,33,YES,"A DPO is responsible to implement policies and privacy controls that include a privacy impact assessment to measure risk and effectiveness of privacy controls and other requirements. See Rationale for a DPO, Data Protection Officer (DPO) Job Responsibilities, and  Data Protection Officer (DPO) Job Description in ValuRisQ.",,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:25,Is there a mechanism in place for privacy by design?,5,Yes,0,GDPROrganization,Likelihood,34,YES,The software development lifecycle policy and procedures should include privacy requirements that are embedded in the design and not bolted on afterwards. The DPO should be a part of this process.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:26,Is there a mechanism in place where organizations are jointly responsible for determining and fulfilling privacy requirements collaboratively that clarifies their respective roles and responsibilities?,5,Yes,0,GDPROrganization,Likelihood,35,YES,"The DPO should have processes and procedures set up to collaborate with teams across the organization including compliance, security, business owners, data stewards, governance teams and development teams.",,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:27,"For organizations outside Europe, is there a formal privacy representative? And inside Europe if they meet certain conditions (e.g. they routinely supply goods and services to, or monitor, Europeans)?",5,Yes,0,GDPROrganization,Likelihood,36,YES,Privacy is now one of the top 3 business concerns.  A formal privacy representative should be appointed for organizations outside of the EU.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:28,"If an organization uses one or more third parties to process personal info ('processors'),  can it ensure they too are compliant with GDPR?",5,Yes,0,GDPROrganization,Likelihood,37,YES,Vendor relationship management processes and procedures must ensure that third parties that process personal information are complaint with the GDPR.  This can also be a role of the DPO if there is no vendor management team.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:29,Is there a mechanism in place to ensure processors only process personal info in accordance with instructions from the controller and applicable laws?,5,Yes,0,GDPROrganization,Likelihood,38,YES,The DPO must have a process to review the data processors' mechanisms to ensure processing is lawful and correct.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:30,"Is there a mechanism in place for controllers to maintain documentation concerning privacy e.g. the purposes for which personal info is gathered and processed, 'categories' of data subjects and personal data etc.?",5,Yes,0,GDPROrganization,Likelihood,39,YES,Data classification processes and procedures should be in place to identify which systems and technologies process categories of data.  The DPO should have processes that are documented and which relate to purposes for which personal info is gathered and processed. ValuRisQ allows for categorization of data processed in system and stored in databases.  See Information Classification Procedure in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:37,Is there a data protection officer position?,5,Yes,0,GDPROrganization,Likelihood,46,YES,See the rationale for a DPO in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:38,Is the DPO supported by the organization and engaged in privacy matters?,5,Yes,0,GDPROrganization,Likelihood,47,YES,See Data Protection Officer (DPO) Job Responsibilities in Vrisk.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:39,"Does the DPO offer advice on privacy matters, monitor compliance, liaise with the authorities, act as a contact point, address privacy risks etc.?",5,Yes,0,GDPROrganization,Likelihood,48,YES,See the Data Protection Officer (DPO) Job Responsibilities in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,No,10,,,,,
+QGDPR:4:40,"Is there a mechanism to align the GDPR assessment process with other codes of conduct, regulations and guidelines?",5,Yes,0,GDPROrganization,Likelihood,49,YES,Utilize the ValuRisQ Control Mapping Framework.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:41,"Is there a mechanism to demonstrate the GDPR assessment process with other codes of conduct, regulations and guidelines?",5,Yes,0,GDPRSystem,Likelihood,50,YES,Utilize the VRisk Control Mapping Framework.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:5:44,Is there a mechanism for international transfers and processing of personal info to be compliant with GDPR?,5,Yes,0,GDPROrganization,Likelihood,51,YES,See transfers of personal data to 3rd countries or international organizations Procedure in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:5:45,Is there a mechanism in place to identify which systems transfer GDPR data and to which locations that are identified as adequate?,5,Yes,0,GDPRSystem,Likelihood,52,YES,VRisk shows where data is transferred and can tag entities with adequate or inadequate privacy arrangements and systems that use them.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:5:46,"Is there a mechanism in place to identify which systems transfer GDPR data and to which locations that are identified as not adequate? Is there a mechanism in place for the organization to verify the implementation and adequacy of privacy controls before transferring personal data to such countries, and subsequently e.g. suitable contractual clauses and compliance activities?",5,Yes,0,GDPRSystem,Likelihood,53,YES,VRisk shows where data is transferred and can tag entities with adequate or inadequate privacy arrangements and systems that use them.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:5:47,Is there a mechanism in place for national authorities to approve legally-binding privacy rules permitting transfers to non-approved countries?,5,Yes,0,GDPROrganization,Likelihood,54,YES,See List of Authorities and Key Suppliers and Contact with Authorities Work Instruction in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:5:49,Is there a mechanism in place to measure the risk of data transfers that are to non-approved countries?,5,Yes,0,GDPRSystem,Likelihood,55,YES,Requires a Data Loss Prevention system.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:5:50,Is there a mechanism to communicate with international authorities on privacy issues?,5,Yes,0,GDPROrganization,Likelihood,56,YES,See List of Authorities and Key Suppliers and Contact with Authorities Work Instruction in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:8:77-81,Is there a mechanism for supervisory authorities to deal with privacy complaints?,5,Yes,0,GDPROrganization,Likelihood,57,YES,For Supervisory Authorities and not organizations.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:8:82,Is there a mechanism for individuals damaged by infringements of GDPR to apply for compensation?,5,N/A,0,GDPROrganization,Likelihood,58,YES,For Supervisory Authorities and not organizations.,,,NO,NO,NO,NO,NO,NO
+"",,,Yes,0,,,,,
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:8:83,Is there a mechanism to pay for administrative GDPR fines?,5,Yes,0,GDPROrganization,Likelihood,59,YES,For Supervisory Authorities and not organizations.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:8:84,Is there a mechanism to understand other penalties that may be imposed?,5,Yes,0,GDPROrganization,Likelihood,60,YES,For Supervisory Authorities and not organizations.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:9:85,"Is there a mechanism to balance privacy/data protection rights against freedom of expression, journalism, academic research etc. through suitable laws?",5,Yes,0,GDPROrganization,Likelihood,61,YES,For Supervisory Authorities and not organizations.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:9:86,Is there a mechanism to disclose personal data if the documents are formally required to be disclosed under 'freedom of information' - type laws?,5,Yes,0,GDPROrganization,Likelihood,62,YES,Use the Operational Procedure in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:9:87,Is there a mechanism in place to provide further privacy controls for national ID numbers?,5,Yes,0,GDPROrganization,Likelihood,63,YES,Use the Operational Procedure in ValuRisQ.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:9:88,Is there a mechanism to show how employment laws intersect with GDPR and privacy?,5,Yes,0,GDPROrganization,Likelihood,64,YES,Use the ValuRisQ Framework Mapping.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:9:89,Is there a mechanism in place for pseudonymization and data minimization where personal data is to be archived e.g. for research and statistical purposes?,5,Yes,0,GDPROrganization,Likelihood,65,YES,Pseudonymization Policy and Procedure,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:9:90,Is there a mechanism in place to allow for additional nation laws concerning employment and secrecy laws?,5,Yes,0,GDPROrganization,Likelihood,66,YES,Use the ValuRisQ Framework Mapping and Regulations.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,
+QGDPR:4:32,"Are there mechanism in place to ensure that organizations implement, operate and maintain appropriate technical and organizational security measures for personal info, addressing the information risks?",5,Yes,0,GDPROrganization,Likelihood,41,YES,Utilize the ValuRisQ Privacy Impact Assessment and Security Assessment Module.,,,NO,NO,NO,NO,NO,NO
+"",,,Work in progress,6,,,,,
+"",,,No,10,,,,,

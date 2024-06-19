@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0294.cache_metrics_data" author="Eugene A. Kalosha">
+		<sql>
+			ALTER TABLE cache_metrics_data ADD COLUMN IF NOT EXISTS is_cloud_vendor boolean DEFAULT false;
+			ALTER TABLE cache_metrics_data ADD COLUMN IF NOT EXISTS is_technology_vendor boolean DEFAULT false;
+			ALTER TABLE cache_metrics_data ADD COLUMN IF NOT EXISTS is_system_vendor boolean DEFAULT true;
+			ALTER TABLE cache_metrics_data ADD COLUMN IF NOT EXISTS is_service_vendor boolean DEFAULT false;
+
+			ALTER TABLE cache_metrics_data ADD COLUMN IF NOT EXISTS data_class_ids text DEFAULT NULL;
+			ALTER TABLE cache_metrics_data ADD COLUMN IF NOT EXISTS data_class_names text DEFAULT NULL;
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

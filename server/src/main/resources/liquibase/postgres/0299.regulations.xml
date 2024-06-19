@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0299.regulations" author="Eugene A. Kalosha">
+
+		<sql>
+
+			DROP TABLE data_type_classifications_to_regulations;
+
+			CREATE TABLE regulations_to_data_type_classifications
+			(
+			    id serial,
+				regulation_id integer DEFAULT NULL,
+				data_type_classification_id integer NOT NULL,
+
+			    CONSTRAINT pk_regulations_to_data_type_classifications PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_data_type_classifications_to_data_type_class FOREIGN KEY (data_type_classification_id) REFERENCES data_type_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_data_type_classifications_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_to_data_type_classifications_data_type_class ON regulations_to_data_type_classifications (data_type_classification_id);
+			CREATE INDEX i_regulations_to_data_type_classifications_regulation ON regulations_to_data_type_classifications (regulation_id);
+
+			CREATE TABLE regulations_to_industries
+			(
+			    id serial,
+				regulation_id integer DEFAULT NULL,
+				industry_id integer NOT NULL,
+
+			    CONSTRAINT pk_regulations_to_industries PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_industries_to_data_type_class FOREIGN KEY (industry_id) REFERENCES industries (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_industries_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_to_industries_data_type_class ON regulations_to_industries (industry_id);
+			CREATE INDEX i_regulations_to_industries_regulation ON regulations_to_industries (regulation_id);
+
+			CREATE TABLE regulations_to_technologies
+			(
+			    id serial,
+				regulation_id integer DEFAULT NULL,
+				technology_id integer NOT NULL,
+
+			    CONSTRAINT pk_regulations_to_technologies PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_technologies_to_data_type_class FOREIGN KEY (technology_id) REFERENCES technologies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_technologies_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_to_technologies_data_type_class ON regulations_to_technologies (technology_id);
+			CREATE INDEX i_regulations_to_technologies_regulation ON regulations_to_technologies (regulation_id);
+
+			CREATE TABLE regulations_to_countries
+			(
+			    id serial,
+				regulation_id integer DEFAULT NULL,
+				country_id integer NOT NULL,
+
+			    CONSTRAINT pk_regulations_to_countries PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_countries_to_data_type_class FOREIGN KEY (country_id) REFERENCES countries (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_countries_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_to_countries_data_type_class ON regulations_to_countries (country_id);
+			CREATE INDEX i_regulations_to_countries_regulation ON regulations_to_countries (regulation_id);
+
+			CREATE TABLE regulations_to_states
+			(
+			    id serial,
+				regulation_id integer DEFAULT NULL,
+				state_id integer NOT NULL,
+
+			    CONSTRAINT pk_regulations_to_states PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_states_to_data_type_class FOREIGN KEY (state_id) REFERENCES states (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_states_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_to_states_data_type_class ON regulations_to_states (state_id);
+			CREATE INDEX i_regulations_to_states_regulation ON regulations_to_states (regulation_id);
+
+			ALTER TABLE regulations ADD COLUMN is_data_type boolean DEFAULT false;
+			ALTER TABLE regulations ADD COLUMN is_industry boolean DEFAULT false;
+			ALTER TABLE regulations ADD COLUMN is_technology boolean DEFAULT false;
+			ALTER TABLE regulations ADD COLUMN is_geography boolean DEFAULT false;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS regulations_to_data_type_classifications;
+				DROP TABLE IF EXISTS regulations_to_industries;
+				DROP TABLE IF EXISTS regulations_to_technologies;
+				DROP TABLE IF EXISTS regulations_to_countries;
+				DROP TABLE IF EXISTS regulations_to_states;
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

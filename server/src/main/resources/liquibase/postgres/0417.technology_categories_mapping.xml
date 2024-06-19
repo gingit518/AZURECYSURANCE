@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0417.technology_categories_mapping" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE technology_category_import_mappings (
+				id serial NOT NULL,
+				organization_id integer NULL,
+				"technology_category" varchar(255) NULL,
+				"technology_name" varchar(255) NULL,
+				"technology_vendor" varchar(255) NULL,
+				"target_technology_category" varchar(255) NULL,
+				"target_technology_subcategory" varchar(255) NULL,
+				"target_technology_class" varchar(255) NULL,
+				"target_technology_name" varchar(255) NULL,
+				CONSTRAINT pk_technology_category_import_mappings PRIMARY KEY (id)
+			);
+			CREATE INDEX i_technology_category_import_mappings_category ON technology_category_import_mappings USING btree (technology_category);
+			CREATE INDEX i_technology_category_import_mappings_name ON technology_category_import_mappings USING btree (technology_name);
+			CREATE INDEX i_technology_category_import_mappings_category_name ON technology_category_import_mappings USING btree (technology_category, technology_name);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS technology_category_import_mappings;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

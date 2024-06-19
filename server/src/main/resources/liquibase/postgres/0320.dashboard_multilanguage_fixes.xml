@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0320.dashboard_multilanguage_fixes" author="Eugene A. Kalosha">
+
+		<sql>
+			-- Alter language constants
+			ALTER TYPE LanguageConstantScopeType RENAME TO LanguageConstantScopeType__;
+			CREATE TYPE LanguageConstantScopeType as ENUM ('UI', 'ADMIN', 'SERVER', 'HINTS', 'ANDROID_CLIENT', 'IOS_CLIENT', 'HELP', 'MENU', 'DASHBOARD');
+			ALTER TABLE language_constants ALTER COLUMN scope type LanguageConstantScopeType using scope::text::LanguageConstantScopeType;
+			DROP TYPE LanguageConstantScopeType__;
+
+			UPDATE language_constants SET scope = 'DASHBOARD' WHERE name LIKE 'DASHBOARD%' AND scope = 'SERVER';
+			UPDATE language_constants SET scope = 'DASHBOARD', name = 'DASHBOARDS$AUDIT$AUDIT' WHERE name = 'AUDIT$AUDIT';
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

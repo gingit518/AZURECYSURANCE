@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0163-vendor_to_technology" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE vendor_to_technology
+			(
+				id serial,
+				vendor_id integer NOT NULL,
+				technology_id integer DEFAULT NULL,
+				CONSTRAINT pk_vendor_to_technology PRIMARY KEY (id)
+				, CONSTRAINT fk_vendor_to_technology_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_vendor_to_technology_to_data_type FOREIGN KEY (technology_id) REFERENCES technologies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_vendor_to_technology_vendor ON vendor_to_technology (vendor_id);
+			CREATE INDEX i_vendor_to_technology_technology ON vendor_to_technology (technology_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="vendor_to_technology"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0165-audit_logs" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE audit_logs
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				operation_type int DEFAULT NULL,
+				item_type int DEFAULT NULL,
+				old_value text,
+				new_value text,
+				log_date timestamp without time zone NOT NULL DEFAULT now(),
+				audit_item_id integer DEFAULT NULL,
+				audit_user_id integer DEFAULT NULL,
+				audit_user_name character varying DEFAULT NULL,
+				audit_user_email character varying DEFAULT NULL,
+				CONSTRAINT pk_audit_logs PRIMARY KEY (id)
+			);
+			CREATE INDEX i_audit_logs_item_type ON audit_logs (item_type);
+			CREATE INDEX i_audit_logs_item_id ON audit_logs (audit_item_id);
+			CREATE INDEX i_audit_logs_user_id ON audit_logs (audit_user_id);
+			CREATE INDEX i_audit_logs_organization_id ON audit_logs (organization_id);
+			CREATE INDEX i_audit_logs_organization_id_log_date ON audit_logs (organization_id, log_date);
+
+			CREATE TABLE audit_log_item_ids
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				audit_log_id int DEFAULT NULL,
+				item_type int DEFAULT NULL,
+				item_id int DEFAULT NULL,
+				value text,
+				CONSTRAINT pk_audit_log_item_ids PRIMARY KEY (id)
+			);
+			CREATE INDEX i_audit_log_item_ids_item_type_organization ON audit_log_item_ids (item_type, organization_id);
+			CREATE INDEX i_audit_log_item_ids_item_type ON audit_log_item_ids (item_type);
+			CREATE INDEX i_audit_log_item_ids_audit_log_id ON audit_log_item_ids (audit_log_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="audit_log_item_ids"/>
+			<dropTable tableName="audit_logs"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

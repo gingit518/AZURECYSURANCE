@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0252.public_supported_languages" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE supported_languages ADD COLUMN is_public boolean DEFAULT false;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE supported_languages DROP COLUMN IF EXISTS is_public;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

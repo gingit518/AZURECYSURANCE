@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0284.custom_risk_model_domain" author="Daniel A. Kolesnik">
+
+		<sql>
+			ALTER TABLE risk_model_domains ALTER COLUMN risk_domain_id DROP NOT NULL;
+
+			ALTER TABLE risk_model_domains ADD COLUMN IF NOT EXISTS name character varying (127) DEFAULT NULL;
+			ALTER TABLE risk_model_domains ADD COLUMN IF NOT EXISTS description text DEFAULT NULL;
+
+			CREATE INDEX i_risk_model_domains_name ON risk_model_domains (name);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE risk_model_domains DROP COLUMN IF EXISTS name;
+				ALTER TABLE risk_model_domains DROP COLUMN IF EXISTS description;
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

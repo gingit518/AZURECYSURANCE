@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0164-vendor_type_flags" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE organizations ADD COLUMN is_technology_vendor boolean DEFAULT false;
+			ALTER TABLE organizations ADD COLUMN is_system_vendor boolean DEFAULT true;
+			ALTER TABLE organizations ADD COLUMN is_service_vendor boolean DEFAULT false;
+
+			UPDATE organizations SET is_technology_vendor=false WHERE org_type='Vendor';
+			UPDATE organizations SET is_system_vendor=true WHERE org_type='Vendor';
+			UPDATE organizations SET is_service_vendor=false WHERE org_type='Vendor';
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN is_technology_vendor;
+				ALTER TABLE organizations DROP COLUMN is_system_vendor;
+				ALTER TABLE organizations DROP COLUMN is_service_vendor;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

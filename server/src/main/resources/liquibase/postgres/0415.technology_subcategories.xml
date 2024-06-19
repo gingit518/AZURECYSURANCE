@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0415.technology_subcategories" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE technology_subcategories
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				category_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_technology_subcategories PRIMARY KEY (id)
+				, CONSTRAINT fk_technology_subcategories_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_technology_subcategories_to_technology_category FOREIGN KEY (category_id) REFERENCES technology_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_technology_subcategories_organization ON technology_subcategories (organization_id);
+			CREATE INDEX i_technology_subcategories_category ON technology_subcategories (category_id);
+			CREATE INDEX i_technology_subcategories_category_id_name ON technology_subcategories (category_id, name);
+			CREATE INDEX i_technology_subcategories_name ON technology_subcategories (name);
+
+			CREATE TABLE technology_class_types
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				category_id integer DEFAULT NULL,
+				subcategory_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_technology_class_types PRIMARY KEY (id)
+				, CONSTRAINT fk_technology_class_types_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_technology_class_types_to_technology_category FOREIGN KEY (category_id) REFERENCES technology_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_technology_class_types_to_technology_subcategory FOREIGN KEY (subcategory_id) REFERENCES technology_subcategories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_technology_class_types_organization ON technology_class_types (organization_id);
+			CREATE INDEX i_technology_class_types_category ON technology_class_types (category_id);
+			CREATE INDEX i_technology_class_types_subcategory ON technology_class_types (subcategory_id);
+			CREATE INDEX i_technology_class_types_subcategory_id_name ON technology_class_types (subcategory_id, name);
+			CREATE INDEX i_technology_class_types_name ON technology_class_types (name);
+
+			ALTER TABLE technologies ADD COLUMN IF NOT EXISTS deployment_type deploymenttype DEFAULT NULL;
+			ALTER TABLE technologies ADD COLUMN IF NOT EXISTS subcategory_id integer DEFAULT NULL;
+			ALTER TABLE technologies ADD COLUMN IF NOT EXISTS class_type_id integer DEFAULT NULL;
+			ALTER TABLE technologies ADD COLUMN IF NOT EXISTS patch_compliance text DEFAULT NULL;
+			ALTER TABLE technologies ADD COLUMN IF NOT EXISTS asset_status character varying (64) DEFAULT NULL;
+			CREATE INDEX IF NOT EXISTS i_technology_subcategory ON technologies (subcategory_id);
+			CREATE INDEX IF NOT EXISTS i_technology_class_type ON technologies (class_type_id);
+			ALTER TABLE technologies ADD CONSTRAINT fk_technology_to_technology_subcategory FOREIGN KEY (subcategory_id) REFERENCES technology_subcategories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE SET NULL;
+			ALTER TABLE technologies ADD CONSTRAINT fk_technology_to_technology_class_types FOREIGN KEY (class_type_id) REFERENCES technology_class_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE SET NULL;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE technology_class_types;
+				DROP TABLE technology_subcategories;
+				ALTER TABLE technologies DROP COLUMN deployment_type;
+				ALTER TABLE technologies DROP COLUMN subcategory_id;
+				ALTER TABLE technologies DROP COLUMN class_type_id;
+				ALTER TABLE technologies DROP COLUMN patch_compliance;
+				ALTER TABLE technologies DROP COLUMN asset_status;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

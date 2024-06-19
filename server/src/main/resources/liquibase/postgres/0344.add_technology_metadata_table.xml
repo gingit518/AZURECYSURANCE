@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0344.add_technology_metadata_table" author="Oleksandr Serozhenko">
+		<sql>
+			CREATE TABLE technologies_metadata (
+			id serial,
+			technology_id int4 NOT NULL,
+			key character varying (255) NOT NULL,
+			value character varying (4096),
+
+			CONSTRAINT pk_technologies_metadata PRIMARY KEY (id),
+			CONSTRAINT fk_technologies_metadata_to_technologies FOREIGN KEY (technology_id)
+			REFERENCES technologies(id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+
+			CREATE INDEX i_technologies_metadata_technology_id ON
+			technologies_metadata USING btree (technology_id);
+			CREATE UNIQUE INDEX ui_technologies_metadata_technology_id_key ON
+			technologies_metadata (technology_id, key);
+		</sql>
+		<rollback>
+			DROP TABLE IF EXISTS technologies_metadata;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

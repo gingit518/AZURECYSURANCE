@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0362.technology_to_data_asset_classification" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE technologies ADD COLUMN data_asset_classification_id integer DEFAULT NULL;
+			ALTER TABLE technologies ADD CONSTRAINT fk_technologies_to_data_asset_classifications FOREIGN KEY (data_asset_classification_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_technologies_data_asset_classification ON technologies (data_asset_classification_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE technologies DROP COLUMN data_asset_classification_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

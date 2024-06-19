@@ -1,0 +1,111 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor
+QCLD:110:280,"Is the organization subscribed to, or monitoring, appropriate sources for vulnerability and patch alerts for the components that it is responsible for?",5,Not answered,0,Cloud,Likelihood,25,YES,There should be a VMS or scanning tool in place to identify vulnerabilities related to the cloud service provider's code.,Is the organization responsible for any patching or maintenance of the system on the cloud service?|Yes|0|0,,NO,NO,NO,NO,YES,NO
+,,,No,2,,,,,,,,,,,,,
+,,,Yes,10,,,,,,,,,,,,,
+QCLD:30,Is the organization responsible for any patching or maintenance of the system on the cloud service?,5,No,0,Cloud,Likelihood,30,YES,"If yes, additional questions will apply about the patch management process.",,,NO,NO,NO,NO,YES,NO
+,,,Yes,10,,,,,,,,,,,,,
+Vendor Equipment Risk 3,Are you using your own equipment?,5,Organization provides,2,VendorInternal,Likelihood,3,YES,"Provide the details of who is providing the laptop, desktop, table, mobile device or other computer equipment that is used for access to the organization systems.",,,YES,NO,NO,NO,NO,YES
+,,,Vendor owned,6,,,,,,,,,,,,,
+,,,Personally owned,10,,,,,,,,,,,,,
+QIVND:4,Do you use a VPN to access the organization?,5,Yes,2,VendorInternal,Likelihood,4,YES,Check 'Yes' if you use a Virtual Private Network to log into the organization network(s).,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QIVND:5,Do you use 2 factor authentication when accessing the organization?,5,Yes,2,VendorInternal,Likelihood,5,YES,Check 'Yes' if your company accesses the organization networks using multiple authentication factors (at least 2) to prove one's identity.,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QIVND:6,Is the vendor using role based access when accessing the organization?,5,No,2,VendorInternal,Likelihood,6,YES,Check 'Yes' if your company has limited access based on roles to the organization's systems.,,,YES,NO,NO,NO,NO,YES
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:61,"For any data that the vendor manages, processes, or stores: is it done in accordance with the relevant data protection and other regulations, with specific requirements formally established by the organization?",5,Yes,2,VendorInternal,Likelihood,11,YES,"Check 'Yes' if your company has a compliance program that defines how customer data is managed, processed and stored in relationship to privacy regulations and best practices.",,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QIVND:62,"Has the vendor personnel read and understood the organization's email, password and encryption policies?",5,Yes - All 3,2,VendorInternal,Likelihood,12,YES,Determine which polices are reviewed by the vendor staff and answer in accordance to the number of policies that the are reviewed and understood by the vendor's team working with the organization.,,,YES,NO,NO,NO,NO,YES
+,,,Yes - Only 2,4,,,,,,,,,,,,,
+,,,Yes - Only 1,7,,,,,,,,,,,,,
+,,,No - None,10,,,,,,,,,,,,,
+QIVND:63,Does anyone on the vendor team have admin access?,5,No,2,VendorInternal,Likelihood,13,YES,Check 'Yes' if anyone associated with your firm has admin access to any the organization system(s).,,,YES,NO,NO,YES,YES,YES
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:64,Who has admin access to the organization's digital assets?,5,,,VendorInternal,Likelihood,14,YES,Write the names of the individuals with admin access to this asset and their emails.,Does anyone on the vendor team have admin access?|Yes|0|0,,YES,NO,YES,YES,YES,YES
+QIVND:65,Why do they have admin access?,5,,,VendorInternal,Likelihood,15,YES,Describe why those individuals in your firm have admin access.,Does anyone on the vendor team have admin access?|Yes|0|0,,YES,NO,YES,YES,YES,YES
+QIVND:66,Does your company require you to perform annual security awareness training?,5,No,2,VendorInternal,Likelihood,20,YES,Check 'Yes' if you require employees and contractor to have annual security awareness training.,,,YES,NO,NO,YES,YES,YES
+,,,Yes,10,,,,,,,,,,,,,
+QIVND:67,Who is responsible to patch the system?,5,Organization,2,VendorInternal,Likelihood,21,YES,If you are responsible to patch this system select 'Vendor'.  If you are not responsible to patch this system select 'Organization'.,,,YES,NO,NO,YES,YES,NO
+,,,Vendor,10,,,,,,,,,,,,,
+QICLD:28,"Attach a copy of your latest SSAE 16 SOC 2, Type II report.",5,,,CloudInternal,Likelihood,28,YES,Attach a copy of the report.,,,YES,YES,NO,NO,YES,NO
+QICLD:29,Attach proof of vulnerability scanning and remediation for the most recent 3-month period.,5,,,CloudInternal,Likelihood,29,YES,Attach a copy of your latest vulnerability scan.  Check  'N/A' if not applicable.,,,YES,YES,NO,NO,YES,NO
+QICLD:30,Attach proof of external penetration testing and remediation within the past 12 months.,5,,,CloudInternal,Likelihood,30,YES,Attach a copy of your latest pen test.  Check  'N/A' if not applicable.,,,YES,YES,NO,NO,YES,NO
+QICLD:36,How often do you collect and review server logs for application access?,5,N/A,0,CloudInternal,Likelihood,36,YES,"Select daily, weekly, monthly, quarterly, bi-annually or never.",,,YES,NO,NO,NO,NO,YES
+,,,Daily,2,,,,,,,,,,,,,
+,,,Weekly,4,,,,,,,,,,,,,
+,,,Monthy,6,,,,,,,,,,,,,
+,,,Quarterly,8,,,,,,,,,,,,,
+,,,Never,10,,,,,,,,,,,,,
+QICLD:37,How often do you collect and review logs for possible intrusion detection?,5,N/A,0,CloudInternal,Likelihood,37,YES,"Select daily, weekly, monthly, quarterly, bi-annually or never.",,,YES,NO,NO,NO,NO,YES
+,,,Daily,2,,,,,,,,,,,,,
+,,,Weekly,4,,,,,,,,,,,,,
+,,,Monthy,6,,,,,,,,,,,,,
+,,,Quarterly,8,,,,,,,,,,,,,
+,,,Never,10,,,,,,,,,,,,,
+QICLD:43,"If data must be encrypted, are there provisions to ensure that the client's information is protected are using the proper ciphers?",5,AES 256-bit,2,CloudInternal,Likelihood,43,YES,"Indicate all ciphers used. The Advanced Encryption Standard (AES) is the trusted standard algorithm used by the United States government, as well as other organizations. Although extremely efficient in the 128-bit form, AES also uses 192- and 256-bit keys for very demanding encryption purposes. AES is widely considered invulnerable to all attacks except for brute force. Regardless, many internet security experts believe AES will eventually be regarded as the go-to standard for encrypting data in the private sector.",,,YES,NO,NO,NO,NO,YES
+,,,Twofish,4,,,,,,,,,,,,,
+,,,Rivest-Shamir-Adleman (RSA),4,,,,,,,,,,,,,
+,,,TripleDES,4,,,,,,,,,,,,,
+,,,AES 192-bit,4,,,,,,,,,,,,,
+,,,AES 128-bit,6,,,,,,,,,,,,,
+,,,TLS 1.1,9,,,,,,,,,,,,,
+,,,None,10,,,,,,,,,,,,,
+QICLD:47,Does your company require you to preform annual security awareness training of cloud vendor?,5,Yes,2,CloudInternal,Likelihood,47,YES,Check 'Yes' if you require employees and contractors to have annual security awareness training.,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QIVND:68,Are you using the organization's equipment?,5,No,2,VendorInternal,Likelihood,1,YES,"Check 'Yes' if your company obtains a laptop, desktop, tablet or mobile phone for your employees or contractors to use that is owned by the organization.",,,YES,NO,NO,NO,NO,YES
+,,,Yes,10,,,,,,,,,,,,,
+QICLD:45,Does the organization have patching requirements been documented and agreed upon in writing?,5,Yes,2,CloudInternal,Likelihood,45,YES,Select 'Yes' if they are in writing and 'No' if they are not.,,,YES,NO,NO,NO,NO,YES
+,,,No,10,,,,,,,,,,,,,
+QIVND:71,Are the encryption keys kept on a separate server or storage block?,5,Yes - The keys are stored on a separate server or storage block.,2,CloudInternal,Likelihood,68,YES,Provide information about where your keys are stored.,,,YES,NO,NO,NO,YES,NO
+,,,No - The keys are not stored on a separate server or storage block.,10,,,,,,,,,,,,,
+,,,Not answered,10,,,,,,,,,,,,,
+QIVND:72,Is the key backup audited every two to three months?,5,No - The key backup is not audited.,2,CloudInternal,Likelihood,70,YES,Back up keys are essential to the protection of the data.,,,YES,NO,NO,NO,NO,NO
+,,,No - The key backup is audited every year.,4,,,,,,,,,,,,,
+,,,No - The key backup is audited every 6 months.,6,,,,,,,,,,,,,
+,,,Yes - The key backup is audited every two to three months.,10,,,,,,,,,,,,,
+,,,Not answered,10,,,,,,,,,,,,,
+QIVND:73,Are the encryption keys also refreshed automatically?,5,Yes - They are refreshed twice a year.,2,CloudInternal,Likelihood,71,YES,Provide information about how often you refresh your keys.,,,YES,NO,NO,NO,NO,NO
+,,,Yes - They are refreshed once a year.,5,,,,,,,,,,,,,
+,,,No - They are refreshed once every two years.,8,,,,,,,,,,,,,
+,,,Not answered,10,,,,,,,,,,,,,
+QIVND:74,Who maintains the system?,5,Not answered,0,Vendor,Likelihood,14,YES,Vendors have more risk than your employees.,,,NO,NO,NO,NO,YES,NO
+,,,Your organization does,2,,,,,,,,,,,,,
+,,,A vendor does,10,,,,,,,,,,,,,
+QIVND:75,What level of access does the vendor have to this system?,4,Not applicable,0,Vendor,Likelihood,17,YES,Admin rights have the highest risk.,,,NO,NO,NO,NO,YES,YES
+,,,User rights,5,,,,,,,,,,,,,
+,,,Admin rights,10,,,,,,,,,,,,,
+QCLD:18,Is the system using cloud specific technology - which type?,5,Not applicable,0,Cloud,Likelihood,18,YES,SaaS has the highest risk and IaaS has the lowest risk.,,,NO,NO,NO,NO,YES,NO
+,,,IaaS,2,,,,,,,,,,,,,
+,,,PaaS,6,,,,,,,,,,,,,
+,,,SaaS,10,,,,,,,,,,,,,
+QCLD:19,"Is the cloud private, public or hybrid?",5,Not Applicable,0,Cloud,Likelihood,19,YES,Private clouds have the least risk and public clouds have the most risk.,,,NO,NO,NO,NO,YES,NO
+,,,Private Cloud,2,,,,,,,,,,,,,
+,,,Hybrid Cloud,6,,,,,,,,,,,,,
+,,,Public Cloud,10,,,,,,,,,,,,,
+QCLD:23,"If the service provider is NOT responsible for patching all components that make up the cloud service, has the organization identified which components the service provider is responsible for and which it is responsible for?",5,Not answered,0,Cloud,Likelihood,23,YES,If the firm is not clear on the CSP responsibilities it has a very high level of risk.,,,NO,NO,NO,NO,YES,NO
+,,,Yes - fully,2,,,,,,,,,,,,,
+,,,Yes - partially,6,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QCLD:24,Has the organization ensured that all of the components that it is responsible for have been incorporated into its patch and vulnerability management process?  Is the process automated?,5,Not applicable,0,Cloud,Likelihood,24,YES,Prioritization by financial exposures lowers risk more effectively.,,,NO,NO,NO,NO,YES,NO
+,,,Yes - Prioritized by financial exposures,2,,,,,,,,,,,,,
+,,,Yes - Manually prioritized,6,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QCLD:29,Does the service provider's incident response and management procedures map to (or fit with) the organization's internal policy and procedures; that does not hinder or delay the organization's ability to manage incidents in a timely and effective manner?,5,Not answered,0,Cloud,Likelihood,29,YES,"The cloud service provider's incident response procedures must not delay the organization's ability to respond, otherwise it increases risk.",,,NO,NO,NO,NO,YES,NO
+,,,Yes - fully,2,,,,,,,,,,,,,
+,,,Yes - partially,6,,,,,,,,,,,,,
+,,,No,10,,,,,,,,,,,,,
+QICLD:34,What type of cloud specific technology is being used?,5,PaaS,2,CloudInternal,Likelihood,34,YES,"Select Software as a Service (SaaS), Infrastructure as a Service (IaaS), or Platform as a Service (PaaS).",,,YES,NO,NO,NO,NO,YES
+,,,IaaS,6,,,,,,,,,,,,,
+,,,SaaS,10,,,,,,,,,,,,,
+QICLD:35,What is your Cloud Service Deployment Model?,5,Public,2,CloudInternal,Likelihood,35,YES,"Select Private, Hybrid or Public.",,,YES,NO,NO,NO,NO,YES
+,,,Hybrid,6,,,,,,,,,,,,,
+,,,Private,10,,,,,,,,,,,,,
+QIVND:76,Is there a backup of all your keys  kept in an offsite location?,5,Yes - Key backups are kept offsite.,2,CloudInternal,Likelihood,69,YES,Keeping keys offsite is a best practice.,,,YES,NO,NO,NO,NO,NO
+,,,No - Key backups are kept onsite.,10,,,,,,,,,,,,,
+,,,Not answered,10,,,,,,,,,,,,,
+QIVND:77,Are background checks done on employees and contractors? ,5,No,2,VendorInternal,Likelihood,19,YES,Provide the details of how your company performs background checks on all employees and contractors.,,,YES,NO,NO,YES,YES,YES
+,,,Yes  - Criminal Only,4,,,,,,,,,,,,,
+,,,Yes - Credit Check Only,4,,,,,,,,,,,,,
+,,,Yes - Criminal and Drug Test,6,,,,,,,,,,,,,
+,,,Yes - Criminal and Credit Check,8,,,,,,,,,,,,,
+,,,"Yes - Criminal, Credit and Drug Tests",10,,,,,,,,,,,,,

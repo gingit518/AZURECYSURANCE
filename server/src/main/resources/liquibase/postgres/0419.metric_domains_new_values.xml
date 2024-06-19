@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0419.metric_domains_new_values" author="Daniel A. Kolesnik">
+
+		<sql>
+			INSERT INTO metric_domains (id, name, description, code) VALUES
+				(11, 'Cyber Insurance', '', 'cyber_insurance')
+			;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM metric_domains md WHERE md.id IN (11);
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

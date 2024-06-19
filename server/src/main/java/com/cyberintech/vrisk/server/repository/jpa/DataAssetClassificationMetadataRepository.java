@@ -1,0 +1,9 @@
+package com.cyberintech.vrisk.server.repository.jpa;
+
+import com.cyberintech.vrisk.server.model.jpa.entity.DataAssetClassificationMetadata;
+import com.cyberintech.vrisk.server.repository.jpa.core.CoreRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface DataAssetClassificationMetadataRepository extends CoreRepository<DataAssetClassificationMetadata, Long> {
+}

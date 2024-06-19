@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0238.organization_email_templates" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TYPE OrganizationEmailTemplateType as ENUM ('VENDOR_EMPLOYEE_INVITATION');
+
+			CREATE TABLE organization_email_templates
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				type OrganizationEmailTemplateType NOT NULL,
+				subject text DEFAULT '',
+				content text DEFAULT '',
+
+				CONSTRAINT pk_organization_email_templates PRIMARY KEY (id)
+			);
+			CREATE INDEX i_organization_email_templates_organization ON organization_email_templates (organization_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE organization_email_templates;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

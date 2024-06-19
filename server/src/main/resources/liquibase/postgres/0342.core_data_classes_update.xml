@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0342.core_data_classes_update" author="Eugene A. Kalosha">
+
+		<sql>
+			update data_type_classifications set organization_id = null where id &lt; 150;
+			update data_type_classifications set organization_id = null where id = 1044;
+			update data_type_classifications set organization_id = null where id = 1045;
+			update data_type_classifications set name = 'Patent' where id = 109;
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

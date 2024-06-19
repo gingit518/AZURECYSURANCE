@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0336.bigid_improvements" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE technologies ADD COLUMN data_business_owner_id integer DEFAULT NULL;
+			ALTER TABLE technologies ADD COLUMN data_it_owner_id integer DEFAULT NULL;
+			ALTER TABLE technologies ADD COLUMN state_id integer DEFAULT NULL;
+			ALTER TABLE technologies ADD CONSTRAINT fk_technologies_to_data_business_owner FOREIGN KEY (data_business_owner_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			ALTER TABLE technologies ADD CONSTRAINT fk_technologies_to_data_it_owner FOREIGN KEY (data_it_owner_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			ALTER TABLE technologies ADD CONSTRAINT fk_technologies_to_states FOREIGN KEY (state_id) REFERENCES states (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE technologies DROP COLUMN data_business_owner_id;
+				ALTER TABLE technologies DROP COLUMN data_it_owner_id;
+				ALTER TABLE technologies DROP COLUMN state_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

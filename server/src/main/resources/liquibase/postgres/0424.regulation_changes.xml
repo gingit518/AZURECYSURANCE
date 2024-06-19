@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0424.regulation_changes" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS additional_properties jsonb DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS independent_enforcement_authority boolean DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS response_to_consumer_requests int DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS cure_period int DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS protections_for_sensitive_pi boolean DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

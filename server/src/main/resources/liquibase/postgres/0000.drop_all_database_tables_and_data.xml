@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0000-drop-all-tables" author="Eugene A. Kalosha">
+
+		<sql>
+			DROP TABLE IF EXISTS databasechangelog;
+			DROP TABLE IF EXISTS databasechangeloglock;
+
+			DROP TABLE IF EXISTS user_roles;
+			DROP TABLE IF EXISTS roles;
+			DROP TABLE IF EXISTS users;
+			DROP TABLE IF EXISTS oauth_access_token;
+			DROP TABLE IF EXISTS oauth_refresh_token;
+
+			DROP TABLE IF EXISTS organizations;
+			DROP TYPE IF EXISTS organizationtype;
+
+			DROP TABLE IF EXISTS cities;
+			DROP TABLE IF EXISTS states;
+			DROP TABLE IF EXISTS countries;
+			DROP TABLE IF EXISTS continents;
+
+			DROP TABLE IF EXISTS languages;
+			DROP TABLE IF EXISTS currencies;
+			DROP TABLE IF EXISTS status;
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

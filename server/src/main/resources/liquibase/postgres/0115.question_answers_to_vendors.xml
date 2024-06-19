@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0062-question_answers_to_vendors" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE question_answers_to_vendors
+			(
+				id serial,
+				question_id integer NOT NULL,
+				answer_id integer NOT NULL,
+				vendor_id integer DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_question_answers_to_vendors PRIMARY KEY (id)
+				, CONSTRAINT fk_question_answers_to_vendors_to_question FOREIGN KEY (question_id) REFERENCES qualitative_questions (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_question_answers_to_vendors_to_answer FOREIGN KEY (answer_id) REFERENCES qualitative_question_answers (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_question_answers_to_vendors_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_question_answers_to_vendors_question ON question_answers_to_vendors (question_id);
+			CREATE INDEX i_question_answers_to_vendors_answer ON question_answers_to_vendors (answer_id);
+			CREATE INDEX i_question_answers_to_vendors_vendor ON question_answers_to_vendors (vendor_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="question_answers_to_vendors"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0398.qualitative_question_color_coding" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE qualitative_questions ADD COLUMN use_color_coding boolean DEFAULT false;
+			UPDATE qualitative_questions SET use_color_coding=false;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE qualitative_questions DROP COLUMN use_color_coding;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

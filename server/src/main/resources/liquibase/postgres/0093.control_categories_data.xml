@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0093_control_categories_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO control_categories (id, control_function_id, name, description) VALUES
+			  (201, 101, 'Asset Management (ID.AM)', 'The data, personnel, devices, systems, and facilities that enable the organization to achieve business purposes are identified and managed consistent with their relative importance to business objectives and the organization’s risk strategy.')
+			, (202, 101, 'Business Environment (ID.BE)', 'The organization’s mission, objectives, stakeholders, and activities are understood and prioritized; this information is used to inform cybersecurity roles, responsibilities, and risk management decisions.')
+			, (203, 101, 'Governance (ID.GV)', 'The policies, procedures, and processes to manage and monitor the organization’s regulatory, legal, risk, environmental, and operational requirements are understood and inform the management of cybersecurity risk.')
+			, (204, 101, 'Risk Assessment (ID.RA)', 'The organization understands the cybersecurity risk to organizational operations (including mission, functions, image, or reputation), organizational assets, and individuals.')
+			, (205, 101, 'Risk Management Strategy (ID.RM)', 'The organization’s priorities, constraints, risk tolerances, and assumptions are established and used to support operational risk decisions.')
+			, (206, 102, 'Access Control (PR.AC)', 'Access to assets and associated facilities is limited to authorized users, processes, or devices, and to authorized activities and transactions.')
+			, (207, 102, 'Awareness and Training (PR.AT)', 'The organization’s personnel and partners are provided cybersecurity awareness education and are adequately trained to perform their information security-related duties and responsibilities consistent with related policies, procedures, and agreements.')
+			, (208, 102, 'Data Security (PR.DS)', 'Information and records (data) are managed consistent with the organization’s risk strategy to protect the confidentiality, integrity, and availability of information.')
+			, (209, 102, 'Information Protection Processes and Procedures (PR.IP)', 'Security policies (that address purpose, scope, roles, responsibilities, management commitment, and coordination among organizational entities), processes, and procedures are maintained and used to manage protection of information systems and assets.')
+			, (210, 102, 'Maintenance (PR.MA)', 'Maintenance and repairs of industrial control and information system components is performed consistent with policies and procedures.')
+			, (211, 102, 'Protective Technology (PR.PT)', 'Technical security solutions are managed to ensure the security and resilience of systems and assets, consistent with related policies, procedures, and agreements.')
+			, (212, 103, 'Anomalies and Events (DE.AE)', 'Anomalous activity is detected in a timely manner and the potential impact of events is understood.')
+			, (213, 103, 'Security Continuous Monitoring (DE.CM)', 'The information system and assets are monitored at discrete intervals to identify cybersecurity events and verify the effectiveness of protective measures.')
+			, (214, 103, 'Detection Processes (DE.DP)', 'Detection processes and procedures are maintained and tested to ensure timely and adequate awareness of anomalous events.')
+			, (215, 104, 'Response Planning (RS.RP)', 'Response processes and procedures are executed and maintained, to ensure timely response to detected cybersecurity events.')
+			, (216, 104, 'Communications (RS.CO)', 'Response activities are coordinated with internal and external stakeholders, as appropriate, to include external support from law enforcement agencies.')
+			, (217, 104, 'Analysis (RS.AN)', 'Analysis is conducted to ensure adequate response and support recovery activities.')
+			, (218, 104, 'Mitigation (RS.MI)', 'Activities are performed to prevent expansion of an event, mitigate its effects, and eradicate the incident.')
+			, (219, 104, 'Improvements (RS.IM)', 'Organizational response activities are improved by incorporating lessons learned from current and previous detection/response activities.')
+			, (220, 105, 'Recovery Planning (RC.RP)', 'Recovery processes and procedures are executed and maintained to ensure timely restoration of systems or assets affected by cybersecurity events.')
+			, (221, 105, 'Improvements (RC.IM)', 'Recovery planning and processes are improved by incorporating lessons learned into future activities.')
+			, (222, 105, 'Communications (RC.CO)', 'Restoration activities are coordinated with internal and external parties, such as coordinating centers, Internet Service Providers, owners of attacking systems, victims, other CSIRTs, and vendors.')
+			;
+
+			ALTER SEQUENCE control_categories_id_seq RESTART WITH 223;
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

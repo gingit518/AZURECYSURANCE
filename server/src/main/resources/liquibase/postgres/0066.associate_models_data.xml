@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0066-associate_models_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO associate_models (id, name, description, risk_model_id, owner_id, created_by_id, updated_by_id) VALUES
+			(102, 'Jefferies Enterprise', '', 101, 110, 161, 161)
+			;
+
+			ALTER SEQUENCE associate_models_id_seq RESTART WITH 108;
+
+			INSERT INTO associate_model_quants (id, associate_model_id, quant_id) VALUES
+				  (1, 102, 101)
+				, (2, 102, 102)
+				, (3, 102, 103)
+			;
+			ALTER SEQUENCE associate_model_quants_id_seq RESTART WITH 64;
+
+			INSERT INTO associate_model_quals (id, associate_model_id, qual_id) VALUES
+				  (1, 102, 101)
+				, (2, 102, 102)
+			;
+			ALTER SEQUENCE associate_model_quals_id_seq RESTART WITH 64;
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

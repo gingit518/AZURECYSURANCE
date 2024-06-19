@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0179.vendor_role" author="Eugene A. Kalosha">
+
+		<sql>
+
+			INSERT INTO roles (id, name, description) VALUES (184, 'VENDOR', 'Employee of the Vendor who is communicate with Organization to ask/answer the questions.');
+			ALTER SEQUENCE roles_id_seq RESTART WITH 186;
+
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

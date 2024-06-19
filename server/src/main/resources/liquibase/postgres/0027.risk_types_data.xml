@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0027-risk-types-data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO risk_types (id, category_domain_id, name, description) VALUES
+			(101, 101, 'Confidentiality', 'The ability to ensure that only authorized and approved users have access to the data')
+			, (102, 101, 'Integrity', 'The ability to ensure that the data is unaltered and is consistent, accurate, and trustworthy over its entire life cycle')
+			, (103, 101, 'Accessibility', 'The ability to ensure the data is available')
+			, (104, 101, 'Actors', 'Cyber criminals, hacktivists, nation state offensive teams')
+			, (105, 102, 'Reputational', 'Loss of trust')
+			, (106, 102, 'Operational', 'Unexpected failure in your company''s day-to-day operations')
+			, (107, 102, 'Legal', 'Lawsuits and legal fees')
+			, (108, 102, 'Financial', 'Money flowing in and out of your business, and the possibility of a sudden financial loss')
+			, (109, 103, 'CVEs', 'Common Vulnerability Exposures')
+			, (110, 103, 'Incidents', 'An event that may indicate that an organization''s systems or data have been compromised or that measures put in place to protect them have failed')
+			, (111, 103, 'Threats', 'A malicious attempt to damage or disrupt a computer network or system')
+			, (112, 103, 'Assessments', 'An on-going process of discovering, correcting and preventing security problems')
+			, (113, 101, 'Vendor', '3rd Party Risk')
+			;
+
+			ALTER SEQUENCE risk_types_id_seq RESTART WITH 114;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM risk_types;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

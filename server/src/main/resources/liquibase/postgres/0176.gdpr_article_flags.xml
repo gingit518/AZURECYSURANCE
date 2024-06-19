@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0176.gdpr_article_flags" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE gdpr_article ADD COLUMN is_mandatory boolean DEFAULT false;
+			ALTER TABLE gdpr_article ADD COLUMN is_system_level boolean DEFAULT false;
+			ALTER TABLE gdpr_article ADD COLUMN is_organization_level boolean DEFAULT false;
+			ALTER TABLE gdpr_article_paragraph ADD COLUMN is_system_level boolean DEFAULT false;
+			ALTER TABLE gdpr_article_paragraph ADD COLUMN is_organization_level boolean DEFAULT false;
+			UPDATE gdpr_article SET is_mandatory=false WHERE is_mandatory IS NULL;
+			UPDATE gdpr_article SET is_system_level=false WHERE is_system_level IS NULL;
+			UPDATE gdpr_article SET is_organization_level=false WHERE is_organization_level IS NULL;
+			UPDATE gdpr_article_paragraph SET is_system_level=false WHERE is_system_level IS NULL;
+			UPDATE gdpr_article_paragraph SET is_organization_level=false WHERE is_organization_level IS NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE gdpr_article DROP COLUMN is_mandatory;
+				ALTER TABLE gdpr_article DROP COLUMN is_system_level;
+				ALTER TABLE gdpr_article DROP COLUMN is_organization_level;
+				ALTER TABLE gdpr_article_paragraph DROP COLUMN is_system_level;
+				ALTER TABLE gdpr_article_paragraph DROP COLUMN is_organization_level;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

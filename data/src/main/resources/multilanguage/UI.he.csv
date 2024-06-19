@@ -1,0 +1,567 @@
+Constant,Scope,Value,Default Value
+ASSESSMENT_FINDINGS$ASSESSMENT_FINDING,UI,מציאת מטלות,Assessment finding
+ASSESSMENT_FINDINGS$CREATE_FINDING,UI,ליצור ממצא,Create finding
+ASSESSMENT_FINDINGS$EDIT_FINDING,UI,לערוך ממצא,Edit finding
+ASSESSMENT_FINDINGS$LINK_TYPE,UI,סוג קישור,Link type
+ASSESSMENT_FINDINGS$TITLE,UI,ממצאי הערכה,Assessment findings
+ASSESSMENTS$ASSESSMENT,UI,הערכה,Assessment
+ASSESSMENTS$ASSESSMENT_LEVEL,UI,רמת הערכה,Assessment level
+ASSESSMENTS$ASSESSMENT_WEIGHT,UI,אחוז משקל הערכה,"Assessment weight, %"
+ASSESSMENTS$ASSESSMENT_WEIGHTS,UI,משקולות הערכה,Assessment weights
+ASSESSMENTS$CREATE_ASSESSMENT,UI,ליצור הערכה,Create assessment
+ASSESSMENTS$EDIT_ASSESSMENT,UI,ערוך הערכה,Edit assessment
+ASSESSMENTS$TITLE,UI,הערכות,Assessments
+ASSESSMENTS$TYPE_HEADER,UI,סוג,Type
+ASSET_CLASSES$ASSET_CLASS,UI,מחלקת נכסים,Asset class
+ASSET_CLASSES$CREATE_CLASS,UI,ליצור מחלקת נכסים,Create asset class
+ASSET_CLASSES$EDIT_CLASS,UI,ערוך מחלקת נכסים,Edit asset class
+ASSET_CLASSES$TITLE,UI,שיעורי נכסים,Asset classes
+ASSOCIATE_MODELS$ASSOCIATE_MODEL,UI,מודל משויך,Associate model
+ASSOCIATE_MODELS$CREATE_MODEL,UI,ליצור מודל מקורב,Create associate model
+ASSOCIATE_MODELS$EDIT_MODEL,UI,ערוך מודל מקורב,Edit associate model
+ASSOCIATE_MODELS$TITLE,UI,מודלים להקל,Associate models
+ASSOCIATE_SYSTEMS$ASSOCIATE_SYSTEM,UI,להקצות מערכת,Associate system
+ASSOCIATE_SYSTEMS$CREATE_SYSTEM,UI,ליצור מערכת associate,Create associate system
+ASSOCIATE_SYSTEMS$EDIT_SYSTEM,UI,ערוך מערכת associate,Edit associate system
+ASSOCIATE_SYSTEMS$TITLE,UI,להקצות מערכות,Associate systems
+ASSOCIATE_SYSTEMS$VENDOR_ID_REQUIRED,UI,דרוש מזהה ספק,Vendor id is required
+AUDIT_LOGS$AUDITOR_EMAIL,UI,"דוא""ל מבקר",Auditor email:
+AUDIT_LOGS$AUDITOR_NAME,UI,שם מבקר,Auditor name:
+AUDIT_LOGS$CHANGED_ITEM,UI,פריט שונה,changed item
+AUDIT_LOGS$DATE_FROM,UI,תאריך מ,Date from
+AUDIT_LOGS$DATE_RANGE,UI,טווח תאריכים,Date range
+AUDIT_LOGS$DATE_TO,UI,תאריך ל,Date to
+AUDIT_LOGS$DETAILS,UI,פרטי יומן ביקורת,Audit log details
+AUDIT_LOGS$DIFF,UI,מבד,Diff
+AUDIT_LOGS$FROM,UI,מ,from
+AUDIT_LOGS$IN_ORGANIZATION,UI,בארגון,in organization
+AUDIT_LOGS$ITEM_TYPE,UI,סוג פריט,Item type
+AUDIT_LOGS$ITEM_TYPE_COLON,UI,סוג פריט:,Item type:
+AUDIT_LOGS$MODIFIED_ITEMS,UI,פריטים ששונו,Modified items
+AUDIT_LOGS$NEW_VALUE,UI,ערך חדש,New value
+AUDIT_LOGS$OLD_VALUE,UI,ערך ישן,Old value
+AUDIT_LOGS$OPERATION_TYPE,UI,סוג פעולה,Operation type
+AUDIT_LOGS$OPERATION_TYPE_COLON,UI,סוג פעולה:,Operation type:
+AUDIT_LOGS$PROPERTY,UI,תכונה,Property
+AUDIT_LOGS$START_SEARCH,UI,לשנות משהו,change something
+AUDIT_LOGS$TILL,UI,עד,till
+AUDIT_LOGS$TITLE,UI,יומני ביקורת,Audit logs
+AUDIT_LOGS$UPDATED_DATE,UI,תאריך עדכון,Updated date
+AUDIT_LOGS$UPDATED_DATE_COLON,UI,תאריך עדכון:,Updated date:
+AUTHORIZATION$CHANGE_PASSWORD,UI,שנה סיסמא,Change password
+AUTHORIZATION$EMAIL_CONFIRMATION,UI,"אישור דוא""ל",Email Confirmation
+AUTHORIZATION$FORGOT_PASSWORD,UI,שכחת את הסיסמא,Forgot password
+AUTHORIZATION$LOGIN,UI,התחברות,Login
+AUTHORIZATION$MFA_NOTIFICATION,UI,קוד האבטחה נשלח אליך. אנא הזן קוד ונסה שוב,Security code has been sent to you. Please enter code and try again
+AUTHORIZATION$SIGN_IN,UI,להתחבר,Sign in
+AUTHORIZATION$SIGN_OUT,UI,התנתק,Sign out
+AUTHORIZATION$SIGN_UP,UI,הירשם,Sign up
+BUSINESS_INTERRUPTION$TITLE,UI,הפרעה עסקית,Business interruption
+BUSINESS_UNITS$BUSINESS_UNIT,UI,יחידה עסקית,Business unit
+BUSINESS_UNITS$BUSINESS_UNIT_COLON,UI,יחידה עסקית:,Business unit:
+BUSINESS_UNITS$BUSINESS_UNIT_REQUIRED,UI,חובה לבצע יחידה עסקית,Business unit is required
+BUSINESS_UNITS$CREATE_UNIT,UI,ליצור יחידה,Create unit
+BUSINESS_UNITS$EDIT_UNIT,UI,ערוך יחידה,Edit unit
+BUSINESS_UNITS$INFOSEC_FOCAL_PERSON,UI,אדם מוקד לאבטחת מידע,Infosec Focal Person
+BUSINESS_UNITS$OWNED_PROCESSES,UI,תהליכים בבעלות,Owned Processes
+BUSINESS_UNITS$PARENT_UNIT,UI,יחידת הורה,Parent unit
+BUSINESS_UNITS$TITLE,UI,יחידות עסקיות,Business units
+BUSINESS_UNITS$USED_PROCESSES,UI,תהליכים משומשים,Used Processes
+CATEGORIES$CATEGORY,UI,קטגוריה,Category
+CATEGORIES$CREATE_CATEGORY,UI,צור קטגוריה,Create category
+CATEGORIES$EDIT_CATEGORY,UI,ערוך קטגוריה,Edit category
+CATEGORIES$RISK_TYPES,UI,סוגי סיכון,Risk types
+CATEGORIES$RISK_TYPES_REQUIRED,UI,יש להגדיר סוג אחד לפחות,At least one type should be defined
+CATEGORIES$TITLE,UI,קטגוריות,Categories
+CHANGE_PASSWORD$CONFIRM_PASSWORD,UI,אשר סיסמה,Confirm password
+CHANGE_PASSWORD$CONFIRM_PASSWORD_INVALID,UI,אישור סיסמאות אינו תואם לסיסמא,Passwords confirmation do not match with password
+CHANGE_PASSWORD$CONFIRM_PASSWORD_REQUIRED,UI,אישור סיסמא נדרש,Password confirmation is required
+CHANGE_PASSWORD$INVALID_TOKEN,UI,"אסימון הבקשה לדף זה אינו חוקי. יתכן שהוא כבר שימש, או פג תוקפו מכיוון שהוא ישן מדי. אנא חזור לדף הסיסמה ששכחה ונסה שוב.","The request token for this page is invalid. It may have already been used, or expired because it is too old.Please go back to the forgot password page and try again."
+CHANGE_PASSWORD$NEW_PASSWORD,UI,סיסמה חדשה,New password
+CHANGE_PASSWORD$NEW_PASSWORD_HELP_TEXT,UI,"סיסמאות חייבות להיות באורך של 8 תווים לפחות ולהכיל לפחות אותיות קטנות, אות אחת, ספרה אחת ותו מיוחד","Passwords must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"
+CHANGE_PASSWORD$NEW_PASSWORD_INVALID,UI,סיסמה שגויה,Invalid password
+CHANGE_PASSWORD$OLD_PASSWORD,UI,סיסמה ישנה,Old password
+CHANGE_PASSWORD$OLD_PASSWORD_REQUIRED,UI,יש צורך בסיסמה ישנה,Old password is required
+CHANGE_PASSWORD$SUCCESS_MESSAGE,UI,הסיסמה שלך שונתה בהצלחה,Your password has been successfully changed
+CLOUD_SCORING$TITLE,UI,ניקוד ענן,Cloud scoring
+CONTROL_FUNCTIONS$CONTROL_FUNCTION,UI,פונקצית בקרה,Control function
+CONTROL_FUNCTIONS$CONTROL_FUNCTION_REQUIRED,UI,פונקצית בקרה נדרשת,Control function is required
+CONTROL_FUNCTIONS$CREATE_FUNCTION,UI,צור פונקציית בקרה,Create control function
+CONTROL_FUNCTIONS$EDIT_FUNCTION,UI,ערוך את פונקציית הבקרה,Edit control function
+CONTROL_FUNCTIONS$TITLE,UI,פונקציות בקרה,Control functions
+CONTROL_GUIDELINES$CONTROL_GUIDELINE,UI,הנחיית בקרה,Control guideline
+CONTROL_GUIDELINES$CONTROL_GUIDELINE_REQUIRED,UI,הנחיית בקרה נדרשת,Control guideline is required
+CONTROL_GUIDELINES$CREATE_GUIDELINE,UI,צור הנחיה,Create guideline
+CONTROL_GUIDELINES$EDIT_GUIDELINE,UI,ערוך קו מנחה,Edit guideline
+CONTROL_GUIDELINES$TITLE,UI,הנחיות בקרה,Control guidelines
+CONTROL_TESTS$CONTROL_TEST,UI,מבחן בקרה,Control test
+CONTROL_TESTS$CONTROL_TEST_REQUIRED,UI,יש לבצע בדיקת בקרה,Control test is required
+CONTROL_TESTS$CREATE_TEST,UI,צור מבחן בקרה,Create control test
+CONTROL_TESTS$EDIT_TEST,UI,ערוך את מבחן הבקרה,Edit control test
+CONTROL_TESTS$TITLE,UI,בדיקות בקרה,Control tests
+CYBER_RISK_SCORING$TITLE,UI,ציון סיכוני סייבר,Cyber risk scoring
+CYBER_ROLES$CREATE_ROLE,UI,צור תפקיד סייבר,Create cyber role
+CYBER_ROLES$CYBER_ROLE,UI,תפקיד סייבר,Cyber role
+CYBER_ROLES$EDIT_ROLE,UI,ערוך את תפקיד הסייבר,Edit cyber role
+CYBER_ROLES$TITLE,UI,תפקידי סייבר,Cyber roles
+DASHBOARDS_FILTER$PRIVACY_DATA,UI,נתוני פרטיות,Privacy data
+DASHBOARDS$SORT_BY,UI,מיין לפי:,Sort by:
+DASHBOARDS$TOTAL_EXPOSURE,UI,"סה""כ חשיפה:",Total exposure:
+DATA_CLASSES$CREATE_CLASS,UI,צור מחלקת נתונים,Create data class
+DATA_CLASSES$DATA_CLASS,UI,מחלקת נתונים,Data class
+DATA_CLASSES$EDIT_CLASS,UI,ערוך מחלקת נתונים,Edit data class
+DATA_CLASSES$TITLE,UI,שיעורי נתונים,Data classes
+DATA_EXFILTRATION$TITLE,UI,סינון נתונים,Data exfiltration
+DOMAINS$DIALOG_TITLE,UI,הוסף דומיין למודל הסיכון,Add domain to risk model
+DOMAINS$DOMAIN,UI,תחום,Domain
+DOMAINS$DOMAIN_REQUIRED,UI,תחום נדרש,Domain is required
+DOMAINS$MANAGED_BY,UI,"מנוהל ע""י",Managed by
+DOMAINS$NO_AVAILABLE_DOMAINS,UI,כרגע אין תחומים זמינים,There is no available domains right now
+DOMAINS$TITLE,UI,דומיינים,Domains
+DROPZONE$ALLOWED_SINGLE_CSV,UI,"אפשר להעלות קובץ יחיד עם סיומת .csv, .xlsx או .xlsm","Allowed the upload of single file with .csv, .xlsx or .xlsm extension"
+DROPZONE$DEFAULT_MESSAGE,UI,לחץ כאן או שמור קבצים כדי להעלות!,Click here or drop files to upload!
+DROPZONE$NO_STATUS,UI,ללא סטטוס,No status
+EMAIL_CONFIRMATION$FAIL,UI,אסימון הבקשה לדף זה אינו חוקי. יתכן שכבר נעשה בו שימוש או פג תוקפו מכיוון שהוא ישן מדי. חזור לאתר או ליישום ששלח אותך לכאן ונסה שוב.,"The request token for this page is invalid. It may have already been used, or expired because it is too old. Please go back to the site or application that sent you here and try again."
+EMAIL_CONFIRMATION$SUCCESS,UI,"כתובת הדוא""ל אומתה בהצלחה. ברוכים הבאים!",The email address was successfully verified. Welcome aboard!
+EXPOSURE_METRICS$CREATE_METRIC,UI,צור מדד חשיפה,Create exposure metric
+EXPOSURE_METRICS$EDIT_METRIC,UI,ערוך מדד חשיפה,Edit exposure metric
+EXPOSURE_METRICS$EXPOSURE_METRIC,UI,מדדי חשיפה,Exposure metric
+EXPOSURE_METRICS$TITLE,UI,מדדי חשיפה,Exposure metrics
+EXPOSURE_MODELS$EXPOSURE_MODEL,UI,מודל חשיפה,Exposure model
+EXPOSURE_MODELS$EXPOSURE_MODEL_REQUIRED,UI,מדד חשיפה,Exposure model is required
+EXPOSURE_MODELS$TITLE,UI,דגמי חשיפה,Exposure models
+FIXED_CAPITAL_COSTS$CREATE_COST,UI,צור עלות הון,Create capital cost
+FIXED_CAPITAL_COSTS$EDIT_COST,UI,ערוך עלות הון,Edit capital cost
+FIXED_CAPITAL_COSTS$LICENSE_COST,UI,עלות רישיון,License cost
+FIXED_CAPITAL_COSTS$LICENSE_TYPE,UI,סוג הרישיון,License type
+FIXED_CAPITAL_COSTS$NUMBER_OF_CPUS,UI,מספר המעבדים,Number of CPUs
+FIXED_CAPITAL_COSTS$NUMBER_OF_USERS,UI,מספר משתמשים,Number of users
+FIXED_CAPITAL_COSTS$TITLE,UI,עלויות הון קבועות,Fixed capital costs
+FIXED_OPERATIONAL_COSTS$COST_CENTER,UI,מרכז עלות,Cost center
+FIXED_OPERATIONAL_COSTS$COST_CENTER_COLON,UI,מרכז עלות:,Cost center:
+FIXED_OPERATIONAL_COSTS$CREATE_COST,UI,צור עלות תפעולית,Create operational cost
+FIXED_OPERATIONAL_COSTS$EDIT_COST,UI,ערוך עלות תפעולית,Edit operational cost
+FIXED_OPERATIONAL_COSTS$PERSON,UI,אדם,Person
+FIXED_OPERATIONAL_COSTS$PERSON_COLON,UI,אדם:,Person:
+FIXED_OPERATIONAL_COSTS$SEARCH_BY_COST_CENTER,UI,חיפוש לפי מרכז עלות,Search by cost center
+FIXED_OPERATIONAL_COSTS$TITLE,UI,עלויות תפעול קבועות,Fixed operational costs
+FORGOT_PASSWORD$DESCRIPTION,UI,"אנא הכנס את כתובת הדוא""ל שלך, ואנחנו נשלח לך דוא""ל לאיפוס סיסמה.","Please enter your email address, and we'll send you a password reset email."
+FORGOT_PASSWORD$RESET_PASSWORD,UI,לאפס את הסיסמה,Reset password
+FORGOT_PASSWORD$TITLE,UI,שכחת את הסיסמא?,Forgot password?
+GDPR$ARTICLE,UI,מאמר,Article
+GDPR$ARTICLE_COLON,UI,מאמר:,Article:
+GDPR$ARTICLES,UI,מאמרים,Articles
+GDPR$ARTICLES_COLON,UI,מאמרים:,Articles:
+GDPR$ARTICLES_NUMBER,UI,מספר מאמרים:,Articles number:
+GDPR$ARTICLES_PROCESSED,UI,מאמרים שעובדו:,Articles processed:
+GDPR$CHAPTER,UI,פרק,Chapter
+GDPR$CHAPTER_COLON,UI,פרק:,Chapter:
+GDPR$COMPLIANCE,UI,הענות,Compliance
+GDPR$COMPLIANCE_COLON,UI,הענות:,Compliance:
+GDPR$COMPLIANCE_LOG,UI,יומן תאימות ל- GDPR,GDPR Compliance log
+GDPR$DOCUMENT_TYPE,UI,סוג מסמך,Document type
+GDPR$EDIT_COMPLIANCE,UI,ערוך תאימות,Edit compliance
+GDPR$EDIT_DOCUMENT,UI,ערוך מסמך,Edit document
+GDPR$EVIDENCE_DOCUMENTS,UI,מסמכי עדויות GDPR,GDPR Evidence documents
+GDPR$FILES_NUMBER,UI,מספר קבצים:,Files number:
+GDPR$GDPR,UI,גרהפר,GDPR
+GDPR$NO_DOCUMENTS,UI,אין עדיין מסמכים שנוספו,There is no added documents yet
+GDPR$ORGANIZATION_COMPLIANCE,UI,עמידה בארגון GDPR,GDPR Organization compliance
+GDPR$PARAGRAPH,UI,פסקה,Paragraph
+GDPR$PARAGRAPH_COLON,UI,פסקה:,Paragraph:
+GDPR$QUESTIONS_ANSWERED,UI,שאלות שנענו,Questions answered
+GDPR$QUESTIONS_APPLIED,UI,שאלות שהוחלו,Questions applied
+GDPR$SEARCH_BY_ARTICLE,UI,חיפוש לפי מאמר,Search by article
+GDPR$SECTION,UI,מדור,Section
+GDPR$SYSTEM_COMPLIANCE,UI,תאימות מערכת GDPR,GDPR System compliance
+GDPR$SYSTEM_COMPLIANCE_DRILLDOWN,UI,פירוט תואם של GDPR למערכת {0},GDPR Compliance drilldown for {0} system
+GDPR$SYSTEM_COMPLIANCE_LOG,UI,יומן תאימות של GDPR למערכת {0},GDPR Compliance log for {0} system
+GDPR$TEMPLATE,UI,תבנית,Template
+GLOBALS$ADD,UI,הוסף,Add
+GLOBALS$ADVANCED_SEARCH,UI,חיפוש מתקדם,Advanced search
+GLOBALS$AGREE,UI,מסכים,Agree
+GLOBALS$ALL_ITEMS,UI,כל הפריטים,All items
+GLOBALS$APPLY,UI,להגיש מועמדות,Apply
+GLOBALS$BACK,UI,חזור,Back
+GLOBALS$CANCEL,UI,בטל,Cancel
+GLOBALS$CHANGE_LANGUAGE,UI,שנה שפה,Change language
+GLOBALS$CLOSE,UI,סגור,Close
+GLOBALS$CODE,UI,קוד,Code
+GLOBALS$CODE_REQUIRED,UI,קוד נדרש,Code is required
+GLOBALS$COMMENTS,UI,הערות,Comments
+GLOBALS$CREATE,UI,צור,Create
+GLOBALS$CREATED,UI,נוצר,Created
+GLOBALS$CREATED_BY,UI,נוצר על ידי,Created by
+GLOBALS$CREDENTIALS_EXPIRED,UI,אישורים פג,Credentials expired
+GLOBALS$DEFAULT_CONFIRMATION,UI,האם אתה בטוח?,Are you sure?
+GLOBALS$DELETE,UI,מחק,Delete
+GLOBALS$DELETION_CONFIRMATION,UI,למחוק פריט זה?,Delete this item?
+GLOBALS$DESCRIPTION,UI,תיאור,Description
+GLOBALS$DETAILS,UI,פרטים,Details
+GLOBALS$DISAGREE,UI,לא מסכים,Disagree
+GLOBALS$DOCUMENT,UI,מסמך,Document
+GLOBALS$DOCUMENT_COLON,UI,מסמך:,Document:
+GLOBALS$DOCUMENTS,UI,מסמכים,Documents
+GLOBALS$DOCUMENTS_COLON,UI,מסמכים:,Documents:
+GLOBALS$DOCUMENT_UPLOAD,UI,העלאת מסמך,Document upload
+GLOBALS$DOWNLOAD,UI,הורד,Download
+GLOBALS$DOWNLOAD_DATA,UI,הורד נתונים,Download data
+GLOBALS$DOWNLOAD_TEMPLATE,UI,הורד תבנית,Download template
+GLOBALS$DRILLDOWN,UI,תרגיל,Drilldown
+GLOBALS$EDIT,UI,ערוך,Edit
+GLOBALS$END_DATE,UI,תאריך סיום,End date
+GLOBALS$ERROR,UI,שגיאה,Error
+GLOBALS$INFOSEC_FOCAL_PERSON,UI,אדם מוקד לאבטחת מידע,Infosec Focal Person
+GLOBALS$LIST,UI,רשימה,List
+GLOBALS$LOADING,UI,טעינה...,Loading...
+GLOBALS$LOG,UI,יומן,Log
+GLOBALS$NAME,UI,שם,Name
+GLOBALS$NAME_REQUIRED,UI,נדרש שם,Name is required
+GLOBALS$NO_CHANGES,UI,אין שינויים,No changes
+GLOBALS$NO_DATA,UI,אין נתונים,There is no data
+GLOBALS$NO_QUESTIONS_FOUND,UI,לא נמצאו שאלות,No questions found
+GLOBALS$NOTES,UI,הערות,Notes
+GLOBALS$NO_VALUE,UI,אין ערך,No value
+GLOBALS$OWNER,UI,בעלים,Owner
+GLOBALS$OWNER_REQUIRED,UI,בעלים נדרש,Owner is required
+GLOBALS$PASSWORD,UI,סיסמה,Password
+GLOBALS$PASSWORD_INVALID,UI,הסיסמה חייבת להכיל לפחות 8 תו סמל,Password must contain at least 8 symbol character
+GLOBALS$PASSWORD_REQUIRED,UI,דרושה סיסמא,Password is required
+GLOBALS$PERCENTAGE,UI,אחוז,Percentage
+GLOBALS$PERCENTAGE_ERROR,UI,הערך חייב להיות בין 0 ל 100,Value must be between 0 and 100
+GLOBALS$PERCENTAGE_REQUIRED,UI,אחוז נדרש,Percentage is required
+GLOBALS$QUESTIONS,UI,שאלות,Questions
+GLOBALS$RESET,UI,אפס,Reset
+GLOBALS$SAVE,UI,להציל,Save
+GLOBALS$SCHEME,UI,תוכנית,Scheme
+GLOBALS$SEARCH,UI,לחפש,Search
+GLOBALS$SEARCH_BY_NAME,UI,חפש לפי שם,Search by name
+GLOBALS$SETUP,UI,להכין,Setup
+GLOBALS$START_DATE,UI,תאריך התחלה,Start date
+GLOBALS$STATUS,UI,סטטוס,Status
+GLOBALS$STATUS_REQUIRED,UI,נדרש סטטוס,Status is required
+GLOBALS$SUCCESSFUL_DATA_UPDATE,UI,הנתונים עודכנו בהצלחה,Data was successfully updated
+GLOBALS$SUCCESSFUL_FILE_UPLOAD,UI,הקובץ הועלה בהצלחה,File was successfully upload
+GLOBALS$SUCCESSFUL_ITEM_CREATE,UI,הפריט נוצר בהצלחה,Item was successfully created
+GLOBALS$TEMPLATE,UI,תבנית,Template
+GLOBALS$TOGGLE_MENU,UI,החלף תפריט,Toggle menu
+GLOBALS$TOTAL_COSTS,UI,מחיר כולל,Total costs
+GLOBALS$TOTAL_COSTS_COLON,UI,מחיר כולל:,Total costs:
+GLOBALS$UNDER_DEVELOPMENT,UI,פונקציונליות זו נמצאת בפיתוח,This functionality is under development
+GLOBALS$UNSAVED_DATA,UI,נתונים שלא נשמרו,Unsaved data
+GLOBALS$UNSAVED_DATA_MESSAGE,UI,יש לך נתונים שלא נשמרו בדף זה. האם אתה בטוח שברצונך לעזוב את הדף? כל הנתונים שלא נשמרו יאבדו!,You have unsaved data on this page. Are you sure you want to leave the page? All unsaved data will be lost!
+GLOBALS$UPDATED,UI,עודכן,Updated
+GLOBALS$UPDATED_BY,UI,עודכן על ידי,Updated by
+GLOBALS$UPLOAD,UI,העלה,Upload
+GLOBALS$UPLOAD_CSV,UI,העלה CSV,Upload CSV
+GLOBALS$VALUE,UI,ערך,Value
+GLOBALS$VALUE_REQUIRED,UI,נדרש ערך,Value is required
+GLOBALS$VERSION,UI,גרסה,Version
+HOME_PAGE$DESCRIPTION,UI,ניהול סיכוני סייבר ומנוע סיכונים,Cyber Risk Management and Risk Engine
+HOME_PAGE$TITLE,UI,ברוך הבא ל- {0}!,Welcome to {0} !
+IMPORT_AND_EXPORT$BUSINESS_UNITS,UI,יחידות עסקיות יבוא / ייצוא,Business units import/export
+IMPORT_AND_EXPORT$CONTROL_GUIDELINES,UI,הנחיות בקרה על ייבוא ??/ ייצוא,Control guidelines import/export
+IMPORT_AND_EXPORT$DATA_IMPORT,UI,ייבא תאריך,Data import
+IMPORT_AND_EXPORT$GDPR_ARTICLES,UI,יברי / ייצוא מאמרים של GDPR,GDPR Articles import/export
+IMPORT_AND_EXPORT$GDPR_EVIDENCE_ARTICLES,UI,מאמרי ראיות של GDPR יבוא / ייצוא,GDPR Evidence articles import/export
+IMPORT_AND_EXPORT$SCORING_QUESTIONS,UI,ציון שאלות על ייבוא ??/ ייצוא,Scoring questions import/export
+IMPORT_AND_EXPORT$SECURITY_FRAMEWORKS,UI,מסגרות אבטחה יבוא / ייצוא,Security frameworks import/export
+IMPORT_AND_EXPORT$SECURITY_FRAMEWORKS_CHOICE,UI,בחר מסגרת אבטחה,Choose security framework
+IMPORT_AND_EXPORT$SECURITY_REQUIREMENTS,UI,דרישות אבטחה יבוא / ייצוא,Security requirements import/export
+IMPORT_AND_EXPORT$SUBSIDIARY_ORGANIZATIONS,UI,ארגוני בנות מייבאים / מייצאים,Subsidiary organizations import/export
+IMPORT_AND_EXPORT$SYSTEM_RISK,UI,מערכות מסתכנות ביבוא / ייצוא,Systems risk import/export
+IMPORT_AND_EXPORT$TITLE,UI,יבוא ויצוא,Import/Export
+IMPORT_AND_EXPORT$VENDORS,UI,ספקים מייבאים / מייצאים,Vendors import/export
+!LANGUAGE$CODE,UI,eng,eng
+!LANGUAGE$DIRECTION,UI,כיוון שפה,ltr
+!LANGUAGE$ENUM,UI,אנגלית,ENGLISH
+!LANGUAGE$SELF_NAME,UI,אנגלית,English
+MENU$ADMINISTRATION,UI,מינהל,Administration
+MENU$CYBER_BUDGET,UI,תקציב סייבר,Cyber budget
+MENU$DASHBOARDS,UI,לוח מחוונים,Dashboards
+MENU$GDPR_ARTICLES,UI,מאמרי GDPR,GDPR Articles
+MENU$GDPR_DOCUMENTS_MAPPING,UI,מיפוי מסמכי GDPR,GDPR Documents Mapping
+MENU$GDPR_EVIDENCE_DOCUMENTS,UI,מסמכי ראיות,Evidence documents
+MENU$GDPR_ORGANIZATION_COMPLIANCE,UI,תאימות לארגון,Organization compliance
+MENU$GDPR_SYSTEM_COMPLIANCE,UI,תאימות מערכת,System compliance
+MENU$HOME_PAGE,UI,דף הבית,Home page
+MENU$PRIVACY_IMPACT_ASSESSMENT,UI,הערכת השפעת פרטיות,Privacy impact assessment
+MENU$RISK_METRICS,UI,מדדי סיכון,Risk metrics
+MENU$SECURITY_ASSESSMENTS,UI,הערכות אבטחה,Security assessments
+MENU$SETTINGS,UI,הגדרות,Settings
+MENU$SYSTEMS_RISK,UI,סיכון מערכת,System risk
+MENU$VENDOR_MANAGEMENT,UI,ניהול ספקים,Vendor management
+METRIC_FORMULA$ADD_OPERATION,UI,הוסף פעולה '{operation}',Add '{operation}' operation
+METRIC_FORMULA$ADD_VARIABLE,UI,הוסף משתנה '{משתנה},Add '{variable}' variable
+METRIC_FORMULA$EDIT_DIALOG_TITLE,UI,ערוך פריט ערכי,Edit metric item
+METRIC_FORMULA$FORMULA,UI,פורמולה,Formula
+METRIC_FORMULA$FORMULA_ITEMS_REQUIRED,UI,יש להגדיר לפחות פריט נוסחה אחד,At least one formula item should be defined
+METRIC_FORMULA$METRIC_FORMULA,UI,נוסחה מטרית,Metric formula
+METRIC_FORMULA$MOVE_BACKWARD,UI,לנוע אחורה,Move backward
+METRIC_FORMULA$MOVE_FORWARD,UI,להתקדם,Move forward
+METRIC_FORMULA$OPERATION,UI,מבצע,Operation
+METRIC_FORMULA$OPERATION_REQUIRED,UI,פעולה נדרשת,Operation is required
+METRIC_FORMULA$OPERATIONS,UI,פעולות,Operations
+METRIC_FORMULA$VARIABLES,UI,משתנים,Variables
+METRIC_FORMULA$VARIABLE_TYPE,UI,סוג משתנה,Variable type
+METRIC_FORMULA$VARIABLE_TYPE_REQUIRED,UI,נדרש סוג משתנה,Variable type is required
+ORGANIZATION$ADDRESS_1,UI,כתובת ג „–1,Address ג„–1
+ORGANIZATION$ADDRESS_2,UI,כתובת ג „–2,Address ג„–2
+ORGANIZATION$ANNUAL_REVENUE,UI,הכנסה שנתית,Annual revenue
+ORGANIZATION$CITY,UI,עיר,City
+ORGANIZATION_CONTROL_TEST_RESULTS$CONTROL_TEST_RESULT,UI,בקרת תוצאות הבדיקה,Control test result
+ORGANIZATION_CONTROL_TEST_RESULTS$EDIT_RESULT,UI,ערוך את תוצאות בדיקת הבקרה,Edit control test result
+ORGANIZATION_CONTROL_TEST_RESULTS$TITLE,UI,תוצאות בדיקת בקרת הארגון,Organization control test results
+ORGANIZATION$COUNTRY,UI,מדינה,Country
+ORGANIZATION$CURRENCY,UI,מטבע,Currency
+ORGANIZATION$DESCRIPTION,UI,תיאור,Description
+ORGANIZATION$LANGUAGE,UI,שפה,Language
+ORGANIZATION$MARKET_CAPITALIZATION,UI,שווי שוק,Market capitalization
+ORGANIZATION$NAME,UI,שם,Name
+ORGANIZATION$PHONE_NUMBER,UI,מספר טלפון,Phone number
+ORGANIZATION$PUBLIC_COMPANY,UI,חברה ציבורית,Public company
+ORGANIZATION_RISK_SCORING$TITLE,UI,ציון סיכון בארגון,Organization risk scoring
+ORGANIZATION$RISK_THRESHOLD,UI,סף סיכון,Risk threshold
+ORGANIZATION$SITE,UI,כתובת אתר,Website URL
+ORGANIZATION$STATE,UI,מדינה,State
+ORGANIZATION$SUPPORTED_LANGUAGES,UI,שפות נתמכות,Supported languages
+ORGANIZATION$TAX_ID,UI,מספר זהות לצורך מס,TAX ID
+ORGANIZATION$TITLE,UI,ארגון,Organization
+ORGANIZATION$VAT,UI,"מספר מע""מ",VAT number
+ORGANIZATION$ZIP,UI,מיקוד,ZIP or Postal Code
+PAGINATION$CURRENT_PAGE,UI,העמוד הנוכחי,Current page
+PAGINATION$FIRST_PAGE,UI,עמוד ראשון,First page
+PAGINATION$LAST_PAGE,UI,עמוד אחרון,Last page
+PAGINATION$NEXT_PAGE,UI,עמוד הבא,Next page
+PAGINATION$PAGES_LABEL,UI,דף {0} מ- {1},Page {0} from {1}
+PAGINATION$PREVIOUS_PAGE,UI,עמוד קודם,Previous page
+PAGINATION$SIZE,UI,גודל,Size
+PAGINATION$TOTAL_PAGES,UI,"סה""כ עמודים",Total pages
+POLICY_MANAGEMENT$ANNUAL_REVIEW,UI,סקירה שנתית,Annual review
+POLICY_MANAGEMENT$ANNUAL_REVIEW_DATE,UI,תאריך הסקירה השנתי,Annual review date
+POLICY_MANAGEMENT$APPROVAL,UI,הסכמה,Approval
+POLICY_MANAGEMENT$APPROVED,UI,אושר,Approved
+POLICY_MANAGEMENT$APPROVED_BY,UI,אשר על ידי,Approve by
+POLICY_MANAGEMENT$CREATE_POLICY,UI,צור מדיניות,Create policy
+POLICY_MANAGEMENT$EDIT_POLICY,UI,ערוך מדיניות,Edit policy
+POLICY_MANAGEMENT$GDPR_ARTICLES,UI,מאמרי GDPR,GDPR articles
+POLICY_MANAGEMENT$POLICY,UI,מדיניות,Policy
+POLICY_MANAGEMENT$TITLE,UI,ניהול מדיניות,Policy management
+PROCESSES$BUSINESS_UNIT_OWNS,UI,היחידה העסקית מחזיקה בבעלותה,Business unit owns
+PROCESSES$CREATE_PROCESS,UI,צור תהליך,Create process
+PROCESSES$EDIT_PROCESS,UI,ערוך את התהליך,Edit process
+PROCESSES$PROCESS,UI,תהליך,Process
+PROCESSES$REVENUE_PROCESSED,UI,הכנסות מעובדות,Revenue processed
+PROCESSES$SEARCH_BY_PROCESS,UI,חיפוש לפי תהליך,Search by process
+PROCESSES$TITLE,UI,תהליכים,Processes
+PROCESSES$USES_BUSINESS_UNITS,UI,משתמש ביחידות עסקיות,Uses business units
+PROFILE$PROFILE,UI,פרופיל,Profile
+PROFILE$TITLE,UI,ערוך פרופיל,Edit profile
+REASSIGN$REASSIGN,UI,הקצה מחדש,Reassign
+REASSIGN$REASSIGN_OWNER,UI,הקצה מחדש את הבעלים,Reassign owner
+REASSIGN$REASSIGN_QUESTIONS,UI,הקצה מחדש שאלות,Reassign questions
+REGULATORY_EXPOSURES$ORGANIZATION_REVENUE,UI,הכנסות הארגון,Organization revenue
+REGULATORY_EXPOSURES$TITLE,UI,חשיפות רגולטוריות,Regulatory exposures
+RISK_METRICS$CREATE_METRIC,UI,צור מדד סיכון,Create risk metric
+RISK_METRICS$EDIT_METRIC,UI,ערוך מדד סיכון,Edit risk metric
+RISK_METRICS$IS_RESIDUAL,UI,השתמש בערך כסיכון מובנה,Use metric as Inherent Risk
+RISK_METRICS$RISK_METRIC,UI,מדד סיכון,Risk metric
+RISK_METRICS$TITLE,UI,מדדי סיכון,Risk metrics
+RISK_MODEL$CHANGE_MODEL,UI,שנה מודל,Change model
+RISK_MODEL$DIALOG_TITLE,UI,בחר דגם,Select model
+RISK_MODEL$TITLE,UI,מודל סיכון,Risk model
+SCORING_METRICS$CREATE_METRIC,UI,צור ערך ניקוד,Create scoring metric
+SCORING_METRICS$EDIT_METRIC,UI,ערוך מדד ניקוד,Edit scoring metric
+SCORING_METRICS$METRIC_DOMAIN,UI,תחום מטרי,Metric domain
+SCORING_METRICS$METRIC_DOMAIN_REQUIRED,UI,תחום מטרי נדרש,Metric domain is required
+SCORING_METRICS$METRIC_REQUIRED,UI,נדרש מטרי,Metric is required
+SCORING_METRICS$SCORING_METRIC,UI,ציון מדד,Scoring metric
+SCORING_METRICS$TITLE,UI,ציון מדדים,Scoring metrics
+SCORING_QUESTIONS$ALLOW_TEXT_AS_ANSWER,UI,אפשר טקסט כתשובה,Allow Text As Answer
+SCORING_QUESTIONS$ALLOW_UPLOAD_AS_ANSWER,UI,העלה תשובות,Upload answers
+SCORING_QUESTIONS$ALL_VENDORS_AND_SYSTEMS,UI,כל הספקים / המערכות,All vendors/systems
+SCORING_QUESTIONS$ANSWER,UI,תשובה,Answer
+SCORING_QUESTIONS$ANSWER_REQUIRED,UI,תשובה נדרשת,Answer is required
+SCORING_QUESTIONS$ANSWERS,UI,תשובות,Answers
+SCORING_QUESTIONS$ANSWER_TEXT,UI,טקסט תשובה,Answer text
+SCORING_QUESTIONS$ANSWER_WEIGHT,UI,תשובה במשקל,Answer weight
+SCORING_QUESTIONS$APPLIES_ONLY_FOR,UI,חל רק עבור,Applies only for:
+SCORING_QUESTIONS$BRANCHING_LOGIC,UI,היגיון הסתעפות,Branching logic
+SCORING_QUESTIONS$CREATE_QUESTION,UI,ליצור תשובה,Create question
+SCORING_QUESTIONS$DOWNLOAD_ANSWERS_AS_CSV,UI,הורד תשובות כ- CSV,Download answers as CSV
+SCORING_QUESTIONS$EDIT_QUESTION,UI,ערוך שאלה,Edit question
+SCORING_QUESTIONS$INTERNAL,UI,פנימי,Internal
+SCORING_QUESTIONS$QUESTION,UI,שאלה,Question
+SCORING_QUESTIONS$QUESTION_REQUIRED,UI,השאלה נדרשת,Question is required
+SCORING_QUESTIONS$QUESTION_TYPE,UI,סוג שאלה,Question type
+SCORING_QUESTIONS$QUESTION_WEIGHT,UI,משקל שאלה,Question weight
+SCORING_QUESTIONS$QUESTION_WEIGHT_REQUIRED,UI,משקל השאלה נדרש,Question weight is required
+SCORING_QUESTIONS$SCORING_TYPE,UI,סוג ניקוד,Scoring type
+SCORING_QUESTIONS$SCORING_TYPE_REQUIRED,UI,נדרש סוג ניקוד,Scoring type is required
+SCORING_QUESTIONS$SELECT_ANSWER,UI,בחר תשובה,Select answer
+SCORING_QUESTIONS$TITLE,UI,ציון שאלות,Scoring questions
+SECURITY_FRAMEWORKS$CREATE_FRAMEWORK,UI,צור מסגרת,Create framework
+SECURITY_FRAMEWORKS$EDIT_FRAMEWORK,UI,ערוך מסגרת,Edit framework
+SECURITY_FRAMEWORKS$SECURITY_FRAMEWORK,UI,מסגרת אבטחה,Security framework
+SECURITY_FRAMEWORKS$SECURITY_FRAMEWORK_REQUIRED,UI,נדרשת מסגרת אבטחה,Security framework is required
+SECURITY_FRAMEWORKS$TITLE,UI,מסגרות אבטחה,Security frameworks
+SECURITY_REQUIREMENTS$ADD_FRAMEWORK,UI,הוסף מסגרת אבטחה,Add security framework
+SECURITY_REQUIREMENTS$ALL_REQUIREMENTS,UI,כל הדרישות,All requirements
+SECURITY_REQUIREMENTS$CONTROL_TESTING_PROCEDURE,UI,הליך בדיקת בקרה מפורט,Detailed control testing procedure
+SECURITY_REQUIREMENTS$CREATE_REQUIREMENT,UI,צור דרישה,Create requirement
+SECURITY_REQUIREMENTS$EDIT_REQUIREMENT,UI,ערוך דרישה,Edit requirement
+SECURITY_REQUIREMENTS$FRAMEWORK_MAPPING,UI,מיפוי מסגרת,Framework mapping
+SECURITY_REQUIREMENTS$PROGRAM_AREA,UI,אזור התוכנית,Program Area
+SECURITY_REQUIREMENTS$RISK_STATEMENTS,UI,דוגמאות להצהרת סיכונים,Risk statement examples
+SECURITY_REQUIREMENTS$SEARCH_BY_CODE,UI,חפש לפי קוד,Search by code
+SECURITY_REQUIREMENTS$SEARCH_BY_REQUIREMENT,UI,חיפוש לפי דרישה,Search by requirement
+SECURITY_REQUIREMENTS$SECURITY_CONTROL_FAMILY,UI,משפחת בקרת ביטחון,Security control family
+SECURITY_REQUIREMENTS$SECURITY_CONTROL_NAME,UI,שם בקרת אבטחה,Security control name
+SECURITY_REQUIREMENTS$SECURITY_REQUIREMENT,UI,דרישת אבטחה,Security requirement
+SECURITY_REQUIREMENTS$SECURITY_REQUIREMENT_COLON,UI,דרישת אבטחה:,Security requirement:
+SECURITY_REQUIREMENTS$TITLE,UI,דרישות אבטחה,Security requirements
+SECURITY_TOOLS$CREATE_TOOL,UI,צור כלי אבטחה,Create security tool
+SECURITY_TOOLS$EDIT_TOOL,UI,ערוך את כלי האבטחה,Edit security tool
+SECURITY_TOOLS$RISK_REDUCTION,UI,הפחתת סיכון,Risk reduction
+SECURITY_TOOLS$RISK_REDUCTION_PERCENTAGES,UI,"הפחתת סיכון, %","Risk reduction, %"
+SECURITY_TOOLS$SEARCH_BY_SECURITY_TOOL,UI,חיפוש לפי כלי אבטחה,Search by security tool
+SECURITY_TOOLS$SECURITY_TOOL,UI,כלי אבטחה,Security tool
+SECURITY_TOOLS$SECURITY_TOOL_REQUIRED,UI,נדרש כלי אבטחה,Security tool is required
+SECURITY_TOOLS$TITLE,UI,כלי אבטחה,Security tools
+SECURITY_TOOLS$TOOL_PRICE,UI,מחיר כלי,Tool price
+SETTINGS$TITLE,UI,הגדרות,Settings
+SIGN_UP$DESCRIPTION,UI,"מצטערים, אך פונקציונליות זו אינה זמינה כרגע ...","Sorry, but this functionality currently unavailable..."
+SUBSIDIARY_ORGANIZATIONS$CREATE_SUBSIDIARY,UI,צור חברה בת,Create subsidiary
+SUBSIDIARY_ORGANIZATIONS$EDIT_SUBSIDIARY,UI,ערוך חברת בת,Edit subsidiary
+SUBSIDIARY_ORGANIZATIONS$PARENT,UI,הורה,
+SUBSIDIARY_ORGANIZATIONS$SUBSIDIARY,UI,ארגוני בת,Subsidiary
+SUBSIDIARY_ORGANIZATIONS$TITLE,UI,ארגוני בת,Subsidiary organizations
+SYSTEM_CONTROL_TEST_RESULTS$CONTROL_TEST_RESULT,UI,תוצאת בדיקת בקרת המערכת,System control test result
+SYSTEM_CONTROL_TEST_RESULTS$DRILLDOWN,UI,בדיקת תוצאות בדיקת בקרת מערכת עבור מערכת {0},System control test results drilldown for {0} system
+SYSTEM_CONTROL_TEST_RESULTS$EDIT_RESULT,UI,ערוך את תוצאות בדיקת בקרת המערכת,Edit system control test result
+SYSTEM_CONTROL_TEST_RESULTS$TITLE,UI,תוצאות בדיקת בקרת מערכת,System control test results
+SYSTEM_RISK_REDUCTION$TITLE,UI,הפחתת סיכוני מערכת,System risk reduction
+SYSTEMS$ALL_SYSTEMS,UI,כל המערכות,All systems
+SYSTEMS$CREATE_SYSTEM,UI,צור מערכת,Create system
+SYSTEMS$CYBER_SECURITY_TOOLS,UI,כלי אבטחת סייבר,Cyber security tools
+SYSTEMS$EDIT_SYSTEM,UI,ערוך מערכת,Edit system
+SYSTEMS$IS_ETL,UI,האם ETL?,Is ETL?
+SYSTEMS$M_AND_A_ASSET,UI,M & A נכס,M & A asset
+SYSTEMS$RECORDS_PROCESSED,UI,רשומות שעובדו,Records Processed
+SYSTEMS$RPO,UI,מטרת נקודת התאוששות,RPO
+SYSTEMS$RTO,UI,יעד התאוששות,RTO
+SYSTEMS$SEARCH_BY_SYSTEM,UI,חיפוש לפי מערכת,Search by system
+SYSTEMS$SYSTEM,UI,מערכת,System
+SYSTEMS$TITLE,UI,מערכות,Systems
+TASKS$ACTUAL_END_DATE,UI,תאריך סיום בפועל,Actual end date
+TASKS$ACTUAL_END_DATE_COLON,UI,תאריך סיום בפועל:,Actual end date:
+TASKS$ACTUAL_START_DATE,UI,תאריך התחלה בפועל,Actual start date
+TASKS$ACTUAL_START_DATE_COLON,UI,תאריך התחלה בפועל:,Actual start date:
+TASKS$ASSIGNEE,UI,מקבל המשימה,Task assignee
+TASKS$CATEGORY,UI,קטגוריית המשימות,Task category
+TASKS$CATEGORY_PLACEHOLDER,UI,צור / בחר קטגוריה,Create/select category
+TASKS$CREATE_TASK,UI,צור משימה,Create task
+TASKS$EDIT_TASK,UI,ערוך משימה,Edit task
+TASKS$ESTIMATED_END_DATE,UI,תאריך סיום משוער,Estimated end date
+TASKS$ESTIMATED_END_DATE_COLON,UI,תאריך סיום משוער:,Estimated end date:
+TASKS$ESTIMATED_HOURS,UI,שעות משוערות,Estimated hours
+TASKS$ESTIMATED_HOURS_COLON,UI,שעות משוערות:,Estimated hours:
+TASKS$ESTIMATED_START_DATE,UI,תאריך התחלה משוער,Estimated start date
+TASKS$ESTIMATED_START_DATE_COLON,UI,תאריך התחלה משוער:,Estimated start date:
+TASKS$MANAGER,UI,מנהל משימות,Task manager
+TASKS$PRIORITY,UI,עדיפות,Priority
+TASKS$PROJECT,UI,פרויקט,Project
+TASKS$PROJECT_PLACEHOLDER,UI,צור / בחר פרויקט,Create/select project
+TASKS$STATUS_PERCENTAGES,UI,"סטטוס,%","Status, %"
+TASKS$TASK,UI,משימה,Task
+TASKS$TASK_REQUIRED,UI,המשימה נדרשת,Task is required
+TASKS$TITLE,UI,משימות,Tasks
+TECHNOLOGIES$CREATE_TECHNOLOGY,UI,צור טכנולוגיה,Create technology
+TECHNOLOGIES$EDIT_TECHNOLOGY,UI,ערוך טכנולוגיה,Edit technology
+TECHNOLOGIES$TECHNOLOGY,UI,טכנולוגיה,Technology
+TECHNOLOGIES$TITLE,UI,טכנולוגיות,Technologies
+TECHNOLOGY_CATEGORIES$CREATE_TECHNOLOGY_CATEGORY,UI,צור קטגוריית טכנולוגיה,Create technology category
+TECHNOLOGY_CATEGORIES$EDIT_TECHNOLOGY_CATEGORY,UI,ערוך קטגוריית טכנולוגיה,Edit technology category
+TECHNOLOGY_CATEGORIES$TECHNOLOGY_CATEGORY,UI,קטגוריה טכנולוגית,Technology category
+TECHNOLOGY_CATEGORIES$TECHNOLOGY_CATEGORY_REQUIRED,UI,נדרשת קטגוריית טכנולוגיה,Technology category is required
+TECHNOLOGY_CATEGORIES$TITLE,UI,קטגוריות טכנולוגיות,Technology categories
+USERS$CONFIRM_RESET_PASSWORD,UI,אשר את סיסמת האיפוס,Confirm reset password
+USERS$CORPORATE_PHONE,UI,טלפון ארגוני,Corporate phone
+USERS$CREATE_USER,UI,צור משתמש,Create user
+USERS$CREDENTIALS_EXPIRATION_DATE,UI,תאריך תפוגה של אישורים,Credentials expiration date
+USERS$CREDENTIALS_EXPIRATION_DATE_HELP_TEXT,UI,תאריך פג תוקף האישורים,Date when credentials will expire
+USERS$EDIT_USER,UI,ערוך משתמש,Edit user
+USERS$EMAIL,UI,אימייל,Email
+USERS$EMAIL_COLON,UI,אימייל:,Email:
+USERS$EMAIL_INVALID,UI,"כתובת דוא""ל לא חוקית",Invalid email address
+USERS$EMAIL_REQUIRED,UI,"נדרש דוא""ל",Email is required
+USERS$ENABLED,UI,מופעל,Enabled
+USERS$ENABLE_USER,UI,אפשר משתמש,Enable user
+USER_SETTINGS$EDIT_SETTINGS,UI,ערוך את הגדרות המשתמש,Edit user settings
+USER_SETTINGS$EMPLOYMENT_TYPE,UI,סוג העסקה,Employment type
+USER_SETTINGS$EMPLOYMENT_TYPE_REQUIRED,UI,סוג התעסוקה נדרש,Employment type is required
+USER_SETTINGS$NAME,UI,שם,Name:
+USER_SETTINGS$RATE,UI,ציון,Rate
+USER_SETTINGS$RATE_COLON,UI,ציון:,Rate:
+USER_SETTINGS$RATES,UI,שיעורי משתמשים,User rates
+USER_SETTINGS$RATE_TYPE,UI,סוג הדירוג,Rate type
+USER_SETTINGS$RATE_TYPE_COLON,UI,סוג הדירוג:,Rate type:
+USER_SETTINGS$TITLE,UI,הגדרות משתמש,User settings
+USERS$EXPIRATION_DATE,UI,תאריך תפוגה,Expiration date
+USERS$EXPIRATION_DATE_HELP_TEXT,UI,תאריך תפוג החשבון,Date when account will expire
+USERS$EXPIRED_USER,UI,משתמש שפג תוקפו,Expired user
+USERS$EXPIRED_USER_CREDENTIALS,UI,תעודות משתמש שפג תוקפן,Expired user credentials
+USERS$FIRST_NAME,UI,שם פרטי,First name
+USERS$FIRST_NAME_REQUIRED,UI,נדרש שם פרטי,First name is required
+USERS$LAST_NAME,UI,שם משפחה,Last name
+USERS$LOCK_USER,UI,נעילת משתמש,Lock user
+USERS$MOBILE_PHONE,UI,טלפון נייד,Mobile phone
+USERS$RESET_PASSWORD_MESSAGE,UI,"איפוס סיסמת משתמש - נקה הפעלות משתמש קיימות ושלח דוא""ל לשינוי סיסמה. שימו לב - כל קריאה של סיסמת איפוס עושה זאת שוב. ולבטל דוא""ל קודם.",Resetting user password - clear existing user sessions and send email to change password. Please note - each call of reset password do it again. And invalidate previous email.
+USERS$ROLE,UI,תפקיד,Role
+USERS$ROLES,UI,תפקידים,Roles
+USERS$ROLES_COLON,UI,תפקידים:,Roles:
+USERS$ROLES_REQUIRED,UI,יש להגדיר תפקיד אחד לפחות,At least one role should be defined
+USERS$SEARCH_BY_EMAIL,UI,חפש במייל,Search by email
+USERS$SEARCH_BY_FIRST_NAME,UI,חפש לפי שם פרטי,Search by first name
+USERS$SEARCH_BY_LAST_NAME,UI,חפש לפי שם משפחה,Search by last name
+USERS$SEARCH_BY_NAME_OR_EMAIL,UI,חפש לפי שם או אימייל,Search by name or email
+USERS$SUCCESSFUL_RESET_PASSWORD,UI,"הסיסמה שלך אופסה בהצלחה. דוא""ל נשלח לדוא""ל:",Your password has been successfully reset. Email has been sent to the email:
+USERS$TITLE,UI,משתמשים,Users
+USERS$TITLE_FIELD,UI,כותרת,Title
+USERS$USER,UI,משתמש,User
+USERS$USER_REQUIRED,UI,המשתמש נדרש,User is required
+VARIABLE_COSTS$COST_TYPE,UI,סוג עלות,Cost type
+VARIABLE_COSTS$COST_TYPE_REQUIRED,UI,סוג עלות נדרש,Cost type is required
+VARIABLE_COSTS$CREATE_COST,UI,צור עלות משתנה,Create variable cost
+VARIABLE_COSTS$EDIT_COST,UI,ערוך עלות משתנה,Edit variable cost
+VARIABLE_COSTS$EQUIPMENT_COST,UI,עלות ציוד,Equipment cost
+VARIABLE_COSTS$PERSONNEL_COST,UI,עלות כוח אדם,Personnel cost
+VARIABLE_COSTS$TITLE,UI,עלויות משתנים,Variable costs
+VENDORS$ALL_VENDORS,UI,כל הספקים,All vendors
+VENDORS$CLOUD_VENDOR,UI,מוכר ענן,Cloud vendor
+VENDORS$CREATE_VENDOR,UI,צור ספק,Create vendor
+VENDORS$EDIT_VENDOR,UI,ערוך ספק,Edit vendor
+VENDORS$INDUSTRY,UI,תעשיה,Industry
+VENDORS$INTERNAL_QUESTIONS,UI,שאלות ברמה 2,Level 2 Questions
+VENDORS$SCORING_QUESTIONS,UI,שאלות ברמה 1,Level 1 Questions
+VENDORS$SEARCH_BY_VENDOR,UI,חיפוש לפי ספק,Search by vendor
+VENDORS$SERVICE_VENDOR,UI,ספק שירות,Service vendor
+VENDORS$SYSTEM_VENDOR,UI,ספק מערכת,System vendor
+VENDORS$TECHNOLOGY_VENDOR,UI,ספק טכנולוגיה,Technology vendor
+VENDORS$TITLE,UI,פגיעויות,Vendors
+VENDORS$VENDOR,UI,צור פגיעות,Vendor
+VENDORS$VENDOR_COLON,UI,צור פגיעות:,Vendor:
+VENDORS$VENDOR_TYPE,UI,סוג ספק,Vendor type
+VULNERABILITIES$CREATE_VULNERABILITY,UI,צור פגיעות,Create vulnerability
+VULNERABILITIES$EDIT_VULNERABILITY,UI,ערוך פגיעות,Edit vulnerability
+VULNERABILITIES$SCORE,UI,ציון,Score
+VULNERABILITIES$TITLE,UI,פגיעויות,Vulnerabilities
+VULNERABILITIES$VULNERABILITY,UI,פגיעויות,Vulnerability
+WELCOME$DESCRIPTION,UI,אל תהסס להצטרף אלינו,Feel free join to us!
+WELCOME$TITLE,UI,נחמד לראות אותך כאן,It's nice to see you here!
+CONTROL_MATURITIES$TITLE,UI,"Control maturities","Control maturities"
+CONTROL_MATURITIES$WEIGHT,UI,"Weight, %","Weight, %"
+CONTROL_MATURITIES$CONTROL_MATURITY,UI,"Control maturity","Control maturity"
+CONTROL_MATURITIES$CREATE_MATURITY,UI,"Create control maturity","Create control maturity"
+CONTROL_MATURITIES$EDIT_MATURITY,UI,"Edit control maturity","Edit control maturity"
+CONTROL_MATURITIES$CONTROL_MATURITY_REQUIRED,UI,"Control maturity is required","Control maturity is required"

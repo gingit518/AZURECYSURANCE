@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0389.organization_cyber_info" author="Eugene A. Kalosha">
+		<sql>
+			ALTER TABLE organizations ADD COLUMN maximum_written_premium double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN ransomware_sublimit double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN privacy_gdpr_sublimit double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN privacy_ccpa_sublimit double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN ddos_sublimit double precision DEFAULT NULL;
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

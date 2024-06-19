@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0405.policy_reviews" author="Eugene A. Kalosha">
+		<sql>
+			CREATE TABLE policy_reviews
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				policy_id integer DEFAULT NULL,
+				notes text DEFAULT NULL,
+				reviewer_id integer DEFAULT NULL,
+				review_type integer DEFAULT NULL,
+				review_year integer DEFAULT NULL,
+				review_month integer DEFAULT NULL,
+				review_day integer DEFAULT NULL,
+				review_date timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_policy_reviews PRIMARY KEY (id)
+				, CONSTRAINT fk_policy_reviews_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_policy_reviews_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_policy_reviews_to_users_reviewer FOREIGN KEY (reviewer_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_policy_reviews_organization ON policy_reviews (organization_id);
+			CREATE INDEX i_policy_reviews_policy ON policy_reviews (policy_id, review_date);
+			CREATE INDEX i_policy_reviews_policy_review_date ON policy_reviews (policy_id);
+			CREATE INDEX i_policy_reviews_reviewer ON policy_reviews (reviewer_id);
+		</sql>
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS policy_reviews;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0215.assessment_types_and_gdpr_articles_to_policies" author="Daniel A. Kolesnik">
+
+		<sql>
+			CREATE TABLE assessment_types_to_policies
+			(
+				id serial,
+				assessment_type_id integer NOT NULL,
+				policy_id integer DEFAULT NULL,
+				CONSTRAINT pk_assessment_types_to_policies PRIMARY KEY (id)
+				, CONSTRAINT fk_assessment_types_to_policies_to_assessment_types FOREIGN KEY (assessment_type_id) REFERENCES assessment_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessment_types_to_policies_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessment_types_to_policies_assessment_type ON assessment_types_to_policies (assessment_type_id);
+			CREATE INDEX i_assessment_types_to_policies_policy ON assessment_types_to_policies (policy_id);
+
+
+			CREATE TABLE gdpr_articles_to_policies
+			(
+				id serial,
+				gdpr_article_id integer NOT NULL,
+				policy_id integer DEFAULT NULL,
+				CONSTRAINT pk_gdpr_articles_to_policies PRIMARY KEY (id)
+				, CONSTRAINT fk_gdpr_articles_to_policies_to_gdpr_article FOREIGN KEY (gdpr_article_id) REFERENCES gdpr_article (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_gdpr_articles_to_policies_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_gdpr_articles_to_policies_gdpr_article ON gdpr_articles_to_policies (gdpr_article_id);
+			CREATE INDEX i_gdpr_articles_to_policies_policy ON gdpr_articles_to_policies (policy_id);
+
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE assessment_types_to_policies;
+				DROP TABLE gdpr_articles_to_policies;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

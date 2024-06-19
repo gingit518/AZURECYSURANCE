@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<ruleset name="whizbang PMD ruleset"
+	xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+	<description>
+		This ruleset defines the PMD rules. See
+		https://pmd.github.io/pmd-6.42.0/pmd_rules_java_bestpractices.html
+	</description>
+
+	<rule
+		ref="category/java/bestpractices.xml/AbstractClassWithoutAbstractMethod" />
+	<rule
+		ref="category/java/bestpractices.xml/AccessorClassGeneration" />
+	<rule ref="category/java/bestpractices.xml/ArrayIsStoredDirectly" />
+	<rule
+		ref="category/java/bestpractices.xml/AvoidMessageDigestField" />
+	<rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace" />
+	<rule
+		ref="category/java/bestpractices.xml/AvoidReassigningCatchVariables" />
+	<rule
+		ref="category/java/bestpractices.xml/AvoidReassigningLoopVariables" />
+	<rule
+		ref="category/java/bestpractices.xml/AvoidReassigningParameters" />
+	<rule ref="category/java/bestpractices.xml/AvoidStringBufferField" />
+	<rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP" />
+	<rule ref="category/java/bestpractices.xml/CheckResultSet" />
+	<rule ref="category/java/bestpractices.xml/ConstantsInInterface" />
+	<rule
+		ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitchStmt" />
+	<rule
+		ref="category/java/bestpractices.xml/DoubleBraceInitialization" />
+	<rule ref="category/java/bestpractices.xml/ForLoopCanBeForeach" />
+	<rule ref="category/java/bestpractices.xml/ForLoopVariableCount" />
+	<rule ref="category/java/bestpractices.xml/GuardLogStatement" />
+	<rule
+		ref="category/java/bestpractices.xml/JUnit5TestShouldBePackagePrivate" />
+	<rule
+		ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage" />
+	<rule
+		ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert" />
+	<rule
+		ref="category/java/bestpractices.xml/LiteralsFirstInComparisons" />
+	<rule ref="category/java/bestpractices.xml/LooseCoupling" />
+	<rule
+		ref="category/java/bestpractices.xml/MethodReturnsInternalArray" />
+	<rule ref="category/java/bestpractices.xml/MissingOverride" />
+	<rule ref="category/java/bestpractices.xml/OneDeclarationPerLine" />
+	<rule ref="category/java/bestpractices.xml/PreserveStackTrace" />
+	<rule
+		ref="category/java/bestpractices.xml/PrimitiveWrapperInstantiation" />
+	<rule
+		ref="category/java/bestpractices.xml/ReplaceEnumerationWithIterator" />
+	<rule
+		ref="category/java/bestpractices.xml/ReplaceHashtableWithMap" />
+	<rule ref="category/java/bestpractices.xml/ReplaceVectorWithList" />
+	<rule
+		ref="category/java/bestpractices.xml/SimplifiableTestAssertion" />
+	<rule
+		ref="category/java/bestpractices.xml/SwitchStmtsShouldHaveDefault" />
+	<rule ref="category/java/bestpractices.xml/SystemPrintln" />
+	<rule ref="category/java/bestpractices.xml/UnusedAssignment" />
+	<rule ref="category/java/bestpractices.xml/UnusedFormalParameter" />
+	<rule ref="category/java/bestpractices.xml/UnusedLocalVariable" />
+	<rule ref="category/java/bestpractices.xml/UnusedPrivateField" />
+	<rule ref="category/java/bestpractices.xml/UnusedPrivateMethod" />
+	<rule ref="category/java/bestpractices.xml/UseCollectionIsEmpty" />
+	<rule ref="category/java/bestpractices.xml/UseStandardCharsets" />
+	<rule ref="category/java/bestpractices.xml/UseTryWithResources" />
+	<rule ref="category/java/bestpractices.xml/UseVarargs" />
+	<rule
+		ref="category/java/bestpractices.xml/WhileLoopWithLiteralBoolean" />
+
+	<rule ref="category/java/codestyle.xml/AvoidDollarSigns" />
+	<rule
+		ref="category/java/codestyle.xml/AvoidProtectedFieldInFinalClass" />
+	<rule
+		ref="category/java/codestyle.xml/AvoidProtectedMethodInFinalClassNotExtending" />
+	<rule ref="category/java/codestyle.xml/AvoidUsingNativeCode" />
+	<rule ref="category/java/codestyle.xml/BooleanGetMethodName" />
+	<rule ref="category/java/codestyle.xml/CallSuperInConstructor" />
+	<rule ref="category/java/codestyle.xml/ClassNamingConventions" />
+	<rule ref="category/java/codestyle.xml/ConfusingTernary" />
+	<rule ref="category/java/codestyle.xml/ControlStatementBraces" />
+	<rule
+		ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract" />
+	<rule ref="category/java/codestyle.xml/ExtendsObject" />
+	<rule
+		ref="category/java/codestyle.xml/FieldDeclarationsShouldBeAtStartOfClass" />
+	<rule ref="category/java/codestyle.xml/FieldNamingConventions" />
+	<rule
+		ref="category/java/codestyle.xml/FinalParameterInAbstractMethod" />
+	<rule ref="category/java/codestyle.xml/ForLoopShouldBeWhileLoop" />
+	<rule
+		ref="category/java/codestyle.xml/FormalParameterNamingConventions" />
+	<rule ref="category/java/codestyle.xml/GenericsNaming" />
+	<rule ref="category/java/codestyle.xml/IdenticalCatchBranches" />
+	<rule ref="category/java/codestyle.xml/LocalVariableCouldBeFinal" />
+	<rule
+		ref="category/java/codestyle.xml/LocalVariableNamingConventions" />
+	<rule ref="category/java/codestyle.xml/MethodNamingConventions" />
+	<rule ref="category/java/codestyle.xml/NoPackage" />
+	<rule ref="category/java/codestyle.xml/PackageCase" />
+	<rule ref="category/java/codestyle.xml/UnnecessaryCast" />
+	<rule ref="category/java/codestyle.xml/UnnecessaryConstructor" />
+	<rule
+		ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
+	<rule ref="category/java/codestyle.xml/UnnecessaryImport" />
+	<rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
+	<rule ref="category/java/codestyle.xml/UselessParentheses" />
+
+	<rule
+		ref="category/java/errorprone.xml/AvoidBranchingStatementAsLastInLoop" />
+	<rule
+		ref="category/java/errorprone.xml/AvoidDecimalLiteralsInBigDecimalConstructor" />
+	<rule
+		ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators" />
+	<rule ref="category/java/errorprone.xml/AvoidUsingOctalValues" />
+	<rule ref="category/java/errorprone.xml/BrokenNullCheck" />
+</ruleset>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0368.assessments" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE assessments ADD COLUMN estimated_start_date timestamp without time zone DEFAULT NULL;
+			ALTER TABLE assessments ADD COLUMN actual_start_date timestamp without time zone DEFAULT NULL;
+			ALTER TABLE assessments ADD COLUMN estimated_end_date timestamp without time zone DEFAULT NULL;
+			ALTER TABLE assessments ADD COLUMN actual_end_date timestamp without time zone DEFAULT NULL;
+
+			CREATE INDEX i_assessments_estimated_start_date ON assessments (estimated_start_date);
+			CREATE INDEX i_assessments_estimated_end_date ON assessments (estimated_end_date);
+			CREATE INDEX i_assessments_actual_start_date ON assessments (actual_start_date);
+			CREATE INDEX i_assessments_actual_end_date ON assessments (actual_end_date);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE permissions DROP COLUMN estimated_start_date;
+				ALTER TABLE permissions DROP COLUMN actual_start_date;
+				ALTER TABLE permissions DROP COLUMN estimated_end_date;
+				ALTER TABLE permissions DROP COLUMN actual_end_date;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

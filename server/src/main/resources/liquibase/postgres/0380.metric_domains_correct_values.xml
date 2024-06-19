@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0380.metric_domains_correct_values" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			UPDATE metric_domains SET name='FFIEC CAT Inherent Risk', code='ffiec_cat_inherent_risk' where id=9;
+			UPDATE metric_domains SET name='FFIEC CAT Cyber Org Maturity Level', code='ffiec_cat_cyber_org_maturity' where id=10;
+
+			UPDATE variable_types SET name='FFIEC_CAT_INHERENT_RISK' where id=21;
+			UPDATE variable_types SET name='FFIEC_CAT_CYBER_ORG_MATURITY' where id=22;
+
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

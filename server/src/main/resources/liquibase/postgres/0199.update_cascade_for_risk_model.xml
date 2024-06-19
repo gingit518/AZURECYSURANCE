@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0199.update_cascade_for_risk_model" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE associate_model_quals DROP CONSTRAINT fk_associate_model_quals_to_associate_model,
+			ADD CONSTRAINT fk_associate_model_quals_to_associate_model FOREIGN KEY (associate_model_id) REFERENCES public.associate_models (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE associate_model_quals DROP CONSTRAINT fk_associate_model_quals_to_qual,
+			ADD CONSTRAINT fk_associate_model_quals_to_qual FOREIGN KEY (qual_id) REFERENCES public.qual_metrics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE associate_model_quants DROP CONSTRAINT fk_associate_model_quants_to_associate_model,
+			ADD CONSTRAINT fk_associate_model_quants_to_associate_model FOREIGN KEY (associate_model_id) REFERENCES public.associate_models (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE associate_model_quants DROP CONSTRAINT fk_associate_model_quants_to_quant,
+			ADD CONSTRAINT fk_associate_model_quants_to_quant FOREIGN KEY (quant_id) REFERENCES public.quants (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE associate_models DROP CONSTRAINT fk_associate_models_to_risk_model,
+			ADD CONSTRAINT fk_associate_models_to_risk_model FOREIGN KEY (risk_model_id) REFERENCES public.risk_models (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE cybersecurity_tool_to_quant_metric DROP CONSTRAINT fk_cybersecurity_tool_to_quant_metric_to_quant_metric,
+			ADD CONSTRAINT fk_cybersecurity_tool_to_quant_metric_to_quant_metric FOREIGN KEY (quant_metric_id) REFERENCES public.quant_metrics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE metric_formula_items DROP CONSTRAINT fk_metric_formula_items_to_quant_metric,
+			ADD CONSTRAINT fk_metric_formula_items_to_quant_metric FOREIGN KEY (quant_metric_id)
+			REFERENCES public.quant_metrics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE metric_variables DROP CONSTRAINT fk_metric_variables_to_quant_metric,
+			ADD CONSTRAINT fk_metric_variables_to_quant_metric FOREIGN KEY (quant_metric_id)
+			REFERENCES public.quant_metrics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE qualitative_question_answers DROP CONSTRAINT fk_qualitative_question_answers_to_question,
+			ADD CONSTRAINT fk_qualitative_question_answers_to_question FOREIGN KEY (question_id)
+			REFERENCES public.qualitative_questions (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE question_answers_to_systems DROP CONSTRAINT fk_question_answers_to_systems_to_answer,
+			ADD CONSTRAINT fk_question_answers_to_systems_to_answer FOREIGN KEY (answer_id)
+			REFERENCES public.qualitative_question_answers (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE question_answers_to_systems DROP CONSTRAINT fk_question_answers_to_systems_to_question,
+			ADD CONSTRAINT fk_question_answers_to_systems_to_question FOREIGN KEY (question_id)
+			REFERENCES public.qualitative_questions (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE question_answers_to_vendors DROP CONSTRAINT fk_question_answers_to_vendors_to_answer,
+			ADD CONSTRAINT fk_question_answers_to_vendors_to_answer FOREIGN KEY (answer_id)
+			REFERENCES public.qualitative_question_answers (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE question_answers_to_vendors DROP CONSTRAINT fk_question_answers_to_vendors_to_question,
+			ADD CONSTRAINT fk_question_answers_to_vendors_to_question FOREIGN KEY (question_id)
+			REFERENCES public.qualitative_questions (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE question_branching_logic DROP CONSTRAINT fk_question_branching_logic_to_answer,
+			ADD CONSTRAINT fk_question_branching_logic_to_answer FOREIGN KEY (answer_id)
+			REFERENCES public.qualitative_question_answers (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE question_branching_logic DROP CONSTRAINT fk_question_branching_logic_to_original_question,
+			ADD CONSTRAINT fk_question_branching_logic_to_original_question FOREIGN KEY (original_question_id)
+			REFERENCES public.qualitative_questions (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE question_branching_logic DROP CONSTRAINT fk_question_branching_logic_to_question,
+			ADD CONSTRAINT fk_question_branching_logic_to_question FOREIGN KEY (question_id)
+			REFERENCES public.qualitative_questions (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE questions_to_risk_types DROP CONSTRAINT fk_questions_to_risk_types_to_question,
+			ADD CONSTRAINT fk_questions_to_risk_types_to_question FOREIGN KEY (question_id)
+			REFERENCES public.qualitative_questions (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE questions_to_systems DROP CONSTRAINT fk_questions_to_systems_to_question,
+			ADD CONSTRAINT fk_questions_to_systems_to_question FOREIGN KEY (question_id)
+			REFERENCES public.qualitative_questions (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE questions_to_vendors DROP CONSTRAINT fk_questions_to_vendors_to_question,
+			ADD CONSTRAINT fk_questions_to_vendors_to_question FOREIGN KEY (question_id)
+			REFERENCES public.qualitative_questions (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE risk_model_domains DROP CONSTRAINT fk_risk_model_domains_to_risk_models,
+			ADD CONSTRAINT fk_risk_model_domains_to_risk_models FOREIGN KEY (risk_model_id)
+			REFERENCES public.risk_models (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE risk_types DROP CONSTRAINT fk_risk_types_to_category_domains,
+			ADD CONSTRAINT fk_risk_types_to_category_domains FOREIGN KEY (category_domain_id)
+			REFERENCES public.category_domains (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

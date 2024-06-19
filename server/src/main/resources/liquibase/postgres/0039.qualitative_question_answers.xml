@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0039-qualification-question-answers" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE qualitative_question_answers
+			(
+				id serial,
+				question_id integer NOT NULL,
+				weight_id integer NOT NULL,
+				answer text NOT NULL DEFAULT '',
+				ordinal integer DEFAULT 0,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_qualitative_question_answers PRIMARY KEY (id)
+				, CONSTRAINT fk_qualitative_question_answers_to_question FOREIGN KEY (question_id) REFERENCES qualitative_questions (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_qualitative_question_answers_to_weight FOREIGN KEY (weight_id) REFERENCES answer_weights (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_qualitative_question_answers_question ON qualitative_question_answers (question_id);
+			CREATE INDEX i_qualitative_question_answers_weight ON qualitative_question_answers (weight_id);
+			CREATE INDEX i_qualitative_question_answers_created_bat ON qualitative_question_answers (created_at);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="qualitative_question_answers"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0042-metric-domains" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE metric_domains
+			(
+				id serial,
+				code character varying (64) NOT NULL,
+				name character varying (128) DEFAULT NULL,
+				description character varying (255) DEFAULT NULL,
+				CONSTRAINT pk_metric_domains PRIMARY KEY (id)
+			);
+			CREATE INDEX i_metric_domains_code ON metric_domains (code);
+			CREATE INDEX i_metric_domains_name ON metric_domains (name);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="metric_domains"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

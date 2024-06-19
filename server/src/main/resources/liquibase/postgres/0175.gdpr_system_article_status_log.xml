@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0175.gdpr_system_article_status_log" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE gdpr_system_article_status_log
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				system_id integer NOT NULL,
+				article_id integer NOT NULL,
+				paragraph_id integer DEFAULT NULL,
+				owner_id integer DEFAULT NULL,
+				compliance double precision,
+				compliance_metric double precision DEFAULT NULL,
+				due_date timestamp without time zone NOT NULL DEFAULT now(),
+				comments text,
+				document_link text,
+				document_file_type character varying DEFAULT NULL,
+				document_file_name character varying DEFAULT NULL,
+				document_file_size double precision,
+				CONSTRAINT pk_gdpr_system_article_status_log PRIMARY KEY (id)
+				, CONSTRAINT fk_gdpr_system_article_status_log_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_gdpr_system_article_status_log_to_article FOREIGN KEY (article_id) REFERENCES gdpr_article (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_gdpr_system_article_status_log_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_gdpr_system_article_status_log_to_system ON gdpr_system_article_status_log (system_id);
+			CREATE INDEX i_gdpr_system_article_status_log_to_article ON gdpr_system_article_status_log (article_id);
+			CREATE INDEX i_gdpr_system_article_status_log_to_organization ON gdpr_system_article_status_log (organization_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROM TABLE gdpr_system_article_status_log;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

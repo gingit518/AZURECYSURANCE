@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0418.organization_insurance_info" author="Eugene A. Kalosha">
+		<sql>
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS total_head_count integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS company_it_budget double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS it_head_count integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS security_head_count integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS it_security_budget double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS inhouse_data_centers_count integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS external_data_centers_count integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS personally_identifiable_information integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS payment_card_industry double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS protected_health_information double precision DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS powerbi_capacity_expiration_date timestamp without time zone DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS powerbi_capacity_status character varying (24) DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS powerbi_capacity_name character varying (127) DEFAULT NULL;
+
+			CREATE TABLE organization_business_critical_applications
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				system_id integer DEFAULT NULL,
+				CONSTRAINT pk_organization_business_critical_applications PRIMARY KEY (id)
+				, CONSTRAINT fk_organization_business_critical_applications_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_organization_business_critical_applications_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_organization_business_critical_applications_organization ON organization_business_critical_applications (organization_id);
+			CREATE INDEX i_organization_business_critical_applications_system ON organization_business_critical_applications (system_id);
+
+			CREATE TABLE organization_outsourced_critical_providers
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				vendor_id integer DEFAULT NULL,
+				CONSTRAINT pk_organization_outsourced_critical_providers PRIMARY KEY (id)
+				, CONSTRAINT fk_organization_outsourced_critical_providers_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_organization_outsourced_critical_providers_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_organization_outsourced_critical_providers_organization ON organization_outsourced_critical_providers (organization_id);
+			CREATE INDEX i_organization_outsourced_critical_providers_vendor ON organization_outsourced_critical_providers (vendor_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN IF EXISTS total_head_count;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS company_it_budget;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS it_head_count;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS security_head_count;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS it_security_budget;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS inhouse_data_centers_count;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS external_data_centers_count;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS personally_identifiable_information;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS payment_card_industry;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS protected_health_information;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS powerbi_capacity_expiration_date;
+				DROP TABLE organization_business_critical_applications;
+				DROP TABLE organization_outsourced_critical_providers;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

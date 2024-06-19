@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0213.alter_metric_formula_items_operation" author="Eugene A. Kalosha">
+		<sql>
+			ALTER TYPE VariableOperation RENAME TO VariableOperation__;
+			CREATE TYPE VariableOperation as ENUM ('PLUS', 'MINUS', 'MULTIPLY', 'DIVIDE', 'OPEN_BRACKET', 'CLOSE_BRACKET', 'MIN', 'MAX', 'COMMA', 'NONE');
+			ALTER TABLE metric_variables ALTER COLUMN operation_before type VariableOperation using operation_before::text::VariableOperation;
+			ALTER TABLE metric_variables ALTER COLUMN operation_after type VariableOperation using operation_after::text::VariableOperation;
+			ALTER TABLE metric_formula_items ALTER COLUMN operation type VariableOperation using operation::text::VariableOperation;
+			DROP TYPE VariableOperation__;
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

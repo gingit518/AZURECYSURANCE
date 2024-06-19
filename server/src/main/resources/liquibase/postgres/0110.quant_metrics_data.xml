@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0110-quant-metrics-data" author="Eugene A. Kalosha">
+
+		<sql>
+			DELETE FROM quant_metrics;
+			INSERT INTO quant_metrics (id, risk_model_id, name, quant_id, created_by_id, updated_by_id) VALUES
+			(101, 101, 'Process - Revenue by Process', 102, 161, 161)
+			, (102, 101, 'Org - Revenue', 103, 161, 161)
+			, (103, 101, 'System - Number of Records Processed', 101, 161, 161)
+			;
+
+			ALTER SEQUENCE quant_metrics_id_seq RESTART WITH 104;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM quant_metrics;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

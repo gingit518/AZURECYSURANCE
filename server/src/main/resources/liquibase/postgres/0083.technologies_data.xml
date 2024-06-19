@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0083_technologies_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO technologies (id, organization_id, technology_category_id, name, description, created_by_id, updated_by_id) VALUES
+			  (101, 105, 101, 'Dell', 'Dell', 161, 161)
+			, (102, 105, 102, 'SAP Financials', 'SAP Financials', 161, 161)
+			, (103, 105, 103, 'MQSeries', 'MQSeries', 161, 161)
+			, (104, 105, 103, 'Mule', 'Mule', 161, 161)
+			, (105, 105, 104, 'Cobalt Qube 3', 'Cobalt Qube 3', 161, 161)
+			, (106, 105, 105, 'F5 Firewall', 'F5 Firewall', 161, 161)
+			, (107, 105, 106, 'Oracle', 'Oracle', 161, 161)
+			, (108, 105, 106, 'SQL Server', 'SQL Server', 161, 161)
+			, (109, 105, 106, 'MySQL', 'MySQL', 161, 161)
+			, (110, 105, 107, 'iPhone', 'iPhone', 161, 161)
+			, (111, 105, 107, 'Android - Samsung', 'Android - Samsung', 161, 161)
+			, (112, 105, 108, 'AWS', 'AWS', 161, 161)
+			, (113, 105, 108, 'Azure', 'Azure', 161, 161)
+			, (114, 105, 108, 'Google Cloud', 'Google Cloud', 161, 161)
+			, (115, 105, 109, 'Peoplesoft', 'Peoplesoft', 161, 161)
+			, (116, 105, 110, 'Compaq', 'Compaq', 161, 161)
+			;
+
+			ALTER SEQUENCE technologies_id_seq RESTART WITH 1024;
+
+
+			INSERT INTO technology_to_system (technology_id, system_id) VALUES
+			  (116, 1001)
+			, (102, 1002)
+			, (107, 1003)
+			, (107, 1004)
+			, (109, 1005)
+			, (106, 1006)
+			, (113, 1007)
+			, (103, 1008)
+			, (109, 1009)
+			, (112, 1010)
+			;
+
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

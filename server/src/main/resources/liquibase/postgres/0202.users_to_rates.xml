@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0202.users_to_rates" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TYPE UserEmploymentType as ENUM ('EMPLOYEE', 'CONTRACTOR');
+			CREATE TYPE RateType as ENUM ('HOURLY', 'DAILY', 'WEEKLY', 'MONTHLY', 'ANNUAL');
+
+			CREATE TABLE user_rates
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				user_id integer DEFAULT NULL,
+				rate_type RateType DEFAULT NULL,
+				rate float DEFAULT NULL,
+				currency_id integer DEFAULT NULL,
+				start_date timestamp without time zone DEFAULT NULL,
+				end_date timestamp without time zone DEFAULT NULL,
+				CONSTRAINT pk_user_rates PRIMARY KEY (id)
+				, CONSTRAINT fk_user_rates_to_user FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_user_rates_to_currency FOREIGN KEY (currency_id) REFERENCES currencies (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_user_rates_organization ON user_rates (organization_id);
+			CREATE INDEX i_user_rates_user ON user_rates (user_id);
+			CREATE INDEX i_user_rates_currency ON user_rates (currency_id);
+			CREATE INDEX i_user_rates_start ON user_rates (start_date);
+			CREATE INDEX i_user_rates_end ON user_rates (end_date);
+
+			ALTER TABLE users ADD COLUMN user_employment_type UserEmploymentType DEFAULT NULL;
+			CREATE INDEX i_user_organization_employment_type ON users (organization_id, user_employment_type);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE user_rates;
+				ALTER TABLE users DROP COLUMN user_employment_type;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

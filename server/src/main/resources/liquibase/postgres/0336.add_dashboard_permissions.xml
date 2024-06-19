@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0336.add_dashboard_permissions" author="Andrii Iakovenko">
+		<insert tableName="permissions">
+        	<column  name="name"  value="dashboard_cfo_crown_jewel_asset"/>
+        	<column  name="description"  value="CFO Crown Jewel Asset Dashboard"/>
+    	</insert>
+    	<insert tableName="permissions">
+        	<column  name="name"  value="dashboard_cfo_cybersecurity_tool_roi"/>
+        	<column  name="description"  value="Cybersecurity tool ROI Dashboard"/>
+    	</insert>
+    	<insert tableName="permissions">
+        	<column  name="name"  value="dashboard_cfo_m_and_a"/>
+        	<column  name="description"  value="M and A Dashboard"/>
+    	</insert>
+    	<insert tableName="permissions">
+        	<column  name="name"  value="dashboard_cfo_organization"/>
+        	<column  name="description"  value="Organization Dashboard"/>
+    	</insert>
+    	<insert tableName="permissions">
+        	<column  name="name"  value="dashboard_cfo_vendor"/>
+        	<column  name="description"  value="Vendor Dashboard"/>
+    	</insert>
+
+		<rollback>
+			<delete tableName="permissions">
+				<where>name IN ('dashboard_cfo_crown_jewel_asset', 'dashboard_cfo_cybersecurity_tool_roi', 'dashboard_cfo_m_and_a', 'dashboard_cfo_organization', 'dashboard_cfo_vendor')</where>
+			</delete>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0240.risk_metrics_is_residual" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE risk_metrics ADD COLUMN is_residual boolean NOT NULL DEFAULT false;
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				ALTER TABLE risk_metrics DROP COLUMN IF EXISTS is_residual;
+
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

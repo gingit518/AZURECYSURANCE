@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0326.system_constraints_update" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE assessment_to_system DROP CONSTRAINT fk_assessment_to_system_to_system,
+			ADD CONSTRAINT fk_assessment_to_system_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE cybersecurity_tool_to_system DROP CONSTRAINT fk_cybersecurity_tool_to_system_to_system,
+			ADD CONSTRAINT fk_cybersecurity_tool_to_system_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE process_to_system DROP CONSTRAINT fk_process_to_system_to_system,
+			ADD CONSTRAINT fk_process_to_system_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE question_answers_to_systems DROP CONSTRAINT fk_question_answers_to_systems_to_system,
+			ADD CONSTRAINT fk_question_answers_to_systems_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE questions_to_systems DROP CONSTRAINT fk_questions_to_systems_to_system,
+			ADD CONSTRAINT fk_questions_to_systems_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE system_to_data_type DROP CONSTRAINT fk_system_to_data_type_to_system,
+			ADD CONSTRAINT fk_system_to_data_type_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE system_tool_risk_reduction DROP CONSTRAINT fk_system_tool_risk_reduction_to_system,
+			ADD CONSTRAINT fk_system_tool_risk_reduction_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			ALTER TABLE user_assigned_systems DROP CONSTRAINT fk_user_assigned_systems_to_system,
+			ADD CONSTRAINT fk_user_assigned_systems_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

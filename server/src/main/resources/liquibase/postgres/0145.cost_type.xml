@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0145-cost_types" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE cost_types
+			(
+				id serial,
+				name character varying (127) NOT NULL,
+				description text DEFAULT NULL,
+				CONSTRAINT pk_cost_types PRIMARY KEY (id)
+			);
+			CREATE INDEX i_cost_types_name ON cost_types (name);
+
+			INSERT INTO cost_types (id, name, description) VALUES
+			  (1, 'Vulnerability', '')
+			, (2, 'Security Finding', '')
+			, (3, 'Incident', '')
+			;
+
+			ALTER SEQUENCE cost_types_id_seq RESTART WITH 4;
+		</sql>
+
+		<rollback>
+			<dropTable tableName="cost_types"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

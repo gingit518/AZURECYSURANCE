@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0351.data_type_class_add_owner_reference" author="Oleksandr Serozhenko">
+		<sql>
+			alter table data_type_classifications add column owner_id integer default null ;
+			alter table data_type_classifications add CONSTRAINT fk_data_type_classifications_to_owner FOREIGN KEY
+			(owner_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+		</sql>
+		<rollback>
+			ALTER TABLE data_type_classifications DROP COLUMN owner_id;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

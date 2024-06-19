@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0241.vulnerabilities" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TYPE VulnerabilityStatus as ENUM ('OPEN', 'CLOSED');
+
+			CREATE TABLE vulnerabilities
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying (127) DEFAULT NULL,
+				status VulnerabilityStatus DEFAULT NULL,
+				percentage float DEFAULT NULL,
+				score float DEFAULT NULL,
+				version character varying (255) DEFAULT NULL,
+				description text DEFAULT NULL,
+
+				CONSTRAINT pk_vulnerabilities PRIMARY KEY (id)
+				, CONSTRAINT fk_vulnerabilities_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_vulnerabilities_organization ON vulnerabilities (organization_id);
+			CREATE INDEX i_vulnerabilities_organization_name ON vulnerabilities (organization_id, name);
+			CREATE INDEX i_vulnerabilities_name ON vulnerabilities (name);
+
+			CREATE TABLE vulnerability_to_technology_category
+			(
+				id serial,
+				vulnerability_id integer NOT NULL,
+				technology_category_id integer NOT NULL,
+				CONSTRAINT pk_vulnerability_to_tech_category PRIMARY KEY (id)
+				, CONSTRAINT fk_vulnerability_to_tech_category_to_tech_category FOREIGN KEY (technology_category_id) REFERENCES technology_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_vulnerability_to_tech_category_vulnerability ON vulnerability_to_technology_category (vulnerability_id);
+			CREATE INDEX i_vulnerability_to_tech_category_tech_category ON vulnerability_to_technology_category (technology_category_id);
+
+			CREATE TABLE vulnerability_to_technology
+			(
+				id serial,
+				vulnerability_id integer NOT NULL,
+				technology_id integer NOT NULL,
+				CONSTRAINT pk_vulnerability_to_technology PRIMARY KEY (id)
+				, CONSTRAINT fk_vulnerability_to_technology_to_technology FOREIGN KEY (technology_id) REFERENCES technologies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_vulnerability_to_technology_vulnerability ON vulnerability_to_technology (vulnerability_id);
+			CREATE INDEX i_vulnerability_to_technology_technology ON vulnerability_to_technology (technology_id);
+
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE vulnerabilities;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0030-qual-metrics-values" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO qual_metrics (id, name, description, risk_model_id, ordinal, created_by_id, updated_by_id) VALUES
+			(101, 'Likelihood', 'Probability an attack will cause damage.', 101, 1, 161, 161)
+			, (102, 'Impact', 'The extent an attack will cause damage.', 101, 2, 161, 161)
+			, (103, 'Amplified Reputation', 'The increase in risk based on reputational factors.', 101, 3, 161, 161)
+			, (104, 'Amplified Operational', 'The increase in risk based on operational factors.', 101, 4, 161, 161)
+			, (105, 'Amplified Legal', 'The increase in risk based on legal factors.', 101, 5, 161, 161)
+			;
+
+			ALTER SEQUENCE qual_metrics_id_seq RESTART WITH 108;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM qual_metrics;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

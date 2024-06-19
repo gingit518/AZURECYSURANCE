@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0400.quant_metrics_variables" author="Eugene A. Kalosha">
+
+		<sql>
+
+			INSERT INTO variable_types (id, code, name, relation) VALUES
+			(24, 'EBIDTA', 'EBIDTA', 'QUANT_METRIC')
+			, (25, 'DEBT', 'Debt', 'QUANT_METRIC')
+			, (26, 'PENSION_DEBT', 'Pension Debt', 'QUANT_METRIC')
+			, (27, 'GROSS_RISK_BEARING_CAPACITY', 'Gross Risk Bearing Capacity', 'QUANT_METRIC')
+			, (28, 'REVENUE', 'Revenue', 'QUANT_METRIC')
+			ON CONFLICT (id) DO UPDATE SET code = excluded.code, name = excluded.name, relation = excluded.relation;;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

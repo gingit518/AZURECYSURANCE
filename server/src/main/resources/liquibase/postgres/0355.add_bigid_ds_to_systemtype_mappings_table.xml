@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0355.add_bigid_ds_to_systemtype_mappings_table" author="Oleksandr Serozhenko">
+		<sql>
+			CREATE TABLE bigid_dstype_system_type_mappings (
+			id serial,
+			bigid_datasource_type character varying (255) NOT NULL,
+			system_type systemtype default null,
+			CONSTRAINT pk_bigid_dstype_system_type_mappings PRIMARY KEY (id)
+			);
+
+			CREATE UNIQUE INDEX ui_bigid_dstype_system_type_mappings_on_bigid_datasource_type ON
+			bigid_dstype_system_type_mappings (bigid_datasource_type);
+		</sql>
+		<rollback>
+			drop table if exists bigid_dstype_system_type_mappings
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

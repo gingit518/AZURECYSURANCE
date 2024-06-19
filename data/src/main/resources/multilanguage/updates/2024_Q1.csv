@@ -1,0 +1,19 @@
+Constant,Scope,Value,Default Value,Language
+ORGANIZATION$CYBER_RISK_TOLERANCE,UI,Cyber Risk Tolerance,Cyber Risk Tolerance
+TECHNOLOGY_CATEGORIES$TECHNOLOGY_SUBCATEGORY,UI,Technology Sub Category,Technology Sub Category
+TECHNOLOGY_CATEGORIES$TECHNOLOGY_CLASS_TYPE,UI,Technology Class Type,Technology Class Type
+TECHNOLOGY$OPERATION_SYSTEM,UI,Operation System,Operation System
+TECHNOLOGY$VERSION_NUMBER,UI,Version Number,Version Number
+TECHNOLOGY$SERIAL_NUMBER,UI,Serial Number,Serial Number
+TECHNOLOGY$END_OF_LIFE,UI,End of Life,End of Life
+TECHNOLOGY$WARRANTY_EXPIRATION,UI,Warranty Expiration,Warranty Expiration
+TECHNOLOGY$ASSET_NAME,UI,Asset Name,Asset Name
+TECHNOLOGY$IP_ADDRESS,UI,IP Address,IP Address
+TECHNOLOGY$ASSET_DOMAIN_FUNCTION,UI,Asset Domain Function,Asset Domain Function
+TECHNOLOGY$DISCOVERY_SOURCE,UI,Discovery Source,Discovery Source
+TECHNOLOGY$DEVICE_ID,UI,Device Id,Device Id
+TECHNOLOGY$HARDWARE_SUBSTATUS,UI,Hardware Substatus,Hardware Substatus
+TECHNOLOGY$OWNER_TYPE,UI,Owner Type,Owner Type
+TECHNOLOGY$LOCATION,UI,Location,Location
+TECHNOLOGY_ASSETS$SUMMARY,UI,Asset Summary,Asset Summary
+DASHBOARDS$ORGANIZATION$CYBER_EXPOSURES$QUANT_SCORES$REGULATORY_EXPOSURE_HEADER,SERVER,Regulatory Exposure,Regulatory Exposure

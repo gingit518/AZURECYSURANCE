@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0316.organization_synchronization_external_log" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE organization_synchronization_external_log
+			(
+				id serial NOT NULL,
+				organization_id integer NOT NULL,
+				integration_type character varying (8) NOT NULL,
+				object_type character varying (16) NOT NULL,
+				external_id character varying (32) NOT NULL,
+				local_id integer NOT NULL,
+				CONSTRAINT pk_organization_synchronization_external_log PRIMARY KEY (id)
+			, CONSTRAINT fk_organization_synchronization_external_log_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_organization_synchronization_external_log_external_item ON organization_synchronization_external_log (organization_id, integration_type, object_type, external_id);
+			CREATE INDEX i_organization_synchronization_external_log_local_item ON organization_synchronization_external_log (organization_id, integration_type, object_type, local_id);
+			CREATE INDEX i_organization_synchronization_external_log_local_items ON organization_synchronization_external_log (organization_id, integration_type, object_type);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE organization_synchronization_external_log;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

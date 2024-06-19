@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0334.assessment_framework_level" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE organizations ADD COLUMN assessment_framework_level integer DEFAULT 0;
+
+			ALTER TABLE security_control_families ADD COLUMN organization_id integer DEFAULT NULL;
+			ALTER TABLE security_control_families ADD CONSTRAINT fk_security_control_families_to_organizations FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+			CREATE TABLE security_requirement_levels
+			(
+				id serial NOT NULL,
+				assessment_framework_level integer NOT NULL,
+				security_requirement_id integer DEFAULT NULL,
+				CONSTRAINT pk_security_requirement_levels PRIMARY KEY (id)
+				, CONSTRAINT fk_security_requirement_levels_to_security_requirements FOREIGN KEY (security_requirement_id) REFERENCES security_requirements (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN assessment_framework_level;
+				DROP TABLE security_requirement_levels;
+				ALTER TABLE security_control_families DROP COLUMN organization_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

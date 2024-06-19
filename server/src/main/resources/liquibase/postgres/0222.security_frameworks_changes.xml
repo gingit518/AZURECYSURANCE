@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0222.security_frameworks_changes" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE control_functions ADD COLUMN code character varying (127) DEFAULT NULL;
+			CREATE INDEX i_control_functions_code_organization ON control_functions (organization_id, code);
+			ALTER TABLE control_functions ALTER COLUMN name SET DATA TYPE character varying (255);
+			ALTER TABLE control_categories ADD COLUMN code character varying (127) DEFAULT NULL;
+			CREATE INDEX i_control_categories_code_organization ON control_categories (organization_id, code);
+			ALTER TABLE control_subcategories ADD COLUMN code character varying (127) DEFAULT NULL;
+			CREATE INDEX i_control_subcategories_code_organization ON control_subcategories (organization_id, code);
+			ALTER TABLE control_subcategories ALTER COLUMN name SET DATA TYPE character varying (255);
+
+			update control_functions set code = name;
+			update control_functions set name = description::varchar(255);
+			update control_categories set code = name;
+			update control_subcategories set code = name;
+
+			ALTER TABLE control_functions ADD COLUMN security_framework_id integer DEFAULT NULL;
+			ALTER TABLE control_functions ADD CONSTRAINT fk_control_functions_to_security_framework FOREIGN KEY (security_framework_id) REFERENCES assessment_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_control_functions_security_framework ON control_functions (security_framework_id);
+			CREATE INDEX i_control_functions_security_framework_organization ON control_functions (security_framework_id, organization_id);
+
+			ALTER TABLE control_categories ADD COLUMN security_framework_id integer DEFAULT NULL;
+			ALTER TABLE control_categories ADD CONSTRAINT fk_control_categories_to_security_framework FOREIGN KEY (security_framework_id) REFERENCES assessment_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_control_categories_security_framework ON control_categories (security_framework_id);
+			CREATE INDEX i_control_categories_security_framework_organization ON control_categories (security_framework_id, organization_id);
+
+			ALTER TABLE control_subcategories ADD COLUMN security_framework_id integer DEFAULT NULL;
+			ALTER TABLE control_subcategories ADD CONSTRAINT fk_control_subcategories_to_security_framework FOREIGN KEY (security_framework_id) REFERENCES assessment_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_control_subcategories_security_framework ON control_subcategories (security_framework_id);
+			CREATE INDEX i_control_subcategories_security_framework_organization ON control_subcategories (security_framework_id, organization_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE control_functions DROP COLUMN security_framework_id;
+				ALTER TABLE control_categories DROP COLUMN security_framework_id;
+				ALTER TABLE control_subcategories DROP COLUMN security_framework_id;
+				ALTER TABLE control_functions DROP COLUMN code;
+				ALTER TABLE control_categories DROP COLUMN code;
+				ALTER TABLE control_subcategories DROP COLUMN code;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor
+QSYS:3,How many users of this system?,5,0-1000 users,2,System,Likelihood,3,YES,The more users the higher the likelihood.,,,NO,NO,NO,NO,YES,NO
+"",,,1001-2000 users,4,,,,,
+"",,,2001-3000 users,6,,,,,
+"",,,3001-4000 users,8,,,,,
+"",,,4001-5000 users,10,,,,,
+"",,,Not answered,10,,,,,
+QSYS:4,What types of users work with this system?,5,Not answered,0,System,Likelihood,4,YES,"Vendors have the highest likelihood, internal employees the least.",,,NO,NO,NO,NO,YES,NO
+"",,,Internal Employees Only,2,,,,,
+"",,,Customers,2,,,,,
+"",,,Internal Employees and Customers,4,,,,,
+"",,,Vendors,6,,,,,
+"",,,Internal Employees and Vendors,8,,,,,
+"",,,Customers and Vendors,8,,,,,
+"",,,"Internal Employees, Customers and Vendors",10,,,,,
+QSYS:6,How do users access the system?,5,Not answered,0,System,Likelihood,6,YES,Secure isolated segments are the most secure and vendor networks are the least secure.,,,NO,NO,NO,NO,YES,NO
+"",,,Located on a secure isolated segment,2,,,,,
+"",,,Located in the corporate DMZ,2,,,,,
+"",,,Located on a corporate network,4,,,,,
+"",,,Located on a customer network,6,,,,,
+"",,,Located on a cloud service,8,,,,,
+"",,,Located on a vendor network,10,,,,,
+QSYS:7,"Is this an off the shelf, customized, or home grown asset?",5,Not answered,0,System,Likelihood,7,YES,"Off the shelf systems have higher risk since their specifications are shared by all customers, home grown have the least risk.",,,NO,NO,NO,NO,YES,NO
+"",,,Home grown asset,2,,,,,
+"",,,Customized off the shelf asset,6,,,,,
+"",,,Off the shelf asset,10,,,,,

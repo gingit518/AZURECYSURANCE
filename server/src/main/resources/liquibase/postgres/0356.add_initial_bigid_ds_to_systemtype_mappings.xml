@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0356.add_initial_bigid_ds_to_systemtype_mappings" author="Oleksandr Serozhenko">
+		<sql>
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('adls-gen2-structured' , 'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('adls-structured'
+			, 'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('athena' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('azure-blob' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('azure-file' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('box' , 'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('cassandra' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('cassandra-v2' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('cims' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('cockroachdb' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('confluence' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('cosmosdb' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('couchbase' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('csv' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('custom-connector' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('databricks' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('datastore' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('documentum' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('dynamodb' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('elasticsearch' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('emr' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('exchange' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('gcp-big-query' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('generic-rest-api' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('generic-rest-api-unstructured' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('github' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('gitlab' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('gmail' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('google-bigtable'
+			, 'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('google-cloud-storage' , 'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('googledrive' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('greenplum' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('hadoop' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('hadoop-hawq' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('hbase' , 'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('hive-jdbc' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('informix' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('jira' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('ldap' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('microsoft-teams'
+			, NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('microstrategy' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('mongodb' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('netezza' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('netsuite' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('nfs' ,
+			'ON_PREMISE');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('o365-onedrive' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('o365-outlook' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('onedrive-personal' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('presto' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('rdb-activedirectory' , 'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-db2' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-db2iseries'
+			, 'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-hana' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-mssql' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-mysql' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-oracle' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-postgresql'
+			, 'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-redshift' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-sybase' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('rdb-teradata' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('redis' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('s3' , 'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('s3-structured' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('salesforce' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('salesforce-marketing-cloud' , 'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('sap' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('sap-successfactors' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('sas' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('servicenow' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('sharefile' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('sharepoint' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values
+			('sharepoint-online' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('slack' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('smb' ,
+			'ON_PREMISE');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('snowflake' ,
+			'CLOUD');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('spanner' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('sparksql' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('tableau' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('vertica' ,
+			'ETL');
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('vsam' , NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('workday' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('yellowbrick' ,
+			NULL);
+			insert into bigid_dstype_system_type_mappings (bigid_datasource_type, system_type) values ('zendesk' ,
+			NULL);
+		</sql>
+		<rollback>
+			truncate bigid_dstype_system_type_mappings
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

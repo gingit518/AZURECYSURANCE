@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0071-process" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE process
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				owner_id integer DEFAULT NULL,
+				revenue_processed float DEFAULT NULL,
+				business_unit_id integer DEFAULT NULL,
+				notes text DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_process PRIMARY KEY (id)
+				, CONSTRAINT fk_process_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_process_to_owner_id FOREIGN KEY (owner_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_process_to_business_unit FOREIGN KEY (business_unit_id) REFERENCES business_units (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_process_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_process_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_process_organization ON process (organization_id);
+			CREATE INDEX i_process_organization_id_name ON process (organization_id, name);
+			CREATE INDEX i_process_name ON process (name);
+			CREATE INDEX i_process_owner ON process (owner_id);
+			CREATE INDEX i_process_business_unit ON process (business_unit_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="process"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

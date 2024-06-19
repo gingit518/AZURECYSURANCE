@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0387.add_uid_feeds" author="Eugene Kalosha">
+		<sql>
+			ALTER TABLE news ADD COLUMN uid character varying (64) DEFAULT NULL;
+			ALTER TABLE webinars ADD COLUMN uid character varying (64) DEFAULT NULL;
+			ALTER TABLE pace_courses ADD COLUMN uid character varying (64) DEFAULT NULL;
+
+			CREATE INDEX i_news_uid ON news (uid);
+			CREATE INDEX i_webinars_uid ON webinars (uid);
+			CREATE INDEX i_pace_courses_uid ON pace_courses (uid);
+		</sql>
+		<rollback>
+			ALTER TABLE news DROP COLUMN uid;
+			ALTER TABLE webinars DROP COLUMN uid;
+			ALTER TABLE pace_courses DROP COLUMN uid;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

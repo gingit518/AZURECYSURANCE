@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0120_quants_gdpr_regulatory" author="Eugene A. Kalosha">
+
+		<sql>
+
+			INSERT INTO quants (id, name, description, ordinal) VALUES
+			(112, 'GDPR Regulatory Exposure', 'GDPR penalties levied against organizations for noncompliance with data security measures.', 13)
+			;
+
+			ALTER SEQUENCE quants_id_seq RESTART WITH 113;
+
+			UPDATE quant_metrics SET quant_id = 112 WHERE id = 102;
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

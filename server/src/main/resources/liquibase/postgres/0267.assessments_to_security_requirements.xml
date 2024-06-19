@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0267.assessments_to_security_requirements" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE assessments_to_security_requirements
+			(
+				id serial,
+				assessment_id integer NOT NULL,
+				security_requirement_id integer DEFAULT NULL,
+
+				CONSTRAINT pk_assessments_to_security_requirements PRIMARY KEY (id)
+				, CONSTRAINT fk_assessments_to_security_requirements_to_assessment FOREIGN KEY (assessment_id) REFERENCES assessments (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessments_to_security_requirements_to_security_requirement FOREIGN KEY (security_requirement_id) REFERENCES security_requirements (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessments_to_security_requirements_assessment ON assessments_to_security_requirements (assessment_id);
+			CREATE INDEX i_assessments_to_security_requirements_security_requirement ON assessments_to_security_requirements (security_requirement_id);
+
+			ALTER TABLE security_requirements DROP COLUMN assessment_id;
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				DROP TABLE IF EXISTS assessments_to_security_requirements;
+
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

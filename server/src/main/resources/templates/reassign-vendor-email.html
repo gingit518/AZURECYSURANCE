@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:remove="all">Template for HTML email for Reassign System</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<p>Hello, <span th:text="${name}"></span>!</p>
+
+	<p>You were assigned as owner/manager of [<span th:text="${vendorName}"></span>] vendor in ValuRisQ Application.</p>
+
+	<p>Please login and fill Vendor/Cloud Scores for <span th:text="${vendorName}"></span> vendor.</p>
+
+	<p>Click <a th:href="${impactLink}">here</a> to fill Vendor IMPACT or copy and paste this URL to browser <span th:text="${impactLink}"></span></p>
+
+	<p>Click <a th:href="${likelihoodLink}">here</a> to fill Vendor LIKELIHOOD or copy and paste this URL to browser <span th:text="${likelihoodLink}"></span></p>
+
+	<p th:if="${isCloudVendor}">Click <a th:href="${cloudImpactLink}">here</a> to fill Cloud IMPACT or copy and paste this URL to browser <span th:text="${cloudImpactLink}"></span></p>
+
+	<p th:if="${isCloudVendor}">Click <a th:href="${cloudLikelihoodLink}">here</a> to fill Cloud LIKELIHOOD or copy and paste this URL to browser <span th:text="${cloudLikelihoodLink}"></span></p>
+
+	<p>
+		Regards, <br />
+		<em>The ValuRisQ Team</em>
+	</p>
+</body>
+</html>

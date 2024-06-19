@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0264.language_constant_scope" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TYPE LanguageConstantScopeType as ENUM ('UI', 'ADMIN', 'SERVER');
+
+			ALTER TABLE language_constants ADD COLUMN scope LanguageConstantScopeType DEFAULT NULL;
+
+			CREATE INDEX i_language_constants_scope ON language_constants (scope);
+		</sql>
+
+		<rollback>
+			<sql>
+
+				ALTER TABLE language_constants DROP COLUMN scope;
+
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

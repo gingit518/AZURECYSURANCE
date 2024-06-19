@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0058-metric_result_answers_update" author="Eugene A. Kalosha">
+
+		<sql>
+			DROP TABLE IF EXISTS metric_result_answers;
+
+			CREATE TABLE metric_result_answers
+			(
+				id serial,
+				risk_model_id integer NOT NULL,
+				metric_risk_id integer NOT NULL,
+				question_id integer NOT NULL,
+				answer_id integer NOT NULL,
+				multiplier float DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_metric_result_answers PRIMARY KEY (id)
+				, CONSTRAINT fk_metric_result_answers_to_risk_model FOREIGN KEY (risk_model_id) REFERENCES risk_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_result_answers_to_metric_risk FOREIGN KEY (metric_risk_id) REFERENCES metric_risks (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_result_answers_to_question FOREIGN KEY (question_id) REFERENCES qualitative_questions (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_result_answers_to_weight FOREIGN KEY (answer_id) REFERENCES qualitative_question_answers (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_result_answers_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_metric_result_answers_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_metric_result_answers_risk_model ON metric_result_answers (risk_model_id);
+			CREATE INDEX i_metric_result_answers_metric_risk ON metric_result_answers (metric_risk_id);
+			CREATE INDEX i_metric_result_answers_question ON metric_result_answers (question_id);
+			CREATE INDEX i_metric_result_answers_answer ON metric_result_answers (answer_id);
+			CREATE INDEX i_metric_result_answers_created_at ON metric_result_answers (created_at);
+			CREATE INDEX i_metric_result_answers_created_by ON metric_result_answers (created_by_id);
+			CREATE INDEX i_metric_result_answers_updated_by ON metric_result_answers (updated_by_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="metric_result_answers"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

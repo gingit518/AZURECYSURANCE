@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0055-user-created-deleted" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE users ADD COLUMN created_by_id integer DEFAULT NULL;
+			ALTER TABLE users ADD COLUMN updated_by_id integer DEFAULT NULL;
+			ALTER TABLE users ADD COLUMN is_deleted boolean NOT NULL DEFAULT false;
+			ALTER TABLE users ADD COLUMN full_name varchar(255) DEFAULT '';
+			ALTER TABLE users ADD CONSTRAINT fk_users_to_users_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			ALTER TABLE users ADD CONSTRAINT fk_users_to_users_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+			CREATE INDEX i_user_created_by ON users (created_by_id);
+			CREATE INDEX i_user_updated_by ON users (updated_by_id);
+			CREATE INDEX i_user_full_name ON users (full_name);
+			CREATE INDEX i_user_full_name_deleted ON users (full_name, is_deleted);
+			CREATE INDEX i_user_deleted ON users (is_deleted);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE users DROP COLUMN created_by_id;
+				ALTER TABLE users DROP COLUMN updated_by_id;
+				ALTER TABLE users DROP COLUMN is_deleted;
+				ALTER TABLE users DROP COLUMN full_name;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0340.data_fields" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE data_fields
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				CONSTRAINT pk_data_fields PRIMARY KEY (id)
+				, CONSTRAINT fk_data_fields_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_data_fields_organization ON data_fields (organization_id);
+			CREATE INDEX i_data_fields_organization_id_name ON data_fields (organization_id, name);
+			CREATE INDEX i_data_fields_name ON data_fields (name);
+
+			CREATE TABLE data_field_to_data_type_classification
+			(
+				id serial,
+				data_field_id integer NOT NULL,
+				data_type_classification_id integer DEFAULT NULL,
+				CONSTRAINT pk_data_field_to_data_type_classification PRIMARY KEY (id)
+				, CONSTRAINT fk_data_field_to_data_type_classification_to_data_field FOREIGN KEY (data_field_id) REFERENCES data_fields (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_data_field_to_data_type_classification_to_data_type_classification FOREIGN KEY (data_type_classification_id) REFERENCES data_type_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_data_field_to_data_type_classification_data_field ON data_field_to_data_type_classification (data_field_id);
+			CREATE INDEX i_data_field_to_data_type_classification_data_type_classification ON data_field_to_data_type_classification (data_type_classification_id);
+
+
+		</sql>
+
+		<rollback>
+			<dropTable tableName="data_field_to_data_type_classification"/>
+			<dropTable tableName="data_fields"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

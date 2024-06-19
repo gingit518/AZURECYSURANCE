@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0302.regulations" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TYPE RegulatoryJurisdictionType AS ENUM ('NONE', 'US', 'US_STATE', 'EU', 'INTERNATIONAL');
+			ALTER TABLE regulations ADD COLUMN jurisdiction_type RegulatoryJurisdictionType DEFAULT null;
+			ALTER TABLE regulations ADD COLUMN acronym character varying (24) DEFAULT null;
+			ALTER TABLE regulations ADD COLUMN description text DEFAULT null;
+			ALTER TABLE regulations ADD COLUMN body text DEFAULT null;
+			ALTER TABLE regulations ADD COLUMN regulated_party text DEFAULT null;
+			ALTER TABLE regulations ADD COLUMN protected_party text DEFAULT null;
+			ALTER TABLE regulations ADD COLUMN protected_information text DEFAULT null;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE regulations DROP COLUMN jurisdiction_type;
+				ALTER TABLE regulations DROP COLUMN acronym;
+				ALTER TABLE regulations DROP COLUMN description;
+				ALTER TABLE regulations DROP COLUMN body;
+				ALTER TABLE regulations DROP COLUMN regulated_party;
+				ALTER TABLE regulations DROP COLUMN protected_party;
+				ALTER TABLE regulations DROP COLUMN protected_information;
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

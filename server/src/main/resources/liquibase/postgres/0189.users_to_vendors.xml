@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0189.users_to_vendors" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE users_to_vendors
+			(
+				id serial,
+				user_id integer NOT NULL,
+				vendor_id integer DEFAULT NULL,
+				CONSTRAINT pk_users_to_vendors PRIMARY KEY (id)
+				, CONSTRAINT fk_users_to_vendors_to_question FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_users_to_vendors_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_users_to_vendors_user ON users_to_vendors (user_id);
+			CREATE INDEX i_users_to_vendors_vendor ON users_to_vendors (vendor_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="users_to_vendors"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

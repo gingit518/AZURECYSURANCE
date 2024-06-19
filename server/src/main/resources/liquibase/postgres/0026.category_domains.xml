@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0026-category-domains" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE category_domains
+			(
+				id serial,
+				name character varying (127) NOT NULL,
+				description text DEFAULT NULL,
+				risk_model_domain_id integer NOT NULL,
+				risk_model_id integer NOT NULL,
+				CONSTRAINT pk_category_domains PRIMARY KEY (id)
+				, CONSTRAINT fk_category_domains_to_risk_model_domains FOREIGN KEY (risk_model_domain_id) REFERENCES risk_model_domains (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_category_domains_to_risk_models FOREIGN KEY (risk_model_id) REFERENCES risk_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_category_domains_name ON category_domains (name);
+			CREATE INDEX i_category_domains_risk_model_domain_id ON category_domains (risk_model_domain_id);
+			CREATE INDEX i_category_domains_risk_model_id ON category_domains (risk_model_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="category_domains"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

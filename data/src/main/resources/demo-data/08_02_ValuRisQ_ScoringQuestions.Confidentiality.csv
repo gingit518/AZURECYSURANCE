@@ -1,0 +1,15 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor
+QSYS:11,What is the highest degree of reputational damage?,4,Not answered,0,System,Confidentiality,11,YES,"This is based on if it is customer facing, if the records are PII and the number of records.",,,NO,NO,NO,NO,YES,NO
+,,,If no organization's customer data and not a Crown Jewel,2,,,,,,,,,,,,,
+,,,If there is the organization's customer data but not a Crown Jewel,4,,,,,,,,,,,,,
+,,,If no organization's customer data but a Crown Jewel,4,,,,,,,,,,,,,
+,,,If there is the organization's customer data and a Crown Jewel and low (< 1000) # of privacy records,6,,,,,,,,,,,,,
+,,,If there is the organization's customer data and a Crown Jewel and medium (1000-2500) # of privacy records,8,,,,,,,,,,,,,
+,,,If there is the organization's customer data and a Crown Jewel and many (>2500) privacy records,10,,,,,,,,,,,,,
+QSYS:C:01,How many users are there?,5,Less than 500,2,System,Confidentiality,75,YES,The more users the higher the likelihood.,,,NO,NO,NO,NO,NO,NO
+,,,More than 501,10,,,,,,,,,,,,,
+QSYS:5,What is the physical location of the system?,5,Not answered,0,System,Confidentiality,5,YES,Uses the Global Cybersecurity Index to score the country risk.,,,NO,NO,NO,NO,YES,NO
+,,,Sweden,2,,,,,,,,,,,,,
+,,,Finland,4,,,,,,,,,,,,,
+,,,UK,6,,,,,,,,,,,,,
+,,,Russia,8,,,,,,,,,,,,,

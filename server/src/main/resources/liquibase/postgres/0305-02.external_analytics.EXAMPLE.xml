@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0305.external_analytics" author="Eugene A. Kalosha">
+
+		<sql>
+
+CREATE OR REPLACE FUNCTION createDemoAnalytics(organizationId bigint, externalAnalyticsType ExternalAnalyticsType, recordName varchar)
+	RETURNS bigint AS
+$BODY$
+DECLARE
+	newRecordId bigint;
+BEGIN
+	INSERT INTO external_analytics (organization_id, external_analytics_type, name) VALUES (organizationId, externalAnalyticsType, recordName) RETURNING id INTO newRecordId;
+
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'USER_EMAIL', 'ekalosha@dfusiontech.com');
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'USER_NAME', 'Eugene Kalosha');
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'USER_GROUPS', '["Developer"]');
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'TENANT_DOMAIN', 'cit.us.qlikcloud.com');
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'WEB_INTEGRATION_ID', 'JJs3cptdUNhPaUZ7VcMpOjvGYV30iGGm');
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'APPLICATION_ID', 'ac403e95-244b-4759-8768-2f9e1feaebc4');
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'ISSUER', 'sandbox.app.cyberinnovativetech.com');
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'API_KEY_ID', '0b4d38e0-c26c-417a-9393-24679103b0dd');
+	INSERT INTO external_analytics_parameters (organization_id, external_analytics_id, name, value) VALUES (organizationId, newRecordId, 'OBJECT_ID', 'aBrBPNq');
+
+	return newRecordId;
+END;
+$BODY$
+LANGUAGE plpgsql;
+
+select createDemoAnalytics(1024, 'QLIK'::ExternalAnalyticsType, 'Demo QLik View'::varchar);
+
+			DROP TABLE external_analytics_parameters;
+			DROP TABLE external_analytics;
+			DROP TYPE ExternalAnalyticsType;
+			DELETE FROM where id = '0305.external_analytics';
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

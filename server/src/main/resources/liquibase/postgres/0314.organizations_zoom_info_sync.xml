@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0314.organizations_zoom_info_sync" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE organizations ADD COLUMN logo character varying (255) DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN employee_count integer DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN fax character varying (20) DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE DROP COLUMN logo;
+				ALTER TABLE DROP COLUMN employee_count;
+				ALTER TABLE DROP COLUMN fax;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

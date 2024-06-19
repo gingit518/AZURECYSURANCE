@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0266.drop_assessment_is_all_requirements_selected_field" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE assessments DROP COLUMN IF EXISTS is_all_requirements_selected;
+
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

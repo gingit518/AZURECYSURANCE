@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0172.documents" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE documents
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				document_uid character varying (64) DEFAULT NULL,
+				file_type character varying DEFAULT NULL,
+				file_name character varying DEFAULT NULL,
+				file_size double precision,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_documents PRIMARY KEY (id)
+				, CONSTRAINT fk_documents_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_documents_to_organization ON documents (organization_id);
+			CREATE UNIQUE INDEX ui_documents_uid ON documents (document_uid);
+			CREATE INDEX i_documents_file_name_for_organization ON documents (organization_id, file_name);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROM TABLE documents;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

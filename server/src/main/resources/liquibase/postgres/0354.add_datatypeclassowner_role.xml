@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0354.add_datatypeclassowner_role" author="Oleksandr Serozhenko">
+		<sql>
+			INSERT INTO roles (name, description)
+			VALUES ('DTCLSOWN', 'Data type classification owner role')
+			ON CONFLICT DO NOTHING;
+		</sql>
+		<rollback>
+			delete from roles where name = 'DTCLSOWN'
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

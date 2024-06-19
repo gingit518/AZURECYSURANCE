@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0404.totp_2factor" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS two_factor_type integer DEFAULT NULL;
+			ALTER TABLE users ADD COLUMN IF NOT EXISTS two_factor_type integer DEFAULT NULL;
+			ALTER TABLE users ADD COLUMN IF NOT EXISTS totp_secret character varying (64) DEFAULT NULL;
+			ALTER TABLE users ADD COLUMN IF NOT EXISTS is_phone_verified boolean DEFAULT false;
+			ALTER TABLE users ADD COLUMN IF NOT EXISTS is_totp_verified boolean DEFAULT false;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN IF EXISTS two_factor_type;
+				ALTER TABLE users DROP COLUMN IF EXISTS two_factor_type;
+				ALTER TABLE users DROP COLUMN IF EXISTS totp_secret;
+				ALTER TABLE users DROP COLUMN IF EXISTS is_phone_verified;
+				ALTER TABLE users DROP COLUMN IF EXISTS is_totp_verified;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0408.system_update" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS os_name character varying (255) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS serial_number character varying (255) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS eol_date timestamp without time zone DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS warranty_expiration timestamp without time zone DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS asset_name character varying (255) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS ip_address character varying (64) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS asset_domain_function character varying (64) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS discovery_source character varying (127) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS device_id character varying (127) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS hardware_substatus character varying (64) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS owner_type character varying (127) DEFAULT NULL;
+			ALTER TABLE systems ADD COLUMN IF NOT EXISTS location character varying (127) DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE systems DROP COLUMN os_name;
+				ALTER TABLE systems DROP COLUMN serial_number;
+				ALTER TABLE systems DROP COLUMN eol_date;
+				ALTER TABLE systems DROP COLUMN warranty_expiration;
+				ALTER TABLE systems DROP COLUMN asset_name;
+				ALTER TABLE systems DROP COLUMN ip_address;
+				ALTER TABLE systems DROP COLUMN asset_domain_function;
+				ALTER TABLE systems DROP COLUMN discovery_source;
+				ALTER TABLE systems DROP COLUMN device_id;
+				ALTER TABLE systems DROP COLUMN hardware_substatus;
+				ALTER TABLE systems DROP COLUMN owner_type;
+				ALTER TABLE systems DROP COLUMN location;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

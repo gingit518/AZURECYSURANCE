@@ -1,0 +1,17 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor
+QSYS:8,How is security inherently utilized with this asset?,3,Security built in,2,System,Impact,8,YES,End of life systems have no patch management capabilities.  IoT devices do not typically bake in access control.  The ability to bake security into an asset is an important aspect of inherent risk.,,,NO,NO,NO,NO,YES,NO
+"",,,Security baked in,4,,,,,
+"",,,No security baked in,8,,,,,
+"",,,End of Life,10,,,,,
+QSYS:9,What is the classification of the asset type?,5,Not answered,0,System,Impact,9,YES,"Crown Jewel assets have more impact than business critical or business crucial. ",,,NO,NO,NO,NO,YES,NO
+"",,,Business Crucial,2,,,,,
+"",,,Business Critical,6,,,,,
+"",,,Crown Jewel,10,,,,,
+QSYS:10,Which regulations with fines for breaches apply to this system?,5,None of the above,0,System,Impact,10,YES,PHI is the most dangerous and the more regulations the higher the impact.,,,NO,NO,NO,NO,YES,NO
+"",,,PCI,2,,,,,
+"",,,PII,4,,,,,
+"",,,PHI,6,,,,,
+"",,,PCI and PII,8,,,,,
+"",,,PCI and PHI,8,,,,,
+"",,,PII and PHI,8,,,,,
+"",,,"PCI, PHI, and PII",10,,,,,

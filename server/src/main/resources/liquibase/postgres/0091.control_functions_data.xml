@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0091_control_functions_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO control_functions (id, name, description) VALUES
+			  (101, 'ID', 'Identify')
+			, (102, 'PR', 'Protect')
+			, (103, 'DE', 'Detect')
+			, (104, 'RS', 'Respond')
+			, (105, 'RC', 'Recover')
+			;
+
+			ALTER SEQUENCE control_functions_id_seq RESTART WITH 106;
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

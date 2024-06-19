@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0386.add_new_roles" author="Eugene Kalosha">
+		<sql>
+			INSERT INTO roles (id, name, description) VALUES (210, 'BUS_CONT_MANAGER', 'Business Continuity Manager') ON CONFLICT DO NOTHING;
+			INSERT INTO roles (id, name, description) VALUES (211, 'LEGAL_GEN_COUNSEL', 'Legal/General Counsel') ON CONFLICT DO NOTHING;
+		</sql>
+		<rollback>
+			delete from roles where name = 'BUS_CONT_MANAGER'
+			delete from roles where name = 'LEGAL_GEN_COUNSEL'
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

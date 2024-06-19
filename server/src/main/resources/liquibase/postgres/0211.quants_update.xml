@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0211.quants_update" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE quants DROP COLUMN risk_model_id;
+
+			INSERT INTO quants (id, name, description, ordinal) VALUES
+			(111, 'Ransomware', 'Ransomware is a type of malware from cryptovirology that threatens to publish the victim''s data or perpetually block access to it unless a ransom is paid.', 1);
+
+			ALTER SEQUENCE quants_id_seq RESTART WITH 1025;
+
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0123-business_unit_subsidiary_organization" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE business_units ADD COLUMN subsidiary_organization_id integer DEFAULT NULL;
+			ALTER TABLE business_units ADD CONSTRAINT fk_business_units_to_subsidiary_organization FOREIGN KEY (subsidiary_organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_business_unit_subsidiary_organization ON business_units (subsidiary_organization_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE business_units DROP COLUMN subsidiary_organization_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

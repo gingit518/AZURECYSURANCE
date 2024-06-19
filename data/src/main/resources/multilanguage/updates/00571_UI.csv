@@ -1,0 +1,5 @@
+Constant,Scope,Value,Default Value,Language
+GLOBALS$DEFAULT_CONFIRMATION,UI,Are you sure?,Are you sure?,eng
+GLOBALS$DELETION_CONFIRMATION,UI,Delete this item?,Delete this item?,eng
+GLOBALS$AGREE,UI,Yes,Yes,eng
+GLOBALS$DISAGREE,UI,No,No,eng

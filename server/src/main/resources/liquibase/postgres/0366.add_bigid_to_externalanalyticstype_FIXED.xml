@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0366.add_bigid_to_externalanalyticstype_FIXED" author="Andrii Iakovenko">
+		<sql>
+			ALTER TYPE externalanalyticstype RENAME TO externalanalyticstype__;
+			CREATE TYPE externalanalyticstype AS ENUM ('QLIK', 'KEEN_IO', 'PROCESS', 'BIG_ID');
+
+			ALTER TABLE external_analytics ALTER COLUMN external_analytics_type
+				TYPE externalanalyticstype
+				USING (external_analytics_type::text::externalanalyticstype);
+
+			ALTER TABLE organization_security_certificates ALTER COLUMN organization_security_certificates_type
+				TYPE externalanalyticstype
+				USING (organization_security_certificates_type::text::externalanalyticstype);
+
+			DROP FUNCTION IF EXISTS createdemoanalytics;
+
+			DROP TYPE IF EXISTS externalanalyticstype__;
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

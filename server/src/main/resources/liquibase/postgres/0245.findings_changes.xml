@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0245.findings_changes" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TYPE AssessmentFindingLink AS ENUM('NONE', 'ASSESSMENT', 'REQUIREMENT');
+
+			ALTER TABLE findings ADD COLUMN link_type AssessmentFindingLink DEFAULT NULL;
+
+			CREATE TABLE finding_to_assessment
+			(
+				id serial,
+				finding_id integer DEFAULT NULL,
+				assessment_id integer NOT NULL,
+				CONSTRAINT pk_finding_to_assessment PRIMARY KEY (id)
+				, CONSTRAINT fk_finding_to_assessment_to_finding FOREIGN KEY (finding_id) REFERENCES findings (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_finding_to_assessment_to_assessment FOREIGN KEY (assessment_id) REFERENCES assessments (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_finding_to_assessment_finding ON finding_to_assessment (finding_id);
+			CREATE INDEX i_finding_to_assessment_assessment ON finding_to_assessment (assessment_id);
+
+			CREATE TABLE finding_to_security_requirement
+			(
+				id serial,
+				finding_id integer DEFAULT NULL,
+				security_requirement_id integer NOT NULL,
+				CONSTRAINT pk_finding_to_security_requirement PRIMARY KEY (id)
+				, CONSTRAINT fk_finding_to_security_requirement_to_finding FOREIGN KEY (finding_id) REFERENCES findings (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_finding_to_security_requirement_to_security_requirement FOREIGN KEY (security_requirement_id) REFERENCES security_requirements (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_finding_to_security_requirement_finding ON finding_to_security_requirement (finding_id);
+			CREATE INDEX i_finding_to_security_requirement_security_requirement ON finding_to_security_requirement (security_requirement_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				DROP TABLE finding_to_assessment;
+				DROP TABLE finding_to_security_requirement;
+				ALTER TABLE findings DROP COLUMN IF EXISTS link_type;
+
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

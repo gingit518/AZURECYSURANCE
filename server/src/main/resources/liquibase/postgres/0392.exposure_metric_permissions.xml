@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0392.exposure_metric_permissions" author="Eugene A. Kalosha">
+		<sql>
+			INSERT INTO permissions (name, permission_group, title, item_order) VALUES
+			('quantification_metric_export', 'Risk Model Exposure Metric', 'Export CSV', 130)
+			, ('quantification_metric_import', 'Risk Model Exposure Metric', 'Import from CSV', 131)
+			ON CONFLICT (id) DO UPDATE SET permission_group = excluded.permission_group, title = excluded.title, item_order = excluded.item_order;
+		</sql>
+		<rollback>
+			<sql>
+				DELETE FROM permissions WHERE name IN ('quantification_metric_export', 'quantification_metric_import');
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

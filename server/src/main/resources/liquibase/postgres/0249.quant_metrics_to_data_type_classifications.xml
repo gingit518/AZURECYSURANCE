@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0249.quant_metrics_to_data_type_classifications" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE quant_metrics_to_data_type_classifications
+			(
+				id serial,
+				quant_metric_id integer NOT NULL,
+				data_type_id integer NOT NULL,
+
+				CONSTRAINT pk_quant_metrics_to_data_type_classifications PRIMARY KEY(id)
+				, CONSTRAINT fk_quant_metrics_to_data_type_classifications_to_quant_metric FOREIGN KEY (quant_metric_id) REFERENCES quant_metrics (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_quant_metrics_to_data_type_classifications_to_data_type FOREIGN KEY (data_type_id) REFERENCES data_type_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_quant_metrics_to_data_type_classifications_quant_metric ON quant_metrics_to_data_type_classifications (quant_metric_id);
+			CREATE INDEX i_quant_metrics_to_data_type_classifications_data_type ON quant_metrics_to_data_type_classifications (data_type_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE quant_metrics_to_data_type_classifications;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

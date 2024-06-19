@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0026-category-domains-data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO category_domains (id, risk_model_domain_id, risk_model_id, name, description) VALUES
+			(101, 101, 101, 'Inherent', 'Risk without cyber controls in place')
+			, (102, 101, 101, 'ROLF', 'Reputational, Operational, Legal and Financial')
+			, (103, 101, 101, 'Residual', 'Risk with cyber controls in place')
+			;
+
+			ALTER SEQUENCE category_domains_id_seq RESTART WITH 108;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM category_domains;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

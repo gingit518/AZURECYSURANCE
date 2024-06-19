@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0153-permissions" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE permissions
+			(
+				id serial,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				CONSTRAINT pk_permissions PRIMARY KEY (id)
+			);
+			CREATE INDEX i_permissions_name ON permissions (name);
+
+			CREATE TABLE role_permissions
+			(
+				id serial,
+				role_id integer DEFAULT NULL,
+				permission_id integer DEFAULT NULL,
+				CONSTRAINT pk_role_permissions PRIMARY KEY (id)
+				, CONSTRAINT fk_role_permissions_to_permission FOREIGN KEY (permission_id) REFERENCES permissions (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_role_permissions_to_role FOREIGN KEY (role_id) REFERENCES roles (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_role_permissions_role ON role_permissions (role_id);
+			CREATE INDEX i_role_permissions_permission ON role_permissions (permission_id);
+			CREATE UNIQUE INDEX ui_role_permissions_permission_role ON role_permissions (permission_id, role_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="role_permissions"/>
+			<dropTable tableName="permissions"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

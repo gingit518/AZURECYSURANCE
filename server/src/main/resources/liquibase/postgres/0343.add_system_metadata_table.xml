@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0343.add_system_metadata_table" author="Oleksandr Serozhenko">
+		<sql>
+			CREATE TABLE systems_metadata (
+			id serial,
+			system_id int4 NOT NULL,
+			key character varying (255) NOT NULL,
+			value character varying (4096),
+
+			CONSTRAINT pk_systems_metadata PRIMARY KEY (id),
+			CONSTRAINT fk_systems_metadata_to_systems FOREIGN KEY (system_id) REFERENCES systems(id) MATCH SIMPLE ON
+			UPDATE NO ACTION ON DELETE NO ACTION
+			);
+
+			CREATE INDEX i_systems_metadata_system_id ON systems_metadata USING btree (system_id);
+			CREATE UNIQUE INDEX ui_systems_metadata_system_id_key ON systems_metadata (system_id, key);
+		</sql>
+		<rollback>
+			DROP TABLE IF EXISTS systems_metadata;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0190.qualitative_question_vendor_type_flags" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE qualitative_questions ADD COLUMN allow_upload_as_answer boolean DEFAULT false;
+			ALTER TABLE qualitative_questions ADD COLUMN is_technology_vendor boolean DEFAULT false;
+			ALTER TABLE qualitative_questions ADD COLUMN is_system_vendor boolean DEFAULT true;
+			ALTER TABLE qualitative_questions ADD COLUMN is_service_vendor boolean DEFAULT false;
+			ALTER TABLE qualitative_questions ADD COLUMN vendor_id integer DEFAULT NULL;
+			ALTER TABLE question_answers_to_systems ADD COLUMN document_id integer DEFAULT NULL;
+			ALTER TABLE question_answers_to_systems ALTER COLUMN answer_id DROP NOT NULL;
+			ALTER TABLE question_answers_to_vendors ADD COLUMN document_id integer DEFAULT NULL;
+			ALTER TABLE question_answers_to_vendors ALTER COLUMN answer_id DROP NOT NULL;
+
+			UPDATE qualitative_questions SET allow_upload_as_answer=false;
+			UPDATE qualitative_questions SET is_technology_vendor=false;
+			UPDATE qualitative_questions SET is_system_vendor=true;
+			UPDATE qualitative_questions SET is_service_vendor=false;
+
+			CREATE INDEX i_qualitative_questions_organization ON qualitative_questions (vendor_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE question_answers_to_vendors DROP COLUMN document_id;
+				ALTER TABLE question_answers_to_systems DROP COLUMN document_id;
+				ALTER TABLE qualitative_questions DROP COLUMN allow_upload_as_answer;
+				ALTER TABLE qualitative_questions DROP COLUMN is_technology_vendor;
+				ALTER TABLE qualitative_questions DROP COLUMN is_system_vendor;
+				ALTER TABLE qualitative_questions DROP COLUMN is_service_vendor;
+				ALTER TABLE qualitative_questions DROP COLUMN vendor_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

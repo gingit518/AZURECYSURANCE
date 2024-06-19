@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0088-assessments" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE assessments
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				assessment_level_id integer DEFAULT NULL,
+				assessment_type_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_assessments PRIMARY KEY (id)
+				, CONSTRAINT fk_assessments_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessments_to_assessment_type FOREIGN KEY (assessment_type_id) REFERENCES assessment_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessments_to_assessment_level FOREIGN KEY (assessment_level_id) REFERENCES assessment_levels (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessments_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessments_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessments_organization ON assessments (organization_id);
+			CREATE INDEX i_assessments_organization_id_name ON assessments (organization_id, name);
+			CREATE INDEX i_assessments_name ON assessments (name);
+			CREATE INDEX i_assessments_assessment_type ON assessments (assessment_type_id);
+			CREATE INDEX i_assessments_assessment_level ON assessments (assessment_level_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="assessments"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

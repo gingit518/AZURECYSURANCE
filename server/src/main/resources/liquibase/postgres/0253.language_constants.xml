@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0253.language_constants" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE language_constants
+			(
+				id serial,
+				name character varying (127) NOT NULL,
+
+				CONSTRAINT pk_language_constants PRIMARY KEY (id)
+			);
+			CREATE UNIQUE INDEX ui_language_constants_name ON language_constants (name);
+
+			CREATE TABLE language_constant_values
+			(
+				id serial,
+				language_id integer NOT NULL,
+				language_constant_id integer NOT NULL,
+				value text DEFAULT '',
+
+				CONSTRAINT pk_language_constant_values PRIMARY KEY (id)
+				, CONSTRAINT fk_language_constant_values_to_language FOREIGN KEY (language_id) REFERENCES supported_languages (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_language_constant_values_to_constant FOREIGN KEY (language_constant_id) REFERENCES language_constants (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_language_constant_values_language ON language_constant_values (language_id);
+			CREATE UNIQUE INDEX ui_language_constant_values_const_lang ON language_constant_values (language_id, language_constant_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE language_constant_values;
+				DROP TABLE language_constants;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

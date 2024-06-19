@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0224.organization_requirement_control_test_results" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE organization_requirement_control_test_results
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				security_requirement_id integer NOT NULL,
+				comments text DEFAULT NULL,
+				assessment_weight double precision,
+				CONSTRAINT pk_organization_requirement_control_test_results PRIMARY KEY (id)
+				, CONSTRAINT fk_organization_requirement_control_test_results_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_organization_requirement_control_test_results_to_security_requirement FOREIGN KEY (security_requirement_id) REFERENCES security_requirements (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_organization_requirement_control_test_result_to_organization ON organization_requirement_control_test_results (organization_id);
+			CREATE INDEX i_organization_requirement_control_test_result_to_security_requirement ON organization_requirement_control_test_results (security_requirement_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE organization_requirement_control_test_results;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

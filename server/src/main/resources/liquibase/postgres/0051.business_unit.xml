@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0051-business_units" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE business_units
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				owner_id integer DEFAULT NULL,
+				infosec_focal_person_id integer DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_business_units PRIMARY KEY (id)
+				, CONSTRAINT fk_business_units_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_business_units_to_owner_id FOREIGN KEY (owner_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_business_units_to_infosec_focal_person_id FOREIGN KEY (infosec_focal_person_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_business_units_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_business_units_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_business_units_organization ON business_units (organization_id);
+			CREATE INDEX i_business_units_organization_id_name ON business_units (organization_id, name);
+			CREATE INDEX i_business_units_name ON business_units (name);
+			CREATE INDEX i_business_units_owner ON business_units (owner_id);
+			CREATE INDEX i_business_units_infosec_focal_person ON business_units (infosec_focal_person_id);
+			CREATE INDEX i_business_units_created_at ON business_units (created_at);
+			CREATE INDEX i_business_units_created_by ON business_units (created_by_id);
+			CREATE INDEX i_business_units_updated_by ON business_units (updated_by_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="business_units"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0318.hints" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TYPE HintType as ENUM ('Rich', 'Sample', 'Default');
+			CREATE TABLE hints
+			(
+				id serial,
+				hint_type HintType DEFAULT NULL,
+				code character varying (48) NOT NULL,
+				name character varying (255) DEFAULT NULL,
+				title character varying (128) DEFAULT NULL,
+				body character varying (128) DEFAULT NULL,
+				footer character varying (128) DEFAULT NULL,
+				link character varying (255) DEFAULT NULL,
+				external_id character varying (64) DEFAULT NULL,
+				properties jsonb DEFAULT NULL,
+				CONSTRAINT pk_hints PRIMARY KEY (id)
+			);
+			CREATE INDEX i_hints_code ON hints (code);
+			CREATE INDEX i_hints_name ON hints (name);
+			CREATE INDEX i_hints_external_id ON hints (external_id);
+
+			-- Alter language constants
+			ALTER TYPE LanguageConstantScopeType RENAME TO LanguageConstantScopeType__;
+			CREATE TYPE LanguageConstantScopeType as ENUM ('UI', 'ADMIN', 'SERVER', 'HINTS', 'ANDROID_CLIENT', 'IOS_CLIENT', 'HELP');
+			ALTER TABLE language_constants ALTER COLUMN scope type LanguageConstantScopeType using scope::text::LanguageConstantScopeType;
+			DROP TYPE LanguageConstantScopeType__;
+
+		</sql>
+
+		<rollback>
+			DROP TABLE hints;
+			DROP TYPE HintType;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

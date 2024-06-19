@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0191.answer_weights_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO answer_weights (id, value, name, description) VALUES
+			  (7, 1, '', '')
+			, (8, 3, '', '')
+			, (9, 5, '', '')
+			, (10, 7, '', '')
+			, (11, 9, '', '')
+			ON CONFLICT (id) DO UPDATE SET value = excluded.value, name = excluded.name, description = excluded.description;
+
+			ALTER SEQUENCE answer_weights_id_seq RESTART WITH 12;
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

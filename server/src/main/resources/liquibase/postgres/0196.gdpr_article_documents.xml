@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0196.gdpr_article_documents" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE gdpr_evidence_document_definition
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				document_type character varying (32) DEFAULT NULL,
+				name character varying DEFAULT NULL,
+				CONSTRAINT pk_gdpr_evidence_document_definition PRIMARY KEY (id)
+				, CONSTRAINT fk_gdpr_evidence_document_definition_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_gdpr_evidence_document_definition_organization ON gdpr_evidence_document_definition (organization_id);
+			CREATE INDEX i_gdpr_evidence_document_definition_name ON gdpr_evidence_document_definition (name);
+
+			CREATE TABLE gdpr_document_articles
+			(
+				id serial,
+				document_definition_id integer DEFAULT NULL,
+				article_id integer DEFAULT NULL,
+				CONSTRAINT pk_gdpr_document_articles PRIMARY KEY (id)
+				, CONSTRAINT fk_gdpr_document_articles_to_article FOREIGN KEY (article_id) REFERENCES gdpr_article (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_gdpr_document_articles_to_document_definition FOREIGN KEY (document_definition_id) REFERENCES gdpr_evidence_document_definition (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_gdpr_document_articles_article ON gdpr_document_articles (article_id);
+			CREATE INDEX i_gdpr_document_articles_document_definition ON gdpr_document_articles (document_definition_id);
+
+			CREATE TABLE gdpr_evidence_documents
+			(
+				id serial,
+				document_definition_id integer DEFAULT NULL,
+				document_id integer DEFAULT NULL,
+				CONSTRAINT pk_gdpr_evidence_documents PRIMARY KEY (id)
+				, CONSTRAINT fk_gdpr_evidence_documents_to_article FOREIGN KEY (document_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_gdpr_evidence_documents_to_document_definition FOREIGN KEY (document_definition_id) REFERENCES gdpr_evidence_document_definition (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_gdpr_evidence_documents_document ON gdpr_evidence_documents (document_id);
+			CREATE INDEX i_gdpr_evidence_documents_document_definition ON gdpr_evidence_documents (document_definition_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROM TABLE document_id;
+				DROM TABLE gdpr_document_articles;
+				DROM TABLE gdpr_evidence_document_definition;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0332_02.technology_to_quant_metric" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE technology_to_quant_metric (
+				id serial,
+				technology_id int4 NOT NULL,
+				quant_metric_id int4 NULL,
+				CONSTRAINT pk_technology_to_quant_metric PRIMARY KEY (id),
+				CONSTRAINT fk_technology_to_quant_metric_to_technology FOREIGN KEY (technology_id) REFERENCES technologies(id) ON DELETE CASCADE ON UPDATE CASCADE,
+				CONSTRAINT fk_technology_to_quant_metric_to_quant_metric FOREIGN KEY (quant_metric_id) REFERENCES quant_metrics(id) ON DELETE CASCADE ON UPDATE CASCADE
+			);
+			CREATE INDEX i_technology_to_quant_metric_to_technology ON technology_to_quant_metric USING btree (technology_id);
+			CREATE INDEX i_technology_to_quant_metric_to_quant_metric ON technology_to_quant_metric USING btree (quant_metric_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE technology_to_quant_metric;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

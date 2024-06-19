@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0261.technology_categories_data_update" author="Daniel A. Kolesnik">
+
+		<sql>
+			INSERT INTO technology_categories (id, organization_id, name, description, created_by_id, updated_by_id) VALUES
+				(111, 105, 'Internet of things', 'The internet of things, or IoT, is a system of interrelated computing devices, mechanical and digital machines, objects, animals or people that are provided with unique identifiers (UIDs) and the bility to transfer data over a network without requiring human-to-human or human-to-computer interaction.', 161, 161);
+
+			UPDATE technology_categories SET organization_id = null WHERE id IN (101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111);
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

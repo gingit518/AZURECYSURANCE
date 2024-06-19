@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0234.control_test_results_to_documents" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE system_requirement_control_test_results ADD COLUMN document_id integer DEFAULT NULL;
+
+			ALTER TABLE system_requirement_control_test_results
+				ADD CONSTRAINT fk_sys_ctrl_test_results_document FOREIGN KEY (document_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			CREATE INDEX i_sys_ctrl_test_results_document ON system_requirement_control_test_results (document_id);
+
+			ALTER TABLE organization_requirement_control_test_results ADD COLUMN document_id integer DEFAULT NULL;
+
+			ALTER TABLE organization_requirement_control_test_results
+				ADD CONSTRAINT fk_org_ctrl_test_results_document FOREIGN KEY (document_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE;
+
+			CREATE INDEX i_org_ctrl_test_results_document ON organization_requirement_control_test_results (document_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE system_requirement_control_test_results DROP COLUMN IF EXISTS document_id;
+				ALTER TABLE system_requirement_control_test_results DROP CONSTRAINT IF EXISTS fk_sys_ctrl_test_results_document;
+
+				ALTER TABLE organization_requirement_control_test_results DROP COLUMN IF EXISTS document_id;
+				ALTER TABLE organization_requirement_control_test_results DROP CONSTRAINT IF EXISTS fk_org_ctrl_test_results_document;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

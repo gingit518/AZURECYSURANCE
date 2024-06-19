@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0079-process_relations_update" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE UNIQUE INDEX ui_process_to_business_unit_ui_rel ON process_to_business_unit_used (process_id, business_unit_id);
+			CREATE UNIQUE INDEX ui_process_to_data_type_ui_rel ON process_to_data_type (process_id, data_type_id);
+			CREATE UNIQUE INDEX ui_process_to_system_ui_rel ON process_to_system (process_id, system_id);
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

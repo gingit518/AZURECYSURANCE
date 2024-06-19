@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0364.system_type_allowed_values"
+		author="Andrii Iakovenko">
+
+		<sql>
+			-- Update Deployment Type
+			UPDATE systems SET deployment_type = 'ON_PREMISE' WHERE deployment_type IS NULL OR deployment_type = 'NONE';
+			ALTER TABLE systems ALTER COLUMN deployment_type SET NOT NULL;
+			ALTER TABLE systems ALTER COLUMN deployment_type DROP DEFAULT;
+
+			CREATE TYPE "deploymenttype_new" AS ENUM ('CLOUD', 'ON_PREMISE');
+			ALTER TABLE systems ALTER COLUMN deployment_type TYPE deploymenttype_new USING (deployment_type::text::deploymenttype_new);
+			DROP TYPE deploymenttype;
+			ALTER TYPE deploymenttype_new RENAME TO deploymenttype;
+
+			-- Update System Type
+			UPDATE systems SET system_type = 'HOME_GROWN' WHERE system_type IS NULL OR system_type = 'NONE';
+			ALTER TABLE systems ALTER COLUMN system_type SET NOT NULL;
+			ALTER TABLE systems ALTER COLUMN system_type DROP DEFAULT;
+
+			CREATE TYPE "systemtype_new" AS ENUM ('COTS', 'CUSTOM_COTS', 'HOME_GROWN', 'MOBILE');
+			ALTER TABLE systems ALTER COLUMN system_type TYPE systemtype_new USING (system_type::text::systemtype_new);
+
+			-- update bigid_dstype_system_type_mappings table
+			UPDATE bigid_dstype_system_type_mappings SET system_type = 'HOME_GROWN' WHERE system_type IS NULL OR system_type = 'NONE';
+			ALTER TABLE bigid_dstype_system_type_mappings ALTER COLUMN system_type TYPE systemtype_new USING (system_type::text::systemtype_new);
+
+			DROP TYPE systemtype;
+			ALTER TYPE systemtype_new RENAME TO systemtype;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN package_plan_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0078-systems_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO systems (id, organization_id, system_status,  name, description, owner_id, infosec_focal_person_id, business_unit_id, data_asset_classification_id, number_of_rec_processed, created_by_id, updated_by_id) VALUES
+			  (1001, 105, 'ACTIVE', 'Salesforce', 'CRM', 164, 165, 104, 101, 1000000, 161, 161)
+			, (1002, 105, 'ACTIVE', 'SAP Financials', 'Financials', 164, 165, 102, 102, 100000, 161, 161)
+			, (1003, 105, 'ACTIVE', 'Payroll', 'Employee Payroll', 164, 165, 103, 102, 5000000, 161, 161)
+			, (1004, 105, 'ACTIVE', 'Logistics', 'Distribution', 164, 165, 107, 102, 2000000, 161, 161)
+			, (1005, 105, 'ACTIVE', 'Benefits', 'Employee Benefits', 164, 165, 101, 102, 100000, 161, 161)
+			, (1006, 105, 'ACTIVE', 'Trading', 'Equity and Fixed Income', 164, 165, 106, 102, 10000000, 161, 161)
+			, (1007, 105, 'ACTIVE', 'Fixed Income', 'Fixed Income', 164, 165, 106, 102, 5000000, 161, 161)
+			, (1008, 105, 'ACTIVE', 'Equity', 'Equity', 164, 165, 106, 102, 100000000, 161, 161)
+			, (1009, 105, 'ACTIVE', 'Rainking', 'Research', 164, 165, 109, 102, 5000000, 161, 161)
+			, (1010, 105, 'ACTIVE', 'Pending Transaction', 'Payment', 164, 165, 102, 102, 5000000, 161, 161)
+			;
+
+			ALTER SEQUENCE systems_id_seq RESTART WITH 1024;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

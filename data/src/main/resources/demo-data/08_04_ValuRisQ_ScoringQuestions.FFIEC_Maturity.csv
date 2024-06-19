@@ -1,0 +1,1483 @@
+Code,Question Name,Question Weight,Answer,Answer Weight,Scoring Type,Metric Domain,Ordinal,All Vendors,Question Description,Branching Logic,Category Name,Internal,Upload Answers,Allows Text For Answers,Tech Vendor,System Vendor,Service Vendor,Allows Comment To Answers,Use Color Coding
+COML:001,Are designated members of management held accountable by the board or an appropriate board committee for implementing and managing the information security and business continuity programs?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,1,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:002,Are information security risks discussed in management meetings when prompted by highly visible cyber events or regulatory alerts?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,2,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:003,Does management provide a written report on the overall status of the information security and business continuity programs to the board or an appropriate board committee at least annually?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,3,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:004,Does the budgeting process include information security related expenses and tools?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,4,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:005,"Does management consider the risks posed by other critical infrastructures (e.g., telecommunications, energy) to the institution.?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,5,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:006,Does the board or an appropriate board committee review and approve the institution's cybersecurity program at least annually?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,6,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:007,Is management responsible for ensuring compliance with legal and regulatory requirements related to cybersecurity?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,7,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:008,Are Cybersecurity tools and staff requested through the budget process?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,8,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:009,Is there a process to formally discuss and estimate potential expenses associated with cybersecurity incidents as part of the budgeting process?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,9,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:010,Does the board or an appropriate board committee have cybersecurity expertise or engage experts to assist with oversight responsibilities?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,10,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:011,Does the standard board meeting package include reports and metrics that go beyond events and incidents to address threat intelligence trends and the institution's security posture?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,11,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:012,Does the institution have a cyber risk appetite statement approved by the board or an appropriate board committee?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,12,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:013,Are cyber risks that exceed the risk appetite escalated to management?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,13,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:014,Does the board or an appropriate board committee ensure management's annual cybersecurity self-assessment evaluates the institution's ability to meet its cyber risk management standards?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,14,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:015,Does the board or an appropriate board committee review and approve management's prioritization and resource allocation decisions based on the results of the cyber assessments?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,15,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:016,Does the board or an appropriate board committee ensure management takes appropriate actions to address changing cyber risks or significant cybersecurity issues?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,16,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:017,Is the budget process for requesting additional cybersecurity staff and tools integrated into business units' budget processes?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,17,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:018,Is the board or board committee approved cyber risk appetite statement part of the enterprise-wide risk appetite statement?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,18,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:019,Does management have a formal process to continuously improve cybersecurity oversight?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,19,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:020,Does the budget process for requesting additional cybersecurity staff and tools map current resources and tools to the cybersecurity strategy?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,20,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:021,Do management and the board or an appropriate board committee hold business units accountable for effectively managing all cyber risks associated with their activities?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,21,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:022,Does management identify root cause(s) when cyber attacks result in material loss?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,22,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:023,Does the board or an appropriate board committee ensure that management's actions consider the cyber risks that the institution poses to the financial sector?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,23,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:024,Does the board or an appropriate board committee discuss ways for management to develop cybersecurity improvements that may be adopted sector-wide?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,24,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:025,"Does the board or an appropriate board committee verify that management's actions consider the cyber risks that the institution poses to other critical infrastructures (e.g., telecommunications, energy)?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,25,NO,,,Cyber Risk Management and Oversight / Governance / Oversight,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:026,"Does the institution have an information security strategy that integrates technology, policies, procedures, and training to mitigate risk?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,26,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:027,Does the institution have policies commensurate with its risk and complexity that address the concepts of information technology risk management?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,27,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:028,Does the institution have policies commensurate with its risk and complexity that address the concepts of threat information sharing?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,28,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:029,Does the institution have board-approved policies commensurate with its risk and complexity that address information security?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,29,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:030,Does the institution have policies commensurate with its risk and complexity that address the concepts of external dependency or third-party management?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,30,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:031,Does the institution have policies commensurate with its risk and complexity that address the concepts of incident response and resilience?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,31,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:032,Are all elements of the information security program coordinated enterprise-wide?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,32,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:033,Does the institution augment its information security strategy to incorporate cybersecurity and resilience?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,33,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:034,Does the institution have a formal cybersecurity program that is based on technology and security industry standards or benchmarks?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,34,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:035,Is a formal process in place to update policies as the institution's inherent risk profile changes?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,35,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:036,Does the institution have a comprehensive set of policies commensurate with its risk and complexity that address the concepts of threat intelligence?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,36,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:037,Does management periodically review the cybersecurity strategy to address evolving cyber threats and changes to the institution's inherent risk profile?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,37,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:038,"Is the cybersecurity strategy incorporated into, or conceptually fits within, the institution's enterprise-wide risk management strategy?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,38,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:039,Does management link strategic cybersecurity objectives to tactical goals?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,39,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:040,Is a formal process in place to cross-reference and simultaneously update all policies related to cyber risks across business lines?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,40,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:041,Does the cybersecurity strategy outline the institution's future state of cybersecurity with short-term and long-term perspectives?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,41,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:042,Are industry-recognized cybersecurity standards used as sources during the analysis of cybersecurity program gaps?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,42,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:043,Does the cybersecurity strategy identify and communicate the institution's role as a component of critical infrastructure?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,43,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:044,Is the risk appetite informed by the institution's role in critical infrastructure?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,44,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:045,Is management continuously improving the existing cybersecurity program to adapt as the desired cybersecurity target state changes?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,45,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:046,Does the cybersecurity strategy identify and communicate the institution's role as it relates to other critical infrastructures?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,46,NO,,,Cyber Risk Management and Oversight / Governance / Strategies & Policies,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:047,"Is an inventory of organizational assets (e.g., hardware, software, data, and systems hosted externally) maintained?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,47,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:048,"Are organizational assets (e.g., hardware, systems, data, and applications) prioritized for protection based on the data classification and business value?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,48,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:049,Does management assign accountability for maintaining an inventory of organizational assets?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,49,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:050,"Is a change management process in place to request and approve changes to systems configurations, hardware, software, applications, and security tools?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,50,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:051,"Is the asset inventory, including identification of critical assets, updated at least annually to address new, relocated, re-purposed, and sunset assets?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,51,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:052,Does the institution have a documented asset life-cycle process that considers whether assets to be acquired have appropriate security safeguards?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,52,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:053,"Does the institution proactively manage system EOL (e.g., replacement) to limit security risks?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,53,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:054,Are changes formally approved by an individual or committee with appropriate authority and with separation of duties?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,54,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:055,"Can baseline configurations not be altered without a formal change request, documented approval, and an assessment of security implications?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,55,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:056,"Does a formal IT change management process require cybersecurity risk to be evaluated during the analysis, approval, testing, and reporting of changes?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,56,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:057,Is supply chain risk reviewed before the acquisition of mission-critical information systems including system components?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,57,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:058,"Do automated tools enable tracking, updating, asset prioritizing, and custom reporting of the asset inventory?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,58,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:059,Are automated processes in place to detect and block unauthorized changes to software and hardware?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,59,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:060,Does the change management system use thresholds to determine when a risk assessment of the impact of the change is required?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,60,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:061,Does a formal change management function govern decentralized or highly distributed change requests and identify and measure security risks that may cause increased exposure to cyber attack?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,61,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:062,Are comprehensive automated enterprise tools implemented to detect and block unauthorized changes to software and hardware?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,62,NO,,,Cyber Risk Management and Oversight / Governance / IT Asset Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:063,Does an information security and business continuity risk management function(s) exist within the institution?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,63,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:064,"Does the risk management program incorporate cyber risk identification, measurement, mitigation, monitoring, and reporting?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,64,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:065,"Does management review and use the results of audits to improve existing cybersecurity policies, procedures, and controls?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,65,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:066,Does management monitor moderate and high residual risk issues from the cybersecurity risk assessment until items are addressed?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,66,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:067,Does the cybersecurity function have a clear reporting line that does not present a conflict of interest?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,67,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:068,"Does the risk management program specifically address cyber risks beyond the boundaries of the technological impacts (e.g., financial, strategic, regulatory, compliance)?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,68,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:069,Are benchmarks or target performance metrics established for showing improvements or regressions of the security posture over time?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,69,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:070,Does management use the results of independent audits and reviews to improve cybersecurity?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,70,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:071,"Is there a process to analyze and assign potential losses and related expenses, by cost center, associated with cybersecurity incidents?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,71,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:072,Are cybersecurity metrics used to facilitate strategic decision-making and funding in areas of need?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,72,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:073,Does independent risk management set and monitor cyber-related risk limits for business units?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,73,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:074,Does independent risk management staff escalate to management and the board or an appropriate board committee significant discrepancies from business unit's assessments of cyber-related risk?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,74,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:075,Is a process in place to analyze the financial impact cyber incidents have on the institution's capital?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,75,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:076,"Do the cyber risk data aggregation and real-time reporting capabilities support the institution's ongoing reporting needs, particularly during cyber incidents?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,76,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:077,Does the risk management function identify and analyze commonalities in cyber events that occur both at the institution and across other sectors to enable more predictive risk management?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,77,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:078,Is a process in place to analyze the financial impact that a cyber incident at the institution may have across the financial sector?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,78,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Management Program,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:079,"Does the risk assessment focus on safeguarding customer information identifies reasonable and foreseeable internal and external threats, the likelihood and potential damage of threats, and the sufficiency of policies, procedures, and customer information systems?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,79,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:080,Does the risk assessment identify internet-based systems and high-risk transactions that warrant additional authentication controls?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,80,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:081,"Is the risk assessment updated to address new technologies, products, services, and connections before deployment?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,81,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:082,"Are risk assessments used to identify the cybersecurity risks stemming from new products, services, or relationships?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,82,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:083,Does the focus of the risk assessment expand beyond customer information to address all information assets?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,83,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:084,Does the risk assessment consider the risk of using EOL software and hardware components?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,84,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:085,Is the risk assessment adjusted to consider widely known risks or risk management practices?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,85,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:086,Does an enterprise-wide risk management function incorporate cyber threat analysis and specific risk exposure as part of the enterprise risk assessment?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,86,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:087,"Is the risk assessment updated in real time as changes to the risk profile occur, new applicable standards are released or updated, and new exposures are anticipated?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,87,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:088,Does the institution use information from risk assessments to predict threats and drive real-time responses?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,88,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:089,Do advanced or automated analytics offer predictive information and real-time risk metrics?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,89,NO,,,Cyber Risk Management and Oversight / Risk Management / Risk Assessment,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:090,"Does independent audit or review evaluate policies, procedures, and controls across the institution for significant risks and control issues associated with the institution's operations, including risks in new products, emerging technologies, and information systems?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,90,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:091,Does the independent audit function validate controls related to the storage or transmission of confidential data?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,91,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:092,"Are logging practices independently reviewed periodically to ensure appropriate log management (e.g., access controls, retention, and maintenance)?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,92,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:093,Are issues and corrective actions from internal audits and independent testing/assessments formally tracked to ensure procedures and control lapses are resolved in a timely manner?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,93,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:094,Does the independent audit function validate that the risk management function is commensurate with the institution's risk and complexity?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,94,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:095,Does the independent audit function validate that the institution's threat information sharing is commensurate with the institution's risk and complexity?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,95,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:096,Does the independent audit function validate that the institution's cybersecurity controls function is commensurate with the institution's risk and complexity?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,96,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:097,Does the independent audit function validate that the institution's third-party relationship management is commensurate with the institution's risk and complexity?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,97,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:098,Does the independent audit function validate that the institution's incident response program and resilience are commensurate with the institution's risk and complexity?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,98,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:099,Is a formal process in place for the independent audit function to update its procedures based on changes to the institution's inherent risk profile?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,99,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:100,Does the independent audit function validate that the institution's threat intelligence and collaboration are commensurate with the institution's risk and complexity?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,100,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:101,Does the independent audit function regularly review management's cyber risk appetite statement?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,101,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:102,Are independent audits or reviews used to identify gaps in existing security capabilities and expertise?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,102,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:103,Is a formal process in place for the independent audit function to update its procedures based on changes to the evolving threat landscape across the sector?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,103,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:104,Does the independent audit function regularly review the institution's cyber risk appetite statement in comparison to assessment results and incorporates gaps into the audit strategy?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,104,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:105,"Are independent audits or reviews used to identify cybersecurity weaknesses, root causes, and the potential impact to business units?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,105,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:106,Is a formal process in place for the independent audit function to update its procedures based on changes to the evolving threat landscape across other sectors the institution depends upon?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,106,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:107,Does the independent audit function use sophisticated data mining tools to perform continuous monitoring of cybersecurity processes or controls?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,107,NO,,,Cyber Risk Management and Oversight / Risk Management / Audit,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:108,Are information security roles and responsibilities identified?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,108,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:109,Are processes in place to identify additional expertise needed to improve information security defenses?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,109,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:110,Is a formal process used to identify cybersecurity tools and expertise that may be needed?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,110,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:111,Does management with appropriate knowledge and experience lead the institution's cybersecurity efforts?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,111,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:112,Do staff with cybersecurity responsibilities have the requisite qualifications to perform the necessary tasks of the position?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,112,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:113,"Are employment candidates, contractors, and third parties subject to background verification proportional to the confidentiality of the data accessed, business requirements, and acceptable risk?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,113,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:114,"Does the institution have a program for talent recruitment, retention, and succession planning for the cybersecurity and resilience staffs?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,114,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:115,"Does the institution benchmark its cybersecurity staffing against peers to identify whether its recruitment, retention, and succession planning are commensurate?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,115,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:116,"Do dedicated cybersecurity staff develop, or contribute to developing, integrated enterprise-level security and cyber defense strategies?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,116,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:117,Does the institution actively partner with industry associations and academia to inform curricula based on future cybersecurity staffing needs of the industry?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,117,NO,,,Cyber Risk Management and Oversight / Resources / Staffing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:118,Is annual information security training provided?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,118,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:119,"Does annual information security training include incident response, current cyber threats (e.g., phishing, spear phishing, social engineering, and mobile security), and emerging issues?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,119,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:120,Are situational awareness materials made available to employees when prompted by highly visible cyber events or by regulatory alerts?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,120,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:121,"Are customer awareness materials readily available (e.g., DHS' Cybersecurity Awareness Month materials)?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,121,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:122,Does the institution have a program for continuing cybersecurity training and skill development for cybersecurity staff?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,122,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:123,Is management provided cybersecurity training relevant to their job responsibilities?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,123,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:124,Do employees with privileged account permissions receive additional cybersecurity training commensurate with their levels of responsibility?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,124,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:125,Are business units provided with cybersecurity training relevant to their particular business risks?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,125,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:126,"Does the institution validate the effectiveness of training (e.g., social engineering or phishing tests)?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,126,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:127,Does management incorporate lessons learned from social engineering and phishing exercises to improve the employee awareness programs?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,127,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:128,Is cybersecurity awareness information provided to retail customers and commercial clients at least annually?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,128,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:129,"Are business units provided with cybersecurity training relevant to their particular business risks, over and above what is required of the institution as a whole?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,129,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:130,Does the institution routinely update its training to security staff to adapt to new threats?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,130,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:131,"Are independent directors provided with cybersecurity training that addresses how complex products, services, and lines of business affect the institution's cyber risk?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,131,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:132,Are key performance indicators used to determine whether training and awareness programs positively influence behavior?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,132,NO,,,Cyber Risk Management and Oversight / Training & Culture / Training,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:133,Does management hold employees accountable for complying with the information security program?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,133,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:134,Does the institution have formal standards of conduct that hold all employees accountable for complying with cybersecurity policies and procedures?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,134,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:135,Are cyber risks actively discussed at business unit meetings?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,135,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:136,Do employees have a clear understanding of how to identify and escalate potential cybersecurity issues?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,136,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:137,Does management ensure performance plans are tied to compliance with cybersecurity policies and standards in order to hold employees accountable?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,137,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:138,Does the risk culture require formal consideration of cyber risks in all business decisions?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,138,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:139,Is cyber risk reporting presented and discussed at the independent risk management meetings?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,139,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:140,Does management ensure continuous improvement of cyber risk cultural awareness?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,140,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:141,Does the institution lead efforts to promote cybersecurity culture across the sector and to other sectors that they depend upon?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,141,NO,,,Cyber Risk Management and Oversight / Training & Culture / Culture,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:142,"Does the institution belong or subscribe to a threat and vulnerability information sharing source(s) that provides information on threats (e.g., Financial Services Information Sharing and Analysis Center [FS-ISAC], U.S. Computer Emergency Readiness Team [US-CERT])?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,142,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:143,Is threat information used to monitor threats and vulnerabilities?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,143,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:144,Is threat information used to enhance internal risk management and controls?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,144,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:145,"Does threat information received by the institution include analysis of tactics, patterns, and risk mitigation recommendations?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,145,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:146,Is a formal threat intelligence program implemented and includes subscription to threat feeds from external providers and internal sources?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,146,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:147,Are protocols implemented for collecting information from industry peers and government?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,147,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:148,"Is a read-only, central repository of cyber threat intelligence maintained?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,148,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:149,Is a cyber intelligence model is used for gathering threat information?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,149,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:150,Is threat intelligence automatically received from multiple sources in real time?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,150,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:151,Does the institution's threat intelligence include information related to geopolitical events that could increase cybersecurity threat levels?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,151,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:152,Does a threat analysis system automatically correlate threat data to specific risks and then take risk-based automated actions while alerting management?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,152,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:153,"Is the institution investing in the development of new threat intelligence and collaboration mechanisms (e.g., technologies, business processes) that will transform how information is gathered and shared?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,153,NO,,,Threat Intelligence and Collaboration / Threat Intelligence & Information,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:154,Are audit log records and other security event logs reviewed and retained in a secure manner?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,154,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:155,Are computer event logs used for investigations once an event has occurred?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,155,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:156,Is a process implemented to monitor threat information to discover emerging threats?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,156,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:157,Are the threat information and analysis process assigned to a specific group or individual?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,157,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:158,Are security processes and technology centralized and coordinated in a Security Operations Center (SOC) or equivalent?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,158,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:159,Do monitoring systems operate continuously with adequate support for efficient incident handling?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,159,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:160,"Is a threat intelligence team in place that evaluates threat intelligence from multiple sources for credibility, relevance, and exposure?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,160,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:161,"Is a profile created for each threat that identifies the likely intent, capability, and target of the threat?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,161,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:162,Are threat information sources that address all components of the threat profile prioritized and monitored?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,162,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:163,Is threat intelligence analyzed to develop cyber threat summaries including risks to the institution and specific actions for the institution to consider?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,163,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:164,Does a dedicated cyber threat identification and analysis committee or team exist to centralize and coordinate initiatives and communications?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,164,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:165,Are formal processes defined to resolve potential conflicts in information received from sharing and analysis centers or other sources?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,165,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:166,Are emerging internal and external threat intelligence and correlated log analysis used to predict future attacks?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,166,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:167,Is threat intelligence viewed within the context of the institution's risk profile and risk appetite to prioritize mitigating actions in anticipation of threats?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,167,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:168,Is threat intelligence used to update architecture and configuration standards?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,168,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:169,"Does the institution use multiple sources of intelligence, correlated log analysis, alerts, internal traffic flows, and geopolitical events to predict potential future attacks and attack trends?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,169,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:170,Are highest risk scenarios used to predict threats against specific business targets?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,170,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:171,Do IT systems automatically detect configuration weaknesses based on threat intelligence and alert management so actions can be prioritized?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,171,NO,,,Threat Intelligence and Collaboration / Monitoring & Analyzing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:172,Are information security threats gathered and shared with applicable internal employees?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,172,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:173,Is contact information for law enforcement and the regulator(s) maintained and updated regularly?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,173,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:174,Is information about threats shared with law enforcement and regulators when required or prompted?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,174,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:175,Is a formal and secure process in place to share threat and vulnerability information with other entities?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,175,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:176,Does a representative from the institution participate in law enforcement or information-sharing organization meetings?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,176,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:177,"Is a formal protocol in place for sharing threat, vulnerability, and incident information to employees based on their specific job function?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,177,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:178,Are information-sharing agreements used as needed or required to facilitate sharing threat information with other financial sector organizations or third parties?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,178,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:179,"Is information shared proactively with the industry, law enforcement, regulators, and information-sharing forums?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,179,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:180,Is a process in place to communicate and collaborate with the public sector regarding cyber threats?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,180,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:181,Does management communicate threat intelligence with business risk context and specific risk management recommendations to the business units?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,181,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:182,Do relationships exist with employees of peer institutions for sharing cyber threat intelligence?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,182,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:183,Is a network of trust relationships (formal and/or informal) established to evaluate information about cyber threats?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,183,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:184,Is a mechanism in place for sharing cyber threat intelligence with business units in real time including the potential financial and operational impact of inaction?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,184,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:185,Does a system automatically inform management of the level of business risk specific to the institution and the progress of recommended steps taken to mitigate the risks?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,185,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:186,Is the institution leading efforts to create new sector-wide information-sharing channels to address gaps in external-facing information-sharing mechanisms?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,186,NO,,,Threat Intelligence and Collaboration / Information Sharing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:187,"Are network perimeter defense tools (e.g., border router and firewall) used?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,187,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:188,Are systems that are accessed from the Internet or by external parties protected by firewalls or other similar devices?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,188,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:189,Are all ports monitored?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,189,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:190,Are up to date antivirus and anti-malware tools used?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,190,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:191,"Do systems configurations (for servers, desktops, routers, etc.) follow industry standards and are they enforced?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,191,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:192,"Are ports, functions, protocols and services prohibited if no longer needed for business purposes?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,192,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:193,Is access to make changes to systems configurations (including virtual machines and hypervisors) controlled and monitored?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,193,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:194,"Are programs that can override system, object, network, virtual machine, and application controls restricted?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,194,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:195,Are system sessions locked after a pre-defined period of inactivity and terminated after pre-defined conditions are met?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,195,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:196,Do wireless network environments require security settings with strong encryption for authentication and transmission (*N/A if there are no wireless networks.)?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,196,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:197,Is there a firewall at each Internet connection and between any Demilitarized Zone (DMZ) and internal network(s)?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,197,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:198,Do antivirus and intrusion detection/prevention systems (IDS/IPS) detect and block actual and attempted attacks or intrusions?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,198,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:199,"Do technical controls prevent unauthorized devices, including rogue wireless access devices and removable media, from connecting to the internal network(s)?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,199,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:200,"Is a risk-based solution in place at the institution or Internet hosting provider to mitigate disruptive cyber attacks (e.g., DDoS attacks)?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,200,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:201,Are guest wireless networks fully segregated from the internal network(s). (*N/A if there are no wireless networks.)?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,201,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:202,Is Domain Name System Security Extensions (DNSSEC) deployed across the enterprise?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,202,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:203,"Are critical systems supported by legacy technologies regularly reviewed to identify for potential vulnerabilities, upgrade opportunities, or new defense layers?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,203,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:204,Are controls for unsupported systems implemented and tested?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,204,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:205,"Is the enterprise network segmented in multiple, separate trust/security zones with defense-in-depth strategies (e.g., logical network segmentation, hard backups, air-gapping) to mitigate attacks?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,205,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:206,"Are security controls used for remote access to all administrative consoles, including restricted virtual systems?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,206,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:207,Do wireless network environments have perimeter firewalls that are implemented and configured to restrict unauthorized traffic. (*N/A if there are no wireless networks.)?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,207,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:208,Do wireless networks use strong encryption with encryption keys that are changed frequently. (*N/A if there are no wireless networks.)?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,208,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:209,Is the broadcast range of the wireless network(s) confined to institution-controlled boundaries. (*N/A if there are no wireless networks.)?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,209,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:210,"Are technical measures in place to prevent the execution of unauthorized code on institution owned or managed devices, network infrastructure, and systems components?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,210,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:211,Are network environments and virtual instances designed and configured to restrict and monitor traffic between trusted and untrusted zones?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,211,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:212,Is only one primary function permitted per server to prevent functions that require different security levels from co-existing on the same server?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,212,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:213,Are anti-spoofing measures in place to detect and block forged source IP addresses from entering the network?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,213,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:214,"Does the institution risk score all of its infrastructure assets and update in real time based on threats, vulnerabilities, or operational change?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,214,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:215,"Are automated controls put in place based on risk scores to infrastructure assets, including automatically disconnecting affected assets?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,215,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:216,Does the institution proactively seeks to identify control gaps that may be used as part of a zero-day attack?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,216,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:217,Are public-facing servers routinely rotated and restored to a known clean state to limit the window of time a system is exposed to potential threats?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,217,NO,,,Cybersecurity Controls / Preventative Controls / Infrastructure Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:218,Is employee access granted to systems and confidential data based on job responsibilities and the principles of least privilege?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,218,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:219,Is employee access to systems and confidential data provided with separation of duties?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,219,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:220,"Are elevated privileges (e.g., administrator privileges) limited and tightly controlled (e.g., assigned to individuals, not shared, and require stronger password controls)?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,220,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:221,Are user access reviews performed periodically for all systems and applications based on the risk to the application or system?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,221,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:222,"Are changes to physical and logical user access, including those that result from voluntary and involuntary terminations, submitted to and approved by designated personnel?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,222,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:223,"Are identification and authentication required and managed for access to systems, applications, and hardware?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,223,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:224,Do access controls include password complexity and limits to password attempts and reuse?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,224,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:225,Are all default passwords and unnecessary default accounts changed before system implementation?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,225,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:226,"Does customer access to Internet-based products or services require authentication controls (e.g., layered controls, multifactor) that are commensurate with the risk?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,226,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:227,Are production and non-production environments segregated to prevent unauthorized access or changes to information assets? (*N/A if no production environment exists at the institution or the institution's third party.),1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,227,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:228,Are physical security controls used to prevent unauthorized access to information systems and telecommunication systems?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,228,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:229,Are all passwords encrypted in storage and in transit?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,229,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:230,"Are confidential data encrypted when transmitted across public or untrusted networks (e.g., Internet)?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,230,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:231,"Are mobile devices (e.g., laptops, tablets, and removable media) encrypted if used to store confidential data? (*N/A if mobile devices are not used.)",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,231,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:232,"Does remote access to critical systems by employees, contractors, and third parties use encrypted connections and multifactor authentication?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,232,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:233,"Are administrative, physical, or technical controls in place to prevent users without administrative responsibilities from installing unauthorized software?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,233,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:234,"Does customer service (e.g., the call center) utilize formal procedures to authenticate customers commensurate with the risk of the transaction or request?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,234,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:235,Is data disposed of or destroyed according to documented requirements and within expected time frames?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,235,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:236,Do changes to user access permissions trigger automated notices to appropriate personnel?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,236,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:237,"Do administrators have two accounts: one for administrative use and one for general purpose, non-administrative tasks?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,237,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:238,"Does the use of customer data in non-production environments comply with legal, regulatory, and internal policy requirements for concealing or removing of sensitive data elements?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,238,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:239,"Is physical access to high-risk or confidential systems restricted, logged, and unauthorized access blocked?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,239,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:240,Are controls in place to prevent unauthorized access to cryptographic keys?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,240,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:241,Does the institution implement tools to prevent unauthorized access to or exfiltration of confidential data?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,241,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:242,Are controls in place to prevent unauthorized escalation of user privileges?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,242,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:243,Are access controls in place for database administrators to prevent unauthorized downloading or transmission of confidential data?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,243,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:244,Is all physical and logical access removed immediately upon notification of involuntary termination and within 24 hours of an employee's voluntary departure?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,244,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:245,Are multifactor authentication and/or layered controls implemented to secure all third-party access to the institution's network and/or systems and applications?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,245,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:246,"Are multifactor authentication (e.g., tokens, digital certificates) techniques used for employee access to high-risk systems as identified in the risk assessment(s)? (*N/A if no high risk systems.)",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,246,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:247,"Are confidential data encrypted in transit across private connections (e.g., frame relay and T1) and within the institution's trusted zones?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,247,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:248,"Are controls in place to prevent unauthorized access to collaborative computing devices and applications (e.g., networked white boards, cameras, microphones, online applications such as instant messaging and document sharing)? (* N/A if collaborative computing devices are not used.)",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,248,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:249,Is encryption of select data at rest determined by the institution's data classification and risk assessment?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,249,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:250,"Does customer authentication for high-risk transactions include methods to prevent malware and man-in-the-middle attacks (e.g., using visual transaction signing)?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,250,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:251,"Does adaptive access control de-provision or isolate an employee, third-party, or customer credentials to minimize potential damage if malicious behavior is suspected?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,251,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:252,"Are unstructured confidential data tracked and secured through an identity-aware, cross-platform storage system that protects against internal threats, monitors user access, and tracks changes?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,252,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:253,"Is tokenization used to substitute unique values for confidential information (e.g., virtual credit card)?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,253,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:254,"Does the institution lead efforts to create new technologies and processes for managing customer, employee, and third-party authentication and access?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,254,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:255,Is real-time risk mitigation taken based on automated risk scoring of user credentials?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,255,NO,,,Cybersecurity Controls / Preventative Controls / Access & Data Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:256,Are controls in place to restrict the use of removable media to authorized personnel?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,256,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:257,Do tools automatically block attempted access from unpatched employee and third-party devices?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,257,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:258,Do tools automatically block attempted access by unregistered devices to internal networks?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,258,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:259,Does the institution have controls to prevent the unauthorized addition of new connections?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,259,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:260,Are controls in place to prevent unauthorized individuals from copying confidential data to removable media?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,260,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:261,"Aer antivirus and anti-malware tools deployed on end-point devices (e.g., workstations, laptops, and mobile devices)?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,261,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:262,Are mobile devices with access to the institution's data centrally managed for antivirus and patch deployment? (*N/A if mobile devices are not used.),2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,262,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:263,Can the institution wipe data remotely on mobile devices when a device is missing or stolen? (*N/A if mobile devices are not used.),2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,263,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:264,"Are data loss prevention controls or devices implemented for inbound and outbound communications (e.g., e-mail, FTP, Telnet, prevention of large file transfers)?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,264,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:265,"Does mobile device management include integrity scanning (e.g., jailbreak/rooted detection)? (*N/A if mobile devices are not used.)",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,265,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:266,Do mobile devices connecting to the corporate network for storing and accessing company information allow for remote software version/patch validation? (*N/A if mobile devices are not used.),3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,266,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:267,Are employees' and third parties' devices (including mobile) without the latest security patches quarantined and patched before the device is granted access to the network?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,267,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:268,"Are confidential data and applications on mobile devices only accessible via a secure, isolated sandbox or a secure container?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,268,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:269,"Does a centralized end-point management tool provide fully integrated patch, configuration, and vulnerability management, while also being able to detect malware upon arrival to prevent an exploit?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,269,NO,,,Cybersecurity Controls / Preventative Controls / Device & Endpoint Security,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:270,"Do developers working for the institution follow secure program coding practices, as part of a system development life cycle (SDLC), that meet industry standards?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,270,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:271,Are the security controls of internally developed software periodically reviewed and tested? (*N/A if there is no software development.),1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,271,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:272,Are the security controls in internally developed software code independently reviewed before migrating the code to production? (*N/A if there is no software development.),1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,272,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:273,Are intellectual property and production code held in escrow? (*N/A if there is no production code to hold in escrow.),1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,273,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:274,"Do security testing occur at all post-design phases of the SDLC for all applications, including mobile applications? (*N/A if there is no software development.)",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,274,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:275,Are processes in place to mitigate vulnerabilities identified as part of the secure development of systems and applications?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,275,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:276,"Is the security of applications, including Web-based applications connected to the Internet, tested against known types of cyber attacks (e.g., SQL injection, cross-site scripting, buffer overflow) before implementation or following significant changes?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,276,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:277,Are software code executables and scripts digitally signed to confirm the software author and guarantee that the code has not been altered or corrupted?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,277,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:278,"Does a risk-based, independent information assurance function evaluate the security of internal applications?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,278,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:279,Are vulnerabilities identified through a static code analysis remediated before implementing newly developed or changed applications into production?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,279,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:280,Are all interdependencies between applications and services identified?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,280,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:281,Are independent code reviews completed on internally developed or vendor-provided custom applications to ensure there are no security gaps?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,281,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:282,Is software code actively scanned by automated tools in the development environment so that security weaknesses can be resolved immediately during the design phase?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,282,NO,,,Cybersecurity Controls / Preventative Controls / Secure Coding,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:283,Is independent testing (including penetration testing and vulnerability scanning) conducted according to the risk assessment for external-facing systems and the internal network?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,283,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:284,Are antivirus and anti-malware tools used to detect attacks?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,284,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:285,Are firewall rules audited or verified at least quarterly?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,285,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:286,"Are email protection mechanisms used to filter for common cyber threats (e.g., attached malware or malicious links)?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,286,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:287,Is independent penetration testing of network boundary and critical Web-facing applications performed routinely to identify security control gaps?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,287,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:288,Is independent penetration testing performed on Internet-facing applications or systems before they are launched or undergo significant change?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,288,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:289,Are antivirus and anti-malware tools updated automatically?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,289,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:290,Are firewall rules updated routinely?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,290,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:291,IS vulnerability scanning conducted and analyzed before deployment/redeployment of new/existing devices?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,291,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:292,Are processes in place to monitor potential insider activity that could lead to data theft or destruction?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,292,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:293,Do audit or risk management resources review the penetration testing scope and results to help determine the need for rotating companies based on the quality of the work?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,293,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:294,Are e-mails and attachments automatically scanned to detect malware and blocked when malware is present?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,294,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:295,Is weekly vulnerability scanning rotated among environments to scan all environments throughout the year?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,295,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:296,"Do penetration tests include cyber attack simulations and/or real-world tactics and techniques such as red team testing to detect control gaps in employee behavior, security defenses, policies, and resources?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,296,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:297,Do automated tool(s) proactively identify high-risk behavior signaling an employee who may pose an insider threat?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,297,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:298,"Are user tasks and content (e.g., opening an e-mail attachment) automatically isolated in a secure container or virtual environment so that malware can be analyzed but cannot access vital data, end-point operating systems, or applications on the institution's network?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,298,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:299,Is vulnerability scanning performed on a weekly basis across all environments?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,299,NO,,,Cybersecurity Controls / Detective Controls / Threat & Vulnerability Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:300,Is the institution able to detect anomalous activities through monitoring across the environment?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,300,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:301,Are customer transactions generating anomalous activity alerts monitored and reviewed?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,301,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:302,Are logs of physical and/or logical access reviewed following events?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,302,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:303,Is access to critical systems by third parties monitored for unauthorized or unusual activity?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,303,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:304,Are elevated privileges are monitored?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,304,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:305,"Are systems in place to detect anomalous behavior automatically during customer, employee, and third-party authentication?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,305,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:306,Are security logs reviewed regularly?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,306,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:307,Do logs provide traceability for all system access by individual users?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,307,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:308,Are thresholds established to determine activity within logs that would warrant management response?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,308,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:309,Are online customer transactions actively monitored for anomalous behavior?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,309,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:310,Are tools to detect unauthorized data mining used?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,310,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:311,Do tools actively monitor security logs for anomalous behavior and alert within established parameters?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,311,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:312,Are audit logs backed up to a centralized log server or media that is difficult to alter?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,312,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:313,Are thresholds for security logging evaluated periodically?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,313,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:314,"Are anomalous activity and other network and system alerts correlated across business units to detect and prevent multifaceted attacks (e.g., simultaneous account takeover and DDoS attack)?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,314,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:315,Does an automated tool triggers system and/or fraud alerts when customer logins occur within a short period of time but from physically distant IP locations?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,315,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:316,Do external transfers from customer accounts generate alerts and require review and authorization if anomalous behavior is detected?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,316,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:317,"Is a system in place to monitor and analyze employee behavior (network use patterns, work hours, and known devices) to alert on anomalous activities?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,317,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:318,Is an automated tool(s) in place to detect and prevent data mining by insider threats?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,318,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:319,Are tags on fictitious confidential data or files used to provide advanced alerts of potential malicious activity when the data is accessed?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,319,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:320,Does the institution have a mechanism for real-time automated risk scoring of threats?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,320,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:321,Is the institution developing new technologies that will detect potential insider threats and block activity in real time?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,321,NO,,,Cybersecurity Controls / Detective Controls / Anomalous Activity Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:322,Is a normal network activity baseline established?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,322,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:323,"Are mechanisms (e.g., antivirus alerts, log event alerts) in place to alert management to potential attacks?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,323,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:324,"Are processes in place to monitor for the presence of unauthorized users, devices, connections, and software?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,324,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:325,Are responsibilities for monitoring and reporting suspicious systems activity assigned?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,325,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:326,Is the physical environment monitored to detect potential unauthorized access?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,326,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:327,Is a process is in place to correlate event information from multiple sources?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,327,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:328,"Are controls or tools (e.g., data loss prevention) in place to detect potential unauthorized or unintentional transmissions of confidential data.",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,328,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:329,Are event detection processes proven reliable?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,329,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:330,Is specialized security monitoring used for critical assets throughout the infrastructure?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,330,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:331,"Do automated tools detect unauthorized changes to critical system files, firewalls, IPS, IDS, or other security devices?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,331,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:332,Is real-time network monitoring and detection implemented and incorporates sector-wide event information?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,332,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:333,"Are real-time alerts automatically sent when unauthorized software, hardware, or changes occur?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,333,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:334,Are tools in place to actively correlate event information from multiple sources and send alerts based on established parameters?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,334,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:335,Is the institution leading efforts to develop event detection systems that will correlate in real time when events are about to occur?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,335,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:336,Is the institution is leading the development effort to design new technologies that will detect potential insider threats and block activity in real time?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,336,NO,,,Cybersecurity Controls / Detective Controls / Event Detection,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:337,Is a patch management program implemented and ensures that software and firmware patches are applied in a timely manner?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,337,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:338,Are patches tested before being applied to systems and/or software?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,338,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:339,Are patch management reports reviewed and reflect missing security patches?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,339,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:340,"Is a formal process in place to acquire, test, and deploy software patches based on criticality?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,340,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:341,Are systems configured to retrieve patches automatically?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,341,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:342,Is operational impact evaluated before deploying security patches?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,342,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:343,Is an automated tool(s) used to identify missing security patches as well as the number of days since each patch became available?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,343,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:344,Are missing patches across all environments prioritized and tracked?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,344,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:345,Are patches for high-risk vulnerabilities tested and applied when released or the risk is accepted and accountability assigned?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,345,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:346,"Is patch monitoring software installed on all servers to identify any missing patches for the operating system software, middleware, database, and other key software?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,346,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:347,"Does the institution monitor patch management reports to ensure security patches are tested and implemented within aggressive time frames (e.g., 0-30 days)?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,347,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:348,Does the institution develop security patches or bug fixes or contributes to open source code development for systems it uses?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,348,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:349,Are segregated or separate systems in place that mirror production systems allowing for rapid testing and implementation of patches and provide for rapid fallback when needed?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,349,NO,,,Cybersecurity Controls / Corrective Controls / Patch Management,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:350,Are issues identified in assessments prioritized and resolved based on criticality and within the time frames established in the response to the assessment report?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,350,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:351,"Is data destroyed or wiped on hardware and portable/mobile media when a device is missing, stolen, or no longer needed?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,351,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:352,Are formal processes in place to resolve weaknesses identified during penetration testing?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,352,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:353,Are remediation efforts confirmed by conducting a follow-up vulnerability scan?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,353,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:354,"Is penetration testing repeated to confirm that medium- and high-risk, exploitable vulnerabilities have been resolved?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,354,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:355,"Are security investigations, forensic analysis, and remediation performed by qualified staff or third parties?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,355,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:356,"Are generally accepted and appropriate forensic procedures, including chain of custody, used to gather and present evidence to support potential legal action?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,356,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:357,Are the maintenance and repair of organizational assets performed by authorized individuals with approved and controlled tools?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,357,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:358,Are the maintenance and repair of organizational assets logged in a timely manner?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,358,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:359,"Are all medium and high risk issues identified in penetration testing, vulnerability scanning, and other independent testing escalated to the board or an appropriate board committee for risk acceptance if not resolved in a timely manner?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,359,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:360,Is the institution developing technologies that will remediate systems damaged by zero-day attacks to maintain current recovery time objectives?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,360,NO,,,Cybersecurity Controls / Corrective Controls / Remediation,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:361,Are the critical business processes that are dependent on external connectivity identified?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,361,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:362,Does the institution ensure that third-party connections are authorized?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,362,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:363,Is a network diagram in place and identifies all external connections?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,363,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:364,Are data flow diagrams in place and document information flow to external parties?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,364,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:365,Are critical business processes mapped to the supporting external connections?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,365,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:366,Is the network diagram updated when connections with third parties change or at least annually?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,366,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:367,Are network and systems diagrams stored in a secure manner with proper restrictions on access?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,367,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:368,Are controls for primary and backup third-party connections monitored and tested on a regular basis?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,368,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:369,"Is a validated asset inventory used to create comprehensive diagrams depicting data repositories, data flow, infrastructure, and connectivity?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,369,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:370,Are security controls designed and verified to detect and prevent intrusions from third-party connections?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,370,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:371,"Do monitoring controls cover all external connections (e.g., third-party service providers, business partners, customers)?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,371,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:372,Do monitoring controls cover all internal network-to-network connections?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,372,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:373,Is the security architecture validated and documented before network connection infrastructure changes?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,373,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:374,Does the institution work closely with third-party service providers to maintain and improve the security of external connections?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,374,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:375,"Is diagram(s) of external connections interactive, shows real-time changes to the network connection infrastructure, new connections, and volume fluctuations, and alerts when risks arise?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,375,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:376,Can the institution's connections be segmented or severed instantaneously to prevent contagion from cyber attacks?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,376,NO,,,External Dependency Management / Connections,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:377,"Is risk-based due diligence performed on prospective third parties before contracts are signed, including reviews of their background, reputation, financial condition, stability, and security controls?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,377,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:378,Is a list of third-party service providers is maintained?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,378,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:379,Is a risk assessment conducted to identify criticality of service providers?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,379,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:380,Does a formal process exist to analyze assessments of third-party cybersecurity controls?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,380,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:381,Does the board or an appropriate board committee review a summary of due diligence results including management's recommendations to use third parties that will affect the institution's inherent risk profile?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,381,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:382,"Is a process in place to confirm that the institution's third-party service providers conduct due diligence of their third parties (e.g., subcontractors)?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,382,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:383,"Are pre-contract, physical site visits of high-risk vendors conducted by the institution or by a qualified third party?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,383,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:384,Is a continuous process improvement program in place for third-party due diligence activity?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,384,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:385,Are audits of high-risk vendors conducted on an annual basis?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,385,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:386,Does the institution promote sector-wide efforts to build due diligence mechanisms that lead to in-depth and efficient security and resilience reviews?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,386,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:387,Is the institution leading efforts to develop new auditable processes and for conducting due diligence and ongoing monitoring of cybersecurity risks posed by third parties?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,387,NO,,,External Dependency Management / Relationship Management / Due Diligence,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:388,"Are formal contracts that address relevant security and privacy requirements in place for all third parties that process, store, or transmit confidential data or provide critical services?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,388,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:389,"Do contracts acknowledge that the third party is responsible for the security of the institution's confidential data that it possesses, stores, processes, or transmits?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,389,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:390,Do contracts stipulate that the third-party security controls are regularly reviewed and validated by an independent party?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,390,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:391,Do contracts identify the recourse available to the institution should the third party fail to meet defined security requirements?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,391,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:392,Do contracts establish responsibilities for responding to security incidents?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,392,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:393,Do contracts specify the security requirements for the return or destruction of data upon contract termination?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,393,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:394,"Are responsibilities for managing devices (e.g., firewalls, routers) that secure connections with third parties formally documented in the contract?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,394,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:395,Is responsibility for notification of direct and indirect security incidents and vulnerabilities documented in contracts or service-level agreements (SLAs)?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,395,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:396,Do contracts stipulate geographic limits on where data can be stored or transmitted?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,396,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:397,Are third-party SLAs or similar means in place that require timely notification of security events?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,397,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:398,Do contracts require third-party service provider's security policies meet or exceed those of the institution?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,398,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:399,Is a third-party termination/exit strategy established and validated with management?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,399,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:400,Does the institution promote a sector-wide effort to influence contractual requirements for critical third parties to the industry?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,400,NO,,,External Dependency Management / Relationship Management / Contracts,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:401,Is the third-party risk assessment updated regularly?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,401,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:402,"Are audits, assessments, and operational performance reports obtained and reviewed regularly validating security controls for critical third parties?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,402,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:403,Do ongoing monitoring practices include reviewing critical third-parties' resilience plans?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,403,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:404,"Is a process to identify new third-party relationships in place, including identifying new relationships that were established without formal approval?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,404,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:405,Does a formal program assign responsibility for ongoing oversight of third-party access?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,405,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:406,"Is monitoring of third parties scaled, in terms of depth and frequency, according to the risk of the third parties?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,406,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:407,Are automated reminders or ticklers in place to identify when required third-party information needs to be obtained or analyzed?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,407,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:408,Are third-party employee access to the institution's confidential data tracked actively based on the principles of least privilege?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,408,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:409,Are periodic on-site assessments of high-risk vendors conducted to ensure appropriate security controls are in place?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,409,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:410,Is third-party employee access to confidential data on third-party hosted systems tracked actively via automated reports and alerts?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,410,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:411,Is the institution leading efforts to develop new auditable processes for ongoing monitoring of cybersecurity risks posed by third parties?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,411,NO,,,External Dependency Management / Relationship Management / Ongoing Monitoring,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:412,Does the institution document how it will react and respond to cyber incidents?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,412,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:413,Do communication channels exist to provide employees a means for reporting information security events in a timely manner?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,413,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:414,Are roles and responsibilities for incident response team members defined?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,414,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:415,"Does the response team include individuals with a wide range of backgrounds and expertise, from many different areas within the institution (e.g., management, legal, public relations, as well as information technology)?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,415,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:416,Does a formal backup and recovery plan exist for all critical business lines?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,416,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:417,"Does the institution plan to use business continuity, disaster recovery, and data backup programs to recover operations following an incident?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,417,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:418,"Does the remediation plan and process outline the mitigating actions, resources, and time parameters?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,418,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:419,"Do the corporate disaster recovery, business continuity, and crisis management plans have integrated consideration of cyber incidents?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,419,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:420,Are alternative processes established to continue critical activity within a reasonable time period?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,420,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:421,Are business impact analyses updated to include cybersecurity?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,421,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:422,"Are due diligence performed on technical sources, consultants, or forensic service firms that could be called to assist the institution during or following an incident?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,422,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:423,Is a strategy in place to coordinate and communicate with internal and external stakeholders during or following a cyber attack?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,423,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:424,Are plans in place to re-route or substitute critical functions and/or services that may be affected by a successful attack on Internet-facing systems?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,424,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:425,Is a direct cooperative or contractual agreement(s) in place with an incident response organization(s) or provider(s) to assist rapidly with mitigation efforts?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,425,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:426,Are lessons learned from real-life cyber incidents and attacks on the institution and other organizations used to improve the institution's risk mitigation capabilities and response plan?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,426,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:427,"Are methods for responding to and recovering from cyber incidents tightly woven throughout the business units' disaster recovery, business continuity, and crisis management plans?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,427,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:428,"Are multiple systems, programs, or processes implemented into a comprehensive cyber resilience program to sustain, minimize, and recover operations from an array of potentially disruptive and destructive cyber incidents?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,428,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:429,Is a process is in place to continuously improve the resilience plan?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,429,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:430,"Is the incident response plan designed to ensure recovery from disruption of services, assurance of data integrity, and recovery of lost or corrupted data following a cybersecurity incident?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,430,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:431,Does the incident response process include detailed actions and rule-based triggers for automated response?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,431,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Planning,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:432,Are scenarios used to improve incident detection and response?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,432,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:433,Does business continuity testing involve collaboration with critical third parties?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,433,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:434,"Is systems, applications, and data recovery tested at least annually?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,434,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:435,"Do recovery scenarios include plans to recover from data destruction and impacts to data integrity, data loss, and system and data availability?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,435,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:436,Are widely reported events used to evaluate and improve the institution's response?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,436,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:437,Are information backups tested periodically to verify they are accessible and readable?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,437,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:438,Are cyber-attack scenarios analyzed to determine potential impact to critical business processes?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,438,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:439,Does the institution participate in sector-specific cyber exercises or scenarios?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,439,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:440,Is resilience testing based on analysis and identification of realistic and highly likely threats as well as new and emerging threats facing the institution?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,440,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:441,"Are the critical online systems and processes tested to withstand stresses for extended periods (e.g., DDoS)?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,441,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:442,Are the results of cyber event exercises used to improve the incident response plan and automated triggers?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,442,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:443,Is resilience testing comprehensive and coordinated across all critical business functions?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,443,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:444,Does the institution validate that it is able to recover from cyber events similar to by known sophisticated attacks at other organizations?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,444,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:445,Does incident response testing evaluate the institution from an attacker's perspective to determine how the institution or its assets at critical third parties may be targeted?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,445,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:446,Does the institution correct root causes for problems discovered during cybersecurity resilience testing?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,446,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:447,Are cybersecurity incident scenarios involving significant financial loss used to stress test the institution's risk management?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,447,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:448,Does the institution test the ability to shift business processes or functions between different processing centers or technology systems for cyber incidents without interruption to business or loss of productivity or data?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,448,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:449,Does the institution validate that it is able to remediate systems damaged by zero-day attacks to maintain current recovery time objectives?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,449,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:450,Is the institution leading the development of more realistic test environments?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,450,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:451,Are cyber incident scenarios used to stress test potential financial losses across the sector?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,451,NO,,,Cyber Incident Management & Resilience / Planning & Strategy / Testing,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:452,Are alert parameters set for detecting information security incidents that prompt mitigating actions?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,452,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:453,Do system performance reports contain information that can be used as a risk indicator to detect information security incidents?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,453,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:454,"Are tools and processes in place to detect, alert, and trigger the incident response program?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,454,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:455,Does the institution have processes to detect and alert the incident response team when potential insider activity manifests that could lead to data theft or destruction?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,455,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:456,Is the incident response program triggered when anomalous behaviors and attack patterns or signatures are detected?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,456,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:457,"Does the institution have the ability to discover infiltration, before the attacker traverses across systems, establishes a foothold, steals information, or causes damage to data and systems?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,457,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:458,Are incidents detected in real time through automated processes that include instant alerts to appropriate personnel who can respond?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,458,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:459,"Are network and system alerts correlated across business units to better detect and prevent multifaceted attacks (e.g., simultaneous DDoS attack and account takeover)?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,459,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:460,Are incident detection processes capable of correlating events across the enterprise?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,460,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:461,Are sophisticated and adaptive technologies deployed that can detect and alert the incident response team of specific tasks when threat indicators across the enterprise indicate potential external and internal threats?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,461,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:462,Are automated tools implemented to provide specialized security monitoring based on the risk of the assets to detect and alert incident response teams in real time?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,462,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:463,Is the institution able to detect and block zero-day attempts and inform management and the incident response team in real time?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,463,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Detection",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:464,Are appropriate steps taken to contain and control an incident to prevent further unauthorized access to or use of customer information?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,464,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:465,"Is the incident response plan designed to prioritize incidents, enabling a rapid response for significant cybersecurity incidents or vulnerabilities?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,465,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:466,Is a process in place to help contain incidents and restore operations with minimal service disruption?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,466,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:467,"Are containment and mitigation strategies developed for multiple incident types (e.g., DDoS, malware)?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,467,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:468,Do procedures include containment strategies and notifying potentially impacted third parties?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,468,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:469,Are processes in place to trigger the incident response program when an incident occurs at a third party?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,469,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:470,Are records generated to support incident investigation and mitigation?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,470,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:471,"Does the institution call upon third parties, as needed, to provide mitigation services?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,471,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:472,Is analysis of events used to improve the institution's security measures and policies?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,472,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:473,Is analysis of security incidents performed in the early stages of an intrusion to minimize the impact of the incident?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,473,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:474,Are any changes to systems/applications or to access entitlements necessary for incident management reviewed by management for formal approval before implementation?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,474,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:475,"Are processes in place to ensure assets affected by a security incident that cannot be returned to operational status are quarantined, removed, disposed of, and/or replaced?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,475,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:476,Are processes in place to ensure that restored assets are appropriately reconfigured and thoroughly tested before being placed back into operation?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,476,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:477,Does the incident management function collaborate effectively with the cyber threat intelligence function during an incident?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,477,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:478,"Do links between threat intelligence, network operations, and incident response allow for proactive response to potential incidents?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,478,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:479,Do technical measures apply defense-in-depth techniques such as deep-packet inspection and black holing for detection and timely response to network-based attacks associated with anomalous ingress or egress traffic patterns and/or DDoS attacks?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,479,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:480,Does the institution's risk management of significant cyber incidents result in limited to no disruptions to critical services?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,480,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:481,"Are the technology infrastructure engineered to limit the effects of a cyber attack on the production environment from migrating to the backup environment (e.g., air-gapped environment and processes)?",5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,481,NO,,,"Cyber Incident Management & Resilience / Detection, Response & Mitigation / Response & Mitigation",NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:482,Does a process exist to contact personnel who are responsible for analyzing and responding to an incident?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,482,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:483,"Do procedures exist to notify customers, regulators, and law enforcement as required or necessary when the institution becomes aware of an incident involving the unauthorized access to or use of sensitive customer information?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,483,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:484,Does the institution prepare an annual report of security incidents or violations for the board or an appropriate board committee?,1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,484,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:485,"Are incidents classified, logged, and tracked?",1,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,485,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:486,Are criteria established for escalating cyber incidents or vulnerabilities to the board and senior management based on the potential impact and criticality of the risk?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,486,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:487,"Are regulators, law enforcement, and service providers, as appropriate, notified when the institution is aware of any unauthorized access to systems or a cyber incident occurs that could result in degradation of services?",2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,487,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:488,Are tracked cyber incidents correlated for trend analysis and reporting?,2,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,488,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:489,"Do employees that are essential to mitigate the risk (e.g., fraud, business resilience) know their role in incident escalation?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,489,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:490,"Is a communication plan used to notify other organizations, including third parties, of incidents that may affect them or their customers?",3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,490,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:491,Is an external communication plan used for notifying media regarding incidents when applicable?,3,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,491,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:492,Are the institution established quantitative and qualitative metrics for the cybersecurity incident response process?,4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,492,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:493,"Are detailed metrics, dashboards, and/or scorecards outlining cyber incidents and events provided to management and are part of the board meeting package?",4,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,493,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,
+COML:494,Is a mechanism in place to provide instantaneous notification of incidents to management and essential employees through multiple communication channels with tracking and verification of receipt?,5,No,10,Organization,FFIEC CAT Cyber Org Maturity Level,494,NO,,,Cyber Incident Management & Resilience / Escalation & Reporting,NO,NO,NO,NO,NO,NO,YES,YES
+,,,N/A,5,,,,,,,,,,,,,,,
+,,,Yes,0,,,,,,,,,,,,,,,

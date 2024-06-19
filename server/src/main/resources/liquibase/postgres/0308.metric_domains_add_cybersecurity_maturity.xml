@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0308.metric_domains_add_cybersecurity_maturity" author="Oleh Dmytrenko">
+
+		<sql>
+
+			INSERT INTO metric_domains (id, name, description, code) VALUES
+			(8, 'Cybersecurity Maturity', '', 'cybersecurity_maturity')
+			;
+
+			ALTER SEQUENCE metric_domains_id_seq RESTART WITH 9;
+
+
+			INSERT INTO variable_types (id, name, relation) VALUES
+			(20, 'CYBERSECURITY_MATURITY', 'RISK_METRIC')
+			;
+
+			ALTER SEQUENCE variable_types_id_seq RESTART WITH 21;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM metric_domains md WHERE md.id IN (8);
+				DELETE FROM variable_types md WHERE md.id IN (20);
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>
+

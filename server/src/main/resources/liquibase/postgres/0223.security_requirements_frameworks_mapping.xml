@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0223.security_requirements_frameworks_mapping" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE security_requirements_frameworks_mapping
+			(
+				id serial,
+				security_requirement_id integer NOT NULL,
+				control_subcategory_id integer DEFAULT NULL,
+				CONSTRAINT pk_security_requirements_frameworks_mapping PRIMARY KEY (id)
+				, CONSTRAINT fk_security_requirements_frameworks_mapping_to_requirement FOREIGN KEY (security_requirement_id) REFERENCES security_requirements (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_security_requirements_frameworks_mapping_to_subcategory FOREIGN KEY (control_subcategory_id) REFERENCES control_subcategories (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_security_requirements_frameworks_mapping_requirement ON security_requirements_frameworks_mapping (security_requirement_id);
+			CREATE INDEX i_security_requirements_frameworks_mapping_subcategory ON security_requirements_frameworks_mapping (control_subcategory_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="security_requirements_frameworks_mapping"/>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

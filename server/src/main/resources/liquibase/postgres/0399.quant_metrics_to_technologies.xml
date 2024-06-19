@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0399.quant_metrics_to_technologies" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE quant_metrics_to_technologies
+			(
+				id serial,
+				quant_metric_id integer NOT NULL,
+				technology_id integer NOT NULL,
+
+				CONSTRAINT pk_quant_metrics_to_technologies PRIMARY KEY(id)
+				, CONSTRAINT fk_quant_metrics_to_technologies_quant_metric FOREIGN KEY (quant_metric_id) REFERENCES quant_metrics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_quant_metrics_to_technologies_technology_category FOREIGN KEY (technology_id) REFERENCES technologies (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_quant_metrics_to_technologies_quant_metric ON quant_metrics_to_technologies (quant_metric_id);
+			CREATE INDEX i_quant_metrics_to_technologies_technology_category ON quant_metrics_to_technologies (technology_id);
+
+			INSERT INTO variable_types (id, code, name, relation) VALUES
+			(23, 'SYSTEM_COST_TO_RESTORE', 'Cost to Restore', 'QUANT_METRIC')
+			;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE quant_metrics_to_technologies;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

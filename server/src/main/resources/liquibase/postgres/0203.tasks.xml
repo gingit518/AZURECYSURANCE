@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0203.tasks" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TYPE TaskPriority as ENUM ('LOW', 'MEDIUM', 'HIGH', 'URGENT');
+
+			CREATE TABLE projects
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying DEFAULT NULL,
+				CONSTRAINT pk_projects PRIMARY KEY (id)
+			);
+			CREATE INDEX i_projects_organization ON projects (organization_id);
+			CREATE INDEX i_projects_organization_and_name ON projects (organization_id, name);
+			CREATE INDEX i_projects_name ON projects (name);
+
+			CREATE TABLE task_categories
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying DEFAULT NULL,
+				CONSTRAINT pk_task_categories PRIMARY KEY (id)
+			);
+			CREATE INDEX i_task_categories_organization ON task_categories (organization_id);
+			CREATE INDEX i_task_categories_organization_and_name ON task_categories (organization_id, name);
+			CREATE INDEX i_task_categories_name ON task_categories (name);
+			INSERT INTO task_categories (id, name) VALUES
+			(1, 'Risk mitigation'),
+			(2, 'Risk Planning'),
+			(3, 'Risk Acceptance');
+			ALTER SEQUENCE task_categories_id_seq RESTART WITH 1024;
+
+			CREATE TABLE tasks
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				business_unit_id integer DEFAULT NULL,
+				project_id integer DEFAULT NULL,
+				task_category_id integer DEFAULT NULL,
+				task_manager_id integer DEFAULT NULL,
+				task_notes text DEFAULT NULL,
+				status float DEFAULT NULL,
+				priority TaskPriority DEFAULT NULL,
+				estimated_start_date timestamp without time zone DEFAULT NULL,
+				actual_start_date timestamp without time zone DEFAULT NULL,
+				estimated_end_date timestamp without time zone DEFAULT NULL,
+				actual_end_date timestamp without time zone DEFAULT NULL,
+				CONSTRAINT pk_tasks PRIMARY KEY (id)
+				, CONSTRAINT fk_tasks_to_user FOREIGN KEY (task_manager_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_tasks_to_business_unit FOREIGN KEY (business_unit_id) REFERENCES business_units (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_tasks_to_project FOREIGN KEY (project_id) REFERENCES projects (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_tasks_to_task_category FOREIGN KEY (task_category_id) REFERENCES task_categories (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_tasks_organization ON tasks (organization_id);
+			CREATE INDEX i_tasks_user ON tasks (task_manager_id);
+			CREATE INDEX i_tasks_business_unit ON tasks (business_unit_id);
+			CREATE INDEX i_tasks_project_ ON tasks (project_id);
+			CREATE INDEX i_tasks_estimated_start_date ON tasks (estimated_start_date);
+			CREATE INDEX i_tasks_estimated_end_date ON tasks (estimated_end_date);
+
+			CREATE TABLE gdpr_organization_article_tasks
+			(
+				id serial,
+				task_id integer DEFAULT NULL,
+				article_status_id integer DEFAULT NULL,
+				CONSTRAINT pk_gdpr_organization_article_tasks PRIMARY KEY (id)
+				, CONSTRAINT fk_gdpr_organization_article_tasks_to_article FOREIGN KEY (article_status_id) REFERENCES gdpr_article_status (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_gdpr_organization_article_tasks_to_task FOREIGN KEY (task_id) REFERENCES tasks (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_gdpr_organization_article_tasks_task ON gdpr_organization_article_tasks (task_id);
+			CREATE INDEX i_gdpr_organization_article_tasks_status ON gdpr_organization_article_tasks (article_status_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE gdpr_organization_article_tasks;
+				DROP TABLE task_to_user;
+				DROP TABLE tasks;
+				DROP TABLE task_categories;
+				DROP TABLE projects;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

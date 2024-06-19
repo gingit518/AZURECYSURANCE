@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0363.package_plans" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE package_plans
+			(
+				id serial,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				CONSTRAINT pk_package_plans PRIMARY KEY (id)
+			);
+			CREATE UNIQUE INDEX i_package_plans_name ON package_plans (name);
+
+			CREATE TABLE package_plan_to_role
+			(
+				id serial,
+				package_plan_id integer NOT NULL,
+				role_id integer DEFAULT NULL,
+				CONSTRAINT pk_package_plan_to_role PRIMARY KEY (id)
+				, CONSTRAINT fk_package_plan_to_role_to_package_plan FOREIGN KEY (package_plan_id) REFERENCES package_plans (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_package_plan_to_role_to_role FOREIGN KEY (role_id) REFERENCES roles (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_package_plan_to_role_package_plan ON package_plan_to_role (package_plan_id);
+			CREATE INDEX i_package_plan_to_role_role ON package_plan_to_role (role_id);
+			CREATE UNIQUE INDEX i_package_plan_to_role ON package_plan_to_role (package_plan_id, role_id);
+
+			ALTER TABLE organizations ADD COLUMN package_plan_id integer DEFAULT NULL;
+			ALTER TABLE organizations ADD CONSTRAINT fk_organizations_to_package_plans FOREIGN KEY (package_plan_id) REFERENCES package_plans (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_organizations_package_plan ON organizations (package_plan_id);
+
+			INSERT INTO package_plans (id, name, description) VALUES (1, 'CCPA', 'California Consumer Privacy Act (CCPA) Package Plan');
+			ALTER SEQUENCE package_plans_id_seq RESTART WITH 2;
+
+			ALTER TABLE roles ALTER COLUMN name SET DATA TYPE character varying (24);
+			INSERT INTO roles (id, name, description) VALUES (1024, 'CCPA_ADMIN', 'Administrator of the Package Plan for the California Consumer Privacy Act (CCPA_ADMIN) user role.') ON CONFLICT DO NOTHING;
+			INSERT INTO roles (id, name, description) VALUES (1025, 'CCPA', 'California Consumer Privacy Act (CCPA) user role.') ON CONFLICT DO NOTHING;
+
+			INSERT INTO package_plan_to_role (package_plan_id, role_id) VALUES (1, 176) ON CONFLICT DO NOTHING;
+			INSERT INTO package_plan_to_role (package_plan_id, role_id) VALUES (1, 188) ON CONFLICT DO NOTHING;
+			INSERT INTO package_plan_to_role (package_plan_id, role_id) VALUES (1, 1024) ON CONFLICT DO NOTHING;
+			INSERT INTO package_plan_to_role (package_plan_id, role_id) VALUES (1, 1025) ON CONFLICT DO NOTHING;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN package_plan_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

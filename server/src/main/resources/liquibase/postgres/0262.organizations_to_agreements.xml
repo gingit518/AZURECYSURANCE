@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0262.organizations_to_agreements" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE organizations_to_agreements
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				agreement_id integer NOT NULL,
+
+				CONSTRAINT pk_organizations_to_agreements PRIMARY KEY (id)
+				, CONSTRAINT fk_organizations_to_agreements_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_organizations_to_agreements_to_agreement FOREIGN KEY (agreement_id) REFERENCES organizations_agreements (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_organizations_to_agreements_organization ON organizations_to_agreements (organization_id);
+			CREATE INDEX i_organizations_to_agreements_agreement ON organizations_to_agreements (agreement_id);
+
+			DROP INDEX IF EXISTS i_organizations_agreements_organization;
+			ALTER TABLE organizations_agreements DROP CONSTRAINT IF EXISTS fk_organizations_agreements_to_organization;
+			ALTER TABLE organizations_agreements DROP COLUMN IF EXISTS organization_id;
+
+			ALTER TABLE organizations ADD COLUMN insurance_limit double precision DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS organizations_to_agreements;
+
+				ALTER TABLE organizations DROP COLUMN insurance_limit;
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

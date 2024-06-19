@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0374.alter_deployment_type" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TYPE deploymenttype RENAME TO DeploymentType__;
+			CREATE TYPE DeploymentType AS ENUM ('NONE', 'ON_PREMISE', 'CLOUD', 'HYBRID');
+
+			ALTER TABLE systems ALTER COLUMN deployment_type TYPE DeploymentType USING (deployment_type::text::DeploymentType);
+
+			DROP TYPE DeploymentType__;
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

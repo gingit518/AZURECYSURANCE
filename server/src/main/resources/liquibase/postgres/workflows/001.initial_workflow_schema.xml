@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="001.initial_workflow_schema" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE workflow_process
+			(
+				id serial,
+				organization_id integer NULL,
+				source_id integer NULL,
+				deployment_uid character varying (64) NULL,
+				name character varying (255) NOT NULL,
+				description text NULL,
+				data jsonb NULL,
+				version integer NULL,
+				parent_id integer NULL,
+				status integer NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_workflow_process PRIMARY KEY (id)
+				, CONSTRAINT fk_workflow_process_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_workflow_process_name ON workflow_process (name);
+			CREATE INDEX i_workflow_process_organization ON workflow_process (organization_id);
+			CREATE INDEX i_workflow_process_deployment_uid ON workflow_process (deployment_uid);
+
+			CREATE TABLE workflow_task_type
+			(
+				id serial,
+				code character varying (64) NULL,
+				name character varying (255) NOT NULL,
+				description text NULL,
+				CONSTRAINT pk_workflow_task_type PRIMARY KEY (id)
+			);
+			CREATE INDEX i_workflow_task_type_code ON workflow_task_type (code);
+
+			CREATE TABLE workflow_task
+			(
+				id serial,
+				organization_id integer NULL,
+				process_id integer NULL,
+				task_type_id integer NULL,
+				deployment_uid character varying (64) NULL,
+				name character varying (255) NOT NULL,
+				description text NULL,
+				data jsonb NULL,
+				version integer NULL,
+				status integer NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_workflow_task PRIMARY KEY (id)
+				, CONSTRAINT fk_workflow_task_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_to_process FOREIGN KEY (process_id) REFERENCES workflow_process (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_to_task_type FOREIGN KEY (task_type_id) REFERENCES workflow_task_type (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_workflow_task_name ON workflow_task (name);
+			CREATE INDEX i_workflow_task_organization ON workflow_task (organization_id);
+			CREATE INDEX i_workflow_task_process ON workflow_task (process_id);
+			CREATE INDEX i_workflow_task_task_type ON workflow_task (task_type_id);
+			CREATE INDEX i_workflow_task_deployment_uid ON workflow_task (deployment_uid);
+
+			CREATE TABLE workflow_task_children
+			(
+				id serial,
+				parent_id integer NULL,
+				child_id integer NULL,
+				CONSTRAINT pk_workflow_task_children PRIMARY KEY (id)
+				, CONSTRAINT fk_workflow_task_children_to_parent FOREIGN KEY (parent_id) REFERENCES workflow_task (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_children_to_child FOREIGN KEY (child_id) REFERENCES workflow_task (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_workflow_task_children_parent ON workflow_task_children (parent_id);
+			CREATE INDEX i_workflow_task_children_child ON workflow_task_children (child_id);
+
+			CREATE TABLE workflow_execution
+			(
+				id serial,
+				organization_id integer NULL,
+				user_id integer NULL,
+				process_id integer NULL,
+				root_parent_id integer NULL,
+				parent_id integer NULL,
+				task_id integer NULL,
+				data jsonb NULL,
+				status integer NULL,
+				started_at timestamp without time zone NOT NULL DEFAULT now(),
+				finished_at timestamp without time zone NOT NULL DEFAULT now(),
+				expiration_date timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_workflow_execution PRIMARY KEY (id)
+				, CONSTRAINT fk_workflow_execution_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_execution_to_user FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_execution_to_parent FOREIGN KEY (parent_id) REFERENCES workflow_execution (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_execution_to_root_parent FOREIGN KEY (root_parent_id) REFERENCES workflow_execution (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_execution_to_task FOREIGN KEY (task_id) REFERENCES workflow_task (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_execution_to_process FOREIGN KEY (process_id) REFERENCES workflow_process (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_workflow_execution_organization ON workflow_execution (organization_id);
+			CREATE INDEX i_workflow_execution_user ON workflow_execution (user_id);
+			CREATE INDEX i_workflow_execution_process ON workflow_execution (process_id);
+			CREATE INDEX i_workflow_execution_user_status ON workflow_execution (user_id, status);
+			CREATE INDEX i_workflow_execution_started_status ON workflow_execution (started_at, status);
+			CREATE INDEX i_workflow_execution_status ON workflow_execution (status);
+
+			CREATE TABLE workflow_task_instance
+			(
+				id serial,
+				organization_id integer NULL,
+				task_type_id integer NULL,
+				user_id integer NULL,
+				process_id integer NULL,
+				root_execution_id integer NULL,
+				execution_id integer NULL,
+				task_id integer NULL,
+				data jsonb NULL,
+				status integer NULL,
+				started_at timestamp without time zone NOT NULL DEFAULT now(),
+				finished_at timestamp without time zone NOT NULL DEFAULT now(),
+				expiration_date timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_workflow_task_instance PRIMARY KEY (id)
+				, CONSTRAINT fk_workflow_task_instance_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_instance_to_user FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_instance_to_task_type FOREIGN KEY (task_type_id) REFERENCES workflow_task_type (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_instance_to_process FOREIGN KEY (process_id) REFERENCES workflow_process (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_instance_to_root_execution FOREIGN KEY (root_execution_id) REFERENCES workflow_execution (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_instance_to_execution FOREIGN KEY (execution_id) REFERENCES workflow_execution (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_workflow_task_instance_to_task FOREIGN KEY (task_id) REFERENCES workflow_task (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_workflow_task_instance_organization ON workflow_task_instance (organization_id);
+			CREATE INDEX i_workflow_task_instance_user_status ON workflow_task_instance (user_id, status);
+			CREATE INDEX i_workflow_task_instance_started_status ON workflow_task_instance (started_at, status);
+			CREATE INDEX i_workflow_task_instance_task_type ON workflow_task_instance (task_type_id);
+			CREATE INDEX i_workflow_task_instance_status ON workflow_task_instance (status);
+			CREATE INDEX i_workflow_task_instance_execution ON workflow_task_instance (execution_id);
+			CREATE INDEX i_workflow_task_instance_root_execution ON workflow_task_instance (root_execution_id);
+			CREATE INDEX i_workflow_task_instance_task ON workflow_task_instance (task_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE workflow_task_instance;
+				DROP TABLE workflow_execution;
+				DROP TABLE workflow_task_children;
+				DROP TABLE workflow_task;
+				DROP TABLE workflow_task_type;
+				DROP TABLE workflow_process;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

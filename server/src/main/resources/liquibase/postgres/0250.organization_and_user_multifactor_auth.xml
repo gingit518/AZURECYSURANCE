@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0250.organization_and_user_multifactor_auth" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			ALTER TABLE organizations ADD COLUMN use_multi_factor_auth boolean DEFAULT false;
+			ALTER TABLE users ADD COLUMN use_multi_factor_auth boolean DEFAULT false;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN IF EXISTS use_multi_factor_auth;
+				ALTER TABLE users DROP COLUMN IF EXISTS use_multi_factor_auth;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0197.gdpr_organization_status" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE gdpr_organization_status
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				compliance double precision,
+				compliance_metric double precision DEFAULT NULL,
+				files_number double precision DEFAULT NULL,
+				articles_processed double precision DEFAULT NULL,
+				articles_number double precision DEFAULT NULL,
+				comments text,
+				CONSTRAINT pk_gdpr_organization_status PRIMARY KEY (id)
+				, CONSTRAINT fk_gdpr_organization_status_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_gdpr_organization_status_to_organization ON gdpr_organization_status (organization_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROM TABLE gdpr_organization_status;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

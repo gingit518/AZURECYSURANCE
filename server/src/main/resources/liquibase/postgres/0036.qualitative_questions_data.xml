@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0035-qualification-questions" author="Eugene A. Kalosha">
+
+		<sql>
+
+INSERT INTO
+	public.qualitative_questions (id, question, description, vendor_type, risk_model_id, qualification_metric_id, ordinal, created_by_id, updated_by_id, created_at, updated_at)
+VALUES
+(200, 'How many users of this system?', 'How many employees, customers or 3rd parties use this system?', 'Organization', 101, 101, 0, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(201, 'What types of users work with this system?', NULL, 'Organization', 101, 101, 1, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(202, 'What is the location of the system?', ' ', 'Organization', 101, 101, 2, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(203, 'How do users access the system? ', NULL, 'Organization', 101, 101, 3, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(204, 'What proximity is needed to breach the system?', NULL, 'Organization', 101, 101, 4, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(205, 'How localized are the effects of a breach?', NULL, 'Organization', 101, 101, 5, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(206, 'Is there any evidence of a prior breach? ', NULL, 'Organization', 101, 101, 6, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(207, 'What skill levels are needed for a breach?', NULL, 'Organization', 101, 101, 7, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(208, 'What are the number of resources needed to breach the system?', NULL, 'Organization', 101, 101, 8, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(209, 'Is the system using cloud specific technology - which type?', NULL, 'Organization', 101, 101, 9, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(210, 'Is the cloud private, public or hybrid?', NULL, 'Organization', 101, 101, 10, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(211, 'If there are third party vendors,  has there been a vendor specific risk assessment?', NULL, 'Organization', 101, 101, 11, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(212, 'What is the level of security innovation of the technology?', NULL, 'Both', 101, 102, 12, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(213, 'What is the dependency of the asset type?', NULL, 'Organization', 101, 102, 13, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(214, 'Which and how many regulations apply to this system?', NULL, 'Both', 101, 102, 14, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(215, 'What is the highest degree of reputational damage?', NULL, 'Both', 101, 102, 15, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(216, 'If public, what is the degree of loss in price per share?', NULL, 'Organization', 101, 102, 16, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(217, 'What is the highest possible regulatory loss for a breach of this system?', NULL, 'Both', 101, 102, 17, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(218, 'How many risk interdependencies does this system have?', NULL, 'Both', 101, 102, 18, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(219, 'What is the highest recovery time objective?', NULL, 'Both', 101, 102, 19, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(220, 'What is the cost of restoring this system?', NULL, 'Both', 101, 102, 20, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(221, 'What is the number of privacy records processed by this system?', NULL, 'Organization', 101, 102, 21, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(222, 'What is the degree of reputational damage?', NULL, 'Both', 101, 103, 22, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(223, 'What is the degree of operational amplification?', NULL, 'Organization', 101, 104, 23, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(224, 'What is the degree of legal amplification?', NULL, 'Organization', 101, 105, 24, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(225, 'Does the vendor handle production data?', NULL, 'Vendor', 101, 101, 25, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(226, 'What level of access does the vendor have?', NULL, 'Vendor', 101, 101, 26, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(227, 'Who maintains the system?', NULL, 'Vendor', 101, 101, 27, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(228, 'What is the breach notification process?', NULL, 'Vendor', 101, 102, 28, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(230, 'How many vendor users of the systems?', NULL, 'Vendor', 101, 101, 30, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(229, 'How many crown jewel assets does the vendor deal with?', NULL, 'Vendor', 101, 102, 29, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(231, 'How does the vendor access the system? ', NULL, 'Vendor', 101, 101, 31, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(232, 'How many of the systems they work with have privacy data?', NULL, 'Vendor', 101, 102, 32, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(233, 'What is the highest level of security innovation of these systems?', NULL, 'Vendor', 101, 102, 33, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993'),
+(234, 'What is the highest cost of restoring one of these systems?', NULL, 'Vendor', 101, 102, 34, 161, 161, '2018-11-27 17:24:52.527993', '2018-11-27 17:24:52.527993');
+
+			ALTER SEQUENCE qualitative_questions_id_seq RESTART WITH 235;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				delete from qualitative_questions;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

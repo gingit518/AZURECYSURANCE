@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0219.security_control_families_and_names" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE security_control_families
+			(
+				id serial,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				CONSTRAINT pk_security_control_families PRIMARY KEY (id)
+			);
+			CREATE INDEX i_security_control_families_name ON security_control_families (name);
+
+			CREATE TABLE security_control_names
+			(
+				id serial,
+				security_control_family_id integer DEFAULT NULL,
+				name character varying (127) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				CONSTRAINT pk_security_control_names PRIMARY KEY (id)
+				, CONSTRAINT fk_security_control_names_to_security_control_family FOREIGN KEY (security_control_family_id) REFERENCES security_control_families (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_security_control_names_security_control_family ON security_control_names (security_control_family_id);
+			CREATE INDEX i_security_control_names_name ON security_control_names (name);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="security_control_families"/>
+			<dropTable tableName="security_control_names"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

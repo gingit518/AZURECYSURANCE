@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:remove="all">Template for HTML email for User Registration</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p>
+		Hello, <span th:text="${name}">EK</span>!
+	</p>
+
+	<p>
+		Your ValuRisQ account <span th:text="${accountName}"></span> is ready.
+		If you think this is some <b>mistake</b>, please notify your ValuRisQ administrator and disregard this email.
+	</p>
+
+	<p>
+		Click <a th:href="${resetPasswordLink}">here</a> to create a new password
+		or copy and paste this URL to browser <span th:text="${resetPasswordLink}"></span>
+	</p>
+
+	<p>
+		Regards, <br />
+		<em>The ValuRisQ Team</em>
+	</p>
+</body>
+</html>

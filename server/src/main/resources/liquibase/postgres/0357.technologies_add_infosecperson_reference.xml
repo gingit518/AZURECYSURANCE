@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0357.technologies_add_infosecperson_column" author="Oleksandr Serozhenko">
+		<sql>
+			alter table technologies add column infosec_focal_person_id integer default null ;
+			alter table technologies add CONSTRAINT fk_technologies_to_infosec_focal_person FOREIGN KEY
+			(infosec_focal_person_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+		</sql>
+		<rollback>
+			ALTER TABLE technologies DROP COLUMN infosec_focal_person_id;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="ehcache.xsd"
+		 updateCheck="false" monitoring="autodetect"
+		 dynamicConfig="true">
+
+	<diskStore path="java.io.tmpdir/ehcache"/>
+
+	<defaultCache
+		maxElementsInMemory="50000"
+		eternal="false"
+		timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600"
+		overflowToDisk="true"
+		diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="120"
+	/>
+
+	<!-- Temporary Caches -->
+	<cache name="OTP_CODES"
+		   maxElementsInMemory="50000"
+		   eternal="false"
+		   timeToIdleSeconds="300"
+		   timeToLiveSeconds="300"
+		   overflowToDisk="true"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="600"
+	/>
+	<cache name="DASHBOARD_SEARCH"
+		   maxElementsInMemory="50000"
+		   eternal="false"
+		   timeToIdleSeconds="36000"
+		   timeToLiveSeconds="36000"
+		   overflowToDisk="true"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="600"
+	/>
+	<cache name="DOWNLOAD_LINK"
+		   maxElementsInMemory="50000"
+		   eternal="false"
+		   timeToIdleSeconds="3600"
+		   timeToLiveSeconds="10800"
+		   overflowToDisk="true"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="600"
+	/>
+
+	<!-- Zoom Info Caching Segment -->
+	<cache name="ZOOM_INFO"
+		   maxElementsInMemory="100"
+		   eternal="false"
+		   timeToIdleSeconds="3600"
+		   timeToLiveSeconds="86400"
+		   overflowToDisk="true"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="3600"
+	/>
+
+	<cache name="AUTHORIZATIONS"
+		   maxElementsInMemory="100"
+		   eternal="false"
+		   timeToIdleSeconds="3000"
+		   timeToLiveSeconds="3000"
+		   overflowToDisk="true"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="3000"
+	/>
+
+	<!-- Global Variables: Never expired -->
+	<cache name="CONSTANT"
+		   maxElementsInMemory="50000"
+		   eternal="true"
+		   clearOnFlush="false"
+		   overflowToDisk="true"
+		   diskSpoolBufferSizeMB="1024"
+		   maxElementsOnDisk="100000"
+		   diskPersistent="false"
+		   diskExpiryThreadIntervalSeconds="120"
+		   memoryStoreEvictionPolicy="LFU"
+		   transactionalMode="off">
+	</cache>
+
+</ehcache>

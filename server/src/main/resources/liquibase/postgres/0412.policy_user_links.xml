@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0411.policy_user_links" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE policies_to_users
+			(
+				id serial,
+				policy_id integer DEFAULT NULL,
+				user_id integer NOT NULL,
+
+				CONSTRAINT pk_policies_to_users PRIMARY KEY (id)
+				, CONSTRAINT fk_policies_to_users_to_user FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_policies_to_users_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_policies_to_users_to_user ON policies_to_users (user_id);
+			CREATE INDEX i_policies_to_users_policy ON policies_to_users (policy_id);
+
+			CREATE TABLE policies_to_roles
+			(
+				id serial,
+				policy_id integer DEFAULT NULL,
+				role_id integer NOT NULL,
+
+				CONSTRAINT pk_policies_to_roles PRIMARY KEY (id)
+				, CONSTRAINT fk_policies_to_roles_to_role FOREIGN KEY (role_id) REFERENCES roles (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_policies_to_roles_to_policies FOREIGN KEY (policy_id) REFERENCES policies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_policies_to_roles_to_role ON policies_to_roles (role_id);
+			CREATE INDEX i_policies_to_roles_policy ON policies_to_roles (policy_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS policies_to_users;
+				DROP TABLE IF EXISTS policies_to_roles;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

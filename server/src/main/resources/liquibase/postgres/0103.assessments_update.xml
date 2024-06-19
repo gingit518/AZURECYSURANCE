@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0103-assessments_update" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE assessments ADD COLUMN technology_category_id integer DEFAULT NULL;
+			ALTER TABLE assessments ADD CONSTRAINT fk_assessments_to_technology_categories FOREIGN KEY (technology_category_id) REFERENCES technology_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_assessments_technology_category_id ON assessments (technology_category_id);
+			
+			ALTER TABLE assessments ADD COLUMN system_id integer DEFAULT NULL;
+			ALTER TABLE assessments ADD CONSTRAINT fk_assessments_to_systems FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_assessments_system_id ON assessments (system_id);
+			
+			ALTER TABLE assessments ADD COLUMN process_id integer DEFAULT NULL;
+			ALTER TABLE assessments ADD CONSTRAINT fk_assessments_to_process FOREIGN KEY (process_id) REFERENCES process (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_assessments_process_id ON assessments (process_id);
+
+			ALTER TABLE assessments ADD COLUMN legal_organization_id integer DEFAULT NULL;
+			ALTER TABLE assessments ADD CONSTRAINT fk_assessments_to_legal_organizations FOREIGN KEY (legal_organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			CREATE INDEX i_assessments_legal_organization_id ON assessments (legal_organization_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE assessments DROP COLUMN technology_category_id;
+				ALTER TABLE assessments DROP COLUMN system_id;
+				ALTER TABLE assessments DROP COLUMN process_id;
+				ALTER TABLE assessments DROP COLUMN legal_organization_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

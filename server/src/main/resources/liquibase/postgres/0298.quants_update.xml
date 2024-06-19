@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0298.quants_update" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO quants (id, name, description, ordinal) VALUES
+			(116, 'Cybersecurity Maturity', 'Cyber Security Maturity Domain', 16)
+			, (117, 'Mitigating Risk', 'Mitigating Risk Domain', 17)
+			;
+
+			ALTER SEQUENCE quants_id_seq RESTART WITH 1024;
+
+			ALTER TABLE organizations ADD COLUMN insurance_deductible double precision DEFAULT NULL;
+		</sql>
+
+	</changeSet>
+
+</databaseChangeLog>

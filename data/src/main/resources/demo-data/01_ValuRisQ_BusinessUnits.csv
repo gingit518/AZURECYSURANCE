@@ -1,0 +1,25 @@
+Business Unit Name,Business Unit Description,Parent Business Unit,Contact Email,Contact Name,Infosec Focal Person Email,Infosec Focal Person Name,DD of Process or Create a New One
+Accounting,"The accounting department is part of the corporate overhead group of an organization. It is responsible for billings, payroll, cost accounting, the production of financial statements, paying suppliers, and similar activities.",Headquarters,"{demouser01}",,"{demouser02}",,
+Accounting and Finance,,CO,"{demouser01}",,"{demouser02}",,First Notice of Loss
+Claims,,Headquarters,"{demouser01}",,"{demouser02}",,"End to end policy management,End to end claims management"
+CO,Colorado Office,,"{demouser03}",,"{demouser03}",,
+Executive,,Headquarters,"{demouser02}",,"{demouser02}",,"End to end policy management,First Notice of Loss,End to end claims management"
+Headquarters,Headquarters,,"{demouser03}",,"{demouser03}",,"Customer Registration,Account Management,Customer Payments"
+HR and Office Services,,CO,"{demouser01}",,"{demouser02}",,
+Human Resources,,Headquarters,"{demouser01}",,"{demouser02}",,
+Information Technology,,Headquarters,"{demouser01}",,"{demouser02}",,
+Info Tech,,CO,"{demouser01}",,"{demouser02}",,
+In-house Brokerage/Agency,,Headquarters,"{demouser01}",,"{demouser02}",,
+Investments,,Headquarters,"{demouser01}",,"{demouser02}",,First Notice of Loss
+IT Infrastructure,,Headquarters;Information Technology,"{demouser01}",,"{demouser02}",,
+"Legal, Regulatory and Legislative",,Headquarters,"{demouser01}",,"{demouser02}",,"End to end policy management,End to end claims management"
+Policy Services,,CO;Underwriting,,,,,
+Policy Services,,Headquarters,,,,,
+Products,,Headquarters,,,,,Trade Management
+Reinsurance,,Headquarters,,,,,
+Sales,,Headquarters,,,,,End to end policy management
+Sales and Marketing,,CO,,,,,
+Training,,CO;Underwriting,,,,,
+Training,,Headquarters,,,,,
+Underwriting,,CO,,,,,First Notice of Loss
+Underwriting,,Headquarters,,,,,"End to end policy management,End to end claims management"

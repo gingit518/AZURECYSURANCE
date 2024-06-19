@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0311.update_vocabularies.xml" author="Eugene A. Kalosha">
+
+		<sql>
+
+			INSERT INTO public.data_asset_classifications (id,organization_id,name,description,created_by_id,updated_by_id,created_at,updated_at) VALUES
+			(1029,NULL,'Target Asset','M&amp;A Target Asset',NULL,NULL,'2021-04-23 10:43:35.808701','2021-09-18 17:09:57.206')
+			ON CONFLICT (id)
+			DO UPDATE
+			SET organization_id=EXCLUDED.organization_id, name=EXCLUDED.name, description=EXCLUDED.description, created_by_id=EXCLUDED.created_by_id, updated_by_id=EXCLUDED.updated_by_id;
+
+			INSERT INTO public.data_type_classifications (id,organization_id,name,description,created_by_id,updated_by_id,created_at,updated_at) VALUES
+			(1035,NULL,'Claims','Insurance claim data is data used for the formal request by a policyholder for coverage or compensation for a covered loss or policy event. ',NULL,NULL,'2019-04-23 10:43:35.808701','2019-09-18 17:09:57.206'),
+			(1037,NULL,'Medical','Medical data refers to health-related information that is associated with regular patient care or as part of a clinical trial program.',NULL,NULL,'2019-04-23 10:43:35.808701','2019-09-18 17:11:32.382'),
+			(1039,NULL,'Underwriting','Data associated with the underwriting process.',NULL,NULL,'2019-04-23 10:43:35.808701','2019-09-18 17:14:15.373'),
+			(1044,NULL,'EU Privacy Data','Data Subject Elements',NULL,NULL,'2020-10-14 12:45:22.982','2020-10-14 12:45:22.984'),
+			(1034,NULL,'Actuarial','Actuarial data are the statistics used to calculate various sorts of risk that insurance companies insure people against. ',NULL,NULL,'2019-04-23 10:43:35.808701','2020-11-24 20:02:43.929'),
+			(1045,NULL,'Critical Infrastructure','Critical Infrastructure data',NULL,NULL,'2021-03-01 20:13:21.685','2021-03-01 20:13:21.688'),
+			(107,NULL,'Credit Card','Credit card data including card number, card pin, card security code',NULL,NULL,'2018-12-27 03:32:38.896651','2021-12-24 16:53:40.632'),
+			(114,NULL,'Employee','Any employee related data',NULL,NULL,'2018-12-27 03:32:38.896651','2021-12-24 16:53:53.328'),
+			(113,NULL,'Financial','Any financial data',NULL,NULL,'2018-12-27 03:32:38.896651','2021-12-24 16:54:03.604'),
+			(103,NULL,'Healthcare','All patient and medical data',NULL,NULL,'2018-12-27 03:32:38.896651','2021-12-24 16:54:14.668'),
+			(1038,NULL,'State Regulated','NAIC state regulated data',NULL,NULL,'2019-04-23 10:43:35.808701','2022-01-03 13:40:07.702')
+			ON CONFLICT (id)
+			DO UPDATE
+			SET organization_id=EXCLUDED.organization_id, name=EXCLUDED.name, description=EXCLUDED.description, created_by_id=EXCLUDED.created_by_id, updated_by_id=EXCLUDED.updated_by_id;
+
+			INSERT INTO public.technology_categories (id,organization_id,name,description,created_by_id,updated_by_id,created_at,updated_at) VALUES
+			(1028,NULL,'Cloud ','Cloud computing makes computer system resources, storage and computing power, available on demand without direct active management by the user.',NULL,NULL,'2019-06-13 13:28:36.401','2019-06-13 13:28:36.403'),
+			(1030,NULL,'Software Framework','Uses class libraries and provides language interoperability (each language can use code written in other languages) across several programming languages in a framework to write programs. ',NULL,NULL,'2019-06-13 13:35:26.333','2019-06-13 13:35:26.335'),
+			(1031,NULL,'Web Browser','A software application for accessing information on the World Wide Web',NULL,NULL,'2019-07-21 13:18:02.574','2019-07-21 13:18:27.094'),
+			(1032,NULL,'Textpad Editor','Edits text',NULL,NULL,'2019-07-21 13:20:58.436','2019-07-21 13:20:58.438'),
+			(1034,NULL,'Testing Application','Testing Application',NULL,NULL,'2019-07-21 13:24:32.992','2019-07-21 13:24:32.994'),
+			(1035,NULL,'Source Code Management','Source Code Management',NULL,NULL,'2019-07-21 13:26:10.313','2019-07-21 13:26:10.315'),
+			(1036,NULL,'Desktop-sharing','Allows for remote control of another computer',NULL,NULL,'2019-07-21 13:31:17.367','2019-07-21 13:31:17.369'),
+			(1037,NULL,'Security endpoint agent','Endpoint Access Management',NULL,NULL,'2019-07-21 13:38:54.085','2019-07-21 13:38:54.087'),
+			(1038,NULL,'Virtual Machine (VM)','In computing, a virtual machine (VM) is an emulation of a computer system. Virtual machines are based on computer architectures and provide functionality of a physical computer. Their implementations may involve specialized hardware, software, or a combination.',NULL,NULL,'2019-07-21 13:43:22.278','2019-07-21 13:43:22.279'),
+			(1039,NULL,'Print Driver','A printer driver or a print processor is a piece of software on a computer that converts the data to be printed to a format that a printer can understand. The purpose of printer drivers is to allow applications to do printing without being aware of the technical details of each printer model.',NULL,NULL,'2019-07-23 04:41:25.21','2019-07-23 04:41:25.212'),
+			(1042,NULL,'Fiber Optics','Technology consisting of or using thin flexible fibers with a glass core through which light signals can be sent with very little loss of strength',NULL,NULL,'2020-02-25 23:46:22.636','2020-02-25 23:46:22.642'),
+			(1043,NULL,'Fiber Optic Hut','Fiber huts act as the main switchboards for networks. Inside the huts, are connected fiber cables to devices that receive and transmit signals between your computer and the Internet. These fiber cables then exit the hut in bundles, called distribution fiber.',NULL,NULL,'2020-02-25 23:47:30.163','2020-02-25 23:47:30.169'),
+			(1046,NULL,'Infrastructure','Infrastructure technologies',NULL,NULL,'2020-03-04 15:42:30.587','2020-03-04 15:42:30.594'),
+			(1045,NULL,'Operational Technology (OT)','Operational technology is hardware and software that detects or causes a change, through the direct monitoring and/or control of industrial equipment, assets, processes and events.',NULL,NULL,'2020-03-04 15:42:10.472','2021-02-05 10:57:55.416'),
+			(1040,NULL,'IIoT - Industrial Internet of Things','The Industrial Internet of Things refers to interconnected sensors, instruments, and other devices networked together with computers'' industrial applications, including manufacturing and energy management',NULL,NULL,'2019-10-30 19:08:03.402','2021-02-05 10:59:04.221'),
+			(1047,NULL,'Encryption','Hashing of data',NULL,NULL,'2020-08-21 16:56:23.112','2020-08-21 16:56:23.115'),
+			(1048,NULL,'Data Loss Prevention','DLP',NULL,NULL,'2020-11-12 19:43:19.44','2020-11-12 19:43:19.444'),
+			(1049,NULL,'Exchange Server','Mail server',NULL,NULL,'2020-12-13 13:15:17.175','2020-12-13 13:15:17.178'),
+			(1050,NULL,'Cybersecurity ','Technologies that identify, detect, protect, respond and recover cyber events.',NULL,NULL,'2021-01-07 08:46:47.668','2021-01-07 08:46:47.671'),
+			(1051,NULL,'HIPAA Business Associate','A “business associate” is a person or entity that performs certain functions or activities that involve the use or disclosure of protected health information on behalf of, or provides services to, a covered entity. A member of the covered entity''s workforce is not a business associate.',NULL,NULL,'2021-05-14 18:14:39.457','2021-05-14 18:14:39.459'),
+			(1052,NULL,'PCI Third Party Provider','A service provider is a business entity that is not a payment brand,  but is directly involved in the processing, storage, or transmission of cardholder data on behalf of another entity.',NULL,NULL,'2021-05-14 18:15:33.799','2021-05-14 18:15:33.801'),
+			(1053,NULL,'GDPR Third Party','A natural or legal person, public authority, agency or body other than the data subject, controller, processor and persons who, under the direct authority of the controller or processor, are authorized to process personal data.',NULL,NULL,'2021-05-14 18:16:24.35','2021-05-14 18:16:24.352'),
+			(1054,NULL,'NYS Part 500 Third Party Service Provider','A “Person” that: (i) is not an “Affiliate” of the Covered Entity; (ii) provides services to the ‎Covered Entity; and (iii) maintains, processes or otherwise is permitted access to Nonpublic Information through its provision ‎of services to the Covered Entity. 23 NYCRR 500.01(n).',NULL,NULL,'2021-05-14 18:20:12.271','2021-05-14 18:20:12.273'),
+			(1055,NULL,'Operating System','An operating system is system software that manages computer hardware, software resources, and provides common services for computer programs.',NULL,NULL,'2021-05-23 13:03:39.017','2021-05-23 13:03:39.019'),
+			(1056,NULL,'Server','A server is a piece of computer hardware or software that provides functionality for other programs or devices, called "clients". ',NULL,NULL,'2021-06-10 14:59:36.499','2021-06-10 14:59:36.501'),
+			(1057,NULL,'Security Incident and Event Management ','SIEM',NULL,NULL,'2021-10-05 21:17:55.171','2021-10-05 21:17:55.171'),
+			(1070,NULL,'Advance Threat Prevention','Identifies malware, quarantines it, and allow it to be analyzed and identified in and between organizations.',NULL,NULL,'2022-03-11 18:19:40.743','2022-03-11 18:19:40.744'),
+			(1071,NULL,'Cyber Simulation (SIM)','Automated approach to more effective train Cybersecurity Operations (SOC) teams to adequately respond to evolving threats.',NULL,NULL,'2022-03-11 18:20:17.683','2022-03-11 18:20:17.684')
+			ON CONFLICT (id)
+			DO UPDATE
+			SET organization_id=EXCLUDED.organization_id, name=EXCLUDED.name, description=EXCLUDED.description, created_by_id=EXCLUDED.created_by_id, updated_by_id=EXCLUDED.updated_by_id;
+
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

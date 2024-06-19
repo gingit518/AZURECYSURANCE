@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0319.menu_items" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE menu_items
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				parent_id integer DEFAULT NULL,
+				item_order integer DEFAULT 0,
+				code character varying (64) NOT NULL,
+				name character varying (255) DEFAULT NULL,
+				icon character varying (128) DEFAULT NULL,
+				link character varying (255) DEFAULT NULL,
+				permission jsonb DEFAULT NULL,
+				CONSTRAINT pk_menu_items PRIMARY KEY (id)
+				, CONSTRAINT fk_menu_items_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_menu_items_to_menu_items FOREIGN KEY (parent_id) REFERENCES menu_items (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_menu_items_parent ON menu_items (parent_id);
+			CREATE INDEX i_menu_items_organization ON menu_items (organization_id);
+			CREATE INDEX i_menu_items_code ON menu_items (code);
+			CREATE INDEX i_menu_items_name ON menu_items (name);
+
+			-- Alter language constants
+			ALTER TYPE LanguageConstantScopeType RENAME TO LanguageConstantScopeType__;
+			CREATE TYPE LanguageConstantScopeType as ENUM ('UI', 'ADMIN', 'SERVER', 'HINTS', 'ANDROID_CLIENT', 'IOS_CLIENT', 'HELP', 'MENU');
+			ALTER TABLE language_constants ALTER COLUMN scope type LanguageConstantScopeType using scope::text::LanguageConstantScopeType;
+			DROP TYPE LanguageConstantScopeType__;
+		</sql>
+
+		<rollback>
+			DROP TABLE menu_items;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

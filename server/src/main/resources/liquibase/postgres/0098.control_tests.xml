@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0097-control_tests" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE control_tests
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				assessment_id integer DEFAULT NULL,
+				control_function_id integer DEFAULT NULL,
+				control_category_id integer DEFAULT NULL,
+				control_subcategory_id integer DEFAULT NULL,
+				assessment_weight_id integer DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_control_tests PRIMARY KEY (id)
+				, CONSTRAINT fk_control_tests_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_control_tests_to_assessment FOREIGN KEY (assessment_id) REFERENCES assessments (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_control_tests_to_control_function FOREIGN KEY (control_function_id) REFERENCES control_functions (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_control_tests_to_control_category FOREIGN KEY (control_category_id) REFERENCES control_categories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_control_tests_to_control_subcategory FOREIGN KEY (control_subcategory_id) REFERENCES control_subcategories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_control_tests_to_assessment_weight FOREIGN KEY (assessment_weight_id) REFERENCES assessment_weights (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_control_tests_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_control_tests_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_control_tests_organization ON control_tests (organization_id);
+			CREATE INDEX i_control_tests_assessment_type ON control_tests (assessment_id);
+			CREATE INDEX i_control_tests_assessment_control_function ON control_tests (control_function_id);
+			CREATE INDEX i_control_tests_assessment_control_category ON control_tests (control_category_id);
+			CREATE INDEX i_control_tests_assessment_control_subcategory ON control_tests (control_subcategory_id);
+			CREATE INDEX i_control_tests_assessment_assessment_weight ON control_tests (assessment_weight_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="control_tests"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

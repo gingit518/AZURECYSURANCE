@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0233.business_unit_levels" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE business_unit_levels
+			(
+				id serial,
+				parent_id integer NOT NULL,
+				child_id integer NOT NULL,
+				level integer DEFAULT NULL,
+				CONSTRAINT pk_business_unit_levels PRIMARY KEY (id)
+				, CONSTRAINT fk_business_unit_levels_to_parent FOREIGN KEY (parent_id) REFERENCES business_units (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_business_unit_levels_to_child FOREIGN KEY (child_id) REFERENCES business_units (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_business_unit_levels_parent ON business_unit_levels (parent_id);
+			CREATE INDEX i_business_unit_levels_child ON business_unit_levels (child_id);
+			CREATE INDEX i_business_unit_levels_parent_child ON business_unit_levels (parent_id, child_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE business_unit_levels;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

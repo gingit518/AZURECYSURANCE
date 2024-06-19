@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0331.system_types" author="Eugene A. Kalosha">
+
+		<sql>
+			-- Alter system types
+			ALTER TYPE SystemType RENAME TO SystemType__;
+			CREATE TYPE SystemType AS ENUM ('NONE', 'ON_PREMISE', 'CLOUD', 'ETL', 'MA', 'COTS', 'HOME_GROWN');
+			ALTER TABLE systems ALTER COLUMN system_type type SystemType using system_type::text::SystemType;
+			DROP TYPE SystemType__;
+
+			ALTER TABLE systems ADD COLUMN version_number character varying (255) DEFAULT NULL;
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

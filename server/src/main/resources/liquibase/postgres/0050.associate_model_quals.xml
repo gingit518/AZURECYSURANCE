@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0049-associate_model_quals" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE associate_model_quals
+			(
+				id serial,
+				risk_model_id integer NOT NULL,
+				associate_model_id integer NOT NULL,
+				qual_id integer NOT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_associate_model_quals PRIMARY KEY (id)
+				, CONSTRAINT fk_associate_model_quals_to_risk_model FOREIGN KEY (risk_model_id) REFERENCES risk_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_associate_model_quals_to_associate_model FOREIGN KEY (associate_model_id) REFERENCES associate_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_associate_model_quals_to_qual FOREIGN KEY (qual_id) REFERENCES qual_metrics (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_associate_model_quals_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_associate_model_quals_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_associate_model_quals_risk_model ON associate_model_quals (risk_model_id);
+			CREATE INDEX i_associate_model_quals_associate_model ON associate_model_quals (associate_model_id);
+			CREATE INDEX i_associate_model_quals_qual ON associate_model_quals (qual_id);
+			CREATE INDEX i_associate_model_quals_created_at ON associate_model_quals (created_at);
+			CREATE INDEX i_associate_model_quals_created_by ON associate_model_quals (created_by_id);
+			CREATE INDEX i_associate_model_quals_updated_by ON associate_model_quals (updated_by_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="associate_model_quals"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

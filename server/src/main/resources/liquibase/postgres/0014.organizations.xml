@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0014-organizations" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TYPE OrganizationType as ENUM ('Organization', 'Vendor', 'Subsidiary');
+			CREATE TABLE organizations
+			(
+				id serial,
+				name character varying (127) NOT NULL,
+				description text DEFAULT NULL,
+				tax_id character varying (32) DEFAULT NULL,
+				vat_id character varying (32) DEFAULT NULL,
+				org_type OrganizationType DEFAULT 'Organization',
+				street_address_1 character varying (255) DEFAULT NULL,
+				street_address_2 character varying (255) DEFAULT NULL,
+				country_id integer DEFAULT NULL,
+				state_id integer DEFAULT NULL,
+				city_id integer DEFAULT NULL,
+				zip character varying (16) DEFAULT NULL,
+				phone character varying (20) DEFAULT NULL,
+				site character varying (255) DEFAULT NULL,
+				currency_id integer DEFAULT NULL,
+				language_id integer DEFAULT NULL,
+				notes text DEFAULT NULL,
+				status_id integer DEFAULT NULL,
+				average_revenue float(53) DEFAULT NULL,
+				CONSTRAINT pk_organizations PRIMARY KEY (id),
+				CONSTRAINT fk_organizations_to_countries FOREIGN KEY (country_id) REFERENCES countries (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+				CONSTRAINT fk_organizations_to_states FOREIGN KEY (state_id) REFERENCES states (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+				CONSTRAINT fk_organizations_to_city FOREIGN KEY (city_id) REFERENCES cities (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+				CONSTRAINT fk_organizations_to_currency FOREIGN KEY (currency_id) REFERENCES currencies (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+				CONSTRAINT fk_organizations_to_language FOREIGN KEY (language_id) REFERENCES languages (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+				CONSTRAINT fk_organizations_to_status FOREIGN KEY (status_id) REFERENCES status (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_organization_name ON organizations (name);
+			CREATE INDEX i_organization_country ON organizations (country_id);
+			CREATE INDEX i_organization_state ON organizations (state_id);
+			CREATE INDEX i_organization_city ON organizations (city_id);
+			CREATE INDEX i_organization_currency ON organizations (currency_id);
+			CREATE INDEX i_organization_language ON organizations (language_id);
+			CREATE INDEX i_organization_status ON organizations (status_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="currencies"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0275.new_quants_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO quants (id, name, description, ordinal, created_by_id, updated_by_id) VALUES
+			(115, 'Privacy Exposure', '', 16, 161, 161)
+			;
+
+			ALTER SEQUENCE quants_id_seq RESTART WITH 116;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM quants WHERE id = 115;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

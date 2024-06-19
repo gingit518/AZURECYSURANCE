@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0064-associate_model_quants_rebuild" author="Eugene A. Kalosha">
+
+		<sql>
+			DROP TABLE IF EXISTS associate_model_quants;
+			CREATE TABLE associate_model_quants
+			(
+				id serial,
+				associate_model_id integer NOT NULL,
+				quant_id integer NOT NULL,
+				CONSTRAINT pk_associate_model_quants PRIMARY KEY (id)
+				, CONSTRAINT fk_associate_model_quants_to_associate_model FOREIGN KEY (associate_model_id) REFERENCES associate_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_associate_model_quants_to_quant FOREIGN KEY (quant_id) REFERENCES quant_metrics (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_associate_model_quants_associate_model ON associate_model_quants (associate_model_id);
+			CREATE INDEX i_associate_model_quants_quant ON associate_model_quants (quant_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="associate_model_quants"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

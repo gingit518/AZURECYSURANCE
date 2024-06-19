@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0144-license_types" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE license_types
+			(
+				id serial,
+				name character varying (127) NOT NULL,
+				description text DEFAULT NULL,
+				CONSTRAINT pk_license_types PRIMARY KEY (id)
+			);
+			CREATE INDEX i_license_types_name ON license_types (name);
+
+			INSERT INTO license_types (id, name, description) VALUES
+			  (1, 'Number of Users', 'License based on Number of Users in the System.')
+			, (2, 'CPU', 'License based on the Server CPU.')
+			, (3, 'Annual', 'Annual License for the System')
+			;
+
+			ALTER SEQUENCE license_types_id_seq RESTART WITH 4;
+		</sql>
+
+		<rollback>
+			<dropTable tableName="license_types"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

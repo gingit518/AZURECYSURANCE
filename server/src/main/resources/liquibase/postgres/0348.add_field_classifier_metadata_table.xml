@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0348.add_field_classifier_metadata_table" author="Oleksandr Serozhenko">
+		<sql>
+			CREATE TABLE field_classifiers_metadata (
+			id serial,
+			field_classifier_id int4 NOT NULL,
+			key character varying (255) NOT NULL,
+			value character varying (4096),
+
+			CONSTRAINT pk_field_classifiers_metadata PRIMARY KEY (id),
+			CONSTRAINT fk_field_classifiers_metadata_to_field_classifiers FOREIGN KEY (field_classifier_id)
+			REFERENCES field_classifiers(id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+
+			CREATE INDEX i_field_classifiers_metadata_field_classifier_id ON
+			field_classifiers_metadata USING btree (field_classifier_id);
+			CREATE UNIQUE INDEX ui_field_classifiers_metadata_field_classifier_id_key ON
+			field_classifiers_metadata (field_classifier_id, key);
+		</sql>
+		<rollback>
+			DROP TABLE IF EXISTS field_classifiers_metadata;
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

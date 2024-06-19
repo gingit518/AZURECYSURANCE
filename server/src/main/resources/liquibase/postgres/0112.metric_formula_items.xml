@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0112-metric_formula_items" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TYPE VariableType as ENUM ('PROCESS_REVENUE', 'SYSTEM_NUMBER_OF_REC', 'CONSTANT');
+
+			CREATE TABLE metric_formula_items
+			(
+				id serial,
+				quant_metric_id integer DEFAULT NULL,
+				ordinal integer DEFAULT 0,
+				name character varying (127) DEFAULT NULL,
+				description text,
+				variable_type VariableType DEFAULT NULL,
+				value float DEFAULT NULL,
+				is_operation boolean DEFAULT false,
+				operation VariableOperation DEFAULT NULL,
+				CONSTRAINT pk_metric_formula_items PRIMARY KEY (id)
+				, CONSTRAINT fk_metric_formula_items_to_quant_metric FOREIGN KEY (quant_metric_id) REFERENCES quant_metrics (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_metric_formula_items_quant_metric ON metric_formula_items (quant_metric_id);
+			CREATE UNIQUE INDEX ui_metric_formula_items_quant_metric_ordinal ON metric_formula_items (quant_metric_id, ordinal);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="metric_formula_items"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

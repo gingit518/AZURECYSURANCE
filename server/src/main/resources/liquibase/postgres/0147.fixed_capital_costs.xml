@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0147.fixed_capital_costs" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE fixed_capital_costs
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				vendor_id integer DEFAULT NULL,
+				business_unit_id integer DEFAULT NULL,
+				license_type_id integer DEFAULT NULL,
+				license_cost double precision,
+				percent_of_budget double precision,
+				security_tool_name character varying (255) NOT NULL,
+				CONSTRAINT pk_fixed_capital_costs PRIMARY KEY (id)
+				, CONSTRAINT fk_fixed_capital_costs_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_fixed_capital_costs_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_fixed_capital_costs_to_license_type FOREIGN KEY (license_type_id) REFERENCES license_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_fixed_capital_costs_to_business_unit FOREIGN KEY (business_unit_id) REFERENCES business_units (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_fixed_capital_costs_organization_id ON fixed_capital_costs (organization_id);
+			CREATE INDEX i_fixed_capital_costs_vendor_id ON fixed_capital_costs (vendor_id);
+			CREATE INDEX i_fixed_capital_costs_business_unit_id ON fixed_capital_costs (business_unit_id);
+			CREATE INDEX i_fixed_capital_costs_license_type_id ON fixed_capital_costs (license_type_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="fixed_capital_costs"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

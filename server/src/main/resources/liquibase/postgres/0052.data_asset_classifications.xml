@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0052-data_asset_classifications" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE data_asset_classifications
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				description text DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_data_asset_classifications PRIMARY KEY (id)
+				, CONSTRAINT fk_data_asset_classifications_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_data_asset_classifications_to_created_by FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_data_asset_classifications_to_updated_by FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_data_asset_classifications_organization ON data_asset_classifications (organization_id);
+			CREATE INDEX i_data_asset_classifications_organization_id_name ON data_asset_classifications (organization_id, name);
+			CREATE INDEX i_data_asset_classifications_name ON data_asset_classifications (name);
+			CREATE INDEX i_data_asset_classifications_created_at ON data_asset_classifications (created_at);
+			CREATE INDEX i_data_asset_classifications_created_by ON data_asset_classifications (created_by_id);
+			CREATE INDEX i_data_asset_classifications_updated_by ON data_asset_classifications (updated_by_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="data_asset_classifications"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0127-questions_to_systems" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE questions_to_systems
+			(
+				id serial,
+				question_id integer NOT NULL,
+				system_id integer DEFAULT NULL,
+				CONSTRAINT pk_questions_to_systems PRIMARY KEY (id)
+				, CONSTRAINT fk_questions_to_systems_to_question FOREIGN KEY (question_id) REFERENCES qualitative_questions (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_questions_to_systems_to_system FOREIGN KEY (system_id) REFERENCES systems (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_questions_to_systems_question ON questions_to_systems (question_id);
+			CREATE INDEX i_questions_to_systems_system ON questions_to_systems (system_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="questions_to_systems"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

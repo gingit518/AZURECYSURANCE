@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0379.user_userpic_document" author="Eugene A. Kalosha">
+
+		<sql>
+
+			ALTER TABLE users ADD COLUMN profile_icon_id integer DEFAULT NULL;
+			ALTER TABLE users ADD COLUMN profile_picture_id integer DEFAULT NULL;
+			ALTER TABLE users ADD CONSTRAINT fk_users_to_documents_profile_icon FOREIGN KEY (profile_icon_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			ALTER TABLE users ADD CONSTRAINT fk_users_to_documents_profile_picture FOREIGN KEY (profile_picture_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

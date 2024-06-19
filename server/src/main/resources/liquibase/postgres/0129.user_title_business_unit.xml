@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0129-user_title_business_unit" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE users ADD COLUMN business_unit_id integer DEFAULT NULL;
+			ALTER TABLE users ADD COLUMN title varchar(127) DEFAULT NULL;
+
+			CREATE INDEX i_user_business_unit ON users (business_unit_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE users DROP COLUMN business_unit_id;
+				ALTER TABLE users DROP COLUMN title;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

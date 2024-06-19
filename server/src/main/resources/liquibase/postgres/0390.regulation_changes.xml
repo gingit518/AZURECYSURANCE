@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0390.regulation_changes" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE regulations ADD COLUMN IF NOT EXISTS regulatory_type int DEFAULT NULL;
+
+			CREATE TABLE regulations_to_state_level_preemptions
+			(
+				id serial,
+				regulation_id integer DEFAULT NULL,
+				state_id integer NOT NULL,
+
+				CONSTRAINT pk_regulations_to_state_level_preemptions PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_state_level_preemptions_to_state FOREIGN KEY (state_id) REFERENCES states (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_state_level_preemptions_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_regulations_to_state_level_preemptions_state ON regulations_to_state_level_preemptions (state_id);
+			CREATE INDEX i_regulations_to_state_level_preemptions_regulation ON regulations_to_state_level_preemptions (regulation_id);
+
+			CREATE TABLE regulations_to_classifications
+			(
+				id serial,
+				regulation_id integer DEFAULT NULL,
+				data_type_classification_id integer NOT NULL,
+
+				CONSTRAINT pk_regulations_to_classifications PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_classifications_to_data_type_class FOREIGN KEY (data_type_classification_id) REFERENCES data_type_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_classifications_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_to_classifications_data_type_class ON regulations_to_classifications (data_type_classification_id);
+			CREATE INDEX i_regulations_to_classifications_regulation ON regulations_to_classifications (regulation_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE regulations DROP COLUMN IF EXISTS regulatory_type;
+				DROP TABLE regulations_to_state_level_preemptions;
+				DROP TABLE regulations_to_classifications;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

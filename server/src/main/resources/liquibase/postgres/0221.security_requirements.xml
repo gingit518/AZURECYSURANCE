@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0221.security_requirements" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE security_requirements
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				security_control_family_id integer DEFAULT NULL,
+				security_control_name_id integer DEFAULT NULL,
+				assessment_level_id integer DEFAULT NULL,
+				code character varying (127) DEFAULT NULL,
+				program_area character varying (255) DEFAULT NULL,
+				description text DEFAULT NULL,
+				detailed_control_testing_procedure text DEFAULT NULL,
+				risk_statement_examples text DEFAULT NULL,
+				CONSTRAINT pk_security_requirements PRIMARY KEY (id)
+				, CONSTRAINT fk_security_requirements_to_security_control_family FOREIGN KEY (security_control_family_id) REFERENCES security_control_families (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_security_requirements_to_security_control_name FOREIGN KEY (security_control_name_id) REFERENCES security_control_names (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_security_requirements_to_assessment_level FOREIGN KEY (assessment_level_id) REFERENCES assessment_levels (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_security_requirements_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_security_requirements_security_control_family ON security_requirements (security_control_family_id);
+			CREATE INDEX i_security_requirements_security_control_name ON security_requirements (security_control_name_id);
+			CREATE INDEX i_security_requirements_assessment_level ON security_requirements (assessment_level_id);
+			CREATE INDEX i_security_requirements_organization ON security_requirements (organization_id);
+			CREATE INDEX i_security_requirements_name ON security_requirements (organization_id, code);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="security_requirements"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

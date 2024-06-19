@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0329.process_data_asset_classification" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE process_to_data_asset
+			(
+				id serial,
+				process_id integer NOT NULL,
+				data_asset_id integer DEFAULT NULL,
+				CONSTRAINT pk_process_to_data_asset PRIMARY KEY (id)
+				, CONSTRAINT fk_process_to_data_asset_to_process FOREIGN KEY (process_id) REFERENCES process (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_process_to_data_asset_to_data_asset FOREIGN KEY (data_asset_id) REFERENCES data_asset_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_process_to_data_asset_process ON process_to_data_asset (process_id);
+			CREATE INDEX i_process_to_data_asset_data_asset ON process_to_data_asset (data_asset_id);
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS process_to_data_asset;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

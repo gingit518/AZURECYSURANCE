@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0022-risk-models-data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO risk_models (id, name, description, organization_id, sequenceNum) VALUES
+			(101, 'DEMO', 'Demo Risk Model for Organization', 105, 0);
+			ALTER SEQUENCE risk_models_id_seq RESTART WITH 102;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM risk_models;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

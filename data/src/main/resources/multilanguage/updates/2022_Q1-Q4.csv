@@ -1,0 +1,97 @@
+Constant,Scope,Value,Default Value,Language
+AUDIT$AUDIT,SERVER,Audit,Audit,eng
+QUESTION_ROW$QUESTION,UI,Question,Question,eng
+QUESTION_ROW$SCORE,UI,Score,Score,eng
+SETTINGS$PASSWORD,UI,Password settings,Password settings,eng
+SETTINGS$ORGANIZATION,UI,Organization settings,Organization settings,eng
+USER_MENU$ACCOUNT_SETTINGS,UI,Account settings,Account settings,eng
+USER_MENU$LEARNING_CENTER,UI,Learning Center,Learning Center,eng
+USER_MENU$QUICK_START,UI,Quick Start,Quick Start,eng
+USER_MENU$KNOWLEDGE_BASE,UI,Knowledge Base,Knowledge Base,eng
+USER_MENU$ABOUT,UI,About,About,eng
+SYSTEMS$COTS,UI,COTS,COTS,eng
+SYSTEMS$HOME_GROWN,UI,Home Grown,Home Grown,eng
+SYSTEMS$VERSION_NUMBER,UI,Version number,Version number,eng
+GLOBALS$SEARCH_BY_NAME_AND_DESCRIPTION,UI,Search by name and description,Search by name and description,eng
+GLOBALS$SEARCH_BY_NAME_AND_TASK_NOTES,UI,Search by name and task notes,Search by name and task notes,eng
+GLOBALS$SEARCH_BY_NAME_AND_DOCUMENT_TYPE,UI,Search by name and document type,Search by name and document type,eng
+GLOBALS$SEARCH_BY_NAME_AND_EMAIL,UI,Search by name and email,Search by name and email,eng
+SUBSIDIARY_ORGANIZATIONS$ORGANIZATION_NAME,UI,Organization name,Organization name,eng
+SUBSIDIARY_ORGANIZATIONS$ORGANIZATION_DESCRIPTION,UI,Organization description,Organization description,eng
+BUSINESS_UNITS$NAME,UI,Business unit name,Business unit name,eng
+BUSINESS_UNITS$DESCRIPTION,UI,Business unit description,Business unit description,eng
+SYSTEMS$SYSTEM_NAME,UI,System name,System name,eng
+SYSTEMS$SYSTEM_DESCRIPTION,UI,System description,System description,eng
+SYSTEMS$SYSTEM_OWNER_NAME,UI,System owner name,System owner name,eng
+CONTROL_GUIDELINES$GUIDELINE_CODE,UI,Guideline Code,Guideline Code,eng
+CONTROL_GUIDELINES$GUIDELINE_NAME,UI,Guideline Name,Guideline Name,eng
+CONTROL_GUIDELINES$GUIDELINE_DESCRIPTION,UI,Guideline Description,Guideline Description,eng
+SCORING_QUESTIONS$QUESTION_CODE,UI,Question code,Question code,eng
+SCORING_QUESTIONS$QUESTION_NAME,UI,Question name,Question name,eng
+SCORING_QUESTIONS$QUESTION_DESCRIPTION,UI,Question description,Question description,eng
+SECURITY_ASSESSMENTS$SECURITY_FRAMEWORK,UI,Security framework,Security framework,eng
+SECURITY_ASSESSMENTS$SECURITY_FRAMEWORK_DESCRIPTION,UI,Security framework description,Security framework description,eng
+SECURITY_REQUIREMENTS$SECURITY_REQUIREMENT_CODE,UI,Security requirement code,Security requirement code,eng
+SECURITY_REQUIREMENTS$SECURITY_REQUIREMENT_DESCRIPTION,UI,Security requirement description,Security requirement description,eng
+DROPDOWN$TYPE_TO_SEARCH,UI,Start typing to search,Start typing to search,eng
+BUSINESS_UNITS$CONTACT_EMAIL,UI,Contact email,Contact email,eng
+BUSINESS_UNITS$INFOSEC_FOCAL_PERSON_EMAIL,UI,InfoSec Focal Person email,InfoSec Focal Person email,eng
+SUBSIDIARY_ORGANIZATIONS$ANNUAL_REVENUE,UI,Annual revenue,Annual revenue,eng
+POLICY_MANAGEMENT$CONTACT_LINKS,UI,Policy management contact links,Policy management contact links,eng
+ORGANIZATION$NAMEFIELD,UI,Organization Name,Organization Name,eng
+SYSTEMS$TECHNOLOGIES,UI,Technologies,Technologies,eng
+DRILLDOWNS$SYSTEM_QUANT$SYSTEM$SUMMARY$REGULATIONS_HEADER,SERVER,Regulations,Regulations,eng
+HOME_PAGE$DESCRIPTION,UI,Pin Point your Cyber Risk!,Pin Point your Cyber Risk!,eng
+TASK_CATEGORIES$TITLE,UI,Task Categories,Task Categories,eng
+DASHBOARDS$ORGANIZATION$EXPOSURE_SUMMARY$CYBER_INSURANCE_SUMMARY$QUANT_LEVEL,SERVER,Level,Level,eng
+DASHBOARDS$PRIVACY$ORGANIZATION_SUMMARY_SCORES$ITEM_DESCRIPTION,DASHBOARD,Summary Scores,Summary Scores,eng
+DASHBOARDS$VENDOR$CYBER_EXPOSURES$VENDOR_EXPOSURES$ITEM_DESCRIPTION,DASHBOARD,Vendor Exposures,Vendor Exposures,eng
+DASHBOARDS$VENDOR$HEAT_MAP$HEAT_CHART$ITEM_DESCRIPTION,DASHBOARD,Vendor Heat Map,Vendor Heat Map,eng
+DASHBOARDS$VENDORS_AND_SYSTEMS$NAME,DASHBOARD,Vendors and Systems,Vendors and Systems,eng
+DASHBOARD$DATA_EXFILTRATION$NAME,DASHBOARD,Data Exfiltrations,Data Exfiltrations,eng
+DRILLDOWNS$SYSTEM_QUANT$SYSTEM$INSURANCE_QUANTIFICATION$ITEM_NAME,SERVER,Insurance Quantifications,Insurance Quantifications,eng
+DASHBOARDS$ADMIN$SYSTEM_OWNER$SYSTEM_VENDOR_HEADER,SERVER,System Vendor,System Vendor,eng
+DASHBOARDS$ADMIN$SYSTEM_OWNER$SERVICE_VENDOR_HEADER,SERVER,Service Vendor,Service Vendor,eng
+DASHBOARDS$ADMIN$SYSTEM_OWNER$TECHNOLOGY_VENDOR_HEADER,SERVER,Technology Vendor,Technology Vendor,eng
+DATA_DOMAINS$TITLE,UI,Data Domains,Data Domains,eng
+DATA_DOMAINS$DATA_DOMAIN,UI,Data Domain,Data Domain,eng
+DATA_DOMAINS$CREATE,UI,Create Data Domain,Create Data Domain,eng
+DATA_DOMAINS$EDIT,UI,Edit Data Domain,Edit Data Domain,eng
+DATA_FIELDS$TITLE,UI,Data Fields,Data Fields,eng
+DATA_FIELDS$PLACEHOLDER,UI,Select or create field,Select or create field,eng
+ENVIRONMENT_TYPES$TITLE,UI,Environment Types,Environment Types,eng
+ENVIRONMENT_TYPE$TITLE,UI,Environment Type,Environment Type,eng
+VALIDATION$DATA_CLASSIFICATION_REQUIRED,UI,Data Classification field is required,Data Classification field is required,eng
+VALIDATION$DEPLOYMENT_TYPE_REQUIRED,UI,Deployment Type field is required,Deployment Type field is required,eng
+VALIDATION$DESCRIPTION_REQUIRED,UI,Description field is required,Description field is required,eng
+VALIDATION$NAME_REQUIRED,UI,Name field is required,Name field is required,eng
+VALIDATION$SYSTEM_BUSINESS_UNIT_REQUIRED,UI,Business Unit Owner field is required,Business Unit Owner field is required,eng
+VALIDATION$SYSTEM_OWNER_REQUIRED,UI,System owner name field is required,System owner name field is required,eng
+VALIDATION$SYSTEM_STATUS_REQUIRED,UI,Status field is required,Status field is required,eng
+VALIDATION$SYSTEM_TYPE_REQUIRED,UI,System Type field is required,System Type field is required,eng
+IMPORT_AND_EXPORT$PROCESSES,UI,Processes import/export,Processes import/export
+IMPORT_AND_EXPORT$TECHNOLOGIES,UI,Technologies import/export,Technologies import/export
+IMPORT_AND_EXPORT$USERS,UI,Users import/export,Users import/export
+VENDORS$PARENT,UI,Parent Organization,Parent Organization
+VALIDATION$BUSINESS_UNIT$DELETE$HAS_CHILDS,SERVER,Business Unit can't be deleted because it's a parent for other Business Units,Business Unit can't be deleted because it's a parent for other Business Units
+PROCESSES$SYSTEMS_OWNED,UI,Systems Owned,Systems Owned
+SYSTEMS$HYBRID,UI,Hybrid,Hybrid
+VENDORS$VENDOR_REQUIRED,UI,Vendor is required,Vendor is required
+VALIDATION$USER$CREDENTIALS_EXPIRATION_DATE$IN_PAST,UI,Validation failed for user credentials expiration date. Date in the past is not allowed here.,Validation failed for user credentials expiration date. Date in the past is not allowed here.
+VALIDATION$USER$EXPIRATION_DATE$IN_PAST,UI,Validation failed for user account expiration date. Date in the past is not allowed here.,Validation failed for user account expiration date. Date in the past is not allowed here.
+SYSTEMS$HYBRID,UI,Hybrid,Hybrid
+POLICY_MANAGEMENT$OVERVIEW,UI,Overview,Overview
+POLICY_MANAGEMENT$PURPOSE,UI,Purpose,Purpose
+POLICY_MANAGEMENT$SCOPE,UI,Scope,Scope
+POLICY_MANAGEMENT$ROLES_AND_RESPONSIBILITIES,UI,Roles and Responsibilities,Roles and Responsibilities
+POLICY_MANAGEMENT$ENFORCEMENT,UI,Enforcement,Enforcement
+POLICY_MANAGEMENT$EXCEPTIONS,UI,Exceptions,Exceptions
+POLICY_MANAGEMENT$DEFINITIONS,UI,Definitions,Definitions
+POLICY_MANAGEMENT$RELATED_POLICIES,UI,Related Policies,Related Policies
+POLICY_MANAGEMENT$STATEMENTS,UI,Statements,Statements
+POLICY_MANAGEMENT$CONTROL_MAP,UI,Control Map,Control Map
+POLICY_MANAGEMENT$APPROVED_BY,UI,Approved By,Approved By
+POLICY_MANAGEMENT$APPROVED_BY_REQUIRED,UI,Approved By is required,Approved By is required
+GLOBALS$IMPORTED_BY,UI,Imported By,Imported By
+GLOBALS$IMPORTED_ON,UI,Imported On,Imported On
+POLICY_MANAGEMENT$RELATED_POLICY_REMOVE_CONFIRMATION,UI,There are Related Policies attached to the Master Policy. Are you sure you want to remove them?,There are Related Policies attached to the Master Policy. Are you sure you want to remove them?

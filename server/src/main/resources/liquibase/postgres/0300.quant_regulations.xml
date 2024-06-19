@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0300.quant_regulations" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE quants_to_regulations
+			(
+				id serial,
+				quant_id integer NOT NULL,
+				regulation_id integer DEFAULT NULL,
+				CONSTRAINT pk_quants_to_regulations PRIMARY KEY (id)
+				, CONSTRAINT fk_quants_to_regulations_to_quant FOREIGN KEY (quant_id) REFERENCES quants (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_quants_to_regulations_to_regulation FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_quants_to_regulations_quant ON quants_to_regulations (quant_id);
+			CREATE INDEX i_quants_to_regulations_regulation ON quants_to_regulations (regulation_id);
+
+			ALTER TABLE quants ADD COLUMN is_regulation_restricted boolean DEFAULT NULL;
+
+			CREATE TABLE quant_metrics_to_regulations
+			(
+				id serial,
+				quant_metric_id integer NOT NULL,
+				regulation_id integer DEFAULT NULL,
+				CONSTRAINT pk_quant_metrics_to_regulations PRIMARY KEY (id)
+				, CONSTRAINT fk_quant_metrics_to_regulations_to_quant FOREIGN KEY (quant_metric_id) REFERENCES quant_metrics (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+				, CONSTRAINT fk_quant_metrics_to_regulations_to_regulation FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_quant_metrics_to_regulations_quant ON quant_metrics_to_regulations (quant_metric_id);
+			CREATE INDEX i_quant_metrics_to_regulations_regulation ON quant_metrics_to_regulations (regulation_id);
+
+			ALTER TABLE quant_metrics ADD COLUMN is_regulation_restricted boolean DEFAULT NULL;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE quants_to_regulations;
+				DROP TABLE quant_metrics_to_regulations;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

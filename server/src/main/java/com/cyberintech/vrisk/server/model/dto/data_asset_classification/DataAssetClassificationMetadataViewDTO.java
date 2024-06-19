@@ -1,0 +1,38 @@
+package com.cyberintech.vrisk.server.model.dto.data_asset_classification;
+
+import com.cyberintech.vrisk.server.model.dto.DTOBase;
+import com.cyberintech.vrisk.server.model.jpa.entity.DataAssetClassificationMetadata;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode(of = {"key"}, callSuper = false)
+public class DataAssetClassificationMetadataViewDTO extends DTOBase<DataAssetClassificationMetadata> {
+	@Schema
+	private Long id;
+	@Schema
+	private DataAssetClassificationRefDTO dataTypeClassification;
+	@Schema
+	private String key;
+	@Schema
+	private String value;
+
+	public DataAssetClassificationMetadataViewDTO(DataAssetClassificationMetadata metadata) {
+		super(metadata);
+	}
+
+	@Override
+	public void fromEntity(DataAssetClassificationMetadata metadata) {
+		this.id = metadata.getId();
+		this.dataTypeClassification = new DataAssetClassificationRefDTO(metadata.getDataAssetClassification());
+		this.key = metadata.getKey();
+		this.value = metadata.getValue();
+	}
+}

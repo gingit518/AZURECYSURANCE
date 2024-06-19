@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0217.agreements" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE organizations_agreements
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				name character varying DEFAULT NULL,
+				content text DEFAULT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_organizations_agreements PRIMARY KEY (id)
+				, CONSTRAINT fk_organizations_agreements_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_organizations_agreements_to_users_created FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_organizations_agreements_to_users_updated FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_organizations_agreements_organization ON organizations_agreements (organization_id);
+			CREATE INDEX i_organizations_agreements_created_at ON organizations_agreements (created_at);
+			CREATE INDEX i_organizations_agreements_created_by ON organizations_agreements (created_by_id);
+			CREATE INDEX i_organizations_agreements_updated_by ON organizations_agreements (updated_by_id);
+
+			CREATE TABLE users_agreements
+			(
+				id serial,
+				organization_agreement_id integer DEFAULT NULL,
+				user_id integer DEFAULT NULL,
+				answer boolean DEFAULT NULL,
+				is_answered boolean DEFAULT false,
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_users_agreements PRIMARY KEY (id)
+				, CONSTRAINT fk_users_agreements_to_organizations_agreements FOREIGN KEY (organization_agreement_id) REFERENCES organizations_agreements (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_users_agreements_to_users FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_users_agreements_organization_agreement ON users_agreements (organization_agreement_id);
+			CREATE INDEX i_users_agreements_user ON users_agreements (user_id);
+			CREATE INDEX i_users_agreements_updated_at ON users_agreements (updated_at);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE organizations_agreements;
+				DROP TABLE users_agreements;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0247.organization_to_language" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE supported_languages
+			(
+				id serial,
+				name character varying (127) NOT NULL,
+				iso_code character varying (10) DEFAULT NULL,
+				charset character varying (32) DEFAULT NULL,
+				locale character varying (8) DEFAULT NULL,
+
+				CONSTRAINT pk_supported_languages PRIMARY KEY (id)
+			);
+			CREATE INDEX i_supported_languages_name ON supported_languages (name);
+			CREATE INDEX i_supported_languages_iso_code ON supported_languages (iso_code);
+			CREATE UNIQUE INDEX ui_supported_languages_charset ON supported_languages (charset);
+			CREATE INDEX i_supported_languages_locale ON supported_languages (locale);
+
+			CREATE TABLE organization_to_language
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				language_id integer NOT NULL,
+
+				CONSTRAINT pk_organization_to_language PRIMARY KEY(id)
+				, CONSTRAINT fk_organization_to_language_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_organization_to_language_to_language FOREIGN KEY (language_id) REFERENCES supported_languages (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_organization_to_language_organization ON organization_to_language (organization_id);
+			CREATE INDEX i_organization_to_language_language ON organization_to_language (language_id);
+
+			ALTER TABLE organizations ADD COLUMN is_multi_language boolean DEFAULT false;
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				DROP TABLE supported_languages;
+				DROP TABLE organization_to_language;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS is_multi_language;
+
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

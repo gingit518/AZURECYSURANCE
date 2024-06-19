@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0102-findings" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE findings
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				control_subcategory_id integer DEFAULT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				percentage float DEFAULT NULL,
+				value float DEFAULT NULL,
+				CONSTRAINT pk_findings PRIMARY KEY (id)
+				, CONSTRAINT fk_findings_to_control_subcategory FOREIGN KEY (control_subcategory_id) REFERENCES control_subcategories (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_findings_control_subcategory ON findings (control_subcategory_id);
+			CREATE INDEX i_findings_organization_name ON findings (organization_id, name);
+			CREATE INDEX ui_findings_organization_control_subcategory ON findings (organization_id, control_subcategory_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="findings"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

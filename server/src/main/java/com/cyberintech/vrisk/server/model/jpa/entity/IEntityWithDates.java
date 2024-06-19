@@ -1,0 +1,8 @@
+package com.cyberintech.vrisk.server.model.jpa.entity;
+
+import java.util.Date;
+
+public interface IEntityWithDates {
+	Date getCreatedAt();
+	Date getUpdatedAt();
+}

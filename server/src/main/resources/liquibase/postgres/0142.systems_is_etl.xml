@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0142_systems_is_etl" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE systems ADD COLUMN is_etl boolean DEFAULT false;
+			UPDATE systems SET is_etl = false WHERE is_etl IS NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE systems DROP COLUMN is_etl;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

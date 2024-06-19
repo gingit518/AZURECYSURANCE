@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0367.roles_cfo" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO roles (id, name, description) VALUES (190, 'CFO', 'Chief Financial Officer. Typically, oversees cyber risk and insurance.') ON CONFLICT DO NOTHING;
+		</sql>
+
+		<rollback>
+			<sql>
+				delete from roles where id = 190;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

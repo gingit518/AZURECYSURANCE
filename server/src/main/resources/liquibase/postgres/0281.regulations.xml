@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0281.regulations" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE regulations
+			(
+				id serial,
+				name character varying (255) NOT NULL DEFAULT '',
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+
+				CONSTRAINT pk_regulations PRIMARY KEY (id)
+				, CONSTRAINT fk_regulations_to_created FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_regulations_to_updated FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_regulations_name ON regulations (name);
+			CREATE INDEX i_regulations_created ON regulations (created_by_id);
+			CREATE INDEX i_regulations_updated ON regulations (updated_by_id);
+
+			CREATE TABLE data_type_classifications_to_regulations
+			(
+			    id serial,
+				data_type_classification_id integer NOT NULL,
+			    regulation_id integer DEFAULT NULL,
+
+			    CONSTRAINT pk_data_type_classifications_to_regulations PRIMARY KEY (id)
+				, CONSTRAINT fk_data_type_class_to_regulations_to_data_type_class FOREIGN KEY (data_type_classification_id) REFERENCES data_type_classifications (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_data_type_class_to_regulations_to_regulations FOREIGN KEY (regulation_id) REFERENCES regulations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_data_type_class_to_regulations_data_type_class ON data_type_classifications_to_regulations (data_type_classification_id);
+			CREATE INDEX i_data_type_class_to_regulations_regulation ON data_type_classifications_to_regulations (regulation_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS data_type_classifications_to_regulations;
+				DROP TABLE IF EXISTS regulations;
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

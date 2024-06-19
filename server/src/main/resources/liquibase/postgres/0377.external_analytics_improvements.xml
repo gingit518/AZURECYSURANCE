@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0377.external_analytics_improvements" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE external_analytics_to_roles
+			(
+				id serial,
+				external_analytic_id integer DEFAULT NULL,
+				role_id integer DEFAULT NULL,
+				CONSTRAINT pk_external_analytics_to_roles PRIMARY KEY (id)
+				, CONSTRAINT fk_external_analytics_to_roles_to_external_analytic FOREIGN KEY (external_analytic_id) REFERENCES external_analytics (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+				, CONSTRAINT fk_external_analytics_to_roles_to_role FOREIGN KEY (role_id) REFERENCES roles (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_external_analytics_to_roles_external_analytic ON external_analytics_to_roles (external_analytic_id);
+			CREATE INDEX i_external_analytics_to_roles_role ON external_analytics_to_roles (role_id);
+
+			ALTER TABLE external_analytics ADD COLUMN IF NOT EXISTS is_public boolean DEFAULT true;
+			UPDATE external_analytics set is_public = true where is_public IS NULL;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE external_analytics_to_roles;
+				ALTER TABLE external_analytics DROP COLUMN IF EXISTS is_public;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

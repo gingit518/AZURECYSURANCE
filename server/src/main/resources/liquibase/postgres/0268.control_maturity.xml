@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0268.control_maturity" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TABLE control_maturities
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				risk_model_id integer NOT NULL,
+				name character varying (255) NOT NULL DEFAULT '',
+				ferrero_weight double precision,
+				value double precision,
+
+				CONSTRAINT pk_control_maturities PRIMARY KEY (id)
+				, CONSTRAINT fk_control_maturities_to_risk_models FOREIGN KEY (risk_model_id) REFERENCES risk_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_control_maturities_to_organizations FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE INDEX i_control_maturity_risk_model ON control_maturities (risk_model_id);
+			CREATE INDEX i_control_maturity_organization ON control_maturities (organization_id);
+			CREATE INDEX i_control_maturity_organization_name ON control_maturities (organization_id, name);
+			CREATE INDEX i_control_maturity_risk_model_name ON control_maturities (risk_model_id, name);
+			CREATE INDEX i_control_maturity_name ON control_maturities (name);
+
+
+			CREATE TABLE org_req_ctrl_test_result_to_control_maturity
+			(
+				id serial,
+				org_req_ctrl_test_result_id integer NOT NULL,
+				control_maturity_id integer DEFAULT NULL,
+
+				CONSTRAINT pk_org_req_ctrl_test_result_to_control_maturity PRIMARY KEY (id)
+				, CONSTRAINT fk_org_req_ctrl_test_result_to_control_maturity_to_org_req_ctrl_test_result FOREIGN KEY (org_req_ctrl_test_result_id) REFERENCES organization_requirement_control_test_results (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_org_req_ctrl_test_result_to_control_maturity_to_control_maturity FOREIGN KEY (control_maturity_id) REFERENCES control_maturities (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_org_req_ctrl_test_result_to_control_maturity_org_req_ctrl_test_result ON org_req_ctrl_test_result_to_control_maturity (org_req_ctrl_test_result_id);
+			CREATE INDEX i_org_req_ctrl_test_result_to_control_maturity_control_maturity ON org_req_ctrl_test_result_to_control_maturity (control_maturity_id);
+
+
+			CREATE TABLE sys_req_ctrl_test_result_to_control_maturity
+			(
+				id serial,
+				sys_req_ctrl_test_result_id integer NOT NULL,
+				control_maturity_id integer DEFAULT NULL,
+
+				CONSTRAINT pk_sys_req_ctrl_test_result_to_control_maturity PRIMARY KEY (id)
+				, CONSTRAINT fk_sys_req_ctrl_test_result_to_control_maturity_to_sys_req_ctrl_test_result FOREIGN KEY (sys_req_ctrl_test_result_id) REFERENCES system_requirement_control_test_results (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_sys_req_ctrl_test_result_to_control_maturity_to_control_maturity FOREIGN KEY (control_maturity_id) REFERENCES control_maturities (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_sys_req_ctrl_test_result_to_control_maturity_sys_req_ctrl_test_result ON sys_req_ctrl_test_result_to_control_maturity (sys_req_ctrl_test_result_id);
+			CREATE INDEX i_sys_req_ctrl_test_result_to_control_maturity_control_maturity ON sys_req_ctrl_test_result_to_control_maturity (control_maturity_id);
+
+
+			CREATE TABLE finding_to_control_maturity
+			(
+				id serial,
+				finding_id integer NOT NULL,
+				control_maturity_id integer DEFAULT NULL,
+
+				CONSTRAINT pk_finding_to_control_maturity PRIMARY KEY (id)
+				, CONSTRAINT fk_finding_to_control_maturity_to_finding FOREIGN KEY (finding_id) REFERENCES findings (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_finding_to_control_maturity_to_control_maturity FOREIGN KEY (control_maturity_id) REFERENCES control_maturities (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_finding_to_control_maturity_finding ON assessments_to_security_requirements (assessment_id);
+			CREATE INDEX i_finding_to_control_maturity_control_maturity ON assessments_to_security_requirements (security_requirement_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				DROP TABLE IF EXISTS finding_to_control_maturity;
+
+				DROP TABLE IF EXISTS sys_req_ctrl_test_result_to_control_maturity;
+
+				DROP TABLE IF EXISTS org_req_ctrl_test_result_to_control_maturity;
+
+				DROP TABLE IF EXISTS control_maturities;
+
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0042-metric-domains-values" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO metric_domains (id, name, description, code) VALUES
+			(1, 'Likelihood', 'Probability an attack will cause damage.', 'likelihood')
+			, (2, 'Impact', 'The extent an attack will cause damage.', 'impact')
+			, (3, 'Amplified Reputation', 'The increase in risk based on reputational factors.', 'amplified_reputation')
+			, (4, 'Amplified Operational', 'The increase in risk based on operational factors.', 'amplified_operational')
+			, (5, 'Amplified Legal', 'The increase in risk based on legal factors.', 'amplified_legal')
+			;
+
+			ALTER SEQUENCE metric_domains_id_seq RESTART WITH 6;
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM metric_domains;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0265.assessments_to_assessment_types" author="Daniel A. Kolesnik">
+
+		<sql>
+
+			CREATE TYPE RelationToRequirementType as ENUM ('ALL_REQUIREMENTS', 'FRAMEWORKS', 'REQUIREMENTS');
+
+			ALTER TABLE assessments ADD COLUMN relation_to_requirements RelationToRequirementType DEFAULT NULL;
+
+			CREATE INDEX i_assessments_relation_to_requirements ON assessments (relation_to_requirements);
+
+			CREATE TABLE assessments_to_assessment_types
+			(
+				id serial,
+				assessment_id integer NOT NULL,
+				assessment_type_id integer DEFAULT NULL,
+
+				CONSTRAINT pk_assessments_to_assessment_types PRIMARY KEY (id)
+				, CONSTRAINT fk_assessments_to_assessment_types_to_assessment FOREIGN KEY (assessment_id) REFERENCES assessments (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+				, CONSTRAINT fk_assessments_to_assessment_types_to_assessment_type FOREIGN KEY (assessment_type_id) REFERENCES assessment_types (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_assessments_to_assessment_types_assessment ON assessments_to_assessment_types (assessment_id);
+			CREATE INDEX i_assessments_to_assessment_types_assessment_type ON assessments_to_assessment_types (assessment_type_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+
+				DROP TABLE IF EXISTS assessments_to_assessment_types;
+
+				ALTER TABLE assessments DROP COLUMN IF EXISTS relation_to_requirements;
+
+				DROP TYPE IF EXISTS RelationToRequirementType;
+
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

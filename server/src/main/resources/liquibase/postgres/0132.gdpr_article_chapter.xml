@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0132-gdpr_article_chapter" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE gdpr_article_chapter
+			(
+				id serial,
+				organization_id integer DEFAULT NULL,
+				chapter_number integer DEFAULT NULL,
+				reference_number character varying (8) DEFAULT NULL,
+				name character varying (127) NOT NULL,
+				description text DEFAULT NULL,
+				CONSTRAINT pk_gdpr_article_chapter PRIMARY KEY (id)
+				, CONSTRAINT fk_gdpr_article_chapter_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_gdpr_article_chapter_name ON gdpr_article_chapter (name);
+			CREATE INDEX i_gdpr_article_chapter_organization ON gdpr_article_chapter (organization_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="gdpr_article_chapter"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

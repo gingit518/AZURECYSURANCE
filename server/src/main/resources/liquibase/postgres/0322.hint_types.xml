@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0322.hint_types" author="Eugene A. Kalosha">
+
+		<sql>
+			delete from hints where hint_type = 'Sample';
+
+			-- Alter language constants
+			ALTER TYPE HintType RENAME TO HintType__;
+			CREATE TYPE HintType as ENUM ('Rich', 'Simple', 'Default');
+			ALTER TABLE hints ALTER COLUMN hint_type type HintType using hint_type::text::HintType;
+			DROP TYPE HintType__;
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>

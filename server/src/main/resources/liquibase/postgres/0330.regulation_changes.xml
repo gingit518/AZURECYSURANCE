@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0330.regulation_changes" author="Eugene A. Kalosha">
+
+		<sql>
+			ALTER TABLE regulations ADD COLUMN notification_requirements integer DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN url_for_notification character varying (255) DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN date_enacted timestamp without time zone DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN date_updated timestamp without time zone DEFAULT NULL;
+			ALTER TABLE regulations ADD COLUMN current_version character varying (255) DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE regulations DROP COLUMN notification_requirements;
+				ALTER TABLE regulations DROP COLUMN url_for_notification;
+				ALTER TABLE regulations DROP COLUMN date_enacted;
+				ALTER TABLE regulations DROP COLUMN date_updated;
+				ALTER TABLE regulations DROP COLUMN current_version;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

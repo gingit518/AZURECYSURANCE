@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0285.risk_model_constants" author="Daniel A. Kolesnik">
+
+		<sql>
+			INSERT INTO variable_types (id, name, relation) VALUES
+				(16, 'RISK_MODEL_CONSTANT', 'QUANT_METRIC'),
+				(17, 'QUANT_METRIC', 'QUANT_METRIC');
+			ALTER SEQUENCE variable_types_id_seq RESTART WITH 18;
+
+			CREATE TABLE risk_model_constants
+			(
+			    id serial,
+			    value float DEFAULT NULL,
+			    name character varying (127) DEFAULT NULL,
+			    description text,
+				risk_model_id integer NOT NULL,
+				created_by_id integer DEFAULT NULL,
+				updated_by_id integer DEFAULT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+
+			    CONSTRAINT pk_risk_model_constants PRIMARY KEY (id),
+			    CONSTRAINT fk_risk_model_constants_to_risk_model FOREIGN KEY (risk_model_id) REFERENCES risk_models (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+			    CONSTRAINT fk_risk_model_constants_to_created FOREIGN KEY (created_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+				CONSTRAINT fk_risk_model_constants_to_updated FOREIGN KEY (updated_by_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_risk_model_constants_risk_model ON risk_model_constants (risk_model_id);
+			CREATE INDEX i_risk_model_constants_name ON risk_model_constants (name);
+
+			ALTER TABLE metric_formula_items ADD COLUMN risk_model_constant_ref_id integer DEFAULT NULL;
+			ALTER TABLE metric_formula_items ADD CONSTRAINT fk_metric_formula_items_risk_model_constant_ref FOREIGN KEY (risk_model_constant_ref_id) REFERENCES risk_model_constants (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+			ALTER TABLE metric_formula_items ADD COLUMN quant_metric_ref_id integer DEFAULT NULL;
+			ALTER TABLE metric_formula_items ADD CONSTRAINT fk_metric_formula_items_quant_metric_ref FOREIGN KEY (quant_metric_ref_id) REFERENCES quant_metrics (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+		</sql>
+
+		<rollback>
+			<sql>
+			</sql>
+		</rollback>
+
+	</changeSet>
+
+</databaseChangeLog>
