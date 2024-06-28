@@ -28,6 +28,8 @@ public class WebSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http
+			.csrf().ignoringAntMatchers("/api/**")
+			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).sessionFixation().none()
 			.and()
 			.addFilterBefore(new LegacyAuthenticationFilter(), BasicAuthenticationFilter.class)
@@ -52,6 +54,11 @@ public class WebSecurityConfig {
 				, "/api/info/**"
 				, "/api/anonymous/**"
 			).permitAll()
+			.and()
+			.authorizeRequests().antMatchers(
+				"/api/**"
+			)
+			.authenticated()
 			.anyRequest().authenticated();
 
 		return http.build();
