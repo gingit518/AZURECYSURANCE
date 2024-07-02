@@ -13,7 +13,6 @@ import com.cyberintech.vrisk.server.model.jpa.entity.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
-import javax.persistence.Column;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -262,6 +261,12 @@ public class OrganizationEditDTO extends DTOBase<Organizations> {
 	@Schema
 	private Long logoutAfterInactivityTimeInMinutes;
 
+	@Schema
+	private Boolean isInOfacList;
+
+	@Schema
+	private String pastSecurityIncidents;
+
 	/**
 	 * Entity based constructor
 	 *
@@ -346,6 +351,9 @@ public class OrganizationEditDTO extends DTOBase<Organizations> {
 		personallyIdentifiableInformation = entity.getPersonallyIdentifiableInformation();
 		paymentCardIndustry = entity.getPaymentCardIndustry();
 		protectedHealthInformation = entity.getProtectedHealthInformation();
+
+		isInOfacList = entity.getIsInOfacList();
+		pastSecurityIncidents = entity.getPastSecurityIncidents();
 
 		if (entity.getCountry() != null) setCountry(new ItemViewDTO<Country>(entity.getCountry()));
 		if (entity.getCity() != null) setCity(new ItemViewDTO<City>(entity.getCity()));

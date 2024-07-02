@@ -328,4 +328,10 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 	@JoinColumn(name = "package_plan_id")
 	private PackagePlans packagePlan;
 
+	@Column(name = "is_in_ofac_list")
+	private Boolean isInOfacList;
+
+	@Column(name = "past_security_incidents")
+	private String pastSecurityIncidents;
+
 }

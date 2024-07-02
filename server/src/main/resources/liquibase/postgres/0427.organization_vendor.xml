@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0427.organization_vendor" author="Eugene A. Kalosha">
+		<sql>
+
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS is_in_ofac_list boolean DEFAULT NULL;
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS past_security_incidents text DEFAULT NULL;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE organizations DROP COLUMN IF EXISTS is_in_ofac_list;
+				ALTER TABLE organizations DROP COLUMN IF EXISTS past_security_incidents;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

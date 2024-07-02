@@ -781,6 +781,9 @@ public class OrganizationService {
 		if (itemDTO.getPaymentCardIndustry() != null) entity.setPaymentCardIndustry(itemDTO.getPaymentCardIndustry());
 		if (itemDTO.getProtectedHealthInformation() != null) entity.setProtectedHealthInformation(itemDTO.getProtectedHealthInformation());
 
+		if (itemDTO.getIsInOfacList() != null) entity.setIsInOfacList(itemDTO.getIsInOfacList());
+		if (itemDTO.getPastSecurityIncidents() != null) entity.setPastSecurityIncidents(itemDTO.getPastSecurityIncidents());
+
 		if (itemDTO.getZoomInfoId() != null) {
 			if (itemDTO.getZoomInfoId() > 0) {
 				entity.setZoomInfoId(itemDTO.getZoomInfoId());
