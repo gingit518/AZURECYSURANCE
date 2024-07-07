@@ -66,7 +66,7 @@ public class VendorService {
 	private UserAssignedVendorRepository userAssignedVendorRepository;
 
 	@Autowired
-	private ContractServise contractServise;
+	private ContractService contractServise;
 
 	@Autowired
 	private ContractRepository contractRepository;
@@ -107,7 +107,7 @@ public class VendorService {
 
 		// Saving contract for the Vendor
 		if (newItemDTO.getContract() != null) {
-			newItemDTO.getContract().setOrganization(new OrganizationRefDTO(saveResult));
+			newItemDTO.getContract().setVendor(new OrganizationRefDTO(saveResult));
 			contractServise.update(newItemDTO.getContract());
 		}
 		// Saving Associate Systems for the Vendor
@@ -372,18 +372,12 @@ public class VendorService {
 		});
 
 		// Set Vendor Contract
+		// TODO Fix contracts logic
 		if (itemDTO.getContract() != null && itemDTO.getContract().getId() != null) {
 			if (itemDTO.getId() != null) {
-				itemDTO.getContract().setOrganization(organizationRepository.findById(itemDTO.getId()).isPresent() ?
-					new OrganizationRefDTO(organizationRepository.findById(itemDTO.getId()).get()) : new OrganizationRefDTO());
-			}
-			Optional<Contract> existingContract = contractRepository.findById(itemDTO.getContract().getId());
-			if (existingContract.isPresent() && existingContract.get().getOrganization() != null) {
-				itemDTO.getContract().setId(null);
-				itemDTO.getContract().setNumber("");
-				contractServise.create(itemDTO.getContract());
-			} else {
-				contractServise.update(itemDTO.getContract());
+				Optional<Organizations> organizationOpt = organizationRepository.findById(itemDTO.getId());
+
+				contractServise.applyVendor(new OrganizationRefDTO(entity), itemDTO.getContract().getId());
 			}
 		} else {
 			contractServise.detachVendor(new OrganizationRefDTO(entity));

@@ -5,7 +5,7 @@ import com.cyberintech.vrisk.server.model.data.FilteredResponse;
 import com.cyberintech.vrisk.server.model.data.NameFilter;
 import com.cyberintech.vrisk.server.model.dto.ItemViewDTO;
 import com.cyberintech.vrisk.server.model.dto.contract.ContractDTO;
-import com.cyberintech.vrisk.server.service.ContractServise;
+import com.cyberintech.vrisk.server.service.ContractService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -39,7 +39,7 @@ public class ContractController {
 	static final String CONTROLLER_URI = "/api/vendor-contract";
 
 	@Autowired
-	private ContractServise contractServise;
+	private ContractService contractServise;
 
 
 	/**

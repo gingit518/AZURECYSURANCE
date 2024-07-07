@@ -7,6 +7,7 @@ import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.dto.contract.ContractDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationRefDTO;
 import com.cyberintech.vrisk.server.model.jpa.entity.Contract;
+import com.cyberintech.vrisk.server.model.jpa.entity.Documents;
 import com.cyberintech.vrisk.server.repository.jpa.ContractRepository;
 import com.cyberintech.vrisk.server.repository.jpa.DocumentsRepository;
 import com.cyberintech.vrisk.server.repository.jpa.OrganizationRepository;
@@ -16,6 +17,7 @@ import com.cyberintech.vrisk.server.rest.exception.ItemNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,7 +33,7 @@ import java.util.*;
  */
 @Service
 @Slf4j
-public class ContractServise {
+public class ContractService {
 
 	@Autowired
 	private ContractRepository contractRepository;
@@ -47,6 +49,9 @@ public class ContractServise {
 
 	@Autowired
 	private DocumentService documentService;
+	@Qualifier("organizationService")
+	@Autowired
+	private OrganizationService organizationService;
 
 	/**
 	 * Get Contract List for current Filters
@@ -122,10 +127,13 @@ public class ContractServise {
 		if (StringUtils.isEmpty(contractDTO.getNumber()) || StringUtils.isEmpty(contractDTO.getNumber().trim())) {
 			throw new BadRequestException("Contract Number cannot be blank and must be unique.");
 		}
+		/*
 		if (contractRepository.findFirstByNumber(contractDTO.getNumber().trim()).isPresent()) {
 			throw new ConflictException(MessageFormat.format("Conflict while create item. The Database already contains Contract with number [{0}] ", contractDTO.getNumber().trim()));
 		}
+		*/
 		Contract contract = new Contract();
+		contract.setOrganization(organizationService.getCurrentOrganizationEntity());
 		applyEntityChanges(contractDTO, contract);
 		contract.setCreatedAt(new Date());
 		contract.setCreatedBy(userService.getCurrentUserEntity());
@@ -137,46 +145,63 @@ public class ContractServise {
 	/**
 	 * Apply Contract entity changes
 	 *
-	 * @param contractDTO
-	 * @param contract
+	 * @param itemDTO
+	 * @param entity
 	 */
-	private void applyEntityChanges(ContractDTO contractDTO, Contract contract) {
+	private void applyEntityChanges(ContractDTO itemDTO, Contract entity) {
 
 		// Detach Vendor from existing contract.
-		if (contractDTO.getOrganization() != null) {
-			detachVendor(contractDTO.getOrganization());
+		if (itemDTO.getVendor() != null) {
+			detachVendor(itemDTO.getVendor());
 		}
 
-		if (contractDTO.getName() != null) {
-			contract.setName(contractDTO.getName());
-		} else contract.setName("");
+		if (itemDTO.getName() != null) {
+			entity.setName(itemDTO.getName());
+		} else entity.setName("");
 
-		if (contractDTO.getDescription() != null) {
-			contract.setDescription(contractDTO.getDescription());
-		} else contract.setDescription(null);
+		if (itemDTO.getDescription() != null) {
+			entity.setDescription(itemDTO.getDescription());
+		} else entity.setDescription(null);
 
+		/*
 		if (contractDTO.getOrganization() != null && contractDTO.getOrganization().getId() != null) {
 				contract.setOrganization(organizationRepository.findById(contractDTO.getOrganization().getId()).get());
 		} else contract.setOrganization(null);
+		 */
 
-		if (contractDTO.getDocument() != null) {
-			contract.setDocument(documentsRepository.findById(contractDTO.getDocument().getId()).get());
-		} else contract.setDocument(null);
+		if (itemDTO.getVendor() != null && itemDTO.getVendor().getId() != null) {
+				entity.setVendor(organizationRepository.findById(itemDTO.getVendor().getId()).get());
+		} else entity.setVendor(null);
 
-		if (contractDTO.getNumber() != null) {
-			contract.setNumber(contractDTO.getNumber());
-		} else contract.setNumber("");
+		// TODO Remove obsolete dependencies
+		if (itemDTO.getDocument() != null) {
+			entity.setDocument(documentsRepository.findById(itemDTO.getDocument().getId()).get());
+		} else entity.setDocument(null);
 
-		if (contractDTO.getStartDate() != null) {
-			contract.setStartDate(contractDTO.getStartDate());
-		} else contract.setStartDate(new Date());
 
-		if (contractDTO.getExpiryDate() != null) {
-			contract.setExpiryDate(contractDTO.getExpiryDate());
-		} else contract.setExpiryDate(new Date());
+		// Set GDPR Documents Mapping
+		Optional.ofNullable(itemDTO.getDocuments()).ifPresent(itemsList -> {
+			entity.setDocuments(new HashSet<>());
+			itemsList.forEach(item -> {
+				Optional<Documents> documentOpt = documentsRepository.findByIdAndOrganizationId(item.getId(), entity.getOrganization().getId());
+				documentOpt.ifPresent(documents -> entity.getDocuments().add(documents));
+			});
+		});
 
-		contract.setUpdatedAt(new Date());
-		contract.setUpdatedBy(userService.getCurrentUserEntity());
+		if (itemDTO.getNumber() != null) {
+			entity.setNumber(itemDTO.getNumber());
+		} else entity.setNumber("");
+
+		if (itemDTO.getStartDate() != null) {
+			entity.setStartDate(itemDTO.getStartDate());
+		} else entity.setStartDate(null);
+
+		if (itemDTO.getExpiryDate() != null) {
+			entity.setExpiryDate(itemDTO.getExpiryDate());
+		} else entity.setExpiryDate(null);
+
+		entity.setUpdatedAt(new Date());
+		entity.setUpdatedBy(userService.getCurrentUserEntity());
 	}
 
 	/**
@@ -186,10 +211,34 @@ public class ContractServise {
 	 */
 	public void detachVendor(OrganizationRefDTO vendor) {
 
-		if (contractRepository.findByOrganizationId(vendor.getId()).isPresent()) {
-			Contract existingContract = contractRepository.findByOrganizationId(vendor.getId()).get();
-			existingContract.setOrganization(null);
+		Optional<Contract> vendorOpt = contractRepository.findByVendorId(vendor.getId());
+		if (vendorOpt.isPresent()) {
+			Contract existingContract = vendorOpt.get();
+			existingContract.setVendor(null);
 			contractRepository.save(existingContract);
+		}
+	}
+
+	/**
+	 * Detach Vendor from existing contract
+	 *
+	 * @param vendor
+	 */
+	public void applyVendor(OrganizationRefDTO vendor, Long contractId) {
+
+		Optional<Contract> contractOpt = contractRepository.findById(contractId);
+
+		Optional<Contract> vendorContractOpt = contractRepository.findByVendorId(vendor.getId());
+		if (vendorContractOpt.isPresent() && contractOpt.isPresent() && !vendorContractOpt.get().getId().equals(contractId)) {
+			Contract existingContract = vendorContractOpt.get();
+			existingContract.setVendor(null);
+			contractRepository.save(existingContract);
+		}
+
+		if (contractOpt.isPresent()) {
+			Contract contract = contractOpt.get();
+			contract.setVendor(organizationRepository.findById(vendor.getId()).get());
+			contractRepository.save(contract);
 		}
 	}
 

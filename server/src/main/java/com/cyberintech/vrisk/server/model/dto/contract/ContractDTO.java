@@ -8,6 +8,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Contract View Entity Definition
@@ -27,7 +31,7 @@ public class ContractDTO extends DTOWithMetaData<Contract> {
 	private Long id;
 
 	@Schema
-	private OrganizationRefDTO organization;
+	private OrganizationRefDTO vendor;
 
 	@Schema
 	private String name;
@@ -40,6 +44,9 @@ public class ContractDTO extends DTOWithMetaData<Contract> {
 
 	@Schema
 	private DocumentDTO document;
+
+	@Schema
+	private List<DocumentDTO> documents;
 
 	@Schema
 	private Date startDate;;
@@ -60,8 +67,8 @@ public class ContractDTO extends DTOWithMetaData<Contract> {
 	public void fromEntity(Contract entity) {
 		this.id = entity.getId();
 
-		if (entity.getOrganization() != null) {
-			organization = new OrganizationRefDTO(entity.getOrganization());
+		if (entity.getVendor() != null) {
+			vendor = new OrganizationRefDTO(entity.getVendor());
 		}
 
 		this.name = entity.getName();
@@ -73,6 +80,8 @@ public class ContractDTO extends DTOWithMetaData<Contract> {
 		}
 		this.startDate = entity.getStartDate();
 		this.expiryDate = entity.getExpiryDate();
+
+		documents = Optional.ofNullable(entity.getDocuments()).orElse(new HashSet<>()).stream().map(DocumentDTO::new).collect(Collectors.toList());
 	}
 
 

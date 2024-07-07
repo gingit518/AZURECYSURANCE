@@ -15,17 +15,17 @@ public interface ContractRepository extends CoreRepository<Contract, Long> {
 
 	Optional<Contract> findByOrganizationId(Long organizationId);
 
+	Optional<Contract> findByVendorId(Long vendorId);
+
 	Optional<Contract> findFirstByNumber(String contractNumber);
 
-	@Query("SELECT c FROM Contract c " +
-		"WHERE UPPER(c.name) LIKE (CONCAT(UPPER(:name), '%'))")
+	@Query("SELECT c FROM Contract c WHERE UPPER(c.name) LIKE (CONCAT(UPPER(:name), '%'))")
 	List<Contract> getListByName(
 		@Param("name") String name,
 		Pageable pageable
 	);
 
-	@Query("SELECT count(c) FROM Contract c " +
-		"WHERE UPPER(c.name) LIKE (CONCAT(UPPER(:name), '%'))")
+	@Query("SELECT count(c) FROM Contract c WHERE UPPER(c.name) LIKE (CONCAT(UPPER(:name), '%'))")
 	Long getCountByName(
 		@Param("name") String name
 	);

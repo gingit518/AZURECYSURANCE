@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0428.contracts.xml" author="Eugene A. Kalosha">
+
+		<sql>
+
+			CREATE TABLE contract_documents
+			(
+				id serial,
+				contract_id integer NOT NULL,
+				document_id integer NOT NULL,
+
+				CONSTRAINT pk_contract_document_id PRIMARY KEY (id),
+				CONSTRAINT fk_contract_document_contract_id FOREIGN KEY (contract_id) REFERENCES contracts (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+				CONSTRAINT fk_contract_document_document_id FOREIGN KEY (document_id) REFERENCES documents (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+
+			CREATE INDEX i_contract_document_contract_id ON contract_documents (contract_id);
+			CREATE INDEX i_contract_document_document_id ON contract_documents (document_id);
+
+			ALTER TABLE contracts ADD COLUMN IF NOT EXISTS vendor_id int DEFAULT NULL;
+			ALTER TABLE contracts ADD CONSTRAINT fk_contracts_to_vendor FOREIGN KEY (vendor_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE;
+			CREATE INDEX i_contracts_vendor_id ON contracts (vendor_id);
+			ALTER TABLE contracts ALTER COLUMN start_date DROP NOT NULL;
+			ALTER TABLE contracts ALTER COLUMN expiry_date DROP NOT NULL;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE IF EXISTS contract_documents;
+				ALTER TABLE contracts DROP COLUMN vendor_id;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

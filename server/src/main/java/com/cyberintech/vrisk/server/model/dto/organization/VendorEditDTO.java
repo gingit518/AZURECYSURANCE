@@ -3,6 +3,7 @@ package com.cyberintech.vrisk.server.model.dto.organization;
 import com.cyberintech.vrisk.server.model.dto.contract.ContractDTO;
 import com.cyberintech.vrisk.server.model.dto.systems.SystemRefDTO;
 import com.cyberintech.vrisk.server.model.dto.technology.TechnologyRefDTO;
+import com.cyberintech.vrisk.server.model.jpa.entity.Contract;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
 import com.cyberintech.vrisk.server.repository.jpa.ContractRepository;
 import com.cyberintech.vrisk.server.util.BeanUtil;
@@ -11,6 +12,7 @@ import lombok.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -58,8 +60,8 @@ public class VendorEditDTO extends OrganizationEditDTO {
 		super(entity);
 		this.systems = Collections.emptyList();
 		ContractRepository contractRepository = BeanUtil.getBean(ContractRepository.class);
-		this.contract = contractRepository.findByOrganizationId(this.getId()).isPresent() ?
-			new ContractDTO(contractRepository.findByOrganizationId(this.getId()).get()) : new ContractDTO();
+		Optional<Contract> vendorOpt = contractRepository.findByVendorId(this.getId());
+		this.contract = vendorOpt.map(ContractDTO::new).orElseGet(ContractDTO::new);
 	}
 
 	/**

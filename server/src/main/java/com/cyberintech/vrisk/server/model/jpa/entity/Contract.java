@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -33,6 +35,9 @@ public class Contract implements IEntityWithMetadata{
 	@JoinColumn(name = "organization_id")
 	private Organizations organization;
 
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "vendor_id")
+	private Organizations vendor;
 
 	@Column(name = "name", nullable = false, length = 255)
 	private String name;
@@ -46,6 +51,14 @@ public class Contract implements IEntityWithMetadata{
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "document_id")
 	private Documents document;
+
+	@ManyToMany(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
+	@JoinTable(
+		name = "contract_documents",
+		joinColumns = {@JoinColumn(name = "contract_id")},
+		inverseJoinColumns = {@JoinColumn(name = "document_id")}
+	)
+	private Set<Documents> documents = new HashSet<>();
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "start_date")
