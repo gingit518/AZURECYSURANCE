@@ -5,6 +5,7 @@ import com.cyberintech.vrisk.server.model.data.FilteredResponse;
 import com.cyberintech.vrisk.server.model.data.NameFilter;
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.dto.contract.ContractDTO;
+import com.cyberintech.vrisk.server.model.dto.document.DocumentDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationRefDTO;
 import com.cyberintech.vrisk.server.model.jpa.entity.Contract;
 import com.cyberintech.vrisk.server.model.jpa.entity.Documents;
@@ -15,6 +16,7 @@ import com.cyberintech.vrisk.server.rest.exception.BadRequestException;
 import com.cyberintech.vrisk.server.rest.exception.ConflictException;
 import com.cyberintech.vrisk.server.rest.exception.ItemNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -108,6 +110,14 @@ public class ContractService {
 		if (result.getDocument() != null) {
 			String downloadUrl = documentService.buildDownloadUrl(result.getDocument());
 			result.getDocument().setDownloadUrl(downloadUrl);
+		}
+
+		if (CollectionUtils.isNotEmpty(result.getDocuments())) {
+			for (DocumentDTO document : result.getDocuments()) {
+				String downloadUrl = documentService.buildDownloadUrl(document);
+				document.setDownloadUrl(downloadUrl);
+			}
+
 		}
 
 		return result;
