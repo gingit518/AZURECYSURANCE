@@ -141,7 +141,7 @@
 		<spring-framework.version>5.3.34</spring-framework.version>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<spring-security.version>5.7.12</spring-security.version>
-		<tomcat.version>9.0.86</tomcat.version>
+		<tomcat.version>9.0.90</tomcat.version>
 		<!-- https://spring.io/projects/spring-security-oauth -->
 		<!-- TODO replace Spring Security oAuth2 with Spring Security and Spring
 			Authorization Server -->
@@ -244,6 +244,12 @@
 				<groupId>org.apache.tomcat.embed</groupId>
 				<artifactId>tomcat-embed-websocket</artifactId>
 				<version>${tomcat.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.nimbusds</groupId>
+				<artifactId>nimbus-jose-jwt</artifactId>
+				<version>9.37.2</version>
 			</dependency>
 
 			<!-- Spring Framework Dependencies -->
