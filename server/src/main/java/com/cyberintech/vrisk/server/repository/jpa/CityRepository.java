@@ -17,6 +17,8 @@ public interface CityRepository extends CoreRepository<City, Long> {
 
 	Optional<City> findById(Long id);
 
+	Optional<City> findFirstByNameAndCountryAndState(String name, Country country, State state);
+
 	Optional<City> findFirstByNameAndCountry(String name, Country country);
 
 	Optional<City> findFirstByNameAndState(String name, State state);

@@ -4,14 +4,25 @@ import com.cyberintech.vrisk.server.model.data.FilteredRequest;
 import com.cyberintech.vrisk.server.model.data.FilteredResponse;
 import com.cyberintech.vrisk.server.model.data.LocationFilter;
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
+import com.cyberintech.vrisk.server.model.dto.city.CityEditDTO;
 import com.cyberintech.vrisk.server.model.dto.city.CityViewDTO;
-import com.cyberintech.vrisk.server.model.jpa.entity.City;
+import com.cyberintech.vrisk.server.model.dto.datadomains.DataDomainsDTO;
+import com.cyberintech.vrisk.server.model.jpa.domains.VItemType;
+import com.cyberintech.vrisk.server.model.jpa.entity.*;
 import com.cyberintech.vrisk.server.repository.jpa.CityRepository;
+import com.cyberintech.vrisk.server.repository.jpa.CountryRepository;
+import com.cyberintech.vrisk.server.repository.jpa.StateRepository;
 import com.cyberintech.vrisk.server.rest.exception.BadRequestException;
+import com.cyberintech.vrisk.server.rest.exception.ConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * City management Service. Implements basic user CRUD.
@@ -23,8 +34,21 @@ import java.util.List;
 @Service
 public class CityService {
 
+
+	@Autowired
+	private AuditLogService auditLogService;
+
 	@Autowired
 	private CityRepository cityRepository;
+
+	@Autowired
+	private CountryRepository countryRepository;
+
+	@Autowired
+	private StateRepository stateRepository;
+	@Qualifier("organizationService")
+	@Autowired
+	private OrganizationService organizationService;
 
 	/**
 	 * Get City List
@@ -71,6 +95,52 @@ public class CityService {
 		filteredResponse.setTotal(count.intValue());
 
 		return filteredResponse;
+	}
+
+	/**
+	 * Create new Data Domain Domain
+	 *
+	 * @return New Data Domain
+	 */
+	public CityEditDTO safelyCreate(CityEditDTO newItemDTO) {
+
+		Country country = newItemDTO.getCountry() != null && newItemDTO.getCountry().getId() != null ? countryRepository.findById(newItemDTO.getCountry().getId()).orElse(null) : null;
+		State state = newItemDTO.getState() != null && newItemDTO.getState().getId() != null ? stateRepository.findById(newItemDTO.getState().getId()).orElse(null) : null;
+		Optional<City> existingCity = cityRepository.findFirstByNameAndCountryAndState(newItemDTO.getName(), country, state);
+
+		if (existingCity.isPresent()) {
+			return new CityEditDTO(existingCity.get());
+		}
+
+		City newItem = new City();
+		newItem.setName(newItemDTO.getName());
+		newItem.setCountry(country);
+		newItem.setState(state);
+		City saveResult = cityRepository.save(newItem);
+
+		CityEditDTO result = new CityEditDTO(saveResult);
+
+		// Save Audit Log CREATE event
+		auditLogService.create(
+			VItemType.CITY,
+			saveResult.getId(),
+			result,
+			collectAuditLogItems(result, organizationService.getCurrentOrganizationId()));
+
+		return result;
+	}
+
+	/**
+	 * Collect items for Audit Log record
+	 *
+	 * @param existingItemDTO
+	 * @param organizationId
+	 * @return
+	 */
+	private AuditLogItemId[] collectAuditLogItems(CityEditDTO existingItemDTO, Long organizationId) {
+		List<AuditLogItemId> logItems = new ArrayList<>(Arrays.asList(AuditLogItemId.of(VItemType.ORGANIZATION, organizationId)));
+
+		return logItems.stream().toArray(AuditLogItemId[]::new);
 	}
 
 }

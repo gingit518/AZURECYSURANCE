@@ -3,6 +3,7 @@ package com.cyberintech.vrisk.api.controller.rest;
 import com.cyberintech.vrisk.server.model.data.FilteredRequest;
 import com.cyberintech.vrisk.server.model.data.FilteredResponse;
 import com.cyberintech.vrisk.server.model.data.LocationFilter;
+import com.cyberintech.vrisk.server.model.dto.city.CityEditDTO;
 import com.cyberintech.vrisk.server.model.dto.city.CityViewDTO;
 import com.cyberintech.vrisk.server.service.CityService;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -52,6 +53,22 @@ public class CityController {
 	) {
 
 		FilteredResponse<LocationFilter, CityViewDTO> result = cityService.getListFiltered(filteredRequest);
+
+		return result;
+	}
+
+	/**
+	 * Create City
+	 *
+	 * @return City
+	 */
+	@RequestMapping(method = RequestMethod.POST, value = "/safely-create", name = "Safely create City item")
+	@Parameters({
+		@Parameter(name = "authorization", description = "oAuth Access token for API calls", example = "Bearer DF0310", required = true, in = ParameterIn.HEADER)
+	})
+	public CityEditDTO safelyCreate(@Parameter(description = "Item Filtering", required = true) @RequestBody CityEditDTO city) {
+
+		CityEditDTO result = cityService.safelyCreate(city);
 
 		return result;
 	}

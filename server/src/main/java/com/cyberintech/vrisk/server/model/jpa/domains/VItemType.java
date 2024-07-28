@@ -23,6 +23,7 @@ public enum VItemType {
 	, ASSET_CLASS(7L, "Asset Class") // DONE
 	, BUSINESS_UNIT(20L, "Business Unit") // DONE
 	, BUSINESS_UNIT_OWNER(21L, "Business Unit Owner")
+	, CITY(25L, "City") // DONE
 	, DATA_TYPE_CLASS(31L, "Data Type Class") // DONE
 	, DATA_DOMAIN(32L, "Data Domain") // DONE
 	, DATA_FIELD(33L, "Data Field") // DONE
