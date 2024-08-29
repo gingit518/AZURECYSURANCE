@@ -138,7 +138,7 @@
 		<spring.boot.version>2.7.18</spring.boot.version>
 		<spring.boot.starter.version>2.7.18</spring.boot.starter.version>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-security-core -->
-		<spring-framework.version>5.3.34</spring-framework.version>
+		<spring-framework.version>5.3.39</spring-framework.version>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<spring-security.version>5.7.12</spring-security.version>
 		<tomcat.version>9.0.90</tomcat.version>
