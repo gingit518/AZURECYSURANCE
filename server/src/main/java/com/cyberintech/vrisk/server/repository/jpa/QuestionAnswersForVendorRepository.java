@@ -35,7 +35,7 @@ public interface QuestionAnswersForVendorRepository extends CoreRepository<Quest
 
 	@Query("SELECT DISTINCT qa FROM QuestionAnswersForVendor qa JOIN qa.vendor v JOIN qa.question q LEFT JOIN FETCH qa.answer a " +
 		"LEFT JOIN FETCH qa.createdBy LEFT JOIN FETCH qa.updatedBy " +
-		"WHERE v.id = :vendorId AND q.id IN :questions")
+		"WHERE v.id = :vendorId AND q.id IN :questions ORDER BY a.id ASC")
 	List<QuestionAnswersForVendor> getListByVendorAndQuestions(
 		@Param("vendorId") Long vendorId,
 		@Param("questions") List<Long> questions

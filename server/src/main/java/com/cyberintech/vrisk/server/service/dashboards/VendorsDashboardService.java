@@ -13,6 +13,7 @@ import com.cyberintech.vrisk.server.util.ClientMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -540,11 +541,15 @@ public class VendorsDashboardService extends DashboardServiceBase {
 			)
 		);
 		for (QuestionAnswersForVendor currentVendorAnswer : allAnswers) {
+			String answerText = currentVendorAnswer.getAnswer() != null ? currentVendorAnswer.getAnswer().getAnswer() : (currentVendorAnswer.getAnswerText() != null ? currentVendorAnswer.getAnswerText() : "");
+			if (StringUtils.isNotEmpty(currentVendorAnswer.getAnswerComment())) {
+				answerText += (StringUtils.isNotEmpty(answerText) ? " " : "") + "Comment: " + currentVendorAnswer.getAnswerComment();
+			}
 			dashboardItem2.getGridItems().add(
 				Arrays.asList(
 					sI(currentVendorAnswer.getVendor().getName()),
-					sI(currentVendorAnswer.getAnswer().getAnswer()),
-					sI(currentVendorAnswer.getAnswer().getAnswerWeight().getValue().doubleValue()).applyTextAlign("right")
+					sI(answerText),
+					sI(currentVendorAnswer.getAnswer() != null ? currentVendorAnswer.getAnswer().getAnswerWeight().getValue().doubleValue() : 0).applyTextAlign("right")
 				)
 			);
 		}
