@@ -1,10 +1,7 @@
 package com.cyberintech.vrisk.server.service.dashboards;
 
 import com.cyberintech.vrisk.server.model.dto.dashboards.*;
-import com.cyberintech.vrisk.server.model.jpa.domains.MetricDomain;
-import com.cyberintech.vrisk.server.model.jpa.domains.SLCT;
-import com.cyberintech.vrisk.server.model.jpa.domains.VariableType;
-import com.cyberintech.vrisk.server.model.jpa.domains.VendorType;
+import com.cyberintech.vrisk.server.model.jpa.domains.*;
 import com.cyberintech.vrisk.server.model.jpa.entity.*;
 import com.cyberintech.vrisk.server.repository.jpa.*;
 import com.cyberintech.vrisk.server.service.BusinessUnitService;
@@ -43,6 +40,9 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 
 	@Autowired
 	private MetricDomainRepository metricDomainRepository;
+
+	@Autowired
+	private OrganizationRepository organizationRepository;
 
 	@Autowired
 	private RiskMetricsRepository riskMetricsRepository;
@@ -222,6 +222,83 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 				}
 			}
 			result.put(system, metricResultMap);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Get Dashboard definition
+	 *
+	 * @return Dashboard
+	 */
+	public Map<Organizations, Map<MetricDomains, MetricResult>> getVendorsScoringData(Long riskModelId, List<VendorType> scoringTypes, List<Organizations> vendorListFilter) {
+
+		// Registering Result Data Set
+		Map<Organizations, Map<MetricDomains, MetricResult>> result = new HashMap<>();
+
+		// Obtain Most Valuable data
+		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
+		List<Organizations> allVendorsList;
+		List<QuestionAnswersForVendor> allQuestionsAnswersList;
+		if (vendorListFilter == null || vendorListFilter.size() == 0) {
+			allVendorsList = organizationRepository.findAllByOrganizationTypeAndRootParentId(OrganizationType.Vendor, riskModel.getOrganizationId());
+			allQuestionsAnswersList = questionAnswersForVendorRepository.getListByRiskModelAndVendorTypes(riskModelId, scoringTypes);
+		} else {
+			allVendorsList = vendorListFilter;
+			List<Long> vendorIdsList = allVendorsList.stream().mapToLong(Organizations::getId).boxed().collect(Collectors.toList());
+			allQuestionsAnswersList = questionAnswersForVendorRepository.getListByRiskModelAndScoringTypesAndVendors(riskModelId, scoringTypes, vendorIdsList);
+		}
+
+		List<QualitativeQuestions> allQuestionsList = qualitativeQuestionRepository.getListOfInternalByRiskModelIdAndTypes(riskModelId, scoringTypes);
+
+		List<MetricDomains> metricDomains = metricDomainRepository.findAll();
+		Map<MetricDomains, List<QualitativeQuestions>> questionsMetricsMap = allQuestionsList.stream().collect(Collectors.groupingBy(question -> question.getQualitativeMetric().getMetricDomain()));
+		Map<Organizations, Map<MetricDomains, List<QuestionAnswersForVendor>>> vendorQuestionAnswersMetricsMap = allQuestionsAnswersList.stream().collect(Collectors.groupingBy(QuestionAnswersForVendor::getVendor, Collectors.groupingBy(questionAnswersForVendor -> questionAnswersForVendor.getQuestion().getQualitativeMetric().getMetricDomain())));
+		Map<MetricDomains, MetricStatistics> metricQuestionStatsMap = metricDomains.stream().collect(Collectors.toMap(domain -> domain, domain -> MetricStatistics.of(questionsMetricsMap.get(domain))));
+
+		// Preparing Result
+		for (Organizations vendor : allVendorsList) {
+			// Create Empty Metric Result
+			Map<MetricDomains, MetricResult> metricResultMap = new HashMap<>();
+			for (MetricDomains domain : metricDomains) {
+				// Create Default Metric Result
+				MetricResult<QuestionAnswersForVendor> metricResult = new MetricResult(domain.getName(), 0d);
+				metricResult.setMetricStatistic(metricQuestionStatsMap.get(domain));
+				metricResultMap.put(domain, metricResult);
+
+				// Process System Question Details
+				if (vendorQuestionAnswersMetricsMap.containsKey(vendor) && vendorQuestionAnswersMetricsMap.get(vendor).containsKey(domain)) {
+					List<QuestionAnswersForVendor> metricQuestionAnswers = vendorQuestionAnswersMetricsMap.get(vendor).get(domain);
+					metricResult.setQuestionAnswers(metricQuestionAnswers);
+
+					Double currMaxMetricValue = 0d;
+					for (QuestionAnswersForVendor questionAnswer : metricQuestionAnswers) {
+
+						// Obtain Max Question answers Weight
+						if (questionAnswer.getQuestion() != null) {
+							double maxQuestionWeight = 1;
+							for (QualitativeQuestionAnswers qualitativeQuestionAnswers : questionAnswer.getQuestion().getAnswers()) {
+								if (qualitativeQuestionAnswers.getAnswerWeight() != null && maxQuestionWeight < qualitativeQuestionAnswers.getAnswerWeight().getValue()) {
+									maxQuestionWeight = qualitativeQuestionAnswers.getAnswerWeight().getValue();
+								}
+							}
+							if (questionAnswer.getQuestion().getQuestionWeight() != null) {
+								currMaxMetricValue += Double.valueOf(maxQuestionWeight * questionAnswer.getQuestion().getQuestionWeight().getValue());
+							} else {
+								log.warn(MessageFormat.format("Question Weight not defined for question. [{0}: {1}]", questionAnswer.getQuestion().getId(), questionAnswer.getQuestion().getQuestion()));
+							}
+						}
+
+						double answerWeight = questionAnswer.getAnswer() != null && questionAnswer.getAnswer().getAnswerWeight() != null ? questionAnswer.getAnswer().getAnswerWeight().getValue() : 0;
+						double questionWeight = questionAnswer.getQuestion() != null && questionAnswer.getQuestion().getQuestionWeight() != null ? questionAnswer.getQuestion().getQuestionWeight().getValue() : 0;
+
+						metricResult.setResult(metricResult.getResult() + answerWeight * questionWeight);
+						metricResult.setMaxQuestionsAnswersWeight(currMaxMetricValue);
+					}
+				}
+			}
+			result.put(vendor, metricResultMap);
 		}
 
 		return result;

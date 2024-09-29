@@ -399,6 +399,12 @@ public class RiskModelCalculationsService {
 			}
 		}
 
+		// Build Vendor Scoring
+		buildVendorQualitativeMetrics4Type(riskModelId, VendorType.Vendor, riskModel, organization);
+		buildVendorQualitativeMetrics4Type(riskModelId, VendorType.VendorInternal, riskModel, organization);
+		buildVendorQualitativeMetrics4Type(riskModelId, VendorType.Cloud, riskModel, organization);
+		buildVendorQualitativeMetrics4Type(riskModelId, VendorType.CloudInternal, riskModel, organization);
+
 		// Mitigate Risk Data
 		Map<Systems, MetricResult> systemMitigateRiskData = scoringQuestionsDashboardService.getSystemsMitigateData(riskModelId);
 		for (Map.Entry<Systems, MetricResult> systemsScoring: systemMitigateRiskData.entrySet()) {
@@ -450,6 +456,39 @@ public class RiskModelCalculationsService {
 		}
 
 		return true;
+	}
+
+	private void buildVendorQualitativeMetrics4Type(Long riskModelId, VendorType currentVendorType, RiskModels riskModel, Organizations organization) {
+		// Rebuild System Scoring for Qualitative Metrics
+		Map<Organizations, Map<MetricDomains, MetricResult>> vendorScoringQualDataMap = scoringQuestionsDashboardService.getVendorsScoringData(riskModelId, Arrays.asList(currentVendorType), null);
+		for (Map.Entry<Organizations, Map<MetricDomains, MetricResult>> vendorsScoring: vendorScoringQualDataMap.entrySet()) {
+			Organizations vendor = vendorsScoring.getKey();
+			Map<MetricDomains, MetricResult> scoringData = vendorsScoring.getValue();
+			for (Map.Entry<MetricDomains, MetricResult> qualScoringEntry : scoringData.entrySet()) {
+				MetricDomains qualMetric = qualScoringEntry.getKey();
+				MetricResult metricResult = qualScoringEntry.getValue();
+
+				// We should not insert empty metrics
+				if (CollectionUtils.isEmpty(metricResult.getQuestionAnswers())) {
+					continue;
+				}
+
+				CacheMetricsData cacheMetricsData = buildCacheMetricsData4System(riskModel, organization, null, null);
+				cacheMetricsData.setVendorId(vendor.getId());
+				cacheMetricsData.setVendorName(vendor.getName());
+				cacheMetricsData.setMetricId(qualMetric.getId());
+				cacheMetricsData.setMetricName(metricResult.getMetricName());
+				cacheMetricsData.setMetricDomainId(qualMetric.getId());
+				cacheMetricsData.setMetricDomainName(qualMetric.getName());
+				cacheMetricsData.setMetricFormula(metricResult.getFormulaString());
+				cacheMetricsData.setMetricType("QUAL");
+				cacheMetricsData.setMetricLevel(currentVendorType.name());
+				cacheMetricsData.setMetricValue(metricResult.buildNormalizedResult());
+				cacheMetricsData.setCreatedAt(new Date());
+
+				cacheMetricsDataRepository.save(cacheMetricsData);
+			}
+		}
 	}
 
 	/**

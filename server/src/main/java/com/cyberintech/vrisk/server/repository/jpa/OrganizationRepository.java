@@ -32,6 +32,8 @@ public interface OrganizationRepository extends CoreRepository<Organizations, Lo
 
 	List<Organizations> findAllByNameIsStartingWith(String name, Pageable pageable);
 
+	List<Organizations> findAllByOrganizationTypeAndRootParentId(OrganizationType organizationType, Long rootParentId);
+
 	Long countAllByNameIsStartingWith(String name);
 
 	@Query("SELECT o FROM Organizations o LEFT JOIN FETCH o.country ct " +

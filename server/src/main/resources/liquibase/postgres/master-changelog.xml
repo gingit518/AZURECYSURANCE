@@ -452,4 +452,5 @@
 	<include file="classpath:liquibase/postgres/0426.qualitative_question_flags.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0427.organization_vendor.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0428.contracts.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:liquibase/postgres/0429.cache_metrics_data.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

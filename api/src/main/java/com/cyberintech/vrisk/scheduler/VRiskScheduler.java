@@ -33,9 +33,9 @@ public class VRiskScheduler {
 	}
 
 	/**
-	 * Start first execution in 3600 sec after application start and schedule next execution in one hour after previous execution
+	 * Start first execution in 300 sec after application start and execute it (ONCE)
 	 */
-	@Scheduled(initialDelay = 3600000, fixedDelay=Long.MAX_VALUE)
+	@Scheduled(initialDelay = 300000, fixedDelay=Long.MAX_VALUE)
 	public void runCacheMetricsRebuildSchedulerIn3600Secs() {
 		runCacheMetricsRebuildScheduler();
 	}
