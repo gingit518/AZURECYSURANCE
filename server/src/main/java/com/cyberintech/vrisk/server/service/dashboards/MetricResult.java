@@ -73,31 +73,31 @@ public class MetricResult<QUESTION_ANSWER_ENTITY> implements Cloneable {
 		}
 
 		if (normalizedResult <= 1d) {
-			resultScore = "F";
+			resultScore = "A+";
 		} else if (normalizedResult <= 2d) {
-			resultScore = "D-";
+			resultScore = "A";
 		} else if (normalizedResult <= 3d) {
-			resultScore = "D";
+			resultScore = "A-";
 		} else if (normalizedResult <= 4d) {
-			resultScore = "D+";
+			resultScore = "B+";
 		} else if (normalizedResult <= 5d) {
-			resultScore = "C-";
+			resultScore = "B";
 		} else if (normalizedResult <= 6d) {
-			resultScore = "C";
+			resultScore = "B-";
 		} else if (normalizedResult <= 7d) {
 			resultScore = "C+";
 		} else if (normalizedResult <= 8d) {
-			resultScore = "B-";
+			resultScore = "C";
 		} else if (normalizedResult <= 9d) {
-			resultScore = "B";
+			resultScore = "C-";
 		} else if (normalizedResult <= 10d) {
-			resultScore = "B+";
+			resultScore = "D+";
 		} else if (normalizedResult <= 11d) {
-			resultScore = "A-";
+			resultScore = "D";
 		} else if (normalizedResult <= 12d) {
-			resultScore = "A";
+			resultScore = "D-";
 		} else if (normalizedResult > 12d) {
-			resultScore = "A+";
+			resultScore = "F";
 		}
 
 		return resultScore;
