@@ -22,7 +22,11 @@ public class MetricResult<QUESTION_ANSWER_ENTITY> implements Cloneable {
 
 	private Double maxQuestionsAnswersWeight = 1d;
 
+	private Double maxExistingQuestionsAnswersWeight = 1d;
+
 	private Double resultNormalized;
+
+	private String resultScore;
 
 	private String formulaString = DEFAULT_FORMULA;
 
@@ -53,6 +57,50 @@ public class MetricResult<QUESTION_ANSWER_ENTITY> implements Cloneable {
 		}
 
 		return resultNormalized;
+	}
+
+	/**
+	 * Returns result normalized by Answers Weight
+	 *
+	 * @return
+	 */
+	public String getResultScore() {
+		resultScore = "";
+
+		Double normalizedResult = 0d;
+		if (maxQuestionsAnswersWeight > 0) {
+			normalizedResult = 13 * this.getResult() / maxQuestionsAnswersWeight;
+		}
+
+		if (normalizedResult <= 1d) {
+			resultScore = "F";
+		} else if (normalizedResult <= 2d) {
+			resultScore = "D-";
+		} else if (normalizedResult <= 3d) {
+			resultScore = "D";
+		} else if (normalizedResult <= 4d) {
+			resultScore = "D+";
+		} else if (normalizedResult <= 5d) {
+			resultScore = "C-";
+		} else if (normalizedResult <= 6d) {
+			resultScore = "C";
+		} else if (normalizedResult <= 7d) {
+			resultScore = "C+";
+		} else if (normalizedResult <= 8d) {
+			resultScore = "B-";
+		} else if (normalizedResult <= 9d) {
+			resultScore = "B";
+		} else if (normalizedResult <= 10d) {
+			resultScore = "B+";
+		} else if (normalizedResult <= 11d) {
+			resultScore = "A-";
+		} else if (normalizedResult <= 12d) {
+			resultScore = "A";
+		} else if (normalizedResult > 12d) {
+			resultScore = "A+";
+		}
+
+		return resultScore;
 	}
 
 }

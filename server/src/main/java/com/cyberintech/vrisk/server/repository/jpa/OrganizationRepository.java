@@ -32,7 +32,7 @@ public interface OrganizationRepository extends CoreRepository<Organizations, Lo
 
 	List<Organizations> findAllByNameIsStartingWith(String name, Pageable pageable);
 
-	List<Organizations> findAllByOrganizationTypeAndRootParentId(OrganizationType organizationType, Long rootParentId);
+	List<Organizations> findAllByOrganizationTypeAndRootParentIdOrderByName(OrganizationType organizationType, Long rootParentId);
 
 	Long countAllByNameIsStartingWith(String name);
 

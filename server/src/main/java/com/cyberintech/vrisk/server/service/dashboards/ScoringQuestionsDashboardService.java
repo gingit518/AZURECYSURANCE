@@ -242,7 +242,7 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 		List<Organizations> allVendorsList;
 		List<QuestionAnswersForVendor> allQuestionsAnswersList;
 		if (vendorListFilter == null || vendorListFilter.size() == 0) {
-			allVendorsList = organizationRepository.findAllByOrganizationTypeAndRootParentId(OrganizationType.Vendor, riskModel.getOrganizationId());
+			allVendorsList = organizationRepository.findAllByOrganizationTypeAndRootParentIdOrderByName(OrganizationType.Vendor, riskModel.getOrganizationId());
 			allQuestionsAnswersList = questionAnswersForVendorRepository.getListByRiskModelAndVendorTypes(riskModelId, scoringTypes);
 		} else {
 			allVendorsList = vendorListFilter;
@@ -299,6 +299,92 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 				}
 			}
 			result.put(vendor, metricResultMap);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Get Dashboard definition
+	 *
+	 * @return Dashboard
+	 */
+	public Map<Organizations, MetricResult> getVendorsScoringAggregatedData(Long riskModelId, List<VendorType> scoringTypes, List<Organizations> vendorListFilter) {
+
+		// Registering Result Data Set
+		Map<Organizations, MetricResult> result = new LinkedHashMap<>();
+
+		// Obtain Most Valuable data
+		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
+		List<Organizations> allVendorsList;
+		List<QuestionAnswersForVendor> allQuestionsAnswersList;
+		if (vendorListFilter == null || vendorListFilter.size() == 0) {
+			allVendorsList = organizationRepository.findAllByOrganizationTypeAndRootParentIdOrderByName(OrganizationType.Vendor, riskModel.getOrganizationId());
+			allQuestionsAnswersList = questionAnswersForVendorRepository.getListByRiskModelAndVendorTypes(riskModelId, scoringTypes);
+		} else {
+			allVendorsList = vendorListFilter;
+			List<Long> vendorIdsList = allVendorsList.stream().mapToLong(Organizations::getId).boxed().collect(Collectors.toList());
+			allQuestionsAnswersList = questionAnswersForVendorRepository.getListByRiskModelAndScoringTypesAndVendors(riskModelId, scoringTypes, vendorIdsList);
+		}
+
+		List<QualitativeQuestions> allQuestionsList = qualitativeQuestionRepository.getListOfInternalByRiskModelIdAndTypes(riskModelId, scoringTypes);
+
+		List<MetricDomains> metricDomains = metricDomainRepository.findAll();
+		// Map<MetricDomains, List<QualitativeQuestions>> questionsMetricsMap = allQuestionsList.stream().collect(Collectors.groupingBy(question -> question.getQualitativeMetric().getMetricDomain()));
+		Map<Organizations, List<QuestionAnswersForVendor>> vendorQuestionAnswersMetricsMap = allQuestionsAnswersList.stream().collect(Collectors.groupingBy(QuestionAnswersForVendor::getVendor));
+		// Map<MetricDomains, MetricStatistics> metricQuestionStatsMap = metricDomains.stream().collect(Collectors.toMap(domain -> domain, domain -> MetricStatistics.of(questionsMetricsMap.get(domain))));
+
+		Double cumulativeQuestionsWeight = 0d;
+		for (QualitativeQuestions question : allQuestionsList) {
+			if (CollectionUtils.isNotEmpty(question.getAnswers())) {
+				Double maxQuestionWeight = 0d;
+				for (QualitativeQuestionAnswers qualitativeQuestionAnswers : question.getAnswers()) {
+					if (qualitativeQuestionAnswers.getAnswerWeight() != null && qualitativeQuestionAnswers.getAnswerWeight().getValue() != null && maxQuestionWeight < qualitativeQuestionAnswers.getAnswerWeight().getValue().doubleValue()) {
+						maxQuestionWeight = qualitativeQuestionAnswers.getAnswerWeight().getValue().doubleValue();
+					}
+				}
+
+				if (question.getQuestionWeight() != null) {
+					cumulativeQuestionsWeight += maxQuestionWeight * question.getQuestionWeight().getValue();
+				}
+			}
+		}
+
+		// Preparing Result
+		for (Organizations vendor : allVendorsList) {
+			// Create Empty Metric Result
+			MetricResult<QuestionAnswersForVendor> metricResult = new MetricResult(vendor.getName(), 0d);
+			metricResult.setMaxQuestionsAnswersWeight(cumulativeQuestionsWeight);
+			if (vendorQuestionAnswersMetricsMap.containsKey(vendor)) {
+				List<QuestionAnswersForVendor> metricQuestionAnswers = vendorQuestionAnswersMetricsMap.get(vendor);
+				metricResult.setQuestionAnswers(metricQuestionAnswers);
+
+				Double currMaxMetricValue = 0d;
+				for (QuestionAnswersForVendor questionAnswer : metricQuestionAnswers) {
+
+					// Obtain Max Question answers Weight
+					if (questionAnswer.getQuestion() != null) {
+						double maxQuestionWeight = 1;
+						for (QualitativeQuestionAnswers qualitativeQuestionAnswers : questionAnswer.getQuestion().getAnswers()) {
+							if (qualitativeQuestionAnswers.getAnswerWeight() != null && maxQuestionWeight < qualitativeQuestionAnswers.getAnswerWeight().getValue()) {
+								maxQuestionWeight = qualitativeQuestionAnswers.getAnswerWeight().getValue();
+							}
+						}
+						if (questionAnswer.getQuestion().getQuestionWeight() != null) {
+							currMaxMetricValue += Double.valueOf(maxQuestionWeight * questionAnswer.getQuestion().getQuestionWeight().getValue());
+						} else {
+							log.warn(MessageFormat.format("Question Weight not defined for question. [{0}: {1}]", questionAnswer.getQuestion().getId(), questionAnswer.getQuestion().getQuestion()));
+						}
+					}
+
+					double answerWeight = questionAnswer.getAnswer() != null && questionAnswer.getAnswer().getAnswerWeight() != null ? questionAnswer.getAnswer().getAnswerWeight().getValue() : 0;
+					double questionWeight = questionAnswer.getQuestion() != null && questionAnswer.getQuestion().getQuestionWeight() != null ? questionAnswer.getQuestion().getQuestionWeight().getValue() : 0;
+
+					metricResult.setResult(metricResult.getResult() + answerWeight * questionWeight);
+					metricResult.setMaxExistingQuestionsAnswersWeight(currMaxMetricValue);
+				}
+			}
+			result.put(vendor, metricResult);
 		}
 
 		return result;

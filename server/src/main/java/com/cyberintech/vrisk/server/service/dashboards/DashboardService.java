@@ -587,12 +587,64 @@ public class DashboardService extends DashboardServiceBase {
 		dashboardItem12.addGridHeaders(Arrays.asList(
 			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$VENDOR_HEADER),
 			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$SCORE_HEADER),
-			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$IMPACT_WEIGHT_HEADER),
-			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$IMPACT_TOTAL_HEADER),
-			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$LIKELIHOOD_WEIGHT_HEADER),
-			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$LIKELIHOOD_TOTAL_HEADER)
+			clientMessage.getMessage("Level 1"),
+			clientMessage.getMessage("Level 2"),
+			clientMessage.getMessage("Cloud Level 1"),
+			clientMessage.getMessage("Cloud Level 2")
 		), true);
+		dashboardItem12.addGridHeaders(Arrays.asList(
+			"Score", "Total",
+			"Score", "Total",
+			"Score", "Total",
+			"Score", "Total",
+			"Score", "Total"
+		), true);
+		dashboardItem12.getGridHeaders().get(0).get(0).setRowSpan(2l);
+		dashboardItem12.getGridHeaders().get(0).get(1).setColSpan(2l);
+		dashboardItem12.getGridHeaders().get(0).get(2).setColSpan(2l);
+		dashboardItem12.getGridHeaders().get(0).get(3).setColSpan(2l);
+		dashboardItem12.getGridHeaders().get(0).get(4).setColSpan(2l);
+		dashboardItem12.getGridHeaders().get(0).get(5).setColSpan(2l);
 		section1.getDashboardItems().add(dashboardItem12);
+
+		Map<Organizations, MetricResult> vendorLevel1QualScoringDataMap = scoringQuestionsDashboardService.getVendorsScoringAggregatedData(riskModel.getId(), Arrays.asList(VendorType.Vendor), null);
+		Map<Organizations, MetricResult> vendorLevel2QualScoringDataMap = scoringQuestionsDashboardService.getVendorsScoringAggregatedData(riskModel.getId(), Arrays.asList(VendorType.VendorInternal), null);
+		Map<Organizations, MetricResult> cloudLevel1QualScoringDataMap = scoringQuestionsDashboardService.getVendorsScoringAggregatedData(riskModel.getId(), Arrays.asList(VendorType.Cloud), null);
+		Map<Organizations, MetricResult> cloudLevel2QualScoringDataMap = scoringQuestionsDashboardService.getVendorsScoringAggregatedData(riskModel.getId(), Arrays.asList(VendorType.CloudInternal), null);
+		for (Map.Entry<Organizations, MetricResult> entry : vendorLevel1QualScoringDataMap.entrySet()) {
+			Organizations vendor = entry.getKey();
+			MetricResult vendorLevel1 = vendorLevel1QualScoringDataMap.computeIfAbsent(vendor, organizations -> new MetricResult(organizations.getName(), 0D));
+			MetricResult vendorLevel2 = vendorLevel2QualScoringDataMap.computeIfAbsent(vendor, organizations -> new MetricResult(organizations.getName(), 0D));
+			MetricResult cloudLevel1 = cloudLevel1QualScoringDataMap.computeIfAbsent(vendor, organizations -> new MetricResult(organizations.getName(), 0D));
+			MetricResult cloudLevel2 = cloudLevel2QualScoringDataMap.computeIfAbsent(vendor, organizations -> new MetricResult(organizations.getName(), 0D));
+
+			MetricResult<QuestionAnswersForVendor> totalScore = new MetricResult(vendor.getName(), 0d);
+			totalScore.setResult(vendorLevel1.getResult() + vendorLevel2.getResult() + cloudLevel1.getResult() + cloudLevel2.getResult());
+			totalScore.setMaxQuestionsAnswersWeight(vendorLevel1.getMaxQuestionsAnswersWeight() + vendorLevel2.getMaxQuestionsAnswersWeight() + cloudLevel1.getMaxQuestionsAnswersWeight() + cloudLevel2.getMaxQuestionsAnswersWeight());
+
+			List<DashboardDataItemDTO> rowItems = new ArrayList<>();
+			rowItems.add(sI(vendor.getName()));
+			rowItems.add(sI(totalScore.getResultScore()).applyTextAlign("center"));
+			rowItems.add(sI(totalScore.buildNormalizedResult()).round(2));
+			rowItems.add(sI(vendorLevel1.getResultScore()).applyTextAlign("center"));
+			rowItems.add(sI(vendorLevel1.buildNormalizedResult()).round(2));
+			rowItems.add(sI(vendorLevel2.getResultScore()).applyTextAlign("center"));
+			rowItems.add(sI(vendorLevel2.buildNormalizedResult()).round(2));
+			rowItems.add(sI(cloudLevel1.getResultScore()).applyTextAlign("center"));
+			rowItems.add(sI(cloudLevel1.buildNormalizedResult()).round(2));
+			rowItems.add(sI(cloudLevel2.getResultScore()).applyTextAlign("center"));
+			rowItems.add(sI(cloudLevel2.buildNormalizedResult()).round(2));
+			dashboardItem12.getGridItems().add(rowItems);
+			// applyVendorDashboardQualsDrilldown(rowItems, dataSeries.getVendor());
+
+			List<DashboardDataItemDTO> chartItems = new ArrayList<>();
+			chartItems.add(sI(vendor.getName()));
+			chartItems.add(sI(totalScore.buildNormalizedResult()).round(2));
+			// if (chartItems.size() > 0) chartItems.get(0).setDrilldown(DashboardDataItemDrilldownDTO.of(dataSeries.getVendor()));
+			dashboardItem11.getGridItems().add(chartItems);
+		}
+
+		/*
 		for (Map.Entry<Long, VendorDataSeries> entry : summaryQualData.entrySet()) {
 			VendorDataSeries dataSeries = entry.getValue();
 
@@ -604,6 +656,7 @@ public class DashboardService extends DashboardServiceBase {
 			if (chartItems.size() > 0) chartItems.get(0).setDrilldown(DashboardDataItemDrilldownDTO.of(dataSeries.getVendor()));
 			dashboardItem11.getGridItems().add(chartItems);
 		}
+		*/
 
 		// Init Heat Matrix and Heat Chart data
 		Map<Long, DashboardDataItemDTO> heatChartItemsMap = new HashMap<>();

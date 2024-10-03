@@ -73,6 +73,8 @@ public class VendorsDashboardService extends DashboardServiceBase {
 
 	@Autowired
 	private AssociateVendorRepository associateVendorRepository;
+	@Autowired
+	private ScoringQuestionsDashboardService scoringQuestionsDashboardService;
 
 	/**
 	 * Get Dashboard definition
