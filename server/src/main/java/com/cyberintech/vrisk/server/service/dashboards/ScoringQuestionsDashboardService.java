@@ -332,7 +332,7 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 		List<MetricDomains> metricDomains = metricDomainRepository.findAll();
 		// Map<MetricDomains, List<QualitativeQuestions>> questionsMetricsMap = allQuestionsList.stream().collect(Collectors.groupingBy(question -> question.getQualitativeMetric().getMetricDomain()));
 		Map<Organizations, List<QuestionAnswersForVendor>> vendorQuestionAnswersMetricsMap = allQuestionsAnswersList.stream().collect(Collectors.groupingBy(QuestionAnswersForVendor::getVendor));
-		Map<Organizations, Map<Long, QuestionAnswersForVendor>> vendorQuestionAnswersQuestionsMap = allQuestionsAnswersList.stream().collect(Collectors.groupingBy(QuestionAnswersForVendor::getVendor, Collectors.toMap(questionAnswersForVendor -> questionAnswersForVendor.getQuestion().getId(), questionAnswersForVendor -> questionAnswersForVendor, (questionAnswersForVendor, questionAnswersForVendor2) -> questionAnswersForVendor2)));
+		Map<Organizations, Map<Long, QuestionAnswersForVendor>> vendorQuestionAnswersQuestionsMap = allQuestionsAnswersList.stream().filter(questionAnswersForVendor -> questionAnswersForVendor.getAnswer() != null).collect(Collectors.groupingBy(QuestionAnswersForVendor::getVendor, Collectors.toMap(questionAnswersForVendor -> questionAnswersForVendor.getQuestion().getId(), questionAnswersForVendor -> questionAnswersForVendor, (questionAnswersForVendor, questionAnswersForVendor2) -> questionAnswersForVendor)));
 		// Map<MetricDomains, MetricStatistics> metricQuestionStatsMap = metricDomains.stream().collect(Collectors.toMap(domain -> domain, domain -> MetricStatistics.of(questionsMetricsMap.get(domain))));
 
 		Double cumulativeQuestionsWeight = 0d;
