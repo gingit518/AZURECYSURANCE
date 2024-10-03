@@ -332,6 +332,7 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 		List<MetricDomains> metricDomains = metricDomainRepository.findAll();
 		// Map<MetricDomains, List<QualitativeQuestions>> questionsMetricsMap = allQuestionsList.stream().collect(Collectors.groupingBy(question -> question.getQualitativeMetric().getMetricDomain()));
 		Map<Organizations, List<QuestionAnswersForVendor>> vendorQuestionAnswersMetricsMap = allQuestionsAnswersList.stream().collect(Collectors.groupingBy(QuestionAnswersForVendor::getVendor));
+		Map<Organizations, Map<Long, QuestionAnswersForVendor>> vendorQuestionAnswersQuestionsMap = allQuestionsAnswersList.stream().collect(Collectors.groupingBy(QuestionAnswersForVendor::getVendor, Collectors.toMap(questionAnswersForVendor -> questionAnswersForVendor.getQuestion().getId(), questionAnswersForVendor -> questionAnswersForVendor, (questionAnswersForVendor, questionAnswersForVendor2) -> questionAnswersForVendor2)));
 		// Map<MetricDomains, MetricStatistics> metricQuestionStatsMap = metricDomains.stream().collect(Collectors.toMap(domain -> domain, domain -> MetricStatistics.of(questionsMetricsMap.get(domain))));
 
 		Double cumulativeQuestionsWeight = 0d;
@@ -355,35 +356,36 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 			// Create Empty Metric Result
 			MetricResult<QuestionAnswersForVendor> metricResult = new MetricResult(vendor.getName(), 0d);
 			metricResult.setMaxQuestionsAnswersWeight(cumulativeQuestionsWeight);
-			if (vendorQuestionAnswersMetricsMap.containsKey(vendor)) {
-				List<QuestionAnswersForVendor> metricQuestionAnswers = vendorQuestionAnswersMetricsMap.get(vendor);
-				metricResult.setQuestionAnswers(metricQuestionAnswers);
 
-				Double currMaxMetricValue = 0d;
-				for (QuestionAnswersForVendor questionAnswer : metricQuestionAnswers) {
+			Map<Long, QuestionAnswersForVendor> metricQuestionAnswers = vendorQuestionAnswersQuestionsMap.computeIfAbsent(vendor, organizations -> new LinkedHashMap<>());
+			// List<QuestionAnswersForVendor> metricQuestionAnswers = vendorQuestionAnswersMetricsMap.get(vendor);
+			// metricResult.setQuestionAnswers(metricQuestionAnswers);
 
-					// Obtain Max Question answers Weight
-					if (questionAnswer.getQuestion() != null) {
-						double maxQuestionWeight = 1;
-						for (QualitativeQuestionAnswers qualitativeQuestionAnswers : questionAnswer.getQuestion().getAnswers()) {
-							if (qualitativeQuestionAnswers.getAnswerWeight() != null && maxQuestionWeight < qualitativeQuestionAnswers.getAnswerWeight().getValue()) {
-								maxQuestionWeight = qualitativeQuestionAnswers.getAnswerWeight().getValue();
-							}
-						}
-						if (questionAnswer.getQuestion().getQuestionWeight() != null) {
-							currMaxMetricValue += Double.valueOf(maxQuestionWeight * questionAnswer.getQuestion().getQuestionWeight().getValue());
-						} else {
-							log.warn(MessageFormat.format("Question Weight not defined for question. [{0}: {1}]", questionAnswer.getQuestion().getId(), questionAnswer.getQuestion().getQuestion()));
-						}
+			Double currMaxMetricValue = 0d;
+			for (QualitativeQuestions currentQuestion : allQuestionsList) {
+
+				QuestionAnswersForVendor questionAnswer = metricQuestionAnswers.get(currentQuestion.getId());
+
+				// Obtain Max Question answers Weight
+				double maxQuestionWeight = 0;
+				for (QualitativeQuestionAnswers qualitativeQuestionAnswers : currentQuestion.getAnswers()) {
+					if (qualitativeQuestionAnswers.getAnswerWeight() != null && maxQuestionWeight < qualitativeQuestionAnswers.getAnswerWeight().getValue()) {
+						maxQuestionWeight = qualitativeQuestionAnswers.getAnswerWeight().getValue();
 					}
-
-					double answerWeight = questionAnswer.getAnswer() != null && questionAnswer.getAnswer().getAnswerWeight() != null ? questionAnswer.getAnswer().getAnswerWeight().getValue() : 0;
-					double questionWeight = questionAnswer.getQuestion() != null && questionAnswer.getQuestion().getQuestionWeight() != null ? questionAnswer.getQuestion().getQuestionWeight().getValue() : 0;
-
-					metricResult.setResult(metricResult.getResult() + answerWeight * questionWeight);
-					metricResult.setMaxExistingQuestionsAnswersWeight(currMaxMetricValue);
 				}
+				if (currentQuestion.getQuestionWeight() != null) {
+					currMaxMetricValue += Double.valueOf(maxQuestionWeight * currentQuestion.getQuestionWeight().getValue());
+				} else {
+					log.warn(MessageFormat.format("Question Weight not defined for question. [{0}: {1}]", currentQuestion.getId(), currentQuestion.getQuestion()));
+				}
+
+				double answerWeight = questionAnswer != null && questionAnswer.getAnswer() != null && questionAnswer.getAnswer().getAnswerWeight() != null ? questionAnswer.getAnswer().getAnswerWeight().getValue() : maxQuestionWeight;
+				double questionWeight = currentQuestion.getQuestionWeight() != null ? currentQuestion.getQuestionWeight().getValue() : 0;
+
+				metricResult.setResult(metricResult.getResult() + answerWeight * questionWeight);
+				metricResult.setMaxExistingQuestionsAnswersWeight(currMaxMetricValue);
 			}
+
 			result.put(vendor, metricResult);
 		}
 
