@@ -335,34 +335,38 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 		Map<Organizations, Map<Long, QuestionAnswersForVendor>> vendorQuestionAnswersQuestionsMap = allQuestionsAnswersList.stream().filter(questionAnswersForVendor -> questionAnswersForVendor.getAnswer() != null).collect(Collectors.groupingBy(QuestionAnswersForVendor::getVendor, Collectors.toMap(questionAnswersForVendor -> questionAnswersForVendor.getQuestion().getId(), questionAnswersForVendor -> questionAnswersForVendor, (questionAnswersForVendor, questionAnswersForVendor2) -> questionAnswersForVendor)));
 		// Map<MetricDomains, MetricStatistics> metricQuestionStatsMap = metricDomains.stream().collect(Collectors.toMap(domain -> domain, domain -> MetricStatistics.of(questionsMetricsMap.get(domain))));
 
-		Double cumulativeQuestionsWeight = 0d;
-		for (QualitativeQuestions question : allQuestionsList) {
-			if (CollectionUtils.isNotEmpty(question.getAnswers())) {
-				Double maxQuestionWeight = 0d;
-				for (QualitativeQuestionAnswers qualitativeQuestionAnswers : question.getAnswers()) {
-					if (qualitativeQuestionAnswers.getAnswerWeight() != null && qualitativeQuestionAnswers.getAnswerWeight().getValue() != null && maxQuestionWeight < qualitativeQuestionAnswers.getAnswerWeight().getValue().doubleValue()) {
-						maxQuestionWeight = qualitativeQuestionAnswers.getAnswerWeight().getValue().doubleValue();
-					}
-				}
-
-				if (question.getQuestionWeight() != null) {
-					cumulativeQuestionsWeight += maxQuestionWeight * question.getQuestionWeight().getValue();
-				}
-			}
-		}
-
 		// Preparing Result
 		for (Organizations vendor : allVendorsList) {
 			// Create Empty Metric Result
 			MetricResult<QuestionAnswersForVendor> metricResult = new MetricResult(vendor.getName(), 0d);
-			metricResult.setMaxQuestionsAnswersWeight(cumulativeQuestionsWeight);
 
 			Map<Long, QuestionAnswersForVendor> metricQuestionAnswers = vendorQuestionAnswersQuestionsMap.computeIfAbsent(vendor, organizations -> new LinkedHashMap<>());
 			// List<QuestionAnswersForVendor> metricQuestionAnswers = vendorQuestionAnswersMetricsMap.get(vendor);
 			// metricResult.setQuestionAnswers(metricQuestionAnswers);
 
+			Double cumulativeQuestionsWeight = 0d;
+			for (QualitativeQuestions question : allQuestionsList) {
+				if (CollectionUtils.isNotEmpty(question.getAnswers()) && isQuestionApplicableToVendor(question, vendor, metricQuestionAnswers)) {
+					Double maxQuestionWeight = 0d;
+					for (QualitativeQuestionAnswers qualitativeQuestionAnswers : question.getAnswers()) {
+						if (qualitativeQuestionAnswers.getAnswerWeight() != null && qualitativeQuestionAnswers.getAnswerWeight().getValue() != null && maxQuestionWeight < qualitativeQuestionAnswers.getAnswerWeight().getValue().doubleValue()) {
+							maxQuestionWeight = qualitativeQuestionAnswers.getAnswerWeight().getValue().doubleValue();
+						}
+					}
+
+					if (question.getQuestionWeight() != null) {
+						cumulativeQuestionsWeight += maxQuestionWeight * question.getQuestionWeight().getValue();
+					}
+				}
+			}
+
+			metricResult.setMaxQuestionsAnswersWeight(cumulativeQuestionsWeight);
 			Double currMaxMetricValue = 0d;
 			for (QualitativeQuestions currentQuestion : allQuestionsList) {
+
+				if (!isQuestionApplicableToVendor(currentQuestion, vendor, metricQuestionAnswers)) {
+					continue;
+				}
 
 				QuestionAnswersForVendor questionAnswer = metricQuestionAnswers.get(currentQuestion.getId());
 
@@ -387,6 +391,36 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 			}
 
 			result.put(vendor, metricResult);
+		}
+
+		return result;
+	}
+
+	private boolean isQuestionApplicableToVendor(QualitativeQuestions question, Organizations vendor, Map<Long, QuestionAnswersForVendor> metricQuestionAnswers) {
+		boolean result = false;
+
+		if (!Boolean.TRUE.equals(question.getIsServiceVendor()) && !Boolean.TRUE.equals(question.getIsTechnologyVendor()) && !Boolean.TRUE.equals(question.getIsSystemVendor())) {
+			result = true;
+		} else if (Boolean.TRUE.equals(question.getIsServiceVendor()) && Boolean.TRUE.equals(vendor.getIsServiceVendor())) {
+			result = true;
+		} else if (Boolean.TRUE.equals(question.getIsSystemVendor()) && Boolean.TRUE.equals(vendor.getIsSystemVendor())) {
+			result = true;
+		} else if (Boolean.TRUE.equals(question.getIsTechnologyVendor()) && Boolean.TRUE.equals(vendor.getIsTechnologyVendor())) {
+			result = true;
+		}
+
+		if (result && CollectionUtils.isNotEmpty(question.getBranchingLogic())) {
+			// Check Branching Logic
+			for (QuestionBranchingLogic branchingLogic : question.getBranchingLogic()) {
+				if (branchingLogic.getQuestion() != null) {
+					QuestionAnswersForVendor relatedAnswer = metricQuestionAnswers.get(branchingLogic.getQuestion().getId());
+					if (relatedAnswer == null) {
+						return false;
+					} else if (!relatedAnswer.getAnswer().getId().equals(branchingLogic.getAnswer().getId())) {
+						return false;
+					}
+				}
+			}
 		}
 
 		return result;
