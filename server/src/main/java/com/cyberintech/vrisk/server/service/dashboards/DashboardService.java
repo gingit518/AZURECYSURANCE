@@ -545,20 +545,23 @@ public class DashboardService extends DashboardServiceBase {
 
 		// Create Initial Sections
 		DashboardSectionDTO section1 = new DashboardSectionDTO(1L, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$ITEM_NAME), "");
+		dashboard.getSections().add(section1);
+		/*
 		DashboardSectionDTO section2 = new DashboardSectionDTO(2L, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_EXPOSURES$ITEM_NAME), "");
 		DashboardSectionDTO section3 = new DashboardSectionDTO(3L, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$HEAT_MAP$ITEM_NAME), "");
 		DashboardSectionDTO section32 = new DashboardSectionDTO(32L, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$HEAT_MATRIX$ITEM_NAME), "");
 		DashboardSectionDTO section4 = new DashboardSectionDTO(4L, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$IMPACT$ITEM_NAME), "");
 		DashboardSectionDTO section5 = new DashboardSectionDTO(5L, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$LIKELIHOOD$ITEM_NAME), "");
-		dashboard.getSections().add(section1);
 		dashboard.getSections().add(section2);
 		dashboard.getSections().add(section3);
 		dashboard.getSections().add(section32);
 		dashboard.getSections().add(section4);
 		dashboard.getSections().add(section5);
+		*/
 
 		// Create breadcrumbs
 		section1.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_VENDOR_DASHBOARD_1", SLCT.DASHBOARDS$VENDOR$CYBER_RISK$ITEM_NAME, "/private/dashboards/1").getBreadcrumbs());
+		/*
 		section2.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_VENDOR_DASHBOARD_2", SLCT.DASHBOARDS$VENDOR$CYBER_EXPOSURES$ITEM_NAME, "/private/dashboards/1").getBreadcrumbs());
 		section3.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_VENDOR_DASHBOARD_3", SLCT.DASHBOARDS$VENDOR$HEAT_MAP$ITEM_NAME, "/private/dashboards/1").getBreadcrumbs());
 		section32.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_VENDOR_DASHBOARD_32", SLCT.DASHBOARDS$VENDOR$HEAT_MATRIX$ITEM_NAME, "/private/dashboards/1").getBreadcrumbs());
@@ -569,6 +572,7 @@ public class DashboardService extends DashboardServiceBase {
 		List<VendorDataSeries> impactData = getQualMetricData(riskModelId, MetricDomain.IMPACT, null, vendorTypes);
 		List<VendorDataSeries> likelihoodData = getQualMetricData(riskModelId, MetricDomain.LIKELIHOOD, null, vendorTypes);
 		Map<Long, VendorDataSeries> summaryQualData = getLongVendorDataSeriesMap(impactData, likelihoodData);
+		*/
 
 		// List<VendorDataSeries> quantVendorScores = buildQuantMetricData(riskModelId);
 
@@ -658,6 +662,7 @@ public class DashboardService extends DashboardServiceBase {
 		}
 		*/
 
+		/*
 		// Init Heat Matrix and Heat Chart data
 		Map<Long, DashboardDataItemDTO> heatChartItemsMap = new HashMap<>();
 		List<DashboardDataItemDTO> heatChartItems = new ArrayList<>();
@@ -731,6 +736,7 @@ public class DashboardService extends DashboardServiceBase {
 			if (chartItems.size() > 0) chartItems.get(0).setDrilldown(DashboardDataItemDrilldownDTO.of(dataSeries.getVendor(), MetricDomain.LIKELIHOOD));
 			dashboardItem31.getGridItems().add(chartItems);
 		}
+		*/
 
 		return dashboard;
 	}
