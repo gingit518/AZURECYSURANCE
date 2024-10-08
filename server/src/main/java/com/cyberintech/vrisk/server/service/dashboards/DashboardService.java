@@ -634,10 +634,19 @@ public class DashboardService extends DashboardServiceBase {
 			rowItems.add(sI(vendorLevel1.buildNormalizedResult()).round(2));
 			rowItems.add(sI(vendorLevel2.getResultScore()).applyTextAlign("center"));
 			rowItems.add(sI(vendorLevel2.buildNormalizedResult()).round(2));
-			rowItems.add(sI(cloudLevel1.getResultScore()).applyTextAlign("center"));
-			rowItems.add(sI(cloudLevel1.buildNormalizedResult()).round(2));
-			rowItems.add(sI(cloudLevel2.getResultScore()).applyTextAlign("center"));
-			rowItems.add(sI(cloudLevel2.buildNormalizedResult()).round(2));
+
+			if (Boolean.TRUE.equals(vendor.getIsCloudVendor())) {
+				rowItems.add(sI(cloudLevel1.getResultScore()).applyTextAlign("center"));
+				rowItems.add(sI(cloudLevel1.buildNormalizedResult()).round(2));
+				rowItems.add(sI(cloudLevel2.getResultScore()).applyTextAlign("center"));
+				rowItems.add(sI(cloudLevel2.buildNormalizedResult()).round(2));
+			} else {
+				rowItems.add(sI("N/A").applyTextAlign("center"));
+				rowItems.add(sI("N/A").applyTextAlign("center"));
+				rowItems.add(sI("N/A").applyTextAlign("center"));
+				rowItems.add(sI("N/A").applyTextAlign("center"));
+			}
+
 			dashboardItem12.getGridItems().add(rowItems);
 			// applyVendorDashboardQualsDrilldown(rowItems, dataSeries.getVendor());
 
