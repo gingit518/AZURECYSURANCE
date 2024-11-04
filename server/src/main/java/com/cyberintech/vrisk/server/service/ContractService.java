@@ -220,12 +220,12 @@ public class ContractService {
 	 * @param vendor
 	 */
 	public void detachVendor(OrganizationRefDTO vendor) {
-
-		Optional<Contract> vendorOpt = contractRepository.findByVendorId(vendor.getId());
-		if (vendorOpt.isPresent()) {
-			Contract existingContract = vendorOpt.get();
-			existingContract.setVendor(null);
-			contractRepository.save(existingContract);
+		List<Contract> vendorContracts = contractRepository.findAllByVendorId(vendor.getId());
+		if (CollectionUtils.isNotEmpty(vendorContracts)) {
+			for (Contract existingContract : vendorContracts) {
+				existingContract.setVendor(null);
+				contractRepository.save(existingContract);
+			}
 		}
 	}
 

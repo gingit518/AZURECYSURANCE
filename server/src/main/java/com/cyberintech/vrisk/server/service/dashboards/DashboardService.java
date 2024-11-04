@@ -589,7 +589,7 @@ public class DashboardService extends DashboardServiceBase {
 		DashboardDataGridItemDTO dashboardItem12 = new DashboardDataGridItemDTO(1l, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$ITEM_NAME));
 		// dashboardItem12.addGridHeaders(Arrays.asList("Vendor", "Score", "Impact Weight", "Impact Total", "Likelihood Weight", "Likelihood Total"));
 		dashboardItem12.addGridHeaders(Arrays.asList(
-			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$VENDOR_HEADER),
+			"",
 			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$SCORE_HEADER),
 			clientMessage.getMessage("Level 1"),
 			clientMessage.getMessage("Level 2"),
@@ -597,13 +597,14 @@ public class DashboardService extends DashboardServiceBase {
 			clientMessage.getMessage("Cloud Level 2")
 		), true);
 		dashboardItem12.addGridHeaders(Arrays.asList(
+			clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR$CYBER_RISK$CYBER_RISK_SCORES$VENDOR_HEADER),
 			"Score", "Total",
 			"Score", "Total",
 			"Score", "Total",
 			"Score", "Total",
 			"Score", "Total"
 		), true);
-		dashboardItem12.getGridHeaders().get(0).get(0).setRowSpan(2l);
+		// dashboardItem12.getGridHeaders().get(0).get(0).setRowSpan(2l);
 		dashboardItem12.getGridHeaders().get(0).get(1).setColSpan(2l);
 		dashboardItem12.getGridHeaders().get(0).get(2).setColSpan(2l);
 		dashboardItem12.getGridHeaders().get(0).get(3).setColSpan(2l);
@@ -629,17 +630,17 @@ public class DashboardService extends DashboardServiceBase {
 			List<DashboardDataItemDTO> rowItems = new ArrayList<>();
 			rowItems.add(sI(vendor.getName()));
 			rowItems.add(sI(totalScore.getResultScore()).applyTextAlign("center"));
-			rowItems.add(sI(totalScore.buildNormalizedResult()).round(2));
+			rowItems.add(dI(totalScore.buildNormalizedResult()).round(2));
 			rowItems.add(sI(vendorLevel1.getResultScore()).applyTextAlign("center"));
-			rowItems.add(sI(vendorLevel1.buildNormalizedResult()).round(2));
+			rowItems.add(dI(vendorLevel1.buildNormalizedResult()).round(2));
 			rowItems.add(sI(vendorLevel2.getResultScore()).applyTextAlign("center"));
-			rowItems.add(sI(vendorLevel2.buildNormalizedResult()).round(2));
+			rowItems.add(dI(vendorLevel2.buildNormalizedResult()).round(2));
 
 			if (Boolean.TRUE.equals(vendor.getIsCloudVendor())) {
 				rowItems.add(sI(cloudLevel1.getResultScore()).applyTextAlign("center"));
-				rowItems.add(sI(cloudLevel1.buildNormalizedResult()).round(2));
+				rowItems.add(dI(cloudLevel1.buildNormalizedResult()).round(2));
 				rowItems.add(sI(cloudLevel2.getResultScore()).applyTextAlign("center"));
-				rowItems.add(sI(cloudLevel2.buildNormalizedResult()).round(2));
+				rowItems.add(dI(cloudLevel2.buildNormalizedResult()).round(2));
 			} else {
 				rowItems.add(sI("N/A").applyTextAlign("center"));
 				rowItems.add(sI("N/A").applyTextAlign("center"));

@@ -1874,7 +1874,7 @@ public class QualitativeQuestionService {
 					String ordinalString = csvRecord.isSet(QUESTION_ORDINAL_HEADER) ? csvRecord.get(QUESTION_ORDINAL_HEADER).trim() : "";
 					QualMetricsViewDTO qualMetricView = qualMetricsService.getOrCreateOneByRiskModelAndDomain(riskModelId, organization.getId(), qualMetricDomain, qualMetricDomainCategory);
 					if (qualMetricView ==  null) {
-						throw new BadRequestException("Qualitative metric domain not found for: " + qualMetricDomain);
+						throw new BadRequestException("Qualitative metric domain not found for: [" + qualMetricDomain + "], Question: " + question);
 					}
 					try {
 						if (StringUtils.isNotEmpty(questionWeight)) {

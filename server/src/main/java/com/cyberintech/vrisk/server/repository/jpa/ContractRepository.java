@@ -17,6 +17,8 @@ public interface ContractRepository extends CoreRepository<Contract, Long> {
 
 	Optional<Contract> findByVendorId(Long vendorId);
 
+	List<Contract> findAllByVendorId(Long vendorId);
+
 	Optional<Contract> findFirstByNumber(String contractNumber);
 
 	@Query("SELECT c FROM Contract c WHERE UPPER(c.name) LIKE (CONCAT(UPPER(:name), '%'))")

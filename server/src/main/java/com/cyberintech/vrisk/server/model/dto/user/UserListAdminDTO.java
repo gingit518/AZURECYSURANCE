@@ -3,6 +3,7 @@ package com.cyberintech.vrisk.server.model.dto.user;
 import com.cyberintech.vrisk.server.model.dto.ItemViewDTO;
 import com.cyberintech.vrisk.server.model.dto.document.DocumentDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationRefDTO;
+import com.cyberintech.vrisk.server.model.dto.organization.VendorRefDTO;
 import com.cyberintech.vrisk.server.model.jpa.entity.Roles;
 import com.cyberintech.vrisk.server.model.jpa.entity.Users;
 import com.cyberintech.vrisk.server.service.UserService;
@@ -33,7 +34,7 @@ public class UserListAdminDTO extends UserListDTO {
 	private Boolean deleted;
 
 	@Schema
-	private List<OrganizationRefDTO> vendors;
+	private List<VendorRefDTO> vendors;
 
 	/**
 	 * User role codes list
@@ -66,7 +67,7 @@ public class UserListAdminDTO extends UserListDTO {
 		}
 
 		if (UserService.isVendorEmployee(entity)) {
-			vendors = Optional.ofNullable(entity.getVendors()).orElse(new HashSet<>()).stream().map(OrganizationRefDTO::new).collect(Collectors.toList());;
+			vendors = Optional.ofNullable(entity.getVendors()).orElse(new HashSet<>()).stream().map(VendorRefDTO::new).collect(Collectors.toList());;
 		}
 
 		roles = Optional.ofNullable(entity.getRoles()).orElse(new HashSet<>()).stream().map(roles1 -> new ItemViewDTO<Roles>(roles1)).collect(Collectors.toList());
