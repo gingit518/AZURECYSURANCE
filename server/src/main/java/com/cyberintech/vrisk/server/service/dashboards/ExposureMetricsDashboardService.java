@@ -908,10 +908,10 @@ public class ExposureMetricsDashboardService extends DashboardServiceBase {
 		Double systemResult = 0D;
 
 		if (system.getId().equals(1592L) && formulaBuilder.getRegulations().size() > 0) {
-			log.debug("HERE");
+			// log.debug("HERE");
 		}
 		if (formulaBuilder.getQuantMetrics().getId().equals(157L)) {
-			log.debug("HERE");
+			// log.debug("HERE");
 		}
 
 		// Check is Quant Applicable for the System
@@ -920,7 +920,7 @@ public class ExposureMetricsDashboardService extends DashboardServiceBase {
 			return null;
 		}
 		if (formulaBuilder.getQuantMetrics().getId().equals(136L) && system.getId().equals(1592L)) {
-			log.debug("HERE");
+			// log.debug("HERE");
 		}
 
 		if (formulaBuilder.getIsGeoRegulationsApplied()) {
