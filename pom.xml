@@ -76,8 +76,12 @@
 		<apache.httpclient.version>4.5.13</apache.httpclient.version>
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
 		<aws.sdk.version>1.12.270</aws.sdk.version>
-		<!-- https://repo1.maven.org/maven2/com/azure/azure-sdk-bom/1.2.14/-->
-		<azure.sdk.version>1.2.14</azure.sdk.version>
+		<!-- https://repo1.maven.org/maven2/com/azure/azure-sdk-bom/1.2.14/ -->
+		<azure.sdk.version>1.2.31</azure.sdk.version>
+		<!-- https://mvnrepository.com/artifact/com.azure/azure-core -->
+		<azure.azure-core.version>1.55.2</azure.azure-core.version>
+		<!-- https://mvnrepository.com/artifact/com.azure/azure-identity -->
+		<azure.azure-identity.version>1.15.3</azure.azure-identity.version>
 		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
 		<bcprov-jdk18on.version>1.78</bcprov-jdk18on.version>
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -173,7 +177,12 @@
 			<dependency>
 				<groupId>com.azure</groupId>
 				<artifactId>azure-identity</artifactId>
-				<version>1.12.2</version>
+				<version>${azure.azure-identity.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.azure</groupId>
+				<artifactId>azure-core</artifactId>
+				<version>${azure.azure-core.version}</version>
 			</dependency>
 
 			<dependency>

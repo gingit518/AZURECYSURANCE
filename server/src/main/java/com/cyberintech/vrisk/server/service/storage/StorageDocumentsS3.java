@@ -27,7 +27,7 @@ public class StorageDocumentsS3 implements StorageDocumentsService {
 	@Lazy
 	private AmazonS3 s3Client;
 
-	@Value("${cloud.aws.s3.bucket}")
+	@Value("${cloud.aws.s3.bucket:}")
 	private String s3Bucket;
 
 	public StorageDocumentsS3() {
