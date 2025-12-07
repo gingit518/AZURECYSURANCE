@@ -40,7 +40,8 @@ public class ApplicationProperties {
 
 	@Getter
 	@Setter
-	private boolean isPublicAccessPermitted = true;
+	@Value("${vrisk.documents.public-access-permitted:true}")
+	private boolean isPublicAccessPermitted;
 
 	public boolean isEmailNotificationsEnabled() {
 		boolean result = false;

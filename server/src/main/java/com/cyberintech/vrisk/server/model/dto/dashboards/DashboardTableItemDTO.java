@@ -42,18 +42,11 @@ public class DashboardTableItemDTO extends DashboardItemDTO {
 		gridItems = new ArrayList<>();
 	}
 
-	@java.beans.ConstructorProperties({"id", "name"})
-	public DashboardTableItemDTO(Long id, String name, Boolean searchAble) {
-		super(id, name, null, DashboardItemType.Table);
-		gridItems = new ArrayList<>();
-		this.searchAble = searchAble;
-	}
+	public static DashboardTableItemDTO of(Long id, String name, Boolean searchAble) {
+		DashboardTableItemDTO result = new DashboardTableItemDTO(id, name);
+		result.setSearchAble(searchAble);
 
-	@java.beans.ConstructorProperties({"id", "name", "description"})
-	public DashboardTableItemDTO(Long id, String name, String description) {
-		super(id, name, description, DashboardItemType.Table);
-
-		gridItems = new ArrayList<>();
+		return result;
 	}
 
 	/**

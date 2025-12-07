@@ -77,11 +77,12 @@
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
 		<aws.sdk.version>1.12.270</aws.sdk.version>
 		<!-- https://repo1.maven.org/maven2/com/azure/azure-sdk-bom/1.2.14/ -->
-		<azure.sdk.version>1.2.31</azure.sdk.version>
+		<azure.sdk.version>1.2.32</azure.sdk.version>
 		<!-- https://mvnrepository.com/artifact/com.azure/azure-core -->
 		<azure.azure-core.version>1.55.2</azure.azure-core.version>
 		<!-- https://mvnrepository.com/artifact/com.azure/azure-identity -->
 		<azure.azure-identity.version>1.15.3</azure.azure-identity.version>
+		<azure.azure-core-http-netty.version>1.15.3</azure.azure-core-http-netty.version>
 		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
 		<bcprov-jdk18on.version>1.78</bcprov-jdk18on.version>
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -128,7 +129,7 @@
 		<microsoft-azure.version>1.19.1</microsoft-azure.version>
 		<!-- https://mvnrepository.com/artifact/org.modelmapper.extensions/modelmapper-spring -->
 		<modelmapper.version>3.1.0</modelmapper.version>
-		<netty-codec-http.version>4.1.108.Final</netty-codec-http.version>
+		<netty-codec-http.version>4.1.118.Final</netty-codec-http.version>
 		<!-- https://mvnrepository.com/artifact/com.okta.jwt/okta-jwt-verifier -->
 		<okta-jwt.version>0.5.7</okta-jwt.version>
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
@@ -144,7 +145,7 @@
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-security-core -->
 		<spring-framework.version>5.3.39</spring-framework.version>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-		<spring-security.version>5.7.12</spring-security.version>
+		<spring-security.version>5.8.16</spring-security.version>
 		<tomcat.version>9.0.90</tomcat.version>
 		<!-- https://spring.io/projects/spring-security-oauth -->
 		<!-- TODO replace Spring Security oAuth2 with Spring Security and Spring

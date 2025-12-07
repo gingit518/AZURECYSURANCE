@@ -181,8 +181,8 @@ public class DashboardService extends DashboardServiceBase {
 		List<ExternalAnalytics> analyticDashbardList = externalAnalyticsRepository.getListByOrganizationIdAndType(organizationId, ExternalAnalyticsType.DASHBOARD);
 		Map<Long, String> dashboardMenuNames = new HashMap<>();
 		for (ExternalAnalytics externalAnalytic : analyticDashbardList) {
-			Optional<ExternalAnalyticsParameters> dashboardIdOpt = externalAnalytic.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.DASHBOARD_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
-			Optional<ExternalAnalyticsParameters> dashboardCaption = externalAnalytic.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.DASHBOARD_SECTION_NAME.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+			Optional<ExternalAnalyticsParameters> dashboardIdOpt = externalAnalytic.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.DASHBOARD_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+			Optional<ExternalAnalyticsParameters> dashboardCaption = externalAnalytic.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.DASHBOARD_SECTION_NAME.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
 			if (dashboardIdOpt.isPresent() && dashboardCaption.isPresent()) {
 				try {
 					Long dashboardId = Long.parseLong(dashboardIdOpt.get().getValue().trim());
@@ -1665,12 +1665,12 @@ public class DashboardService extends DashboardServiceBase {
 
 		DashboardSectionDTO section1 = new DashboardSectionDTO(3601L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$SYSTEM_ASSIGNMENTS$ITEM_NAME), clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$SYSTEM_ASSIGNMENTS$ITEM_DESCRIPTION));
 		dashboard.getSections().add(section1);
-		DashboardTableItemDTO dashboardItem1 = new DashboardTableItemDTO(3601L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$SYSTEM_ASSIGNMENTS$SYSTEM_ASSIGNMENTS$ITEM_NAME), true);
+		DashboardTableItemDTO dashboardItem1 = DashboardTableItemDTO.of(3601L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$SYSTEM_ASSIGNMENTS$SYSTEM_ASSIGNMENTS$ITEM_NAME), true);
 		section1.getDashboardItems().add(dashboardItem1);
 
 		DashboardSectionDTO section2 = new DashboardSectionDTO(3602L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$PEOPLE_ASSIGNMENTS$ITEM_NAME), clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$PEOPLE_ASSIGNMENTS$ITEM_DESCRIPTION));
 		dashboard.getSections().add(section2);
-		DashboardTableItemDTO dashboardItem2 = new DashboardTableItemDTO(3602L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$PEOPLE_ASSIGNMENTS$PEOPLE_ASSIGNMENTS$ITEM_NAME), true);
+		DashboardTableItemDTO dashboardItem2 = DashboardTableItemDTO.of(3602L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$PEOPLE_ASSIGNMENTS$PEOPLE_ASSIGNMENTS$ITEM_NAME), true);
 		section2.getDashboardItems().add(dashboardItem2);
 
 		// Create breadcrumbs

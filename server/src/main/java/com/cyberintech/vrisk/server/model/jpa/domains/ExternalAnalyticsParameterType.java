@@ -7,7 +7,7 @@ package com.cyberintech.vrisk.server.model.jpa.domains;
  * @version  0.1.1
  * @since    2021-10-13
  */
-public enum ExternalAnalyticsQlikParameters {
+public enum ExternalAnalyticsParameterType {
 	USER_EMAIL
 	, USER_NAME
 	, USER_GROUPS
@@ -28,4 +28,5 @@ public enum ExternalAnalyticsQlikParameters {
 
 	, DASHBOARD_REPORT_ID
 	, DASHBOARD_SECTION_NAME
+	, DASHBOARD_CONFIG_JSON
 }

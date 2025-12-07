@@ -938,9 +938,9 @@ public class OrganizationService {
 
 						// Refreshing Reports
 						for (ExternalAnalytics externalAnalytics : powerBIReports) {
-							Optional<ExternalAnalyticsParameters> applicationIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.POWERBI_CLIENT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
-							Optional<ExternalAnalyticsParameters> workspaceIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.POWERBI_WORKSPACE_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
-							Optional<ExternalAnalyticsParameters> reportIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.POWERBI_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+							Optional<ExternalAnalyticsParameters> applicationIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.POWERBI_CLIENT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+							Optional<ExternalAnalyticsParameters> workspaceIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.POWERBI_WORKSPACE_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+							Optional<ExternalAnalyticsParameters> reportIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.POWERBI_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
 							if (applicationIdOpt.isPresent() && workspaceIdOpt.isPresent() && reportIdOpt.isPresent()) {
                                 try {
                                     powerBIService.refreshPowerBIReportDataset(applicationIdOpt.get().getValue(), workspaceIdOpt.get().getValue(), reportIdOpt.get().getValue());

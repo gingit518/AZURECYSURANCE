@@ -1,6 +1,8 @@
 package com.cyberintech.vrisk.server.model.dto.dashboards;
 
 import com.cyberintech.vrisk.server.model.jpa.domains.DashboardItemType;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,6 +23,11 @@ import java.util.Map;
 @Getter
 @ToString(of = {"id", "name"})
 @EqualsAndHashCode(of = {"id"})
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", defaultImpl = DashboardItemDTO.class)
+@JsonSubTypes({
+	@JsonSubTypes.Type(value = DashboardTableItemDTO.class, name = "Table"),
+	@JsonSubTypes.Type(value = DashboardDataGridItemDTO.class, name = "DataGrid")
+})
 public class DashboardItemDTO {
 
 	@Schema

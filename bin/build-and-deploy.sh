@@ -8,7 +8,7 @@ DEFAULT_JAVA_HOME=/usr/lib/jvm/jdk-17.0.4
 show_help()
 {
    # Display Help
-   echo "Deployment script for ValuRi$k application."
+   echo "Deployment script for ValuRi\$k application."
    echo
    echo "Syntax: build-and-deploy.sh [-e|h|v|V]"
    echo "options:"
@@ -65,6 +65,12 @@ case $ENVIRONMENT_NAME in
   	;;
   valurisq)
   	SERVER_URL="valurisq.app.risk-q.com"
+  	;;
+  metlife)
+  	SERVER_URL="metlife.app.risk-q.com"
+  	;;
+  westorange)
+  	SERVER_URL="westorange.app.risk-q.com"
   	;;
 
   *)

@@ -5,9 +5,8 @@ import com.cyberintech.vrisk.server.model.jpa.domains.SystemType;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -23,7 +22,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString(of = {"id", "name"})
+@ToString(of = {"id", "externalAnalyticsType", "name"})
 @EqualsAndHashCode(of = {"id"})
 public class ExternalAnalytics {
 
@@ -70,5 +69,15 @@ public class ExternalAnalytics {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "logo_document_id")
 	private Documents logoDocument;
+
+	@Transient
+	public Map<String, ExternalAnalyticsParameters> buildParametersMap() {
+		return externalAnalyticsParameters != null ? externalAnalyticsParameters.stream().collect(Collectors.toMap(param -> param.getName() != null ? param.getName().toUpperCase() : "", v -> v, (o1, o2) -> o2)) : new HashMap<>();
+	}
+
+	@Transient
+	public Map<String, String> buildParameterValueMap() {
+		return externalAnalyticsParameters != null ? externalAnalyticsParameters.stream().collect(Collectors.toMap(param -> param.getName() != null ? param.getName().toUpperCase() : "", ExternalAnalyticsParameters::getValue, (o1, o2) -> o2)) : new HashMap<>();
+	}
 
 }

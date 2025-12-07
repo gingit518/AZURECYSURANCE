@@ -1,6 +1,6 @@
 package com.cyberintech.vrisk.api.controller.rest;
 
-import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsQlikParameters;
+import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsParameterType;
 import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsType;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -46,32 +46,32 @@ public class ExternalAnalyticsParametersController {
 		Map<String, Map<String, String>> result = new HashMap<>();
 
 		Map<String, String> qLik = new HashMap<>();
-		qLik.put(ExternalAnalyticsQlikParameters.USER_EMAIL.name(), "ekalosha@dfusiontech.com");
-		qLik.put(ExternalAnalyticsQlikParameters.USER_NAME.name(), "Eugene Kalosha");
-		qLik.put(ExternalAnalyticsQlikParameters.USER_GROUPS.name(), "[\"Developer\"]");
-		qLik.put(ExternalAnalyticsQlikParameters.TENANT_DOMAIN.name(), "cit.us.qlikcloud.com");
-		qLik.put(ExternalAnalyticsQlikParameters.WEB_INTEGRATION_ID.name(), "Tkfct_v1d3I5DGIf8JED5sb3UDTX9eX3");
-		qLik.put(ExternalAnalyticsQlikParameters.APPLICATION_ID.name(), "ac403e95-244b-4759-8768-2f9e1feaebc4");
-		qLik.put(ExternalAnalyticsQlikParameters.ISSUER.name(), "cit.us.qlikcloud.com");
-		qLik.put(ExternalAnalyticsQlikParameters.API_KEY_ID.name(), "0b4d38e0-c26c-417a-9393-24679103b0dd");
-		qLik.put(ExternalAnalyticsQlikParameters.OBJECT_ID.name(), "aBrBPNq");
-		qLik.put(ExternalAnalyticsQlikParameters.EMBED_URL.name(), "https://cit.us.qlikcloud.com/single/?appid=ac403e95-244b-4759-8768-2f9e1feaebc4&obj=ktwJYQg&opt=ctxmenu,currsel");
-		qLik.put(ExternalAnalyticsQlikParameters.WIDTH.name(), "100%");
-		qLik.put(ExternalAnalyticsQlikParameters.HEIGHT.name(), "768px");
+		qLik.put(ExternalAnalyticsParameterType.USER_EMAIL.name(), "ekalosha@dfusiontech.com");
+		qLik.put(ExternalAnalyticsParameterType.USER_NAME.name(), "Eugene Kalosha");
+		qLik.put(ExternalAnalyticsParameterType.USER_GROUPS.name(), "[\"Developer\"]");
+		qLik.put(ExternalAnalyticsParameterType.TENANT_DOMAIN.name(), "cit.us.qlikcloud.com");
+		qLik.put(ExternalAnalyticsParameterType.WEB_INTEGRATION_ID.name(), "Tkfct_v1d3I5DGIf8JED5sb3UDTX9eX3");
+		qLik.put(ExternalAnalyticsParameterType.APPLICATION_ID.name(), "ac403e95-244b-4759-8768-2f9e1feaebc4");
+		qLik.put(ExternalAnalyticsParameterType.ISSUER.name(), "cit.us.qlikcloud.com");
+		qLik.put(ExternalAnalyticsParameterType.API_KEY_ID.name(), "0b4d38e0-c26c-417a-9393-24679103b0dd");
+		qLik.put(ExternalAnalyticsParameterType.OBJECT_ID.name(), "aBrBPNq");
+		qLik.put(ExternalAnalyticsParameterType.EMBED_URL.name(), "https://cit.us.qlikcloud.com/single/?appid=ac403e95-244b-4759-8768-2f9e1feaebc4&obj=ktwJYQg&opt=ctxmenu,currsel");
+		qLik.put(ExternalAnalyticsParameterType.WIDTH.name(), "100%");
+		qLik.put(ExternalAnalyticsParameterType.HEIGHT.name(), "768px");
 
 		Map<String, String> powerBI = new HashMap<>();
-		powerBI.put(ExternalAnalyticsQlikParameters.EMBED_URL.name(), "https://app.powerbi.com/reportEmbed?reportId=8c690fe4-b327-486a-9b7d-1fa7d8fc1d7e&autoAuth=true&ctid=fc371555-8bd2-4c98-9e42-e82be54ddb36");
-		powerBI.put(ExternalAnalyticsQlikParameters.POWERBI_CLIENT_ID.name(), "");
-		powerBI.put(ExternalAnalyticsQlikParameters.POWERBI_WORKSPACE_ID.name(), "");
-		powerBI.put(ExternalAnalyticsQlikParameters.POWERBI_REPORT_ID.name(), "");
-		powerBI.put(ExternalAnalyticsQlikParameters.POWERBI_PAGE_NAME.name(), "ALL");
-		powerBI.put(ExternalAnalyticsQlikParameters.WIDTH.name(), "100%");
-		powerBI.put(ExternalAnalyticsQlikParameters.HEIGHT.name(), "768px");
+		powerBI.put(ExternalAnalyticsParameterType.EMBED_URL.name(), "https://app.powerbi.com/reportEmbed?reportId=8c690fe4-b327-486a-9b7d-1fa7d8fc1d7e&autoAuth=true&ctid=fc371555-8bd2-4c98-9e42-e82be54ddb36");
+		powerBI.put(ExternalAnalyticsParameterType.POWERBI_CLIENT_ID.name(), "");
+		powerBI.put(ExternalAnalyticsParameterType.POWERBI_WORKSPACE_ID.name(), "");
+		powerBI.put(ExternalAnalyticsParameterType.POWERBI_REPORT_ID.name(), "");
+		powerBI.put(ExternalAnalyticsParameterType.POWERBI_PAGE_NAME.name(), "ALL");
+		powerBI.put(ExternalAnalyticsParameterType.WIDTH.name(), "100%");
+		powerBI.put(ExternalAnalyticsParameterType.HEIGHT.name(), "768px");
 
 
 		Map<String, String> dashboard = new HashMap<>();
-		dashboard.put(ExternalAnalyticsQlikParameters.DASHBOARD_REPORT_ID.name(), "1");
-		dashboard.put(ExternalAnalyticsQlikParameters.DASHBOARD_SECTION_NAME.name(), "");
+		dashboard.put(ExternalAnalyticsParameterType.DASHBOARD_REPORT_ID.name(), "1");
+		dashboard.put(ExternalAnalyticsParameterType.DASHBOARD_SECTION_NAME.name(), "");
 
 		result.put(ExternalAnalyticsType.QLIK.name(), qLik);
 		result.put(ExternalAnalyticsType.POWER_BI.name(), powerBI);

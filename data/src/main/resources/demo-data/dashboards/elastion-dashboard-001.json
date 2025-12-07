@@ -1,0 +1,30 @@
+{
+    "sections": [
+        {
+            "name": "ROI",
+            "dashboardItems": [
+                {
+                    "type": "Table",
+                    "name": "ROI"
+                }
+            ]
+        },
+        {
+            "name": "Paybacks",
+            "dashboardItems": [
+                {
+                    "type": "DataGrid",
+                    "name": "Paybacks"
+                }
+            ]
+        },
+        {
+            "name": "Client Data",
+            "dashboardItems": [
+                {
+                    "name": "Client Data"
+                }
+            ]
+        }
+    ]
+}

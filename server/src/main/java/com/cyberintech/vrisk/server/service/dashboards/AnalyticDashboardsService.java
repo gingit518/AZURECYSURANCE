@@ -4,7 +4,7 @@ import com.cyberintech.vrisk.server.model.auth.UserDetailsImpl;
 import com.cyberintech.vrisk.server.model.dto.dashboards.*;
 import com.cyberintech.vrisk.server.model.dto.external_analytics.ExternalAnalyticsAccessDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.DashboardType;
-import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsQlikParameters;
+import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsParameterType;
 import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsType;
 import com.cyberintech.vrisk.server.model.jpa.entity.*;
 import com.cyberintech.vrisk.server.repository.jpa.ExternalAnalyticsRepository;
@@ -16,12 +16,15 @@ import com.cyberintech.vrisk.server.rest.exception.InternalServerErrorException;
 import com.cyberintech.vrisk.server.service.OrganizationService;
 import com.cyberintech.vrisk.server.service.UserService;
 import com.cyberintech.vrisk.server.util.ClientMessage;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwsHeader;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.openssl.PEMException;
 import org.bouncycastle.openssl.PEMKeyPair;
@@ -51,6 +54,13 @@ import java.util.stream.Collectors;
 public class AnalyticDashboardsService extends DashboardServiceBase {
 
 	public static final Long ANALYTICS_DASHBOARD_OFFSET = 1000000000L;
+
+	private static final ObjectMapper objectMapper;
+	static {
+		objectMapper = new ObjectMapper();
+		objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+	}
 
 	@Autowired
 	private ApplicationProperties applicationProperties;
@@ -88,14 +98,20 @@ public class AnalyticDashboardsService extends DashboardServiceBase {
 
 		// List<ExternalAnalytics> externalAnalyticsItems = externalAnalyticsRepository.findAllByOrganizationId(organizationId);
 		List<ExternalAnalytics> externalAnalyticsItems = externalAnalyticsRepository.getListByRolesAndOrganizationId(userRoles, organizationId);
-		long poweBITemsCount = externalAnalyticsItems.stream().filter(externalAnalyticsItem -> ExternalAnalyticsType.POWER_BI.equals(externalAnalyticsItem.getExternalAnalyticsType())).count();
+		long powerBITemsCount = externalAnalyticsItems.stream().filter(externalAnalyticsItem -> ExternalAnalyticsType.POWER_BI.equals(externalAnalyticsItem.getExternalAnalyticsType())).count();
 		for (ExternalAnalytics externalAnalytics : externalAnalyticsItems) {
+			Long analyticsId = ANALYTICS_DASHBOARD_OFFSET + externalAnalytics.getId();
 			if (ExternalAnalyticsType.DASHBOARD.equals(externalAnalytics.getExternalAnalyticsType())) {
+				Map<String, ExternalAnalyticsParameters> parametersMap = externalAnalytics.buildParametersMap();
+				if (parametersMap.containsKey(ExternalAnalyticsParameterType.DASHBOARD_CONFIG_JSON.name())) {
+					ExternalAnalyticsParameters sectionParameter = parametersMap.get(ExternalAnalyticsParameterType.DASHBOARD_SECTION_NAME.name());
+					DashboardRefDTO dashboardRef = new DashboardRefDTO(analyticsId, externalAnalytics.getName(), externalAnalytics.getDescription(), DashboardType.Dynamic, "fa fa-moon-o", (sectionParameter != null ? sectionParameter.getValue() : null), null);
+					items.add(dashboardRef);
+				}
 				continue;
 			}
-			Long analyticsId = ANALYTICS_DASHBOARD_OFFSET + externalAnalytics.getId();
 			DashboardType dashboardType = ExternalAnalyticsType.QLIK.equals(externalAnalytics.getExternalAnalyticsType()) ? DashboardType.Qlik : DashboardType.Analytics;
-			String sectionName = ExternalAnalyticsType.POWER_BI.equals(externalAnalytics.getExternalAnalyticsType()) ? (poweBITemsCount > 1 ? "Power BI" : "") : "DASHBOARDS$EXECUTIVE_ANALYTICS";
+			String sectionName = ExternalAnalyticsType.POWER_BI.equals(externalAnalytics.getExternalAnalyticsType()) ? (powerBITemsCount > 1 ? "Power BI" : "") : "DASHBOARDS$EXECUTIVE_ANALYTICS";
 			DashboardRefDTO dashboardRef = new DashboardRefDTO(analyticsId, externalAnalytics.getName(), externalAnalytics.getDescription(), dashboardType, "fa fa-moon-o", sectionName, null);
 			items.add(dashboardRef);
 		}
@@ -121,89 +137,116 @@ public class AnalyticDashboardsService extends DashboardServiceBase {
 
 			if (externalAnalyticsOptional.isPresent()) {
 				ExternalAnalytics externalAnalytics = externalAnalyticsOptional.get();
-				Map<String, String> parametersMap = externalAnalytics.getExternalAnalyticsParameters().stream().collect(Collectors.toMap(ExternalAnalyticsParameters::getName, ExternalAnalyticsParameters::getValue));
-
-				DashboardDTO dashboard = new DashboardDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription(), DashboardType.Analytics);
-				result = dashboard;
+				Map<String, String> parametersMap = externalAnalytics.buildParameterValueMap();
 
 				// Load Initial Data
 				RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
 				Organizations organization = organizationRepository.findById(riskModel.getOrganizationId()).get();
 
-				// Create Initial Sections
-				// DashboardSectionDTO section = new DashboardSectionDTO(35200L, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR_STATUS$VENDOR_STATUS$ITEM_NAME), clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR_STATUS$VENDOR_STATUS$ITEM_DESCRIPTION));
-				DashboardSectionDTO section = new DashboardSectionDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription());
-				dashboard.getSections().add(section);
+				if (ExternalAnalyticsType.DASHBOARD.equals(externalAnalytics.getExternalAnalyticsType())) {
 
-				// Create breadcrumbs
-				section.setBreadcrumbs(breadcrumbsTop.extend(externalAnalytics.getName(), externalAnalytics.getName(), "").getBreadcrumbs());
+					DashboardDTO dashboard = null;
+					String configJsonString = parametersMap.get(ExternalAnalyticsParameterType.DASHBOARD_CONFIG_JSON.name());
+					if (StringUtils.isNotBlank(configJsonString)) {
+						try {
+							dashboard = objectMapper.readValue(configJsonString, DashboardDTO.class);
+							dashboard.setId(externalAnalytics.getId());
+							dashboard.setName(externalAnalytics.getName());
+							dashboard.setDescription(externalAnalytics.getDescription());
+							dashboard.setDashboardType(DashboardType.Dynamic);
 
-				// Add download button
-				// DashboardItemDTO downloadButton = buildDownloadButtonDashboardItemDTO(riskModelId, DashboardsConfig.DASHBOARD_VENDOR_STATUS_REPORT, 45701L);
-				// section.getDashboardItems().add(downloadButton);
+						} catch (Exception e) {
+							log.warn("!! Failed to read JSON for Dashboard config: {}", configJsonString, e);
+						}
+					}
 
-				String sessionId = DigestUtils.md5Hex(currentUser.getUsername() + "_" + applicationProperties.getUiHostname());
-				String frameSource = "";
-				if (parametersMap.containsKey(ExternalAnalyticsQlikParameters.EMBED_URL.name())) {
-					frameSource = parametersMap.get(ExternalAnalyticsQlikParameters.EMBED_URL.name());
+					if (dashboard == null) {
+						dashboard = new DashboardDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription(), DashboardType.Dynamic);
+						// Create Initial Sections
+						DashboardSectionDTO section = new DashboardSectionDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription());
+						dashboard.getSections().add(section);
+					}
+
+					result = dashboard;
 				} else {
-					frameSource = MessageFormat.format(
-						"https://{0}/single/?appid={1}&obj={2}&opt=ctxmenu,currsel"
-						, parametersMap.get(ExternalAnalyticsQlikParameters.TENANT_DOMAIN.name())
-						, parametersMap.get(ExternalAnalyticsQlikParameters.APPLICATION_ID.name())
-						, parametersMap.get(ExternalAnalyticsQlikParameters.OBJECT_ID.name())
+					DashboardDTO dashboard = new DashboardDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription(), DashboardType.Analytics);
+					result = dashboard;
 
-					);
-					section.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARDS$BOARD_ANALYTICS", "DASHBOARDS$BOARD_ANALYTICS", "").getBreadcrumbs());
-				}
-				frameSource += "&identity=" + sessionId;
+					// Create Initial Sections
+					// DashboardSectionDTO section = new DashboardSectionDTO(35200L, clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR_STATUS$VENDOR_STATUS$ITEM_NAME), clientMessage.getMessage(SLCT.DASHBOARDS$VENDOR_STATUS$VENDOR_STATUS$ITEM_DESCRIPTION));
+					DashboardSectionDTO section = new DashboardSectionDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription());
+					dashboard.getSections().add(section);
 
-				DashboardIFrameItemDTO iFrame = new DashboardIFrameItemDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription());
-				String heightString = parametersMap.containsKey(ExternalAnalyticsQlikParameters.HEIGHT.name()) ? parametersMap.get(ExternalAnalyticsQlikParameters.HEIGHT.name()) : "100%";
-				String widthString = parametersMap.containsKey(ExternalAnalyticsQlikParameters.WIDTH.name()) ? parametersMap.get(ExternalAnalyticsQlikParameters.WIDTH.name()) : "100%";
-				iFrame.setHeight(heightString);
-				iFrame.setWidth(widthString);
-				iFrame.setSrc(frameSource);
-				iFrame.setAnalyticsType(externalAnalytics.getExternalAnalyticsType());
-				section.getDashboardItems().add(iFrame);
+					// Create breadcrumbs
+					section.setBreadcrumbs(breadcrumbsTop.extend(externalAnalytics.getName(), externalAnalytics.getName(), "").getBreadcrumbs());
 
-				if (ExternalAnalyticsType.QLIK.equals(externalAnalytics.getExternalAnalyticsType())) {
-					// URL: https://${config.tenantDomain}/login/jwt-session?qlik-web-integration-id=${config.webIntegrationId}
-					String preloadUrl = MessageFormat.format(
-						"https://cit.us.qlikcloud.com/login/jwt-session?qlik-web-integration-id={0}"
-						, parametersMap.get(ExternalAnalyticsQlikParameters.WEB_INTEGRATION_ID.name())
-					);
-					String qLikToken = getQLikJWTToken(userId, organizationId, parametersMap);
+					// Add download button
+					// DashboardItemDTO downloadButton = buildDownloadButtonDashboardItemDTO(riskModelId, DashboardsConfig.DASHBOARD_VENDOR_STATUS_REPORT, 45701L);
+					// section.getDashboardItems().add(downloadButton);
 
-					PreloadUrlCallDTO preloadCall = new PreloadUrlCallDTO();
-					preloadCall.setMethod(HttpMethod.POST);
-					preloadCall.setUrl(preloadUrl);
-					Map<String, String> headers = new HashMap<>();
-					headers.put("content-type", "application/json");
-					headers.put("Authorization", "Bearer " + qLikToken);
-					headers.put("qlik-web-integration-id", parametersMap.get(ExternalAnalyticsQlikParameters.WEB_INTEGRATION_ID.name()));
-					preloadCall.setHeaders(headers);
-					iFrame.getPreloadCalls().add(preloadCall);
+					String sessionId = DigestUtils.md5Hex(currentUser.getUsername() + "_" + applicationProperties.getUiHostname());
+					String frameSource = "";
+					if (parametersMap.containsKey(ExternalAnalyticsParameterType.EMBED_URL.name())) {
+						frameSource = parametersMap.get(ExternalAnalyticsParameterType.EMBED_URL.name());
+					} else {
+						frameSource = MessageFormat.format(
+							"https://{0}/single/?appid={1}&obj={2}&opt=ctxmenu,currsel"
+							, parametersMap.get(ExternalAnalyticsParameterType.TENANT_DOMAIN.name())
+							, parametersMap.get(ExternalAnalyticsParameterType.APPLICATION_ID.name())
+							, parametersMap.get(ExternalAnalyticsParameterType.OBJECT_ID.name())
 
-					ExternalAnalyticsAccessDTO accessDetails = new ExternalAnalyticsAccessDTO();
-					accessDetails.setToken(qLikToken);
-					accessDetails.setTokenType("QLIK");
-					accessDetails.setSessionId(sessionId);
-					accessDetails.setTenant(parametersMap.get(ExternalAnalyticsQlikParameters.TENANT_DOMAIN.name()));
-					accessDetails.setWebIntegrationId(parametersMap.get(ExternalAnalyticsQlikParameters.WEB_INTEGRATION_ID.name()));
-					accessDetails.setApplicationId(parametersMap.get(ExternalAnalyticsQlikParameters.APPLICATION_ID.name()));
+														  );
+						section.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARDS$BOARD_ANALYTICS", "DASHBOARDS$BOARD_ANALYTICS", "").getBreadcrumbs());
+					}
+					frameSource += "&identity=" + sessionId;
 
-					iFrame.setAccessDetails(accessDetails);
-				} else if (ExternalAnalyticsType.POWER_BI.equals(externalAnalytics.getExternalAnalyticsType())) {
-					ExternalAnalyticsAccessDTO accessDetails = new ExternalAnalyticsAccessDTO();
-					accessDetails.setTokenType("POWER_BI");
-					// accessDetails.setTenant(parametersMap.get(ExternalAnalyticsQlikParameters.P.name()));
-					accessDetails.setApplicationId(parametersMap.get(ExternalAnalyticsQlikParameters.POWERBI_CLIENT_ID.name()));
-					accessDetails.setWorkspaceId(parametersMap.get(ExternalAnalyticsQlikParameters.POWERBI_WORKSPACE_ID.name()));
-					accessDetails.setReportId(parametersMap.get(ExternalAnalyticsQlikParameters.POWERBI_REPORT_ID.name()));
-					accessDetails.setPageId(parametersMap.get(ExternalAnalyticsQlikParameters.POWERBI_PAGE_NAME.name()));
+					DashboardIFrameItemDTO iFrame = new DashboardIFrameItemDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription());
+					String heightString = parametersMap.containsKey(ExternalAnalyticsParameterType.HEIGHT.name()) ? parametersMap.get(ExternalAnalyticsParameterType.HEIGHT.name()) : "100%";
+					String widthString = parametersMap.containsKey(ExternalAnalyticsParameterType.WIDTH.name()) ? parametersMap.get(ExternalAnalyticsParameterType.WIDTH.name()) : "100%";
+					iFrame.setHeight(heightString);
+					iFrame.setWidth(widthString);
+					iFrame.setSrc(frameSource);
+					iFrame.setAnalyticsType(externalAnalytics.getExternalAnalyticsType());
+					section.getDashboardItems().add(iFrame);
 
-					iFrame.setAccessDetails(accessDetails);
+					if (ExternalAnalyticsType.QLIK.equals(externalAnalytics.getExternalAnalyticsType())) {
+						// URL: https://${config.tenantDomain}/login/jwt-session?qlik-web-integration-id=${config.webIntegrationId}
+						String preloadUrl = MessageFormat.format(
+							"https://cit.us.qlikcloud.com/login/jwt-session?qlik-web-integration-id={0}"
+							, parametersMap.get(ExternalAnalyticsParameterType.WEB_INTEGRATION_ID.name())
+																);
+						String qLikToken = getQLikJWTToken(userId, organizationId, parametersMap);
+
+						PreloadUrlCallDTO preloadCall = new PreloadUrlCallDTO();
+						preloadCall.setMethod(HttpMethod.POST);
+						preloadCall.setUrl(preloadUrl);
+						Map<String, String> headers = new HashMap<>();
+						headers.put("content-type", "application/json");
+						headers.put("Authorization", "Bearer " + qLikToken);
+						headers.put("qlik-web-integration-id", parametersMap.get(ExternalAnalyticsParameterType.WEB_INTEGRATION_ID.name()));
+						preloadCall.setHeaders(headers);
+						iFrame.getPreloadCalls().add(preloadCall);
+
+						ExternalAnalyticsAccessDTO accessDetails = new ExternalAnalyticsAccessDTO();
+						accessDetails.setToken(qLikToken);
+						accessDetails.setTokenType("QLIK");
+						accessDetails.setSessionId(sessionId);
+						accessDetails.setTenant(parametersMap.get(ExternalAnalyticsParameterType.TENANT_DOMAIN.name()));
+						accessDetails.setWebIntegrationId(parametersMap.get(ExternalAnalyticsParameterType.WEB_INTEGRATION_ID.name()));
+						accessDetails.setApplicationId(parametersMap.get(ExternalAnalyticsParameterType.APPLICATION_ID.name()));
+
+						iFrame.setAccessDetails(accessDetails);
+					} else if (ExternalAnalyticsType.POWER_BI.equals(externalAnalytics.getExternalAnalyticsType())) {
+						ExternalAnalyticsAccessDTO accessDetails = new ExternalAnalyticsAccessDTO();
+						accessDetails.setTokenType("POWER_BI");
+						// accessDetails.setTenant(parametersMap.get(ExternalAnalyticsQlikParameters.P.name()));
+						accessDetails.setApplicationId(parametersMap.get(ExternalAnalyticsParameterType.POWERBI_CLIENT_ID.name()));
+						accessDetails.setWorkspaceId(parametersMap.get(ExternalAnalyticsParameterType.POWERBI_WORKSPACE_ID.name()));
+						accessDetails.setReportId(parametersMap.get(ExternalAnalyticsParameterType.POWERBI_REPORT_ID.name()));
+						accessDetails.setPageId(parametersMap.get(ExternalAnalyticsParameterType.POWERBI_PAGE_NAME.name()));
+
+						iFrame.setAccessDetails(accessDetails);
+					}
 				}
 			}
 
@@ -304,12 +347,12 @@ public class AnalyticDashboardsService extends DashboardServiceBase {
 
 			String jwtRequestId = UUID.randomUUID().toString();
 
-			String groupsString = parametersMap.get(ExternalAnalyticsQlikParameters.USER_GROUPS.name());
+			String groupsString = parametersMap.get(ExternalAnalyticsParameterType.USER_GROUPS.name());
 			Claims claims = Jwts.claims();
-			claims.setSubject(parametersMap.get(ExternalAnalyticsQlikParameters.USER_EMAIL.name())); // app developer
+			claims.setSubject(parametersMap.get(ExternalAnalyticsParameterType.USER_EMAIL.name())); // app developer
 			claims.put("subType", "user");
-			claims.put("name", parametersMap.get(ExternalAnalyticsQlikParameters.USER_NAME.name()));
-			claims.put("email", parametersMap.get(ExternalAnalyticsQlikParameters.USER_EMAIL.name()));
+			claims.put("name", parametersMap.get(ExternalAnalyticsParameterType.USER_NAME.name()));
+			claims.put("email", parametersMap.get(ExternalAnalyticsParameterType.USER_EMAIL.name()));
 			claims.put("email_verified", true);
 			claims.put("groups", Arrays.asList("Developer")); // TODO apply groups
 			claims.setId(jwtRequestId);
@@ -317,14 +360,14 @@ public class AnalyticDashboardsService extends DashboardServiceBase {
 			claims.setIssuedAt(new Date(System.currentTimeMillis()));
 			claims.setExpiration(new Date(System.currentTimeMillis() + expiration));
 			claims.setAudience("qlik.api/login/jwt-session");
-			claims.setIssuer(parametersMap.get(ExternalAnalyticsQlikParameters.ISSUER.name())); // issuer: "cit.us.qlikcloud.com",
+			claims.setIssuer(parametersMap.get(ExternalAnalyticsParameterType.ISSUER.name())); // issuer: "cit.us.qlikcloud.com",
 
 			token = Jwts.builder()
-				.signWith(SignatureAlgorithm.RS256, privateKey) // ECDSA using P-256 and SHA-256
-				.setHeaderParam("typ", "JWT") //
-				.setHeaderParam(JwsHeader.KEY_ID, parametersMap.get(ExternalAnalyticsQlikParameters.API_KEY_ID.name())) //
-				.setClaims(claims)
-				.compact();
+						.signWith(SignatureAlgorithm.RS256, privateKey) // ECDSA using P-256 and SHA-256
+						.setHeaderParam("typ", "JWT") //
+						.setHeaderParam(JwsHeader.KEY_ID, parametersMap.get(ExternalAnalyticsParameterType.API_KEY_ID.name())) //
+						.setClaims(claims)
+						.compact();
 
 		} catch (PEMException e) {
 			log.warn(e.getMessage(), e);

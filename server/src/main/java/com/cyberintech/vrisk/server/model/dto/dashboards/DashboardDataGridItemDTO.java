@@ -42,25 +42,9 @@ public class DashboardDataGridItemDTO extends DashboardItemDTO {
 		gridItems = new ArrayList<>();
 	}
 
-	@java.beans.ConstructorProperties({"id", "name", "description"})
-	public DashboardDataGridItemDTO(Long id, String name, String description) {
-		super(id, name, description, DashboardItemType.DataGrid);
-
-		gridHeaders = new ArrayList<>();
-		gridItems = new ArrayList<>();
-	}
-
 	@java.beans.ConstructorProperties({"id", "name"})
 	public DashboardDataGridItemDTO(Long id, String name) {
 		super(id, name, null, DashboardItemType.DataGrid);
-
-		gridHeaders = new ArrayList<>();
-		gridItems = new ArrayList<>();
-	}
-
-	@java.beans.ConstructorProperties({"id"})
-	public DashboardDataGridItemDTO(Long id) {
-		super(id, null, null, DashboardItemType.DataGrid);
 
 		gridHeaders = new ArrayList<>();
 		gridItems = new ArrayList<>();
