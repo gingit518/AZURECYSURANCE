@@ -1,9 +1,11 @@
 package com.cyberintech.vrisk.server.model.dto.dashboards;
 
 import com.cyberintech.vrisk.server.model.jpa.domains.DashboardItemType;
+import com.cyberintech.vrisk.server.service.dashboards.DashboardDataEvaluator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,6 +105,17 @@ public class DashboardTableItemDTO extends DashboardItemDTO {
 				return result;
 			}).collect(Collectors.toList());
 			gridItems.add(itemsList);
+		}
+	}
+
+	@Override
+	public void evaluate(DashboardDataEvaluator dataEvaluator) {
+		if (CollectionUtils.isNotEmpty(gridItems)) {
+			for (List<DashboardDataItemDTO> row : gridItems) {
+				for (DashboardDataItemDTO dataItem : row) {
+					dataItem.evaluate(dataEvaluator);
+				}
+			}
 		}
 	}
 

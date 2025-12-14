@@ -36,6 +36,8 @@ public enum DownloadType {
 	, PROCESSES_TEMPLATE(13L, "Processes Template", "/api/data-export/csv/processes/download-template")
 	, TECHNOLOGIES(14L, "Technologies", "/api/data-export/csv/technologies/export")
 	, TECHNOLOGIES_TEMPLATE(15L, "Technologies Template", "/api/data-export/csv/technologies/download-template")
+	, TECHNOLOGY_ASSETS(16L, "Technology Assets", "/api/data-export/csv/technology-assets/export")
+	, TECHNOLOGY_ASSETS_TEMPLATE(161L, "Technology Assets Template", "/api/data-export/csv/technology-assets/download-template")
 	, BUSINESS_UNITS_TEMPLATE(22L, "Business Units Template", "/api/data-export/csv/business-unit-template/download")
 
 	, ADMIN_HINTS(101L, "Application Hints", "/api/hints/csv/export")

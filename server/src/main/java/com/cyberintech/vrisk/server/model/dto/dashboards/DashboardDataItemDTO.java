@@ -1,10 +1,13 @@
 package com.cyberintech.vrisk.server.model.dto.dashboards;
 
+import com.cyberintech.vrisk.server.service.dashboards.DashboardDataEvaluator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -29,6 +32,7 @@ public class DashboardDataItemDTO {
 	@Schema
 	private Double valueDouble;
 	private String value;
+	private String valueRef;
 	private String color;
 	private String backgroundColor;
 	private Long colSpan;
@@ -47,6 +51,8 @@ public class DashboardDataItemDTO {
 	private DashboardDataItemDrilldownDTO drilldown;
 
 	private DashboardLinkDTO link;
+
+	private Integer digits;
 
 	public DashboardDataItemDTO() {
 		params = new HashMap<>();
@@ -370,6 +376,7 @@ public class DashboardDataItemDTO {
 	 * @return
 	 */
 	public DashboardDataItemDTO round(int level) {
+		digits = level;
 		String format = "%,.0f";
 		if (level > 0) format = MessageFormat.format("%,.{0}f", level);
 
@@ -377,4 +384,22 @@ public class DashboardDataItemDTO {
 
 		return this;
 	}
+
+	/**
+	 * Evaluate Data defined as valueRef in the DashboardDataItemDTO and all another corresponding fields
+	 */
+	@JsonIgnore
+	public void evaluate(DashboardDataEvaluator dataEvaluator) {
+		// Evaluate Data defined as valueRef in the DashboardDataItemDTO and all another corresponding fields
+		if (dataEvaluator != null && StringUtils.isNoneEmpty(valueRef)) {
+			String evaluatedValue = dataEvaluator.evaluate(valueRef);
+			if (evaluatedValue != null) {
+				value = evaluatedValue;
+				if (digits != null) {
+					round(digits);
+				}
+			}
+		}
+	}
+
 }

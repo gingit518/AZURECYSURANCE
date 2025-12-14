@@ -13,9 +13,11 @@ import com.cyberintech.vrisk.server.repository.jpa.OrganizationSecurityCertifica
 import com.cyberintech.vrisk.server.repository.jpa.RiskModelRepository;
 import com.cyberintech.vrisk.server.rest.ApplicationProperties;
 import com.cyberintech.vrisk.server.rest.exception.InternalServerErrorException;
+import com.cyberintech.vrisk.server.service.CacheWrapperService;
 import com.cyberintech.vrisk.server.service.OrganizationService;
 import com.cyberintech.vrisk.server.service.UserService;
 import com.cyberintech.vrisk.server.util.ClientMessage;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.jsonwebtoken.Claims;
@@ -24,6 +26,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.openssl.PEMException;
@@ -60,6 +63,8 @@ public class AnalyticDashboardsService extends DashboardServiceBase {
 		objectMapper = new ObjectMapper();
 		objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 		objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		objectMapper.configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 
 	@Autowired
@@ -85,6 +90,8 @@ public class AnalyticDashboardsService extends DashboardServiceBase {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private CacheWrapperService cacheWrapperService;
 
 	/**
 	 * Get Dashboard definition
@@ -165,6 +172,17 @@ public class AnalyticDashboardsService extends DashboardServiceBase {
 						// Create Initial Sections
 						DashboardSectionDTO section = new DashboardSectionDTO(dashboardId, externalAnalytics.getName(), externalAnalytics.getDescription());
 						dashboard.getSections().add(section);
+					}
+
+					// Evaluate ALL the valueRef data items
+					DashboardDataEvaluator dataEvaluator = new DashboardDataEvaluator();
+					dataEvaluator.setExposureMetrics(cacheWrapperService.getRiskModelExposureScoringByIdDataMap(riskModelId));
+					if (CollectionUtils.isNotEmpty(dashboard.getSections())) {
+						for (DashboardSectionDTO section : dashboard.getSections()) {
+							for (DashboardItemDTO dashboardItem : section.getDashboardItems()) {
+								dashboardItem.evaluate(dataEvaluator);
+							}
+						}
 					}
 
 					result = dashboard;

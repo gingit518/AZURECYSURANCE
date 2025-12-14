@@ -1,10 +1,13 @@
 package com.cyberintech.vrisk.server.model.dto.dashboards.elements;
 
+import com.cyberintech.vrisk.server.model.dto.dashboards.DashboardDataItemDTO;
 import com.cyberintech.vrisk.server.model.dto.dashboards.DashboardItemDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.DashboardItemType;
+import com.cyberintech.vrisk.server.service.dashboards.DashboardDataEvaluator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +54,17 @@ public class DashboardGridLayoutDTO extends DashboardItemDTO {
 			List<RichDashboardElementDTO> rowItems = new ArrayList<RichDashboardElementDTO>(Arrays.asList(items));
 
 			gridItems.add(rowItems);
+		}
+	}
+
+	@Override
+	public void evaluate(DashboardDataEvaluator dataEvaluator) {
+		if (CollectionUtils.isNotEmpty(gridItems)) {
+			for (List<RichDashboardElementDTO> row : gridItems) {
+				for (RichDashboardElementDTO dataItem : row) {
+					dataItem.getValue().evaluate(dataEvaluator);
+				}
+			}
 		}
 	}
 

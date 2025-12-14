@@ -1,6 +1,8 @@
 package com.cyberintech.vrisk.server.model.dto.dashboards;
 
 import com.cyberintech.vrisk.server.model.jpa.domains.DashboardItemType;
+import com.cyberintech.vrisk.server.service.dashboards.DashboardDataEvaluator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -76,6 +78,14 @@ public class DashboardItemDTO {
 		}
 
 		parameters.put(name, value);
+	}
+
+	/**
+	 * Evaluate Data defined as valueRef in the DashboardDataItemDTO and all another corresponding fields
+	 */
+	@JsonIgnore
+	public void evaluate(DashboardDataEvaluator dataEvaluator) {
+		// Evaluate Data defined as valueRef in the DashboardDataItemDTO and all another corresponding fields
 	}
 
 }
