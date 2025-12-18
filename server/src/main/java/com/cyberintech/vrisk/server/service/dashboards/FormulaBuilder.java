@@ -145,7 +145,7 @@ public class FormulaBuilder implements Cloneable {
 				} else if (formulaItem.getVariableType().getCode().equalsIgnoreCase("risk_model_constant")) {
 					variableName = "variable" + i;
 					MetricFormulaItems metricFormulaItem = (MetricFormulaItems) formulaItem;
-					engine.put(variableName, metricFormulaItem.getRiskModelConstantRef() != null && metricFormulaItem.getRiskModelConstantRef().getValue() != null ? metricFormulaItem.getRiskModelConstantRef().getValue().longValue() : 0d);
+					engine.put(variableName, metricFormulaItem.getRiskModelConstantRef() != null && metricFormulaItem.getRiskModelConstantRef().getValue() != null ? metricFormulaItem.getRiskModelConstantRef().getValue() : 0d);
 					formulaString += metricFormulaItem.getRiskModelConstantRef() != null && metricFormulaItem.getRiskModelConstantRef().getValue() != null ? String.format("%,.2f", metricFormulaItem.getRiskModelConstantRef().getValue()) : "";
 					i++;
 				} else if (formulaItem.getVariableType().getCode().equalsIgnoreCase("quant_metric")) {
