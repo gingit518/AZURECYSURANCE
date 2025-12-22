@@ -1,7 +1,10 @@
 package com.cyberintech.vrisk.server.model.jpa.entity;
 
 import com.cyberintech.vrisk.server.model.jpa.domains.VariableOperation;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -10,16 +13,15 @@ import static javax.persistence.GenerationType.IDENTITY;
 /**
  * Metric Formula Items Entity Definition
  *
- * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
- * @version  0.1.1
- * @since    2019-01-31
+ * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @version 0.1.1
+ * @since 2019-01-31
  */
 @Entity
 @Table(name = "metric_formula_items")
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString(of = {"id", "name"})
 @EqualsAndHashCode(of = {"id"})
 public class MetricFormulaItems implements IFormulaItem {
 
@@ -71,4 +73,13 @@ public class MetricFormulaItems implements IFormulaItem {
 	@Column(name = "quant_metric_ref_id")
 	private Long quantMetricRefId;
 
+	public String toString() {
+		String itemName = this.getName();
+		if (quantMetricRef != null) {
+			itemName = quantMetricRef.getName();
+		} else if (Boolean.TRUE.equals(isOperation)) {
+			itemName = operation.name();
+		}
+		return "MetricFormulaItems(id=" + this.getId() + ", name=" + itemName + ")";
+	}
 }

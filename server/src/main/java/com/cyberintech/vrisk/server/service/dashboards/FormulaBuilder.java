@@ -152,7 +152,7 @@ public class FormulaBuilder implements Cloneable {
 					if (getQuantMetrics().getQuantMetricLevel().equals(QuantMetricLevel.ORGANIZATION) && formulaItem instanceof MetricFormulaItems) {
 						MetricFormulaItems metricFormulaInner = ((MetricFormulaItems) formulaItem);
 						variableName = String.format("QUANT_%s", metricFormulaInner.getQuantMetricRefId());
-						formulaString += metricFormulaInner.getQuantMetricRef() != null ? metricFormulaInner.getQuantMetricRef().getName() : metricFormulaInner.getVariableType().getName();
+						formulaString += metricFormulaInner.getQuantMetricRef() != null ? "[" + metricFormulaInner.getQuantMetricRef().getName() + "]" : metricFormulaInner.getVariableType().getName();
 					} else {
 						StringBuilder deepScript = new StringBuilder();
 						StringBuilder deepFormulaString = new StringBuilder();
@@ -757,14 +757,20 @@ public class FormulaBuilder implements Cloneable {
 
 		// Calculate DEEP level of the metric
 		if (quantMetric != null && quantMetric.getMetricFormulaItems() != null) {
+			Long maxChildQuantLevel = result;
 			for (MetricFormulaItems formulaItem: quantMetric.getMetricFormulaItems()) {
 				if (formulaItem != null && formulaItem.getQuantMetricRef() != null) {
 					Long childQuantLevel = buildQuantMetricEmbedLevel(formulaItem.getQuantMetricRef(), result);
-					if (childQuantLevel > result) {
-						result = childQuantLevel;
-						break;
+					if (childQuantLevel > maxChildQuantLevel) {
+						maxChildQuantLevel = childQuantLevel;
+						// break;
 					}
 				}
+			}
+
+			// Detect Max Child Quant Level
+			if (maxChildQuantLevel > result) {
+				result = maxChildQuantLevel;
 			}
 		}
 

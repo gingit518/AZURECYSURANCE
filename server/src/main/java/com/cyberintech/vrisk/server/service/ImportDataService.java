@@ -82,14 +82,18 @@ public class ImportDataService {
 
 	public static final String USER_ENABLED_HEADER = "Enabled";
 
+	public static final String ASSET_NAME_HEADER = "Asset Name";
+	public static final String ASSET_DESCRIPTION_HEADER = "Asset Description";
+	public static final String DEVICE_ID_HEADER = "Device ID";
+
 	public static final String SYSTEM_NAME_HEADER = "System Name";
+	public static final String SYSTEM_DESCRIPTION_HEADER = "System Description";
 	public static final String SYSTEM_ASSOCIATE_VENDORS_HEADER = "Associate Vendors";
 	public static final String SYSTEM_BU_DIVISION_HEADER = "BU Division";
 	public static final String SYSTEM_BU_LOCATION_HEADER = "BU Location";
 	public static final String SYSTEM_BU_PATH_HEADER = "Business Unit Path";
 	public static final String SYSTEM_COST_TO_RESTORE_HEADER = "Cost to restore";
 	public static final String SYSTEM_DATA_CLASSIFICATION_HEADER = "Data Classification";
-	public static final String SYSTEM_DESCRIPTION_HEADER = "System Description";
 	public static final String SYSTEM_DIGITAL_ASSET_CLASS_HEADER = "Asset Class";
 	public static final String SYSTEM_GEO_RECORDS_PROCESSED_HEADER = "Geo Records Processed";
 	public static final String SYSTEM_INFOSEC_PERSON_EMAIL_HEADER = "Infosec Focal Person Email";
@@ -410,7 +414,7 @@ public class ImportDataService {
 			// Parse CSV file
 			CSVParser csvParser = CSVUtils.createCSVParser(inputStream);
 			List<CSVRecord> csvRecordList = csvParser.getRecords();
-			if (csvParser.getHeaderMap().containsKey(SYSTEM_NAME_HEADER)) {
+			if (csvParser.getHeaderMap().containsKey(SYSTEM_NAME_HEADER) || csvParser.getHeaderMap().containsKey(ASSET_NAME_HEADER)) {
 				result = importTechnologyAssetsFromCSVItems(csvRecordList);
 			} else {
 				throw new BadRequestException("Asset Name Header not found. Import Failed.");

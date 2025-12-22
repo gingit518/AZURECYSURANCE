@@ -428,7 +428,7 @@ public class TechnologyAssetsService {
 					, ExportUtils.userFullNameAsString(technologyAsset.getInfosecFocalPerson())
 					, ExportUtils.userEmailAsString(technologyAsset.getInfosecFocalPerson())
 					, technologyAsset.getSystemStatus()
-					, technologyAsset.getAssetName()
+					// , technologyAsset.getAssetName()
 					, technologyAsset.getIpAddress()
 					, technologyAsset.getSerialNumber()
 					, technologyAsset.getAssetDomainFunction()
@@ -472,8 +472,8 @@ public class TechnologyAssetsService {
 	private CSVPrinter createCsvPrinter(OutputStream outputStream) throws IOException {
 		Writer writer = new OutputStreamWriter(outputStream);
 		CSVFormat csvFormat = CSVUtils.createCSVFormatBuilder(
-			ImportDataService.SYSTEM_NAME_HEADER
-			, ImportDataService.SYSTEM_DESCRIPTION_HEADER
+			ImportDataService.ASSET_NAME_HEADER
+			, ImportDataService.ASSET_DESCRIPTION_HEADER
 			, ImportDataService.SYSTEM_VERSION_NUMBER_HEADER
 			, ImportDataService.SYSTEM_TECHNOLOGY_CATEGORY_HEADER
 			, ImportDataService.SYSTEM_TECHNOLOGIES_HEADER
@@ -482,7 +482,7 @@ public class TechnologyAssetsService {
 			, ImportDataService.SYSTEM_INFOSEC_PERSON_NAME_HEADER
 			, ImportDataService.SYSTEM_INFOSEC_PERSON_EMAIL_HEADER
 			, ImportDataService.SYSTEM_STATUS_HEADER
-			, ImportDataService.SYSTEM_ASSET_NAME_HEADER
+			// , ImportDataService.SYSTEM_ASSET_NAME_HEADER
 			, ImportDataService.SYSTEM_IP_ADDRESS_HEADER
 			, ImportDataService.SYSTEM_SERIAL_NUMBER_HEADER
 			, ImportDataService.SYSTEM_ASSET_DOMAIN_FUNCTION_HEADER
@@ -490,7 +490,7 @@ public class TechnologyAssetsService {
 			, ImportDataService.SYSTEM_LOCATION_HEADER
 			, ImportDataService.SYSTEM_HARDWARE_STATUS_HEADER
 			, ImportDataService.SYSTEM_DISCOVERY_SOURCE_HEADER
-			, ImportDataService.SYSTEM_COMPUTER_ID_HEADER
+			, ImportDataService.DEVICE_ID_HEADER
 			, ImportDataService.SYSTEM_OWNER_TYPE_HEADER
 			, ImportDataService.SYSTEM_BU_LOCATION_HEADER
 			, ImportDataService.SYSTEM_BU_DIVISION_HEADER

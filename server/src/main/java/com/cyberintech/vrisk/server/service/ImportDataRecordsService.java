@@ -133,8 +133,8 @@ public class ImportDataRecordsService {
 		for (CSVRecord csvRecord : csvRecordList) {
 
 			// Accessing values by Header names
-			String systemName = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_NAME_HEADER);
-			String systemDesc = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_DESCRIPTION_HEADER);
+			String systemName = CSVUtils.getAsString(csvRecord, ImportDataService.ASSET_NAME_HEADER, ImportDataService.SYSTEM_NAME_HEADER);
+			String systemDesc = CSVUtils.getAsString(csvRecord, ImportDataService.ASSET_DESCRIPTION_HEADER, ImportDataService.SYSTEM_DESCRIPTION_HEADER);
 			String systemVersionNumber = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_VERSION_NUMBER_HEADER);
 			String systemOwnerName = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_OWNER_NAME_HEADER);
 			String systemOwnerEmail = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_OWNER_EMAIL_HEADER);
@@ -270,7 +270,9 @@ public class ImportDataRecordsService {
 				if (csvRecord.isMapped(ImportDataService.SYSTEM_DISCOVERY_SOURCE_HEADER)) {
 					technologyAssetEditDTO.setDiscoverySource(csvRecord.get(ImportDataService.SYSTEM_DISCOVERY_SOURCE_HEADER));
 				}
-				if (csvRecord.isMapped(ImportDataService.SYSTEM_COMPUTER_ID_HEADER)) {
+				if (csvRecord.isMapped(ImportDataService.DEVICE_ID_HEADER)) {
+					technologyAssetEditDTO.setDeviceId(csvRecord.get(ImportDataService.DEVICE_ID_HEADER));
+				} else if (csvRecord.isMapped(ImportDataService.SYSTEM_COMPUTER_ID_HEADER)) {
 					technologyAssetEditDTO.setDeviceId(csvRecord.get(ImportDataService.SYSTEM_COMPUTER_ID_HEADER));
 				}
 				if (csvRecord.isMapped(ImportDataService.SYSTEM_OWNER_TYPE_HEADER)) {
