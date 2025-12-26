@@ -123,4 +123,10 @@ public class QuantMetrics implements IEntityWithMetadata {
 	@Column(name = "deployment_type")
 	private DeploymentType deploymentType;
 
+	@Column(name = "measurement_unit")
+	private String measurementUnit;
+
+	@Column(name = "unit_ui_position")
+	private String unitUIPosition;
+
 }

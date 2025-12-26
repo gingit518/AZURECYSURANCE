@@ -63,6 +63,12 @@ public class QuantMetricsViewDTO extends DTOWithMetaData<QuantMetrics> {
 	@Schema
 	private List<IndustryRefDTO> industries;
 
+	@Schema
+	private String measurementUnit;
+
+	@Schema
+	private String unitUIPosition;
+
 	/**
 	 * Entity based constructor
 	 *
@@ -81,6 +87,8 @@ public class QuantMetricsViewDTO extends DTOWithMetaData<QuantMetrics> {
 		this.description = entity.getDescription();
 		this.ordinal = entity.getOrdinal();
 		this.quantMetricLevel = entity.getQuantMetricLevel();
+		this.measurementUnit = entity.getMeasurementUnit();
+		this.unitUIPosition = entity.getUnitUIPosition();
 
 		if (entity.getQuant() != null) {
 			quant = new QuantsRefDTO(entity.getQuant());

@@ -554,7 +554,7 @@ public class ExposureMetricsDashboardService extends DashboardServiceBase {
 			rowItems.add(sI(regulations));
 			rowItems.add(sI(industries));
 			rowItems.add(sI(exposureMetricResult.getFormulaBuilder().getFormulaString()));
-			rowItems.add($I(exposureMetricResult.getResult(), "$").round(0));
+			rowItems.add($I(exposureMetricResult.getResult(), exposureMetricResult.getMeasurementUnit("$")).round(0));
 			dashboardItem1.getGridItems().add(rowItems);
 
 			if (exposureMetricResult.getResult() != null) totalSystemExposure += exposureMetricResult.getResult();
@@ -570,7 +570,7 @@ public class ExposureMetricsDashboardService extends DashboardServiceBase {
 
 		dashboardItem1.getGridItems().add(Arrays.asList(
 			sI(clientMessage.getMessage("Total")).applyTextAlign("right").applyHeader(true).applyColspan(5l),
-			$I(totalSystemExposure, "$").round(0).applyTextAlign("right").applyBackgroundColor("yellow").applyHeader(true)
+			$I(totalSystemExposure, "").round(0).applyTextAlign("right").applyBackgroundColor("yellow").applyHeader(true)
 		));
 
 		/*

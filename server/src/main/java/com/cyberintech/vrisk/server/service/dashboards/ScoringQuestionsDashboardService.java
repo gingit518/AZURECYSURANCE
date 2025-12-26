@@ -578,7 +578,7 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 			// Build Risk Formulas
 			for (FormulaBuilder formulaBuilder : riskMetricsFormulaBuilders) {
 				Double formulaValue = formulaBuilder.calculate(metricResultMap);
-				rowItems.add(sI(formulaValue).round(2).applyDrilldown(DashboardDataItemDrilldownDTO.of(system)));
+				rowItems.add(sI(formulaValue).applySymbol(formulaBuilder.getMeasurementUnit()).round(2).applyDrilldown(DashboardDataItemDrilldownDTO.of(system)));
 			}
 
 			// Build Metrics Part
@@ -749,7 +749,7 @@ public class ScoringQuestionsDashboardService extends DashboardServiceBase {
 				Arrays.asList(
 					sI(formulaBuilder.getName()),
 					sI(formulaBuilder.getFormulaString()),
-					dI(formulaValue).round(2)
+					dI(formulaValue).applySymbol(formulaBuilder.getMeasurementUnit()).round(2)
 				)
 			);
 		}

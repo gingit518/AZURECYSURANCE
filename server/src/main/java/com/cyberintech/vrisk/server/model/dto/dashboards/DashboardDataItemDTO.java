@@ -282,6 +282,18 @@ public class DashboardDataItemDTO {
 	}
 
 	/**
+	 * Apply symbol
+	 *
+	 * @param symbol
+	 * @return
+	 */
+	public DashboardDataItemDTO applySymbol(String symbol) {
+		setSymbol(symbol);
+
+		return this;
+	}
+
+	/**
 	 * Apply Type
 	 *
 	 * @param type

@@ -2,6 +2,8 @@ package com.cyberintech.vrisk.server.service.dashboards;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Metric result manager
@@ -36,6 +38,17 @@ public class ExposureMetricResult implements Cloneable {
 
 	public Double getNormalizedResult() {
 		Double result = this.getResult();
+
+		return result;
+	}
+
+	public String getMeasurementUnit(String defaultValue) {
+		String result = defaultValue;
+
+		String tmpValue = formulaBuilder.getMeasurementUnit();
+		if (StringUtils.isNotEmpty(tmpValue)) {
+			result = tmpValue;
+		}
 
 		return result;
 	}

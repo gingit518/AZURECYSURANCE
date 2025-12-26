@@ -444,6 +444,12 @@ public class QuantMetricsService {
 
 		// Set Deployment Type restriction
 		entity.setDeploymentType(itemDTO.getDeploymentType());
+		if (itemDTO.getMeasurementUnit() != null) {
+			entity.setMeasurementUnit(itemDTO.getMeasurementUnit());
+		}
+		if (itemDTO.getUnitUIPosition() != null) {
+			entity.setUnitUIPosition(itemDTO.getUnitUIPosition());
+		}
 
 		entity.setUpdatedBy(userService.getCurrentUserEntity());
 		entity.setUpdatedAt(new Date());

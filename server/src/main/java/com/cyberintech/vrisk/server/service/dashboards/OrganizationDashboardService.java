@@ -248,7 +248,7 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 			rowItems.add(sI(regulations));
 			rowItems.add(sI(industries));
 			rowItems.add(sI(exposureMetricResult.getFormulaBuilder().getFormulaString()));
-			rowItems.add($I(exposureMetricResult.getResult(), "$").round(0).applyDrilldown(drilldown));
+			rowItems.add($I(exposureMetricResult.getResult(), exposureMetricResult.getMeasurementUnit("$")).round(0).applyDrilldown(drilldown));
 			dashboardItem4.getGridItems().add(rowItems);
 		}
 		section4.getDashboardItems().add(dashboardItem4);

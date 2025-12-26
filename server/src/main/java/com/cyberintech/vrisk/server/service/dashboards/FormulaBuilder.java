@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import java.io.*;
 import java.text.MessageFormat;
@@ -420,6 +419,16 @@ public class FormulaBuilder implements Cloneable {
 		}
 
 		result = getFormulaResult(result);
+
+		return result;
+	}
+
+	public String getMeasurementUnit() {
+		String result = null;
+
+		if (quantMetrics != null && quantMetrics.getMeasurementUnit() != null) {
+			result = quantMetrics.getMeasurementUnit();
+		}
 
 		return result;
 	}
