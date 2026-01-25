@@ -3,17 +3,10 @@ package com.cyberintech.vrisk.server.service;
 import com.cyberintech.vrisk.server.model.dto.ImportResultDTO;
 import com.cyberintech.vrisk.server.model.dto.ItemViewDTO;
 import com.cyberintech.vrisk.server.model.dto.business_unit.BusinessUnitRefDTO;
-import com.cyberintech.vrisk.server.model.dto.country.CountryViewDTO;
 import com.cyberintech.vrisk.server.model.dto.currency.CurrencyViewDTO;
-import com.cyberintech.vrisk.server.model.dto.data_asset_classification.DataAssetClassificationRefDTO;
-import com.cyberintech.vrisk.server.model.dto.data_type_classification.DataTypeClassificationRefDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.IndustryRefDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationEditDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.VendorEditDTO;
-import com.cyberintech.vrisk.server.model.dto.process.ProcessRefDTO;
-import com.cyberintech.vrisk.server.model.dto.state.StateViewDTO;
-import com.cyberintech.vrisk.server.model.dto.systems.SystemEditDTO;
-import com.cyberintech.vrisk.server.model.dto.systems.SystemGeoParametersDTO;
 import com.cyberintech.vrisk.server.model.dto.technology.TechnologyRefDTO;
 import com.cyberintech.vrisk.server.model.dto.user.UserDTO;
 import com.cyberintech.vrisk.server.model.dto.user.UserRefDTO;
@@ -33,7 +26,6 @@ import com.cyberintech.vrisk.server.service.csv.TechnologyCSVImporter;
 import com.cyberintech.vrisk.server.service.csv.TechnologyMappingCSVImporter;
 import com.cyberintech.vrisk.server.service.utils.CSVUtils;
 import com.cyberintech.vrisk.server.service.utils.ExportUtils;
-import com.cyberintech.vrisk.server.service.utils.ImportUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.csv.CSVFormat;
@@ -41,11 +33,10 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -57,7 +48,6 @@ import javax.validation.constraints.NotNull;
 import java.io.*;
 import java.text.MessageFormat;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -112,14 +102,17 @@ public class ImportDataService {
 	public static final String SYSTEM_VERSION_NUMBER_HEADER = "Version Number";
 	public static final String SYSTEM_EOL_DATE_HEADER = "EOL Date";
 	public static final String SYSTEM_IP_ADDRESS_HEADER = "IP Address";
+	public static final String SYSTEM_IP_ADDRESSES_HEADER = "IP Addresses";
 	public static final String SYSTEM_TECHNOLOGY_CATEGORY_HEADER = "Technology Category";
+	public static final String SYSTEM_TECHNOLOGY_SUB_CATEGORY_HEADER = "Technology Sub Category";
+	public static final String SYSTEM_TECHNOLOGY_CLASS_TYPE_HEADER = "Technology Class Type";
 	public static final String SYSTEM_SERIAL_NUMBER_HEADER = "Serial Number";
 	public static final String SYSTEM_ASSET_DOMAIN_FUNCTION_HEADER = "Asset Domain Function";
 	public static final String SYSTEM_OS_NAME_HEADER = "Operating System";
 	public static final String SYSTEM_LOCATION_HEADER = "Location";
 	public static final String SYSTEM_HARDWARE_STATUS_HEADER = "Hardware Substatus";
 	public static final String SYSTEM_WARRANTY_EXPIRATION_HEADER = "Warranty Expiration";
-	public static final String SYSTEM_ASSET_NAME_HEADER = "Asset Name";
+	public static final String ASSET_ITEM_NAME_HEADER = "Asset Item Name";
 	public static final String SYSTEM_DISCOVERY_SOURCE_HEADER = "Discovery Source";
 	public static final String SYSTEM_UPDATED_DATE_HEADER = "Updated Date";
 	public static final String SYSTEM_UPDATED_BY_HEADER = "Updated By";
@@ -586,9 +579,12 @@ public class ImportDataService {
 			totalItem++;
 			if (++currentItem >= 100 || totalItem == csvRecordList.size()) {
 				final List<CSVRecord> runnableBatch = new ArrayList<>(recordBatch);
-				ImportResultDTO batchResult = new TransactionTemplate(platformTransactionManager).execute(status -> {
+				TransactionTemplate transactionTemplate = new TransactionTemplate(platformTransactionManager);
+				transactionTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+				transactionTemplate.setName("TECHNOLOGY_ASSETS_IMPORT");
+				ImportResultDTO batchResult = transactionTemplate.execute(status -> {
 					return importDataRecordsService.importTechnologyAssetsFromCSVItems(runnableBatch);
-				});;
+				});
 				if (batchResult != null) result.load(batchResult);
 
 				recordBatch = new ArrayList<>();

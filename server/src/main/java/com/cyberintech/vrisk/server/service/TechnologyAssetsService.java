@@ -260,6 +260,7 @@ public class TechnologyAssetsService {
 		if (itemDTO.getWarrantyExpiration() != null) entity.setWarrantyExpiration(itemDTO.getWarrantyExpiration());
 		if (itemDTO.getAssetName() != null) entity.setAssetName(itemDTO.getAssetName());
 		if (itemDTO.getIpAddress() != null) entity.setIpAddress(itemDTO.getIpAddress());
+		if (itemDTO.getIpAddresses() != null) entity.setIpAddresses(itemDTO.getIpAddresses());
 		if (itemDTO.getSerialNumber() != null) entity.setSerialNumber(itemDTO.getSerialNumber());
 		if (itemDTO.getAssetDomainFunction() != null) entity.setAssetDomainFunction(itemDTO.getAssetDomainFunction());
 		if (itemDTO.getOsName() != null) entity.setOsName(itemDTO.getOsName());
@@ -428,7 +429,7 @@ public class TechnologyAssetsService {
 					, ExportUtils.userFullNameAsString(technologyAsset.getInfosecFocalPerson())
 					, ExportUtils.userEmailAsString(technologyAsset.getInfosecFocalPerson())
 					, technologyAsset.getSystemStatus()
-					// , technologyAsset.getAssetName()
+					, technologyAsset.getAssetName()
 					, technologyAsset.getIpAddress()
 					, technologyAsset.getSerialNumber()
 					, technologyAsset.getAssetDomainFunction()
@@ -452,6 +453,7 @@ public class TechnologyAssetsService {
 					, "" // ImportDataService.SYSTEM_GEO_RECORDS_PROCESSED_HEADER
 					, (technologyAsset.getEolDate() != null ? dateFormat.format(technologyAsset.getEolDate()) : "")
 					, (technologyAsset.getWarrantyExpiration() != null ? dateFormat.format(technologyAsset.getWarrantyExpiration()) : "")
+				    , technologyAsset.getIpAddresses()
 				);
 			}
 
@@ -482,7 +484,7 @@ public class TechnologyAssetsService {
 			, ImportDataService.SYSTEM_INFOSEC_PERSON_NAME_HEADER
 			, ImportDataService.SYSTEM_INFOSEC_PERSON_EMAIL_HEADER
 			, ImportDataService.SYSTEM_STATUS_HEADER
-			// , ImportDataService.SYSTEM_ASSET_NAME_HEADER
+			, ImportDataService.ASSET_ITEM_NAME_HEADER
 			, ImportDataService.SYSTEM_IP_ADDRESS_HEADER
 			, ImportDataService.SYSTEM_SERIAL_NUMBER_HEADER
 			, ImportDataService.SYSTEM_ASSET_DOMAIN_FUNCTION_HEADER
@@ -506,6 +508,7 @@ public class TechnologyAssetsService {
 			, ImportDataService.SYSTEM_GEO_RECORDS_PROCESSED_HEADER
 			, ImportDataService.SYSTEM_EOL_DATE_HEADER
 			, ImportDataService.SYSTEM_WARRANTY_EXPIRATION_HEADER
+			, ImportDataService.SYSTEM_IP_ADDRESSES_HEADER
 		).build();
 
 		return new CSVPrinter(writer, csvFormat);

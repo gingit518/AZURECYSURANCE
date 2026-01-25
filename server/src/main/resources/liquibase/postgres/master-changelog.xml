@@ -454,4 +454,5 @@
 	<include file="classpath:liquibase/postgres/0428.contracts.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0429.cache_metrics_data.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0430.quant_metrics_units.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:liquibase/postgres/0431.technology_assets.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

@@ -55,6 +55,8 @@ public class TechnologyAssetEditDTO extends TechnologyAssetViewDTO {
 
 	private String ipAddress;
 
+	private String ipAddresses;
+
 	private String assetDomainFunction;
 
 	private String discoverySource;

@@ -4,11 +4,13 @@ import com.cyberintech.vrisk.server.model.jpa.domains.DeploymentType;
 import com.cyberintech.vrisk.server.model.jpa.domains.SystemStatus;
 import com.cyberintech.vrisk.server.model.jpa.domains.SystemType;
 import com.cyberintech.vrisk.server.model.jpa.entity.common.IMetadataAware;
+import com.cyberintech.vrisk.server.model.jpa.entity.converters.MapOfObjectsConverter;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -162,6 +164,10 @@ public class TechnologyAssets implements IEntityWithMetadata {
 
 	@Column(name = "ip_address")
 	private String ipAddress;
+
+	@Column(name = "ip_addresses")
+	// @Convert(converter = MapOfObjectsConverter.class)
+	private String ipAddresses;
 
 	@Column(name = "asset_domain_function")
 	private String assetDomainFunction;
