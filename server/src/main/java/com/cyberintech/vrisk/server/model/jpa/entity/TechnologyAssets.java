@@ -42,6 +42,9 @@ public class TechnologyAssets implements IEntityWithMetadata {
 	@JoinColumn(name = "organization_id", insertable = false, updatable = false)
 	private Organizations organization;
 
+	@Column(name = "name", nullable = false, length = 255)
+	private String name;
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "technology_asset_status")
 	private SystemStatus systemStatus;
@@ -53,9 +56,6 @@ public class TechnologyAssets implements IEntityWithMetadata {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "technology_asset_type")
 	private SystemType systemType;
-
-	@Column(name = "name", nullable = false, length = 255)
-	private String name;
 
 	@Column(name = "description")
 	private String description;
@@ -74,6 +74,10 @@ public class TechnologyAssets implements IEntityWithMetadata {
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "business_unit_id")
 	private BusinessUnits businessUnit;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "system_id")
+	private Systems system;
 
 	@Column(name = "number_of_rec_processed")
 	private Double numberOfRecProcessed;

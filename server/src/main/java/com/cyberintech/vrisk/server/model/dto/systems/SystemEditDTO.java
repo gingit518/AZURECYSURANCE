@@ -39,7 +39,6 @@ public class SystemEditDTO extends SystemViewDTO {
 	private Boolean isEtl;
 
 	@Schema
-	@NotEmpty(message = SLCT.VALIDATION$DATA_CLASSIFICATION_REQUIRED)
 	private List<DataTypeClassificationRefDTO> dataTypeClassifications;
 
 	@Schema

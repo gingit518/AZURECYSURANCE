@@ -69,6 +69,9 @@ public class TechnologyAssetEditDTO extends TechnologyAssetViewDTO {
 
 	private String location;
 
+	@Schema
+	private SystemRefDTO system;
+
 
 //	@Schema
 //	private Long organizationId;
@@ -101,6 +104,10 @@ public class TechnologyAssetEditDTO extends TechnologyAssetViewDTO {
 		hardwareSubstatus = entity.getHardwareSubstatus();
 		ownerType = entity.getOwnerType();
 		location = entity.getLocation();
+
+		if (entity.getSystem() != null) {
+			system = new SystemRefDTO(entity.getSystem());
+		}
 
 		// technologies = Optional.ofNullable(entity.getTechnologies()).orElse(new HashSet<>()).stream().map(TechnologyRefDTO::of).collect(Collectors.toList());
 	}

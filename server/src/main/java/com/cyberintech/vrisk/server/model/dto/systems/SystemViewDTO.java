@@ -44,33 +44,33 @@ public class SystemViewDTO extends DTOWithMetaData<Systems> {
 	private String name;
 
 	@Schema
-	@NotBlank(message = SLCT.VALIDATION$DESCRIPTION_REQUIRED)
+	// @NotBlank(message = SLCT.VALIDATION$DESCRIPTION_REQUIRED)
 	private String description;
 
 	@Schema
 	private String versionNumber;
 
 	@Schema
-	@NotNull(message = SLCT.VALIDATION$SYSTEM_STATUS_REQUIRED)
+	// @NotNull(message = SLCT.VALIDATION$SYSTEM_STATUS_REQUIRED)
 	private SystemStatus systemStatus;
 
 	@Schema
-	@NotNull(message = SLCT.VALIDATION$DEPLOYMENT_TYPE_REQUIRED)
+	// @NotNull(message = SLCT.VALIDATION$DEPLOYMENT_TYPE_REQUIRED)
 	private DeploymentType deploymentType;
 
 	@Schema
-	@NotNull(message = SLCT.VALIDATION$SYSTEM_TYPE_REQUIRED)
+	// @NotNull(message = SLCT.VALIDATION$SYSTEM_TYPE_REQUIRED)
 	private SystemType systemType;
 
 	@Schema
-	@NotNull(message = SLCT.VALIDATION$SYSTEM_OWNER_REQUIRED)
+	// @NotNull(message = SLCT.VALIDATION$SYSTEM_OWNER_REQUIRED)
 	private UserRefDTO owner;
 
 	@Schema
 	private UserRefDTO infosecFocalPerson;
 
 	@Schema
-	@NotNull(message = SLCT.VALIDATION$SYSTEM_BUSINESS_UNIT_REQUIRED)
+	// @NotNull(message = SLCT.VALIDATION$SYSTEM_BUSINESS_UNIT_REQUIRED)
 	private BusinessUnitRefDTO businessUnit;
 
 	@Schema

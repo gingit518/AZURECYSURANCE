@@ -98,6 +98,8 @@ public class TechnologyAssetsService {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	@Autowired
+	private SystemsService systemsService;
 
 	/**
 	 * Get TechnologyAssets List
@@ -281,6 +283,11 @@ public class TechnologyAssetsService {
 		if (itemDTO.getOwner() != null && itemDTO.getOwner().getId() != null) {
 			Users owner = userService.getOrganizationUser(itemDTO.getOwner().getId());
 			entity.setOwner(owner);
+		}
+
+		if (itemDTO.getSystem() != null && itemDTO.getSystem().getId() != null) {
+			Systems system = systemsService.getSystemForCurrentOrganization(itemDTO.getSystem().getId());
+			entity.setSystem(system);
 		}
 
 		if (itemDTO.getInfosecFocalPerson() != null && itemDTO.getInfosecFocalPerson().getId() != null) {
