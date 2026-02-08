@@ -804,6 +804,8 @@ public class QuantMetricsService {
 
 		} catch (IOException | ParseException e) {
 			log.error("Failed to import Quant Metric", e);
+		} catch (Exception e) {
+			log.error("Failed to import Quant Metric due to global exception", e);
 		}
 		return result;
 	}

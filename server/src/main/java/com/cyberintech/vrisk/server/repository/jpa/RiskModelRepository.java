@@ -20,6 +20,8 @@ public interface RiskModelRepository extends CoreRepository<RiskModels, Long> {
 
 	List<RiskModels> findAllByOrganizationId(Long organizationId);
 
+	List<RiskModels> findAllByOrganizationIdOrderByIdAsc(Long organizationId);
+
 	@Query("SELECT max(rm.ordinal) FROM RiskModels rm WHERE rm.organizationId = ?1")
 	Optional<Long> getMaxOrdinal(Long organizationId);
 

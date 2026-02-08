@@ -1,6 +1,7 @@
 package com.cyberintech.vrisk.server.service.admin;
 
 import com.cyberintech.vrisk.server.context.ApplicationContextThreadLocal;
+import com.cyberintech.vrisk.server.model.auth.UserDetailsImpl;
 import com.cyberintech.vrisk.server.model.dao.OrganizationModelDAO;
 import com.cyberintech.vrisk.server.model.dao.PagedResult;
 import com.cyberintech.vrisk.server.model.data.FilteredRequest;
@@ -14,15 +15,18 @@ import com.cyberintech.vrisk.server.model.dto.organization.OrganizationViewDTO;
 import com.cyberintech.vrisk.server.model.dto.risk_model.RiskModelViewDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
 import com.cyberintech.vrisk.server.model.jpa.domains.VItemType;
-import com.cyberintech.vrisk.server.model.jpa.entity.AssessmentTypes;
-import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
+import com.cyberintech.vrisk.server.model.jpa.entity.*;
 import com.cyberintech.vrisk.server.repository.jpa.*;
 import com.cyberintech.vrisk.server.rest.exception.ApplicationExceptionCodes;
 import com.cyberintech.vrisk.server.rest.exception.BadRequestException;
 import com.cyberintech.vrisk.server.rest.exception.ConflictException;
 import com.cyberintech.vrisk.server.rest.exception.ItemNotFoundException;
 import com.cyberintech.vrisk.server.service.*;
+import com.cyberintech.vrisk.server.service.utils.CSVUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -104,6 +108,12 @@ public class AdminOrganizationService extends OrganizationService {
 
 	@Autowired
 	private UserAssignedVendorRepository userAssignedVendorRepository;
+	@Autowired
+	private RiskModelRepository riskModelRepository;
+	@Autowired
+	private RiskModelConstantRepository riskModelConstantRepository;
+	@Autowired
+	private AdminUserService adminUserService;
 
 	/**
 	 * Get List of Organizations by Type and Filter
@@ -405,6 +415,11 @@ public class AdminOrganizationService extends OrganizationService {
 
 		Organizations saveResult = organizationRepository.save(newItem);
 
+		// Verify Elastio Package Plan setup
+		if (newItem.getPackagePlan() != null && PackagePlans.PACKAGE_PLAN_ELASTIO.equals(newItem.getPackagePlan().getId())) {
+			verifyElastioPackagePlanSetup(newItem);
+		}
+
 		OrganizationEditDTO result = new OrganizationEditDTO(saveResult);
 
 		// Save Audit Log CREATE event
@@ -412,7 +427,7 @@ public class AdminOrganizationService extends OrganizationService {
 			VItemType.ORGANIZATION,
 			saveResult.getId(),
 			result,
-			collectAuditLogItems(result, newItem.getRootParent() != null ? newItem.getRootParent().getId() : null)
+			collectAuditLogItems(result, newItem.getRootParent() != null ? newItem.getRootParent().getId() : newItem.getId())
 		);
 
 		return result;
@@ -445,6 +460,11 @@ public class AdminOrganizationService extends OrganizationService {
 			// Save to the database
 			Organizations saveResult = organizationRepository.save(updatedItem);
 
+			// Verify Elastio Package Plan setup
+			if (updatedItem.getPackagePlan() != null && PackagePlans.PACKAGE_PLAN_ELASTIO.equals(updatedItem.getPackagePlan().getId())) {
+				verifyElastioPackagePlanSetup(updatedItem);
+			}
+
 			result = new OrganizationEditDTO(saveResult);
 
 			// Save Audit Log UPDATE event
@@ -453,7 +473,7 @@ public class AdminOrganizationService extends OrganizationService {
 				saveResult.getId(),
 				existingItemDTO,
 				result,
-				collectAuditLogItems(result, (existingItem.getRootParent() != null ? existingItem.getRootParent().getId() : null))
+				collectAuditLogItems(result, (existingItem.getRootParent() != null ? existingItem.getRootParent().getId() : existingItem.getId()))
 			);
 
 		} catch (NoSuchElementException exception) {
@@ -521,6 +541,81 @@ public class AdminOrganizationService extends OrganizationService {
 			});
 		}
 
+	}
+
+	private void verifyElastioPackagePlanSetup(Organizations organization) {
+		// Verify Elastio Package Plan Setup
+		List<RiskModels> riskModels = riskModelRepository.findAllByOrganizationIdOrderByIdAsc(organization.getId());
+		RiskModels elastioRiskModel = null;
+		if (CollectionUtils.isEmpty(riskModels)) {
+			RiskModels newItem = new RiskModels();
+			newItem.setName("Elastio");
+			newItem.setDescription("Elastio Risk Model");
+			newItem.setOrganizationId(organization.getId());
+			newItem.setOrdinal(1L);
+			elastioRiskModel = riskModelRepository.save(newItem);
+		} else {
+			elastioRiskModel = riskModels.stream().filter(item -> item.getName() != null && item.getName().toLowerCase().startsWith("elastio")).findAny().orElse(riskModels.get(0));
+		}
+
+		// Verify Elastio variables
+		try {
+			// Parse CSV file
+			InputStream fileStream = loadDemoDataFileStream("/templates/Elastio/risk-model-constants.csv");
+			CSVParser csvParser = CSVUtils.createCSVParser(fileStream);
+			List<CSVRecord> csvRecordList = csvParser.getRecords();
+			log.info(String.format("#### Loaded CSV records: %s", csvRecordList.size()));
+			List<RiskModelConstants> constantsToSave = new ArrayList<>();
+			for (CSVRecord csvRecord : csvRecordList) {
+				// Accessing values by Header names
+				String name = Optional.ofNullable(csvRecord.get("name")).orElse("").trim();
+				String description = csvRecord.get("description");
+				String defaultValueString = csvRecord.get("defaultValue");
+				Double defaultValue = 0D;
+				if (defaultValueString != null && !defaultValueString.isEmpty()) {
+					try {
+						defaultValue = Double.parseDouble(defaultValueString);
+					} catch (NumberFormatException numberFormatException) {
+						log.warn("!! Failed to parse default value for Elastio constant: {}, {}", name, defaultValueString);
+					}
+				}
+
+				RiskModelConstants riskModelConstant = riskModelConstantRepository.findByNameAndRiskModelId(name, elastioRiskModel.getId()).orElse(null);
+				if (riskModelConstant == null) {
+					riskModelConstant = new RiskModelConstants();
+					riskModelConstant.setName(name);
+					riskModelConstant.setValue(defaultValue);
+					riskModelConstant.setRiskModelId(elastioRiskModel.getId());
+					riskModelConstant.setCreatedAt(new Date());
+				}
+				if (riskModelConstant.getId() == null || !description.equalsIgnoreCase(riskModelConstant.getDescription())) {
+					riskModelConstant.setDescription(description);
+					riskModelConstant.setUpdatedAt(new Date());
+					constantsToSave.add(riskModelConstant);
+				}
+			}
+
+			// Save new/modified constants
+			if (CollectionUtils.isNotEmpty(constantsToSave)) {
+				riskModelConstantRepository.saveAll(constantsToSave);
+			}
+
+		} catch (IOException e) {
+			log.error("Failed to import Elastio variables", e);
+		}
+
+		// Set Organization Context for the API call
+		ApplicationContextThreadLocal.getContext().setOrganizationId(organization.getId());
+		UserDetailsImpl currentUser = adminUserService.getCurrentUser();
+		Long userOrganizationId = currentUser.getOrganizationId();
+		currentUser.applyOrganizationId(organization.getId());
+
+		log.info("## Importing QUANT Metrics for the Organization");
+		InputStream fileStream = loadDemoDataFileStream("/templates/Elastio/quant-metrics.csv");
+		ImportResultDTO quantImportResult = quantMetricsService.importQuantMetricsFromCSVFile(elastioRiskModel.getId(), fileStream);
+
+		// Restore Active Organization ID for User
+		currentUser.applyOrganizationId(userOrganizationId);
 	}
 
 
