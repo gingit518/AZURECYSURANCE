@@ -101,7 +101,7 @@ public class ElastioAPIRestApplication extends SpringBootServletInitializer {
 			"============================================================================================= \n" +
 			" Startup Info:\n" +
 			" Local: \thttp://127.0.0.1:{}\n" +
-			" External: \thttp://{}:{}\n" +
+			" External: \t{}\n" +
 			" Swagger: \t{}\n" +
 			" Profiles: \t{}\n" +
 			" Database: \t{}\n" +
@@ -113,9 +113,9 @@ public class ElastioAPIRestApplication extends SpringBootServletInitializer {
 			environment.getProperty("info.app.name"),
 			environment.getProperty("info.app.version"),
 			environment.getProperty("server.port"),
-			applicationHost,
-			environment.getProperty("vrisk.api.url"),
-			Optional.ofNullable(environment.getProperty("vrisk.api.url")).orElse("") + "/swagger-ui.html",
+			// applicationHost,
+			environment.getProperty("vrisk.elastio.api.url"),
+			Optional.ofNullable(environment.getProperty("vrisk.elastio.api.url")).orElse("") + "/swagger-ui.html",
 			environment.getActiveProfiles(),
 			environment.getProperty("spring.datasource.url")
 		);
