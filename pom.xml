@@ -19,7 +19,8 @@
     	<module>integrations</module>
 		<module>api</module>
 		<module>idp</module>
-	</modules>
+        <module>api-elastio</module>
+    </modules>
 
 	<properties>
 		<java.version>17</java.version>

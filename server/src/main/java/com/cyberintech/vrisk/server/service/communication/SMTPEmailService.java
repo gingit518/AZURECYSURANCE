@@ -9,6 +9,7 @@ import com.cyberintech.vrisk.server.rest.exception.ApplicationExceptionCodes;
 import com.cyberintech.vrisk.server.rest.exception.InternalServerErrorException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -39,7 +40,8 @@ public class SMTPEmailService implements EmailService {
 	@Autowired
 	private EmailTemplateService emailTemplateService;
 
-	@Autowired
+	@Lazy
+	@Autowired(required = false)
 	private JavaMailSender emailSender;
 
 	/**
