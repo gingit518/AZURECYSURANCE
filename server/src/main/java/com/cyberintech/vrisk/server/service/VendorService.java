@@ -100,6 +100,8 @@ public class VendorService {
 		}
 
 		Organizations newItem = new Organizations();
+		newItem.setCreatedAt(new Date());
+		newItem.setUpdatedAt(new Date());
 		newItem.setOrganizationType(OrganizationType.Vendor);
 		newItem.setRootParent(organizationService.getCurrentOrganizationEntity());
 		fillVendorEntityRelations(newItemDTO, newItem);
@@ -284,6 +286,7 @@ public class VendorService {
 
 			// Update item details
 			Organizations updatedItem = existingItem;
+			updatedItem.setUpdatedAt(new Date());
 			VendorEditDTO existingItemDTO = new VendorEditDTO(existingItem);
 
 			fillVendorEntityRelations(itemDTO, updatedItem);

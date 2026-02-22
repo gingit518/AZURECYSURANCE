@@ -5,16 +5,11 @@ import com.cyberintech.vrisk.server.model.data.FilteredRequest;
 import com.cyberintech.vrisk.server.model.data.FilteredResponse;
 import com.cyberintech.vrisk.server.model.data.UsersFilter;
 import com.cyberintech.vrisk.server.model.dto.ItemViewDTO;
-import com.cyberintech.vrisk.server.model.dto.user.ExtendedUserEditDTO;
-import com.cyberintech.vrisk.server.model.dto.user.UserDTO;
-import com.cyberintech.vrisk.server.model.dto.user.UserListAdminDTO;
-import com.cyberintech.vrisk.server.model.dto.user.UserListDTO;
+import com.cyberintech.vrisk.server.model.dto.user.*;
 import com.cyberintech.vrisk.server.model.jpa.entity.Users;
 import com.cyberintech.vrisk.server.service.admin.AdminUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
@@ -167,5 +162,21 @@ public class AdminUserController {
 
 		return result;
 	}
+
+	/**
+	 * Create new API Key for User
+	 *
+	 * @return API Keys
+	 */
+	@RequestMapping(method = RequestMethod.POST, value = "/api-keys/create", name = "Create new API Key for User", consumes = {MediaType.APPLICATION_JSON})
+	@Operation(security = {@SecurityRequirement(name = "bearer-key")})
+	@PreAuthorize("@apiSecurity.isSuperAdmin()")
+	public APIKeyDTO createAPIKey(@Parameter(description = "API Keys Details", required = true) @RequestBody APIKeyViewDTO newItemDTO) {
+
+		APIKeyDTO result = adminUserService.createAPIKey(newItemDTO.getUser().getId(), newItemDTO.getOrganizationId(), newItemDTO.getExpiredAt());
+
+		return result;
+	}
+
 
 }

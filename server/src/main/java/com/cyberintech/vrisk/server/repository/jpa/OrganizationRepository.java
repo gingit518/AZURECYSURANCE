@@ -2,6 +2,7 @@ package com.cyberintech.vrisk.server.repository.jpa;
 
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
+import com.cyberintech.vrisk.server.model.jpa.entity.PackagePlans;
 import com.cyberintech.vrisk.server.repository.jpa.core.CoreRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -18,9 +19,13 @@ public interface OrganizationRepository extends CoreRepository<Organizations, Lo
 
 	Optional<Organizations> findById(Long id);
 
+	Optional<Organizations> findByIdAndPackagePlan(Long id, PackagePlans packagePlan);
+
 	Optional<Organizations> findFirstByNameAndIdIsNotIn(String name, Collection<Long> excludeIds);
 
 	Optional<Organizations> findFirstByNameAndOrganizationTypeAndIdIsNotIn(String name, OrganizationType organizationType, Collection<Long> excludeIds);
+
+	Optional<Organizations> findFirstByNameAndOrganizationTypeAndPackagePlan(String name, OrganizationType organizationType, PackagePlans packagePlan);
 
 	Optional<Organizations> findFirstByNameAndOrganizationTypeAndRootParent(String name, OrganizationType organizationType, Organizations root);
 

@@ -1,6 +1,7 @@
 package com.cyberintech.vrisk.elastioapi.config;
 
 import com.cyberintech.vrisk.server.filter.DownloadAuthorizationFilter;
+import com.cyberintech.vrisk.server.security.oauth.ApiKeyAuthenticationFilter;
 import com.cyberintech.vrisk.server.security.oauth.LegacyAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,7 @@ public class WebSecurityConfig {
 			.and()
 			.addFilterBefore(new LegacyAuthenticationFilter(), BasicAuthenticationFilter.class)
 			.addFilterBefore(new DownloadAuthorizationFilter(), BasicAuthenticationFilter.class)
+			.addFilterBefore(new ApiKeyAuthenticationFilter(), BasicAuthenticationFilter.class)
 			.authorizeRequests()
 			.antMatchers(
 				"/",

@@ -2,6 +2,7 @@ package com.cyberintech.vrisk.elastioapi.config;
 
 
 import com.cyberintech.vrisk.server.rest.ApplicationProperties;
+import com.cyberintech.vrisk.server.security.SecurityProfile;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -74,6 +75,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
 			.components(
 				new Components()
 					.addSecuritySchemes("bearer-key", new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT"))
+					.addSecuritySchemes(SecurityProfile.AUTHORIZATION_SCHEME_API_KEY, new SecurityScheme().type(SecurityScheme.Type.APIKEY).in(SecurityScheme.In.HEADER).name(SecurityProfile.RISKQ_API_HEADER).bearerFormat("PLAIN"))
 			)
 			// .apis(RequestHandlerSelectors.basePackage("com.cyberintech.vrisk.api.controller"))
 			// .paths(Paths)

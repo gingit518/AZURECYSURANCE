@@ -4,6 +4,7 @@ import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.dto.user.UserRefDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.util.Optional;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @ToString(of = {"id", "name"})
 @EqualsAndHashCode(of = {"id", "name"}, callSuper = false)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrganizationViewDTO extends DTOBase<Organizations> {
 
 	private Long id;

@@ -410,6 +410,8 @@ public class AdminOrganizationService extends OrganizationService {
 
 //		Organizations newItem = newItemDTO.toEntity();
 		Organizations newItem = new Organizations();
+		newItem.setCreatedAt(new Date());
+		newItem.setUpdatedAt(new Date());
 
 		applyEntityChanges(newItemDTO, newItem);
 
@@ -454,6 +456,7 @@ public class AdminOrganizationService extends OrganizationService {
 
 			// Update item details
 			Organizations updatedItem = existingItem;
+			updatedItem.setUpdatedAt(new Date());
 
 			applyEntityChanges(itemDTO, updatedItem);
 
@@ -543,7 +546,7 @@ public class AdminOrganizationService extends OrganizationService {
 
 	}
 
-	private void verifyElastioPackagePlanSetup(Organizations organization) {
+	protected void verifyElastioPackagePlanSetup(Organizations organization) {
 		// Verify Elastio Package Plan Setup
 		List<RiskModels> riskModels = riskModelRepository.findAllByOrganizationIdOrderByIdAsc(organization.getId());
 		RiskModels elastioRiskModel = null;

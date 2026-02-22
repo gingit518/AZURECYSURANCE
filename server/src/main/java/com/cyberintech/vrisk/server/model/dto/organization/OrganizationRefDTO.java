@@ -5,6 +5,7 @@ import com.cyberintech.vrisk.server.model.dto.document.DocumentDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
 import com.cyberintech.vrisk.server.model.jpa.domains.TwoFactorType;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -20,6 +21,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString(of = {"id", "name"})
 @EqualsAndHashCode(of = {"id"}, callSuper = false)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrganizationRefDTO extends DTOBase<Organizations> {
 
 	private Long id;

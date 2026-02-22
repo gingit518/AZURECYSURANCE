@@ -154,6 +154,8 @@ public enum RoleType {
 	, CCPA("CCPA")
 	, CCPA_ADMIN("CCPA_ADMIN")
 	, ORG_READ("ORG_READ")
+	, ELASTIO_ADMIN("ELASTIO_ADMIN")
+	, ELASTIO("ELASTIO")
 
 	;
 

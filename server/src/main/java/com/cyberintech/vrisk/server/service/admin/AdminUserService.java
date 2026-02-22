@@ -7,10 +7,7 @@ import com.cyberintech.vrisk.server.model.data.FilteredResponse;
 import com.cyberintech.vrisk.server.model.data.UsersFilter;
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.dto.audit.items.UserAuditDTO;
-import com.cyberintech.vrisk.server.model.dto.user.ExtendedUserEditDTO;
-import com.cyberintech.vrisk.server.model.dto.user.UserListAdminDTO;
-import com.cyberintech.vrisk.server.model.dto.user.UserListDTO;
-import com.cyberintech.vrisk.server.model.dto.user.UserUpdateDTO;
+import com.cyberintech.vrisk.server.model.dto.user.*;
 import com.cyberintech.vrisk.server.model.jpa.domains.RoleType;
 import com.cyberintech.vrisk.server.model.jpa.domains.TwoFactorType;
 import com.cyberintech.vrisk.server.model.jpa.domains.VItemType;
@@ -20,13 +17,20 @@ import com.cyberintech.vrisk.server.rest.ApplicationProperties;
 import com.cyberintech.vrisk.server.rest.exception.ApplicationExceptionCodes;
 import com.cyberintech.vrisk.server.rest.exception.ConflictException;
 import com.cyberintech.vrisk.server.rest.exception.ItemNotFoundException;
-import com.cyberintech.vrisk.server.service.*;
+import com.cyberintech.vrisk.server.service.AuditLogService;
+import com.cyberintech.vrisk.server.service.DocumentService;
+import com.cyberintech.vrisk.server.service.UserService;
+import com.cyberintech.vrisk.server.service.VendorService;
 import com.cyberintech.vrisk.server.service.communication.EmailService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.CharacterPredicates;
+import org.apache.commons.text.RandomStringGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -78,6 +82,8 @@ public class AdminUserService extends UserService {
 
 	@Autowired
 	private UserModelDAO userModelDAO;
+	@Autowired
+	private ApiKeysRepository apiKeysRepository;
 
 	/**
 	 * Get Users List
@@ -417,6 +423,33 @@ public class AdminUserService extends UserService {
 		} catch (NoSuchElementException exception) {
 			throw new ItemNotFoundException(MessageFormat.format("User not found in the system [{0}]", itemId), ApplicationExceptionCodes.USER_NOT_EXISTS);
 		}
+
+		return result;
+	}
+
+	/**
+	 * Create API Key for the User Account
+	 *
+	 * @return API Key
+	 */
+	@Transactional
+	public APIKeyDTO createAPIKey(Long userAccountId, Long organizationId, Date expirationDate) {
+		Users user = userRepository.findById(userAccountId).orElseThrow(() -> new ItemNotFoundException("User account not found"));
+
+		Random RANDOM = new SecureRandom();
+		RandomStringGenerator LETTERS_AND_DIGITS_GENERATOR = new RandomStringGenerator.Builder().withinRange(new char[]{'a', 'z'}, new char[]{'A', 'Z'}, new char[]{'0', '9'}).filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS).usingRandom(RANDOM::nextInt).get();
+
+		ApiKeys entity = new ApiKeys();
+		entity.setUser(user);
+		entity.setOrganizationId(organizationId);
+		entity.setApiKeyPublic("rqpk_" + LETTERS_AND_DIGITS_GENERATOR.generate(32));
+		entity.setApiKeyPrivate("rqsk_" + LETTERS_AND_DIGITS_GENERATOR.generate(32));
+		// entity.setStatus(APIKeyStatus.ACTIVE);
+		entity.setCreatedAt(new Date());
+		entity.setExpiredAt(expirationDate);
+		entity = apiKeysRepository.save(entity);
+
+		APIKeyDTO result = new APIKeyDTO(entity);
 
 		return result;
 	}

@@ -457,4 +457,6 @@
 	<include file="classpath:liquibase/postgres/0431.technology_assets.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0432.technology_assets.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0433.package_plans.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:liquibase/postgres/0434.api_keys.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:liquibase/postgres/00435.organization_created_updated.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

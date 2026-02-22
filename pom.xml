@@ -71,6 +71,8 @@
 		<apache.commons-lang3.version>3.12.0</apache.commons-lang3.version>
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
 		<apache.commons-math3.version>3.6.1</apache.commons-math3.version>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+		<apache.commons-text.version>1.12.0</apache.commons-text.version>
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<apache.poi.version>5.2.2</apache.poi.version>
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
@@ -479,6 +481,11 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-math3</artifactId>
 				<version>${apache.commons-math3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-text</artifactId>
+				<version>${apache.commons-text.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>

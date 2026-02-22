@@ -636,6 +636,7 @@ public class OrganizationService {
 
 			// Update item details
 			Organizations updatedItem = existingItem;
+			updatedItem.setUpdatedAt(new Date());
 
 			applyEntityChanges(itemDTO, updatedItem);
 
@@ -1028,7 +1029,7 @@ public class OrganizationService {
 	 */
 	protected AuditLogItemId[] collectAuditLogItems(OrganizationEditDTO existingItemDTO, Long organizationId) {
 		List<AuditLogItemId> logItems = new ArrayList<>(Arrays.asList(AuditLogItemId.of(VItemType.ORGANIZATION, organizationId)));
-		if (existingItemDTO.getOwner() != null) logItems.add(AuditLogItemId.of(VItemType.VENDOR_OWNER, existingItemDTO.getOwner().getId()));
+		if (existingItemDTO != null && existingItemDTO.getOwner() != null) logItems.add(AuditLogItemId.of(VItemType.VENDOR_OWNER, existingItemDTO.getOwner().getId()));
 
 		return logItems.stream().toArray(AuditLogItemId[]::new);
 	}
