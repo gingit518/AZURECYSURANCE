@@ -114,6 +114,7 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 		if (newItem == null) {
 			newItem = new Organizations();
 		}
+		newItem.setOrganizationType(OrganizationType.Organization);
 		newItem.setName(newItemDTO.getName());
 		newItem.setDescription(newItemDTO.getDescription());
 		newItem.setAverageRevenue(newItemDTO.getAverageRevenue());
