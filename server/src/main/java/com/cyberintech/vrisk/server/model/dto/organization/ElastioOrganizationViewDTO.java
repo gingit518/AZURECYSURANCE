@@ -2,8 +2,12 @@ package com.cyberintech.vrisk.server.model.dto.organization;
 
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+
+import java.util.Date;
 
 /**
  * Organization View Entity Definition
@@ -25,6 +29,14 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 	private String description;
 	private Double averageRevenue;
 	private Double qualThreshold;
+
+	@Schema(type = "string", pattern = "yyyy-MM-dd HH:mm:ss", example = "2025-12-31 01:00:00")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date createdAt;
+
+	@Schema(type = "string", pattern = "yyyy-MM-dd HH:mm:ss", example = "2025-12-31 01:00:00")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date updatedAt;
 
 	/**
 	 * Entity based constructor
@@ -49,5 +61,8 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 		description = entity.getDescription();
 		averageRevenue = entity.getAverageRevenue();
 		qualThreshold = entity.getQualThreshold();
+
+		createdAt = entity.getCreatedAt();
+		updatedAt = entity.getUpdatedAt();
 	}
 }
