@@ -62,12 +62,12 @@ public class SwaggerConfig implements WebMvcConfigurer {
 		Contact apiContact = new Contact();
 		apiContact.setName("Eugene A. Kalosha");
 		apiContact.setEmail("ekalosha@dfusiontech.com");
-		apiContact.setUrl("https://cyberintech.com");
+		apiContact.setUrl("https://risk-q.com");
 
 		return new OpenAPI()
 			.info(
 				new Info()
-					.title("Cyber Innovative Tech, ValuRisQ API for Elastio Integration")
+					.title("RiskQ API for Elastio Integration")
 					.description("Core API documentation")
 					.version(properties.getBuildVersion())
 					.contact(apiContact)
