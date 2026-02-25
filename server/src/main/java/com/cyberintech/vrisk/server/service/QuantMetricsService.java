@@ -460,7 +460,7 @@ public class QuantMetricsService {
 				metricVariable.setQuantMetricRefId(quantMetricRefOpt.get().getId());
 			}
 			if (metricFormulaItemViewDTO.getRiskModelConstantRef() != null && metricFormulaItemViewDTO.getRiskModelConstantRef().getId() != null) {
-				Optional<RiskModelConstants> constantRefOpt = riskModelConstantRepository.findByNameAndRiskModelId(metricFormulaItemViewDTO.getRiskModelConstantRef().getName(), entity.getRiskModelId());
+				Optional<RiskModelConstants> constantRefOpt = riskModelConstantRepository.findByNameAndRiskModelId(metricFormulaItemViewDTO.getRiskModelConstantRef().getName().trim(), entity.getRiskModelId());
 
 				RiskModelConstants constantRef = null;
 				if (constantRefOpt.isPresent()) {
@@ -468,7 +468,7 @@ public class QuantMetricsService {
 				} else {
 					constantRef = new RiskModelConstants();
 					constantRef.setRiskModelId(entity.getRiskModelId());
-					constantRef.setName(metricFormulaItemViewDTO.getRiskModelConstantRef().getName());
+					constantRef.setName(metricFormulaItemViewDTO.getRiskModelConstantRef().getName().trim());
 					constantRef.setDescription(metricFormulaItemViewDTO.getRiskModelConstantRef().getDescription());
 					constantRef.setValue(metricFormulaItemViewDTO.getRiskModelConstantRef().getValue());
 					constantRef.setCreatedAt(new Date());

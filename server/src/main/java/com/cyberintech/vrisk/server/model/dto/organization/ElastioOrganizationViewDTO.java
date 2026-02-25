@@ -25,10 +25,18 @@ import java.util.Date;
 public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 
 	private Long id;
+	private String uid;
 	private String name;
 	private String description;
-	private Double averageRevenue;
-	private Double qualThreshold;
+	private String contactName;
+	private String email;
+
+	// ========== ========== ========== ORGANIZATION VARIABLES ========== ========== ========== //
+	private String platformType;
+	private String assetType;
+	private Double amountOfDataInTerabytes;
+	private Double replicationFactor;
+	// ========== ========== ========== ORGANIZATION VARIABLES ========== ========== ========== //
 
 	@Schema(type = "string", pattern = "yyyy-MM-dd HH:mm:ss", example = "2025-12-31 01:00:00")
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -59,8 +67,12 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 		id = entity.getId();
 		name = entity.getName();
 		description = entity.getDescription();
-		averageRevenue = entity.getAverageRevenue();
-		qualThreshold = entity.getQualThreshold();
+
+		uid = entity.getUid();
+		platformType = entity.getPlatformType();
+		assetType = entity.getAssetType();
+		amountOfDataInTerabytes = entity.getAmountOfDataInTerabytes();
+		replicationFactor = entity.getReplicationFactor();
 
 		createdAt = entity.getCreatedAt();
 		updatedAt = entity.getUpdatedAt();

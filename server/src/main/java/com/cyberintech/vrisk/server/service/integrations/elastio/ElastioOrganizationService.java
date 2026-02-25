@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Organization management Service. Implements basic Organization logic.
@@ -117,11 +118,17 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 		newItem.setOrganizationType(OrganizationType.Organization);
 		newItem.setName(newItemDTO.getName());
 		newItem.setDescription(newItemDTO.getDescription());
-		newItem.setAverageRevenue(newItemDTO.getAverageRevenue());
-		newItem.setQualThreshold(newItemDTO.getQualThreshold());
+		newItem.setUid(newItemDTO.getUid());
+		newItem.setPlatformType(newItemDTO.getPlatformType());
+		newItem.setAssetType(newItemDTO.getAssetType());
+		newItem.setAmountOfDataInTerabytes(newItemDTO.getAmountOfDataInTerabytes());
+		newItem.setReplicationFactor(newItemDTO.getReplicationFactor());
+		if (newItem.getUid() == null) newItem.setUid(UUID.randomUUID().toString());
 		if (newItem.getCreatedAt() == null) newItem.setCreatedAt(new Date());
 		newItem.setUpdatedAt(new Date());
 		newItem.setPackagePlan(elastioPackagePlan);
+
+		// TODO Apply Contact Email/Name
 
 		// newItemDTO.setPackagePlan(packagePlan);
 		// applyEntityChanges(newItemDTO, newItem);

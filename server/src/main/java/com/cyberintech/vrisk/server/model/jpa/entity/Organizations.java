@@ -41,6 +41,9 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
+	@Column(name = "uid")
+	private String uid;
+
 	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
@@ -328,5 +331,17 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 
 	@Column(name = "past_security_incidents")
 	private String pastSecurityIncidents;
+
+	@Column(name = "platform_type")
+	private String platformType;
+
+	@Column(name = "asset_type")
+	private String assetType;
+
+	@Column(name = "amount_of_data_in_terabytes")
+	private Double amountOfDataInTerabytes;
+
+	@Column(name = "replication_factor")
+	private Double replicationFactor;
 
 }

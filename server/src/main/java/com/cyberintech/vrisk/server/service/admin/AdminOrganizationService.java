@@ -601,6 +601,7 @@ public class AdminOrganizationService extends OrganizationService {
 			// Save new/modified constants
 			if (CollectionUtils.isNotEmpty(constantsToSave)) {
 				riskModelConstantRepository.saveAll(constantsToSave);
+				riskModelConstantRepository.flush();
 			}
 
 		} catch (IOException e) {

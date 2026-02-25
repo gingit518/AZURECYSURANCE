@@ -714,6 +714,8 @@ public class OrganizationService {
 	 */
 	protected void applyEntityChanges(OrganizationEditDTO itemDTO, Organizations entity) {
 
+		if (entity.getUid() == null) entity.setUid(UUID.randomUUID().toString());
+
 		entity.setName(itemDTO.getName());
 		entity.setDescription(itemDTO.getDescription());
 		entity.setTaxId(itemDTO.getTaxId());
