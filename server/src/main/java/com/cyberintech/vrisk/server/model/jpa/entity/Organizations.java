@@ -3,6 +3,8 @@ package com.cyberintech.vrisk.server.model.jpa.entity;
 import com.cyberintech.vrisk.server.model.jpa.domains.AssessmentFrameworkLevel;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
 import com.cyberintech.vrisk.server.model.jpa.domains.TwoFactorType;
+import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformAssetType;
+import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformType;
 import com.cyberintech.vrisk.server.model.jpa.entity.common.IMetadataAware;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -333,10 +335,12 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 	private String pastSecurityIncidents;
 
 	@Column(name = "platform_type")
-	private String platformType;
+	@Enumerated(EnumType.STRING)
+	private PlatformType platformType;
 
 	@Column(name = "asset_type")
-	private String assetType;
+	@Enumerated(EnumType.STRING)
+	private PlatformAssetType assetType;
 
 	@Column(name = "amount_of_data_in_terabytes")
 	private Double amountOfDataInTerabytes;

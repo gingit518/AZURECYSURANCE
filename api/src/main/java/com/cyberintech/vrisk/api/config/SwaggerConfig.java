@@ -7,6 +7,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 @Configuration
 @PropertySource(name = "swagger", value = "classpath:swagger.properties")
@@ -65,6 +68,10 @@ public class SwaggerConfig implements WebMvcConfigurer {
 		apiContact.setUrl("https://cyberintech.com");
 
 		return new OpenAPI()
+			.servers(List.of(
+				new Server().url("/").description("RiskQ API (Local)")
+				, new Server().url("https://dev.app.risk-q.com/rest/") .description("RiskQ API (DEV)")
+			))
 			.info(
 				new Info()
 					.title("Cyber Innovative Tech, ValuRisQ API")

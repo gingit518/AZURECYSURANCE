@@ -1,6 +1,8 @@
 package com.cyberintech.vrisk.server.model.dto.organization;
 
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
+import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformAssetType;
+import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformType;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,8 +34,8 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 	private String email;
 
 	// ========== ========== ========== ORGANIZATION VARIABLES ========== ========== ========== //
-	private String platformType;
-	private String assetType;
+	private PlatformType platformType;
+	private PlatformAssetType assetType;
 	private Double amountOfDataInTerabytes;
 	private Double replicationFactor;
 	// ========== ========== ========== ORGANIZATION VARIABLES ========== ========== ========== //
