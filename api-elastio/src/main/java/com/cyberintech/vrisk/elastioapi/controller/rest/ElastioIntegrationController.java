@@ -58,8 +58,18 @@ public class ElastioIntegrationController {
 	@RequestMapping(method = RequestMethod.POST, value = "/apply", name = "Sync Elastio Organization data with RiskQ", consumes = {MediaType.APPLICATION_JSON})
 	@Operation(security = {@SecurityRequirement(name = SecurityProfile.AUTHORIZATION_SCHEME_API_KEY)})
 	@PreAuthorize("@apiSecurity.hasRole(T(com.cyberintech.vrisk.server.model.jpa.domains.RoleType).ELASTIO_ADMIN)")
-	public ElastioOrganizationViewDTO apply(@Parameter(description = "Organization Filtering", required = true) @RequestBody ElastioOrganizationViewDTO organization) {
+	public ElastioOrganizationViewDTO apply(@Parameter(description = "Organization Reference", required = true) @RequestBody ElastioOrganizationViewDTO organization) {
 		return elastioOrganizationService.createElastio(organization);
+	}
+
+	/**
+	 * Evaluate Elastio Organization
+	 */
+	@RequestMapping(method = RequestMethod.POST, value = "/evaluate", name = "Evaluate Elastio Organization with RiskQ", consumes = {MediaType.APPLICATION_JSON})
+	@Operation(security = {@SecurityRequirement(name = SecurityProfile.AUTHORIZATION_SCHEME_API_KEY)})
+	@PreAuthorize("@apiSecurity.hasRole(T(com.cyberintech.vrisk.server.model.jpa.domains.RoleType).ELASTIO_ADMIN)")
+	public ElastioOrganizationViewDTO evaluate(@Parameter(description = "Organization Reference", required = true) @RequestBody ElastioOrganizationViewDTO organization) {
+		return elastioOrganizationService.evaluateElastio(organization);
 	}
 
 }

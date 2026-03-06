@@ -7,6 +7,7 @@ import com.cyberintech.vrisk.server.model.data.FilteredRequest;
 import com.cyberintech.vrisk.server.model.data.FilteredResponse;
 import com.cyberintech.vrisk.server.model.data.OrganizationFilter;
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
+import com.cyberintech.vrisk.server.model.dto.organization.ElastioOrganizationEvaluationResultDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.ElastioOrganizationViewDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.PackagePlansDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
@@ -15,6 +16,7 @@ import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
 import com.cyberintech.vrisk.server.model.jpa.entity.PackagePlans;
 import com.cyberintech.vrisk.server.repository.jpa.OrganizationRepository;
 import com.cyberintech.vrisk.server.repository.jpa.PackagePlansRepository;
+import com.cyberintech.vrisk.server.rest.exception.ItemNotFoundException;
 import com.cyberintech.vrisk.server.service.AuditLogService;
 import com.cyberintech.vrisk.server.service.admin.AdminOrganizationService;
 import lombok.extern.slf4j.Slf4j;
@@ -95,18 +97,12 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 	 *
 	 * @return New Organization
 	 */
-	public ElastioOrganizationViewDTO createElastio(ElastioOrganizationViewDTO newItemDTO) {
+	public ElastioOrganizationViewDTO createElastio(ElastioOrganizationViewDTO elastioOrganizationDTO) {
 
 		PackagePlans elastioPackagePlan = packagePlansRepository.findById(PackagePlans.PACKAGE_PLAN_ELASTIO).get();
 
 		// Throw Exception if ID is set in create mode
-		Optional<Organizations> existingItemOpt = Optional.empty();
-		if (newItemDTO.getId() != null) {
-			existingItemOpt = organizationRepository.findByIdAndPackagePlan(newItemDTO.getId(), elastioPackagePlan);
-		}
-		if (existingItemOpt.isEmpty()) {
-			existingItemOpt = organizationRepository.findFirstByNameAndOrganizationTypeAndPackagePlan(newItemDTO.getName(), OrganizationType.Organization, elastioPackagePlan);
-		}
+		Optional<Organizations> existingItemOpt = getElastioOrganization(elastioOrganizationDTO, elastioPackagePlan);
 
 		PackagePlansDTO packagePlan = new PackagePlansDTO();
 		packagePlan.setId(PackagePlans.PACKAGE_PLAN_ELASTIO);
@@ -116,13 +112,13 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 			newItem = new Organizations();
 		}
 		newItem.setOrganizationType(OrganizationType.Organization);
-		newItem.setName(newItemDTO.getName());
-		newItem.setDescription(newItemDTO.getDescription());
-		newItem.setUid(newItemDTO.getUid());
-		newItem.setPlatformType(newItemDTO.getPlatformType());
-		newItem.setAssetType(newItemDTO.getAssetType());
-		newItem.setAmountOfDataInTerabytes(newItemDTO.getAmountOfDataInTerabytes());
-		newItem.setReplicationFactor(newItemDTO.getReplicationFactor());
+		newItem.setName(elastioOrganizationDTO.getName());
+		newItem.setDescription(elastioOrganizationDTO.getDescription());
+		newItem.setUid(elastioOrganizationDTO.getUid());
+		newItem.setPlatformType(elastioOrganizationDTO.getPlatformType());
+		newItem.setAssetType(elastioOrganizationDTO.getAssetType());
+		newItem.setAmountOfDataInTerabytes(elastioOrganizationDTO.getAmountOfDataInTerabytes());
+		newItem.setReplicationFactor(elastioOrganizationDTO.getReplicationFactor());
 		if (newItem.getUid() == null) newItem.setUid(UUID.randomUUID().toString());
 		if (newItem.getCreatedAt() == null) newItem.setCreatedAt(new Date());
 		newItem.setUpdatedAt(new Date());
@@ -149,6 +145,44 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 		);
 
 		return result;
+	}
+
+
+	/**
+	 * Create new Organization
+	 *
+	 * @return New Organization
+	 */
+	public ElastioOrganizationViewDTO evaluateElastio(ElastioOrganizationViewDTO elastioOrganizationDTO) {
+
+		PackagePlans elastioPackagePlan = packagePlansRepository.findById(PackagePlans.PACKAGE_PLAN_ELASTIO).get();
+
+		// Throw Exception if ID is set in create mode
+		Organizations existingItem = getElastioOrganization(elastioOrganizationDTO, elastioPackagePlan).orElseThrow(() -> new ItemNotFoundException("Requested Organization is not found."));
+
+		ElastioOrganizationViewDTO result = new ElastioOrganizationViewDTO(existingItem);
+
+		// TODO Apply evaluation
+		ElastioOrganizationEvaluationResultDTO evaluationResult = new ElastioOrganizationEvaluationResultDTO();
+		evaluationResult.initDemoValues();
+
+		result.setEvaluationResult(evaluationResult);
+
+		return result;
+	}
+
+	private Optional<Organizations> getElastioOrganization(ElastioOrganizationViewDTO elastioOrganizationDTO, PackagePlans elastioPackagePlan) {
+		Optional<Organizations> existingItemOpt = Optional.empty();
+		if (elastioOrganizationDTO.getId() != null) {
+			existingItemOpt = organizationRepository.findByIdAndPackagePlan(elastioOrganizationDTO.getId(), elastioPackagePlan);
+		}
+		if (existingItemOpt.isEmpty()) {
+			existingItemOpt = organizationRepository.findByUidAndPackagePlan(elastioOrganizationDTO.getName(), elastioPackagePlan);
+		}
+		if (existingItemOpt.isEmpty()) {
+			existingItemOpt = organizationRepository.findFirstByNameAndOrganizationTypeAndPackagePlan(elastioOrganizationDTO.getName(), OrganizationType.Organization, elastioPackagePlan);
+		}
+		return existingItemOpt;
 	}
 
 }

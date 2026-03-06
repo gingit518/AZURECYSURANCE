@@ -21,6 +21,8 @@ public interface OrganizationRepository extends CoreRepository<Organizations, Lo
 
 	Optional<Organizations> findByIdAndPackagePlan(Long id, PackagePlans packagePlan);
 
+	Optional<Organizations> findByUidAndPackagePlan(String uid, PackagePlans packagePlan);
+
 	Optional<Organizations> findFirstByNameAndIdIsNotIn(String name, Collection<Long> excludeIds);
 
 	Optional<Organizations> findFirstByNameAndOrganizationTypeAndIdIsNotIn(String name, OrganizationType organizationType, Collection<Long> excludeIds);

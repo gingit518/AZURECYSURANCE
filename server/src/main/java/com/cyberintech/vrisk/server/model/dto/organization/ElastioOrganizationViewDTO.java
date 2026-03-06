@@ -48,6 +48,8 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date updatedAt;
 
+	private ElastioOrganizationEvaluationResultDTO evaluationResult;
+
 	/**
 	 * Entity based constructor
 	 *
