@@ -124,7 +124,8 @@ public class PaceCourseService {
 			if (StringUtils.isNotEmpty(uid)) {
 				paceCourseDetails = paceCourseRepository.findByUid(uid);
 			}
-			if (!paceCourseDetails.isPresent() && StringUtils.isNotEmpty(url)) {
+
+			if (StringUtils.isEmpty(uid) && StringUtils.isNotEmpty(url)) {
 				paceCourseDetails = paceCourseRepository.findFirstByUrl(url);
 			} else if (StringUtils.isEmpty(url)) {
 				result.getIgnored().add(new ItemViewDTO(MessageFormat.format("Empty pace course url, {0}, {1}", description, url)));

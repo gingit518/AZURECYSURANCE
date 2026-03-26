@@ -42,6 +42,9 @@ public class TechnologyAssetFilter extends NameFilter {
 	private String assetOwner;
 
 	@Schema
+	private String discoverySource;
+
+	@Schema
 	private Date endOfLife;
 
 	@Schema

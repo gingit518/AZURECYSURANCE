@@ -73,6 +73,9 @@ public class TechnologyAssetModelDAO implements PageableModelDAO<TechnologyAsset
 		if (filter.getManufacturer() != null) {
 			whereString += " AND sys.manufacturer.id = :manufacturerId";
 		}
+		if (StringUtils.isNotEmpty(filter.getDiscoverySource())) {
+			whereString += " AND (UPPER(sys.discoverySource) LIKE CONCAT('%', UPPER(:discoverySource), '%'))";
+		}
 		if (filter.getEndOfLife() != null) {
 			whereString += " AND sys.eolDate < :endOfLife";
 		}
@@ -130,6 +133,7 @@ public class TechnologyAssetModelDAO implements PageableModelDAO<TechnologyAsset
 		if (filter.getTechnologyCategory() != null) query.setParameter("technologyCategoryId", filter.getTechnologyCategory().getId());
 		if (filter.getTechnology() != null) query.setParameter("technologyId", filter.getTechnology().getId());
 		if (filter.getManufacturer() != null) query.setParameter("manufacturerId", filter.getManufacturer().getId());
+		if (StringUtils.isNotEmpty(filter.getDiscoverySource())) query.setParameter("discoverySource", filter.getDiscoverySource());
 		if (filter.getEndOfLife() != null) query.setParameter("endOfLife", filter.getEndOfLife());
 		if (StringUtils.isNotEmpty(filter.getLocation())) query.setParameter("location", filter.getLocation());
 	}

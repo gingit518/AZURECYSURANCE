@@ -127,7 +127,8 @@ public class NewsService {
 			if (StringUtils.isNotEmpty(uid)) {
 				newsDetails = newsRepository.findByUid(uid);
 			}
-			if (!newsDetails.isPresent() && StringUtils.isNotEmpty(url)) {
+
+			if (StringUtils.isEmpty(uid) && StringUtils.isNotEmpty(url)) {
 				newsDetails = newsRepository.findFirstByUrl(url);
 			} else if (StringUtils.isEmpty(url)) {
 				result.getIgnored().add(new ItemViewDTO(MessageFormat.format("Empty news url, {0}, {1}", description, url)));
