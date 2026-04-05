@@ -338,6 +338,10 @@ public class DashboardService extends DashboardServiceBase {
 			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_CFO_VENDOR, "DASHBOARDS$VENDOR$NAME", "Displays the vendor exposures and scores", DashboardType.Vendor, "fa fa-th-list", CFO_DASHBOARD_GROUP, dashboardMenuNames));
 		}
 
+		if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ELASTIO)) {
+			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_ELASTIO, "Elastio Dashboard", "Displays ELASTIO Dashboard", DashboardType.None, "fa fa-money", "ELASTIO", dashboardMenuNames));
+		}
+
 		// items.add(new DashboardRefDTO(DashboardsConfig.FFIEC_CAT_CYBER_MATURITY, "FFIEC CAT Cyber Maturity", "Displays the FFIEC CAT Cyber Maturity", DashboardType.Vendor, "fa fa-question-circle", CFO_DASHBOARD_GROUP, dashboardMenuNames));
 		// items.add(new DashboardRefDTO(DashboardsConfig.FFIEC_CAT_INHERENT_RISK, "FFIEC CAT Inherent Risk", "Displays the FFIEC CAT Inherent Risk", DashboardType.Organization, "fa fa-question-circle", CFO_DASHBOARD_GROUP, dashboardMenuNames));
 
@@ -477,6 +481,8 @@ public class DashboardService extends DashboardServiceBase {
 		} else if (DashboardsConfig.FFIEC_CAT_INHERENT_RISK.equals(dashboardId)) {
 			// if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ASSESSMENT_FINDING, true))
 			dashboard = questionStatusDashboardService.getFFIECCATInherentRiskDashboardDetails(riskModelId, dashboardState);
+		} else if (DashboardsConfig.DASHBOARD_ELASTIO.equals(dashboardId)) {
+			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ELASTIO, true)) dashboard = organizationDashboardService.getElastioDashboardDetails(riskModelId, dashboardId);
 		}
 
 		/*

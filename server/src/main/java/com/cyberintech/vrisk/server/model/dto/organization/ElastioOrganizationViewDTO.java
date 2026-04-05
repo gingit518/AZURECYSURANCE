@@ -36,6 +36,7 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 	// ========== ========== ========== ORGANIZATION VARIABLES ========== ========== ========== //
 	private PlatformType platformType;
 	private PlatformAssetType assetType;
+	private Double annualRevenue;
 	private Double amountOfDataInTerabytes;
 	private Double replicationFactor;
 	// ========== ========== ========== ORGANIZATION VARIABLES ========== ========== ========== //
@@ -75,6 +76,7 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 		uid = entity.getUid();
 		platformType = entity.getPlatformType();
 		assetType = entity.getAssetType();
+		annualRevenue = entity.getAverageRevenue();
 		amountOfDataInTerabytes = entity.getAmountOfDataInTerabytes();
 		replicationFactor = entity.getReplicationFactor();
 

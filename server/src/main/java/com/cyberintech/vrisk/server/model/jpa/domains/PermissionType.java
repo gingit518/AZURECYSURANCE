@@ -57,7 +57,8 @@ public enum PermissionType {
 	, DASHBOARD_CFO_M_AND_A("dashboard_cfo_m_and_a")
 	, DASHBOARD_CFO_ORGANIZATION("dashboard_cfo_organization")
 	, DASHBOARD_CFO_VENDOR("dashboard_cfo_vendor")
-	, DASHBOARD_PRIVACY_IMPACT_ASSESSMENT("privacy_impact_assessment_read");
+	, DASHBOARD_PRIVACY_IMPACT_ASSESSMENT("privacy_impact_assessment_read")
+	, DASHBOARD_ELASTIO("dashboard_elastio")
 	;
 
 	private final String _permission;

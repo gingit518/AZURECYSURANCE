@@ -10,6 +10,7 @@ import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRArticleStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPROrganizationStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRSystemArticleStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRSystemStatusDTO;
+import com.cyberintech.vrisk.server.model.dto.organization.ElastioOrganizationViewDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.*;
 import com.cyberintech.vrisk.server.model.jpa.entity.*;
 import com.cyberintech.vrisk.server.repository.jpa.QuantMetricsRepository;
@@ -17,6 +18,7 @@ import com.cyberintech.vrisk.server.repository.jpa.RegulationRepository;
 import com.cyberintech.vrisk.server.repository.jpa.RiskModelRepository;
 import com.cyberintech.vrisk.server.repository.jpa.SystemRepository;
 import com.cyberintech.vrisk.server.service.*;
+import com.cyberintech.vrisk.server.service.integrations.elastio.ElastioOrganizationService;
 import com.cyberintech.vrisk.server.util.ClientMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -83,6 +85,9 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 
 	@Autowired
 	private GDPRArticleStatusService gdprArticleStatusService;
+
+	@Autowired
+	private ElastioOrganizationService elastioOrganizationService;
 
 	@Autowired
 	@Qualifier("organizationService")
@@ -508,6 +513,61 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 			}
 		}
 	}
+
+
+	/**
+	 * Get Dashboard definition
+	 *
+	 * @return Dashboard
+	 */
+	public DashboardDTO getElastioDashboardDetails(Long riskModelId, Long dashboardId) {
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Elastio Dashboard", "RiskQ Elastio Dashboard", DashboardType.Organization);
+
+		boolean isGDPRRegulatoryQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.GDPR_REGULATORY_EXPOSURE);
+		boolean isPrivacyQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.PRIVACY_EXPOSURE);
+
+		// Create breadcrumbs
+		DashboardBreadcrumbsHelper breadcrumbsTop;
+		breadcrumbsTop = DashboardBreadcrumbsHelper.DASHBOARD_EXECUTIVE(clientMessage).add("DASHBOARD_CYBER_INSURANCE", SLCT.DASHBOARDS$CYBER_INSURANCE$NAME, "/private/dashboards/2000");
+
+		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
+		// List<Systems> allSystemsList = systemRepository.getAllByOrganizationAndNotEtl(riskModel.getOrganizationId());
+
+		// Create Initial Sections
+		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Elastio Dashboard", null);
+
+		dashboard.getSections().add(section1);
+
+		// Create breadcrumbs
+		// section1.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_CYBER_INSURANCE_1", SLCT.DASHBOARDS$CYBER_INSURANCE$AGGREGATE_LIMIT$ITEM_NAME, "/private/dashboards/2").getBreadcrumbs());
+		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
+
+		ElastioOrganizationViewDTO elastioOrganizationDTO = new ElastioOrganizationViewDTO();
+		elastioOrganizationDTO.setId(riskModel.getOrganizationId());
+		elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
+
+		DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		section1.getDashboardItems().add(dashboardItem);
+
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Risk Exposure").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Baseline Ransomware Exposure").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getBaselineRansomwareExposure()).round(0)));
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Baseline Downtime Loss").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getBaselineDowntimeLoss()).round(0)));
+
+		DashboardTableItemDTO dashboardItem2 = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		section1.getDashboardItems().add(dashboardItem2);
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Cost Savings").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Downtime Loss Post Elastio").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getDowntimeLossPostElastio()).round(0)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Downtime Savings").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getDowntimeSavings()).round(0)));
+
+		DashboardTableItemDTO dashboardItem3 = new DashboardTableItemDTO(1000000L, "Ransomware");
+		section1.getDashboardItems().add(dashboardItem3);
+		dashboardItem3.getGridItems().add(Arrays.asList(sI("ROI Ransomware").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getRoiRansomware()).round(0)));
+		dashboardItem3.getGridItems().add(Arrays.asList(sI("Payback Period Ransomware").applyTextAlign("left").applyHeader(true), sI(elastioOrganizationDTO.getEvaluationResult().getPaybackPeriodRansomware()).applySymbol("month").round(2)));
+		dashboardItem3.getGridItems().add(Arrays.asList(sI("Total Annual Savings").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getTotalAnnualSavings()).round(2)));
+
+		return dashboard;
+	}
+
 
 	// ========== Cyber Insurance Dashboard ========== //
 

@@ -59,6 +59,8 @@ public class DashboardsConfig {
 	public static final Long DASHBOARD_CFO_VENDOR = 2005L;
 	public static final Long DASHBOARD_PRIVACY_IMPACT_ASSESSMENT = 2006L;
 
+	public static final Long DASHBOARD_ELASTIO = 4006L;
+
 	public static final Long FFIEC_CAT_CYBER_MATURITY = 16647L;
 
 	public static final Long FFIEC_CAT_INHERENT_RISK = 16648L;
