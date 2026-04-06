@@ -521,7 +521,6 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 	 * @return Dashboard
 	 */
 	public DashboardDTO getElastioDashboardDetails(Long riskModelId, Long dashboardId) {
-		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Elastio Dashboard", "RiskQ Elastio Dashboard", DashboardType.Organization);
 
 		boolean isGDPRRegulatoryQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.GDPR_REGULATORY_EXPOSURE);
 		boolean isPrivacyQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.PRIVACY_EXPOSURE);
@@ -533,8 +532,14 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
 		// List<Systems> allSystemsList = systemRepository.getAllByOrganizationAndNotEtl(riskModel.getOrganizationId());
 
+		ElastioOrganizationViewDTO elastioOrganizationDTO = new ElastioOrganizationViewDTO();
+		elastioOrganizationDTO.setId(riskModel.getOrganizationId());
+		elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
+
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Elastio Dashboard: " + elastioOrganizationDTO.getName(), "RiskQ Elastio Dashboard", DashboardType.Organization);
+
 		// Create Initial Sections
-		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Elastio Dashboard", null);
+		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Elastio Dashboard: " + elastioOrganizationDTO.getName(), null);
 
 		dashboard.getSections().add(section1);
 
@@ -542,28 +547,34 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		// section1.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_CYBER_INSURANCE_1", SLCT.DASHBOARDS$CYBER_INSURANCE$AGGREGATE_LIMIT$ITEM_NAME, "/private/dashboards/2").getBreadcrumbs());
 		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
 
-		ElastioOrganizationViewDTO elastioOrganizationDTO = new ElastioOrganizationViewDTO();
-		elastioOrganizationDTO.setId(riskModel.getOrganizationId());
-		elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
-
-		DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		// DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Baseline Scenario");
 		section1.getDashboardItems().add(dashboardItem);
 
-		dashboardItem.getGridItems().add(Arrays.asList(sI("Risk Exposure").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
-		dashboardItem.getGridItems().add(Arrays.asList(sI("Baseline Ransomware Exposure").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getBaselineRansomwareExposure()).round(0)));
-		dashboardItem.getGridItems().add(Arrays.asList(sI("Baseline Downtime Loss").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getBaselineDowntimeLoss()).round(0)));
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Current state without Elastio implementation").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
 
-		DashboardTableItemDTO dashboardItem2 = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Risk Exposure").applyTextAlign("right").applyHeader(true).applyColspan(2L)));
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Baseline Ransomware Exposure").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getBaselineRansomwareExposure()).applyColor("#ff0000").round(0)));
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Baseline Downtime Loss").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getBaselineDowntimeLoss()).applyColor("#ff0000").round(0)));
+
+		DashboardTableItemDTO dashboardItem2 = new DashboardTableItemDTO(1000000L, "ROI & Payback Analysis");
 		section1.getDashboardItems().add(dashboardItem2);
-		dashboardItem2.getGridItems().add(Arrays.asList(sI("Cost Savings").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
-		dashboardItem2.getGridItems().add(Arrays.asList(sI("Downtime Loss Post Elastio").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getDowntimeLossPostElastio()).round(0)));
-		dashboardItem2.getGridItems().add(Arrays.asList(sI("Downtime Savings").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getDowntimeSavings()).round(0)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Financial Impact with Elastio Implementation").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Cost Savings").applyTextAlign("right").applyHeader(true).applyColspan(2L)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Downtime Loss Post Elastio").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getDowntimeLossPostElastio()).applyColor("#00ff00").round(0)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Downtime Savings").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getDowntimeSavings()).applyColor("#00ff00").round(0)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("ROI Ransomware").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getRoiRansomware()).applySymbol("%").round(2)));
 
-		DashboardTableItemDTO dashboardItem3 = new DashboardTableItemDTO(1000000L, "Ransomware");
+		DashboardTableItemDTO dashboardItem3 = new DashboardTableItemDTO(1000000L, "");
 		section1.getDashboardItems().add(dashboardItem3);
-		dashboardItem3.getGridItems().add(Arrays.asList(sI("ROI Ransomware").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getRoiRansomware()).round(0)));
-		dashboardItem3.getGridItems().add(Arrays.asList(sI("Payback Period Ransomware").applyTextAlign("left").applyHeader(true), sI(elastioOrganizationDTO.getEvaluationResult().getPaybackPeriodRansomware()).applySymbol("month").round(2)));
-		dashboardItem3.getGridItems().add(Arrays.asList(sI("Total Annual Savings").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getTotalAnnualSavings()).round(2)));
+		dashboardItem3.getGridItems().add(Arrays.asList(sI("Ransomware").applyTextAlign("right").applyHeader(true).applyColspan(2L)));
+		dashboardItem3.getGridItems().add(Arrays.asList(sI("Payback Period Ransomware").applyTextAlign("left").applyHeader(true), sI(elastioOrganizationDTO.getEvaluationResult().getPaybackPeriodRansomware()).applySymbol("month").applyColor("#9333ea").round(2)));
+
+		DashboardTableItemDTO dashboardItem4 = new DashboardTableItemDTO(1000000L, "");
+		section1.getDashboardItems().add(dashboardItem4);
+		dashboardItem4.getGridItems().add(Arrays.asList(sI("").applyParam("width", "50%").applyParam("border", "none"),
+														sI("Total Annual Savings").applyTextAlign("right").applyHeader(true).applyParam("border", "none"),
+														$I(elastioOrganizationDTO.getEvaluationResult().getTotalAnnualSavings()).applyParam("width", "200px").applyParam("border", "none").applyColor("#00ff00").round(2)));
 
 		return dashboard;
 	}
