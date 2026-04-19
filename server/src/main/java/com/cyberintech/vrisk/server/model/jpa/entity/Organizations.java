@@ -324,6 +324,9 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<OrganizationsMetadata> metadata = new HashSet<>();
 
+	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private Set<OrganizationAssetInfo> assetInfoList = new HashSet<>();
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "package_plan_id")
 	private PackagePlans packagePlan;

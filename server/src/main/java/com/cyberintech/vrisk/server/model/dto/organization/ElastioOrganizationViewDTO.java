@@ -3,6 +3,7 @@ package com.cyberintech.vrisk.server.model.dto.organization;
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformAssetType;
 import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformType;
+import com.cyberintech.vrisk.server.model.jpa.entity.OrganizationAssetInfo;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,6 +11,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Organization View Entity Definition
@@ -40,6 +43,8 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 	private Double amountOfDataInTerabytes;
 	private Double replicationFactor;
 	// ========== ========== ========== ORGANIZATION VARIABLES ========== ========== ========== //
+
+	private List<ElastioOrganizationAssetInfoDTO> assetInfoList;
 
 	@Schema(type = "string", pattern = "yyyy-MM-dd HH:mm:ss", example = "2025-12-31 01:00:00")
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -82,5 +87,7 @@ public class ElastioOrganizationViewDTO extends DTOBase<Organizations> {
 
 		createdAt = entity.getCreatedAt();
 		updatedAt = entity.getUpdatedAt();
+
+		assetInfoList = entity.getAssetInfoList().stream().map(ElastioOrganizationAssetInfoDTO::new).toList();
 	}
 }

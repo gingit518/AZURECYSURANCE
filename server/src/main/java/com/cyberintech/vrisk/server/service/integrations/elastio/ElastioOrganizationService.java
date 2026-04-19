@@ -7,11 +7,13 @@ import com.cyberintech.vrisk.server.model.data.FilteredRequest;
 import com.cyberintech.vrisk.server.model.data.FilteredResponse;
 import com.cyberintech.vrisk.server.model.data.OrganizationFilter;
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
+import com.cyberintech.vrisk.server.model.dto.organization.ElastioOrganizationAssetInfoDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.ElastioOrganizationEvaluationResultDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.ElastioOrganizationViewDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.PackagePlansDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
 import com.cyberintech.vrisk.server.model.jpa.domains.VItemType;
+import com.cyberintech.vrisk.server.model.jpa.entity.OrganizationAssetInfo;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
 import com.cyberintech.vrisk.server.model.jpa.entity.PackagePlans;
 import com.cyberintech.vrisk.server.repository.jpa.OrganizationRepository;
@@ -21,13 +23,11 @@ import com.cyberintech.vrisk.server.service.AuditLogService;
 import com.cyberintech.vrisk.server.service.admin.AdminOrganizationService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Organization management Service. Implements basic Organization logic.
@@ -132,6 +132,49 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 		// applyEntityChanges(newItemDTO, newItem);
 
 		Organizations saveResult = organizationRepository.save(newItem);
+
+		if (CollectionUtils.isNotEmpty(elastioOrganizationDTO.getAssetInfoList())) {
+			List<OrganizationAssetInfo> itemsToRemove = new ArrayList<>(saveResult.getAssetInfoList());
+			List<OrganizationAssetInfo> itemsToSave = new ArrayList<>();
+
+			for (ElastioOrganizationAssetInfoDTO assetInfoDTO : elastioOrganizationDTO.getAssetInfoList()) {
+				boolean isNew = true;
+				for (OrganizationAssetInfo assetInfo : saveResult.getAssetInfoList()) {
+					if (
+						(Objects.equals(assetInfo.getPlatformType(), assetInfoDTO.getPlatformType()) && Objects.equals(assetInfo.getAssetType(), assetInfoDTO.getAssetType()))
+						|| (assetInfo.getUid() != null && assetInfo.getUid().equals(assetInfoDTO.getUid()))
+					) {
+						itemsToRemove.remove(assetInfo);
+						isNew = false;
+
+						assetInfo.setAmountOfDataInTerabytes(assetInfoDTO.getAmountOfDataInTerabytes() != null ? assetInfoDTO.getAmountOfDataInTerabytes() : 0D);
+					}
+				}
+
+				if (isNew) {
+					OrganizationAssetInfo newAssetInfo = new OrganizationAssetInfo();
+					newAssetInfo.setOrganization(saveResult);
+					newAssetInfo.setPlatformType(assetInfoDTO.getPlatformType());
+					newAssetInfo.setAssetType(assetInfoDTO.getAssetType());
+					newAssetInfo.setAmountOfDataInTerabytes(assetInfoDTO.getAmountOfDataInTerabytes() != null ? assetInfoDTO.getAmountOfDataInTerabytes() : 0D);
+					newAssetInfo.setUid(assetInfoDTO.getUid() != null ? assetInfoDTO.getUid() : UUID.randomUUID().toString());
+
+					saveResult.getAssetInfoList().add(newAssetInfo);
+				}
+			}
+
+			if (CollectionUtils.isNotEmpty(itemsToRemove)) {
+				saveResult.getAssetInfoList().removeAll(itemsToRemove);
+			}
+
+			Double amountOfDataInTerabytes = 0D;
+			for (OrganizationAssetInfo assetInfo : saveResult.getAssetInfoList()) {
+				amountOfDataInTerabytes += assetInfo.getAmountOfDataInTerabytes();
+			}
+			saveResult.setAmountOfDataInTerabytes(amountOfDataInTerabytes);
+
+			saveResult = organizationRepository.save(saveResult);
+		}
 
 		// Verify Elastio Package Plan setup
 		verifyElastioPackagePlanSetup(newItem);
