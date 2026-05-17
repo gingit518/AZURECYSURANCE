@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0440.organization_integration_data_json" author="Eugene A. Kalosha">
+		<sql>
+
+			CREATE TABLE organization_integration_data_json
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				code varchar(64) DEFAULT null,
+				scope varchar(64) DEFAULT null,
+				integration_entities jsonb DEFAULT NULL,
+				created_at timestamp NULL DEFAULT now(),
+				updated_at timestamp NULL DEFAULT now(),
+				CONSTRAINT pk_organization_integration_data_json PRIMARY KEY (id)
+				, CONSTRAINT fk_organization_integration_data_json_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_organization_integration_data_json_organization ON organization_integration_data_json (organization_id);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE organization_integration_data_json;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

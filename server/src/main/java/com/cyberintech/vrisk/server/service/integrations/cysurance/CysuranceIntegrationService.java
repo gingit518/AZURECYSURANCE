@@ -1,16 +1,22 @@
 package com.cyberintech.vrisk.server.service.integrations.cysurance;
 
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationRefDTO;
+import com.cyberintech.vrisk.server.model.jpa.entity.OrganizationIntegrationDataJSON;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
+import com.cyberintech.vrisk.server.repository.jpa.OrganizationIntegrationDataJSONRepository;
 import com.cyberintech.vrisk.server.rest.exception.ValidationException;
 import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryRequest;
 import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryResponse;
+import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryResponseDataEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import liquibase.pro.packaged.D;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -19,8 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Cysurance integration Service
@@ -36,6 +41,7 @@ public class CysuranceIntegrationService {
 
 
 	private final RestTemplate restTemplate;
+	private final OrganizationIntegrationDataJSONRepository organizationIntegrationDataJSONRepository;
 
 	@Value("${intgration.cysurance.api-url:https://staging.cysurance.com}")
 	private String cysuranceAPIUrl;
@@ -61,6 +67,7 @@ public class CysuranceIntegrationService {
 
 		// Create Object Mapper to convert String into Object
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 		// Create request header
@@ -87,6 +94,25 @@ public class CysuranceIntegrationService {
 			ResponseEntity<CysuranceQueryResponse> response = restTemplate.postForEntity(url, httpEntity, CysuranceQueryResponse.class);
 			HttpHeaders responseHeader = response.getHeaders();
 			CysuranceQueryResponse responseBody = response.getBody();
+
+			if (responseBody.getData() != null && CollectionUtils.isNotEmpty(responseBody.getData().getEntities())) {
+				organizationIntegrationDataJSONRepository.deleteAllByOrganizationId(organization.getId());
+
+				List<OrganizationIntegrationDataJSON> itemsToSave = new ArrayList<>();
+				for (CysuranceQueryResponseDataEntity cysuranceQueryResponseDataEntity : responseBody.getData().getEntities()) {
+					OrganizationIntegrationDataJSON item = new OrganizationIntegrationDataJSON();
+					item.setOrganizationId(organization.getId());
+					item.setCode(responseBody.getData().getReportingPartnerCode());
+					item.setScope(responseBody.getData().getScope());
+					item.setCreatedAt(new Date());
+					item.setUpdatedAt(new Date());
+					item.setIntegrationEntities(mapper.writeValueAsString(cysuranceQueryResponseDataEntity));
+
+					itemsToSave.add(item);
+				}
+
+				organizationIntegrationDataJSONRepository.saveAll(itemsToSave);
+			}
 
 			log.info("HERE");
 

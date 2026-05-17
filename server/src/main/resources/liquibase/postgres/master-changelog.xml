@@ -463,4 +463,5 @@
 	<include file="classpath:liquibase/postgres/00437.organization_update.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0438.organization_asset_info.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0439.package_plans.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:liquibase/postgres/0440.organization_integration_data_json.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
