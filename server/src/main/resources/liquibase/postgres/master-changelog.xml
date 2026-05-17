@@ -462,4 +462,5 @@
 	<include file="classpath:liquibase/postgres/00436.elastio_quants.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/00437.organization_update.xml" relativeToChangelogFile="false"/>
 	<include file="classpath:liquibase/postgres/0438.organization_asset_info.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:liquibase/postgres/0439.package_plans.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

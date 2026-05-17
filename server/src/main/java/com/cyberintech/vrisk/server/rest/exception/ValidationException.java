@@ -1,9 +1,11 @@
 package com.cyberintech.vrisk.server.rest.exception;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,6 +19,15 @@ import java.util.Map;
 public class ValidationException extends ServerException {
 
 	private Map<String, String> messages;
+
+	public ValidationException(String message) {
+		super(message);
+
+		if (StringUtils.isNotEmpty(message)) {
+			this.messages = new HashMap<>();
+			this.messages.put("ERROR", message);
+		}
+	}
 
 	public ValidationException(Map<String, String> messages) {
 		super("Validation failed", 400);

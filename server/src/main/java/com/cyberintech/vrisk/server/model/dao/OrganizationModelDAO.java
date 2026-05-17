@@ -143,7 +143,7 @@ public class OrganizationModelDAO  implements PageableModelDAO<Organizations, Or
 		String hqlQuery = "SELECT o FROM Organizations o JOIN o.rootParent rpa LEFT JOIN o.parent pa " +
 			"LEFT JOIN FETCH o.country ct LEFT JOIN FETCH o.state st LEFT JOIN FETCH o.city ci " +
 			"LEFT JOIN FETCH o.currency cu LEFT JOIN FETCH o.language ln LEFT JOIN FETCH o.status sa " +
-			"LEFT JOIN FETCH o.owner ow ";
+			"LEFT JOIN FETCH o.owner ow LEFT JOIN FETCH o.packagePlan pp ";
 
 		// Define base count hql Query
 		String hqlQueryCount = "SELECT count(o) FROM Organizations o JOIN o.rootParent rpa ";

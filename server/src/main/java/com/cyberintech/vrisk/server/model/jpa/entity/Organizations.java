@@ -6,6 +6,7 @@ import com.cyberintech.vrisk.server.model.jpa.domains.TwoFactorType;
 import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformAssetType;
 import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformType;
 import com.cyberintech.vrisk.server.model.jpa.entity.common.IMetadataAware;
+import com.cyberintech.vrisk.server.model.jpa.entity.converters.MapOfObjectsConverter;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -350,5 +352,10 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 
 	@Column(name = "replication_factor")
 	private Double replicationFactor;
+
+	@SuppressWarnings("JpaAttributeTypeInspection")
+	@Column(name = "integration_properties")
+	@Convert(converter = MapOfObjectsConverter.class)
+	private Map<String, String> integrationProperties;
 
 }

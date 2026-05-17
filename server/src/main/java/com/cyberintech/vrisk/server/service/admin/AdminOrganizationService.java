@@ -11,6 +11,7 @@ import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.dto.ImportResultDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationDemoDataConfigDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationEditDTO;
+import com.cyberintech.vrisk.server.model.dto.organization.OrganizationRefDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationViewDTO;
 import com.cyberintech.vrisk.server.model.dto.risk_model.RiskModelViewDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
@@ -22,6 +23,7 @@ import com.cyberintech.vrisk.server.rest.exception.BadRequestException;
 import com.cyberintech.vrisk.server.rest.exception.ConflictException;
 import com.cyberintech.vrisk.server.rest.exception.ItemNotFoundException;
 import com.cyberintech.vrisk.server.service.*;
+import com.cyberintech.vrisk.server.service.integrations.cysurance.CysuranceIntegrationService;
 import com.cyberintech.vrisk.server.service.utils.CSVUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -33,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -108,12 +111,21 @@ public class AdminOrganizationService extends OrganizationService {
 
 	@Autowired
 	private UserAssignedVendorRepository userAssignedVendorRepository;
+
+	@Autowired
+	private RestTemplate restTemplate;
+
 	@Autowired
 	private RiskModelRepository riskModelRepository;
+
 	@Autowired
 	private RiskModelConstantRepository riskModelConstantRepository;
+
 	@Autowired
 	private AdminUserService adminUserService;
+
+	@Autowired
+	private CysuranceIntegrationService cysuranceIntegrationService;
 
 	/**
 	 * Get List of Organizations by Type and Filter
@@ -544,6 +556,17 @@ public class AdminOrganizationService extends OrganizationService {
 			});
 		}
 
+		if (itemDTO.getPackagePlan() != null) {
+			if (itemDTO.getIntegrationProperties() != null) {
+				if (entity.getIntegrationProperties() == null) {
+					entity.setIntegrationProperties(new HashMap<>());
+				}
+				for (Map.Entry<String, String> integrationProperty : itemDTO.getIntegrationProperties().entrySet()) {
+					entity.getIntegrationProperties().put(integrationProperty.getKey(), integrationProperty.getValue());
+				}
+			}
+		}
+
 	}
 
 	protected void verifyElastioPackagePlanSetup(Organizations organization) {
@@ -664,6 +687,26 @@ public class AdminOrganizationService extends OrganizationService {
 		} catch (NoSuchElementException exception) {
 			throw new ItemNotFoundException(MessageFormat.format("Organization not found in the system [{0}]", itemId), ApplicationExceptionCodes.ORGANIZATION_NOT_EXISTS);
 		}
+
+		return result;
+	}
+
+	/**
+	 * Get organization Details to edit
+	 *
+	 * @param id
+	 * @return
+	 */
+	@Transactional
+	public OrganizationRefDTO runIntegration(Long id) {
+		Organizations organization = getOrganization(id);
+
+		if (organization.getPackagePlan() != null && PackagePlans.PACKAGE_PLAN_CYSURANCE.equals(organization.getPackagePlan().getId())) {
+			// Process Cysurance Integration
+			return cysuranceIntegrationService.runCysuranceIntegration(organization);
+		}
+
+		OrganizationRefDTO result = new OrganizationRefDTO(organization);
 
 		return result;
 	}

@@ -1,6 +1,7 @@
 package com.cyberintech.vrisk.server.model.dto.organization;
 
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
+import com.cyberintech.vrisk.server.model.dto.ItemViewDTO;
 import com.cyberintech.vrisk.server.model.dto.user.UserRefDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
 import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
@@ -45,6 +46,7 @@ public class OrganizationViewDTO extends DTOBase<Organizations> {
 	private Double recordPriceLimit;
 
 	private Set<OrganizationMetadataRefDTO> entityMetadata;
+	private PackagePlansDTO packagePlan;
 
 	/**
 	 * Entity based constructor
@@ -82,6 +84,7 @@ public class OrganizationViewDTO extends DTOBase<Organizations> {
 		if (entity.getParent() != null) setParent(new OrganizationRefDTO(entity.getParent()));
 		if (entity.getRootParent() != null) setRootParent(new OrganizationRefDTO(entity.getRootParent()));
 		if (entity.getOwner() != null) setOwner(new UserRefDTO(entity.getOwner()));
+		if (entity.getPackagePlan() != null) setPackagePlan(new PackagePlansDTO(entity.getPackagePlan()));
 
 		entityMetadata = Optional.ofNullable(entity.getMetadata())
 			.stream()

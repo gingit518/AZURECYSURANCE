@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0439.package_plans" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO package_plans (id, "name", description) VALUES (3, 'Cysurance', 'Cysurance/RiskQ Risks Analysis Package Plan') ON CONFLICT DO NOTHING;
+			ALTER SEQUENCE package_plans_id_seq RESTART WITH 4;
+
+			INSERT INTO roles (id, name, description) VALUES (926, 'CYSURANCE', 'Cysurance user role.') ON CONFLICT DO NOTHING;
+
+			INSERT INTO package_plan_to_role (package_plan_id, role_id) VALUES (3, 176) ON CONFLICT DO NOTHING;
+			INSERT INTO package_plan_to_role (package_plan_id, role_id) VALUES (3, 188) ON CONFLICT DO NOTHING;
+			INSERT INTO package_plan_to_role (package_plan_id, role_id) VALUES (3, 926) ON CONFLICT DO NOTHING;
+
+			ALTER TABLE organizations ADD COLUMN IF NOT EXISTS integration_properties jsonb DEFAULT NULL;
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DELETE FROM package_plans WHERE id IN (3);
+				DELETE FROM roles WHERE id IN (926);
+				ALTER TABLE organizations DROP COLUMN IF EXISTS integration_properties;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

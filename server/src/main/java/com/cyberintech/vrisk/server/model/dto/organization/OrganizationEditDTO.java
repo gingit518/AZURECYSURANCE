@@ -13,10 +13,7 @@ import com.cyberintech.vrisk.server.model.jpa.entity.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -267,6 +264,9 @@ public class OrganizationEditDTO extends DTOBase<Organizations> {
 	@Schema
 	private String pastSecurityIncidents;
 
+	@Schema
+	private Map<String, String> integrationProperties;
+
 	/**
 	 * Entity based constructor
 	 *
@@ -354,6 +354,7 @@ public class OrganizationEditDTO extends DTOBase<Organizations> {
 
 		isInOfacList = entity.getIsInOfacList();
 		pastSecurityIncidents = entity.getPastSecurityIncidents();
+		integrationProperties = entity.getIntegrationProperties();
 
 		if (entity.getCountry() != null) setCountry(new ItemViewDTO<Country>(entity.getCountry()));
 		if (entity.getCity() != null) setCity(new ItemViewDTO<City>(entity.getCity()));
