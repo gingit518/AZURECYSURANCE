@@ -60,6 +60,7 @@ public class DashboardsConfig {
 	public static final Long DASHBOARD_PRIVACY_IMPACT_ASSESSMENT = 2006L;
 
 	public static final Long DASHBOARD_ELASTIO = 4006L;
+	public static final Long DASHBOARD_CYSURANCE = 4026L;
 
 	public static final Long FFIEC_CAT_CYBER_MATURITY = 16647L;
 

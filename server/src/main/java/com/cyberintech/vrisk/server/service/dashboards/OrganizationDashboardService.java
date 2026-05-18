@@ -579,6 +579,47 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		return dashboard;
 	}
 
+	/**
+	 * Get Dashboard definition
+	 *
+	 * @return Dashboard
+	 */
+	public DashboardDTO getCysuranceDashboardDetails(Long riskModelId, Long dashboardId) {
+
+		boolean isGDPRRegulatoryQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.GDPR_REGULATORY_EXPOSURE);
+		boolean isPrivacyQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.PRIVACY_EXPOSURE);
+
+		// Create breadcrumbs
+		DashboardBreadcrumbsHelper breadcrumbsTop;
+		breadcrumbsTop = DashboardBreadcrumbsHelper.DASHBOARD_EXECUTIVE(clientMessage).add("DASHBOARD_CYBER_INSURANCE", SLCT.DASHBOARDS$CYBER_INSURANCE$NAME, "/private/dashboards/2000");
+
+		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
+		// List<Systems> allSystemsList = systemRepository.getAllByOrganizationAndNotEtl(riskModel.getOrganizationId());
+
+		ElastioOrganizationViewDTO elastioOrganizationDTO = new ElastioOrganizationViewDTO();
+		elastioOrganizationDTO.setId(riskModel.getOrganizationId());
+		elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
+
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Cysurance Dashboard: " + elastioOrganizationDTO.getName(), "RiskQ Cysurance Dashboard", DashboardType.Organization);
+
+		// Create Initial Sections
+		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Cysurance Dashboard: " + elastioOrganizationDTO.getName(), null);
+
+		dashboard.getSections().add(section1);
+
+		// Create breadcrumbs
+		// section1.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_CYBER_INSURANCE_1", SLCT.DASHBOARDS$CYBER_INSURANCE$AGGREGATE_LIMIT$ITEM_NAME, "/private/dashboards/2").getBreadcrumbs());
+		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
+
+		// DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Baseline Scenario");
+		section1.getDashboardItems().add(dashboardItem);
+
+		// dashboardItem.getGridItems().add(Arrays.asList(sI("Current state without Elastio implementation").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
+
+		return dashboard;
+	}
+
 
 	// ========== Cyber Insurance Dashboard ========== //
 

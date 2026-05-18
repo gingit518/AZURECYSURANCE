@@ -341,6 +341,9 @@ public class DashboardService extends DashboardServiceBase {
 		if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ELASTIO)) {
 			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_ELASTIO, "Elastio Dashboard", "Displays ELASTIO Dashboard", DashboardType.None, "fa fa-money", "ELASTIO", dashboardMenuNames));
 		}
+		if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_CYSURANCE)) {
+			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_CYSURANCE, "Cysurance Dashboard", "Displays CYSURANCE Dashboard", DashboardType.None, "fa fa-money", "CYSURANCE", dashboardMenuNames));
+		}
 
 		// items.add(new DashboardRefDTO(DashboardsConfig.FFIEC_CAT_CYBER_MATURITY, "FFIEC CAT Cyber Maturity", "Displays the FFIEC CAT Cyber Maturity", DashboardType.Vendor, "fa fa-question-circle", CFO_DASHBOARD_GROUP, dashboardMenuNames));
 		// items.add(new DashboardRefDTO(DashboardsConfig.FFIEC_CAT_INHERENT_RISK, "FFIEC CAT Inherent Risk", "Displays the FFIEC CAT Inherent Risk", DashboardType.Organization, "fa fa-question-circle", CFO_DASHBOARD_GROUP, dashboardMenuNames));
@@ -483,6 +486,8 @@ public class DashboardService extends DashboardServiceBase {
 			dashboard = questionStatusDashboardService.getFFIECCATInherentRiskDashboardDetails(riskModelId, dashboardState);
 		} else if (DashboardsConfig.DASHBOARD_ELASTIO.equals(dashboardId)) {
 			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ELASTIO, true)) dashboard = organizationDashboardService.getElastioDashboardDetails(riskModelId, dashboardId);
+		} else if (DashboardsConfig.DASHBOARD_CYSURANCE.equals(dashboardId)) {
+			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_CYSURANCE, true)) dashboard = organizationDashboardService.getCysuranceDashboardDetails(riskModelId, dashboardId);
 		}
 
 		/*
