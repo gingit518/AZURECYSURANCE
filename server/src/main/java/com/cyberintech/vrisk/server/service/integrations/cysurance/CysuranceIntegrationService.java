@@ -8,6 +8,7 @@ import com.cyberintech.vrisk.server.rest.exception.ValidationException;
 import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryRequest;
 import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryResponse;
 import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryResponseDataEntity;
+import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryResponseDataEntityRating;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,6 +40,14 @@ import java.util.*;
 @RequiredArgsConstructor
 public class CysuranceIntegrationService {
 
+	// Create Object Mapper to convert String into Object
+	private static final ObjectMapper mapper;
+
+	static {
+		mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	}
 
 	private final RestTemplate restTemplate;
 	private final OrganizationIntegrationDataJSONRepository organizationIntegrationDataJSONRepository;
@@ -64,11 +73,6 @@ public class CysuranceIntegrationService {
 		if (StringUtils.isEmpty(cysuranceEntityIdentifier)) {
 			throw new ValidationException(String.format("CYSURANCE Integration Error. Entity Identifier is not defined for Organization: [%s, %s]", organization.getId(), organization.getName()));
 		}
-
-		// Create Object Mapper to convert String into Object
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 		// Create request header
 		HttpHeaders headers = new HttpHeaders();
@@ -122,6 +126,23 @@ public class CysuranceIntegrationService {
 
 
 		OrganizationRefDTO result = new OrganizationRefDTO(organization);
+
+		return result;
+	}
+
+	public List<CysuranceQueryResponseDataEntityRating> getCysuranceIntegrationsData(Long organizationId) {
+		List<CysuranceQueryResponseDataEntityRating> result = new ArrayList<>();
+
+		List<OrganizationIntegrationDataJSON> items = organizationIntegrationDataJSONRepository.findAllByOrganizationId(organizationId);
+
+		for (OrganizationIntegrationDataJSON cysuranceQueryResponseDataEntity : items) {
+			try {
+				CysuranceQueryResponseDataEntity dataEntity = mapper.readValue(cysuranceQueryResponseDataEntity.getIntegrationEntities(), CysuranceQueryResponseDataEntity.class);
+				result.addAll(dataEntity.getRatings());
+			} catch (JsonProcessingException e) {
+				throw new RuntimeException(e);
+			}
+		}
 
 		return result;
 	}

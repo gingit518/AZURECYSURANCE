@@ -13,13 +13,14 @@ import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRSystemStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.ElastioOrganizationViewDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.*;
 import com.cyberintech.vrisk.server.model.jpa.entity.*;
-import com.cyberintech.vrisk.server.repository.jpa.QuantMetricsRepository;
-import com.cyberintech.vrisk.server.repository.jpa.RegulationRepository;
-import com.cyberintech.vrisk.server.repository.jpa.RiskModelRepository;
-import com.cyberintech.vrisk.server.repository.jpa.SystemRepository;
+import com.cyberintech.vrisk.server.repository.jpa.*;
 import com.cyberintech.vrisk.server.service.*;
+import com.cyberintech.vrisk.server.service.integrations.cysurance.CysuranceIntegrationService;
+import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryResponseDataEntityRating;
 import com.cyberintech.vrisk.server.service.integrations.elastio.ElastioOrganizationService;
 import com.cyberintech.vrisk.server.util.ClientMessage;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -52,6 +53,9 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 
 	@Autowired
 	private ExposureMetricsDashboardService exposureMetricsDashboardService;
+
+	@Autowired
+	private OrganizationRepository organizationRepository;
 
 	@Autowired
 	private PermissionService permissionService;
@@ -92,6 +96,8 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 	@Autowired
 	@Qualifier("organizationService")
 	private OrganizationService organizationService;
+	@Autowired
+	private CysuranceIntegrationService cysuranceIntegrationService;
 
 	/**
 	 * Get Dashboard definition
@@ -594,16 +600,18 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		breadcrumbsTop = DashboardBreadcrumbsHelper.DASHBOARD_EXECUTIVE(clientMessage).add("DASHBOARD_CYBER_INSURANCE", SLCT.DASHBOARDS$CYBER_INSURANCE$NAME, "/private/dashboards/2000");
 
 		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
-		// List<Systems> allSystemsList = systemRepository.getAllByOrganizationAndNotEtl(riskModel.getOrganizationId());
+		Organizations organization = organizationRepository.findById(riskModel.getOrganizationId()).get();
+		// elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
 
-		ElastioOrganizationViewDTO elastioOrganizationDTO = new ElastioOrganizationViewDTO();
-		elastioOrganizationDTO.setId(riskModel.getOrganizationId());
-		elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
 
-		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Cysurance Dashboard: " + elastioOrganizationDTO.getName(), "RiskQ Cysurance Dashboard", DashboardType.Organization);
+		List<CysuranceQueryResponseDataEntityRating> ratingData = cysuranceIntegrationService.getCysuranceIntegrationsData(riskModel.getOrganizationId());
+		Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (o, o2) -> o2));
+		Map<String, List<CysuranceQueryResponseDataEntityRating>> ratingValuesByCategoryMap = ratingData.stream().collect(Collectors.groupingBy(CysuranceQueryResponseDataEntityRating::getCategoryCode));
+
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Cysurance Dashboard: " + organization.getName(), "RiskQ Cysurance Dashboard", DashboardType.Organization);
 
 		// Create Initial Sections
-		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Cysurance Dashboard: " + elastioOrganizationDTO.getName(), null);
+		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Cysurance Dashboard: " + organization.getName(), null);
 
 		dashboard.getSections().add(section1);
 
@@ -612,12 +620,24 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
 
 		// DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
-		DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Baseline Scenario");
+		DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Warranty Control Conditions Compliance");
 		section1.getDashboardItems().add(dashboardItem);
+
+		section1.getDashboardItems().add(DashboardCheckStatustemDTO.of(1L, "Next Gen Antivirus / EDR", 70, 72, null));
+		section1.getDashboardItems().add(DashboardCheckStatustemDTO.of(2L, "MDR / SIEM", 85, 48, "Update to Managed MDR"));
 
 		// dashboardItem.getGridItems().add(Arrays.asList(sI("Current state without Elastio implementation").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
 
 		return dashboard;
+	}
+
+	@Data
+	@AllArgsConstructor
+	public static class CysuranceFactorInfo {
+		private String factorName;
+		private Double value;
+		private Double required;
+		private String measurementUnit;
 	}
 
 

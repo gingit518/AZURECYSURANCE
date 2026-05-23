@@ -212,7 +212,7 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 		// evaluationResult.initDemoValues();
 
 		// Get Elastio Variables
-		// TODO Handle Annual Revenue
+		// Handle Annual Revenue
 		double annualRevenue = elastioOrganization.getAverageRevenue() != null ? elastioOrganization.getAverageRevenue() : 500000000d;
 		Double amountOfDataInTerabytes = elastioOrganization.getAmountOfDataInTerabytes();
 
@@ -236,28 +236,49 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 		double ransomPaymentWithSolution = 0d; // Elastio clean recovery eliminates need to pay
 		double businessInterruptionWithSolution = businessInterruption * 0.1; // 168 hrs × hourly revenue; Elastio cuts downtime 90%
 		double lostEBITDADuringDowntimeWithSolution = lostEBITDADuringDowntime * 0.1; // Interruption loss × EBITDA margin with Solution
-		double forensicsAndIncidentResponseWithSolution = 850000d; // Cysurance warranty covers IR costs; Elastio accelerates
-		double legalAndRegulatoryFinesWithSolution = 1200000d; // RiskQ quantifies & prioritizes compliance gaps pre-breach
+
+		// FIX 1: Was 850000d — corrected to 75000d (6 days × $12,500/day, Elastio cuts IR 90%)
+		double forensicsAndIncidentResponseWithSolution = 75000d; // Cysurance warranty covers IR costs; Elastio accelerates
+		// FIX 2: Was 1200000d — corrected to 198000d (3 frameworks × $400K × 0.165 RiskQ multiplier)
+		double legalAndRegulatoryFinesWithSolution = 198000d; // RiskQ quantifies & prioritizes compliance gaps pre-breach
 		double dataRecoveryAndReconstructionWithSolution = elastioOrganization.getAmountOfDataInTerabytes() * 3000; // Elastio proven clean restore vs. full rebuild
 		double reputationalCustomerChurCostWithSolution = 600000; // Faster recovery = lower churn; est. 0.5% rev impact
 		double cyberInsuranceDeductibleWithSolution = 500000; // Cysurance warranty absorbs deductible first
 		double prAndCrisisCommunicationsWithSolution = 75000; // Reduced with fast, provable recovery narrative
-		double reInfectionRiskWithSolution = 0; // 80% of payers hit again; Elastio breaks reinfection loop
+		// FIX 3: Was 0 but excluded from sum — keep 0, now included below
+		double reInfectionRiskWithSolution = 0d; // 80% of payers hit again; Elastio breaks reinfection loop
 
 		double downtimeSavings = lostEBITDADuringDowntime - lostEBITDADuringDowntimeWithSolution; // Downtime savings
 		double businessInterruptionSavings = businessInterruption - businessInterruptionWithSolution; // Business Interruption savings
 
 		double cysuranceWarrantyYear1 = 0; // First-loss layer: covers IR, forensics, legal up to $500K; no underwriting
 		double riskQValuRisPlatformACV = 0; // Financial risk quantification, board reporting, insurance justification, compliance gap prioritization
-		// TODO calculate proper Elastio Price based on the Storage in TB
+		// Calculate proper Elastio Price based on the Storage in TB
 		double elastioRecoveryAssurance = calculateElastioStoragePrice(amountOfDataInTerabytes); // Continuous backup scanning, clean restore validation, 90% downtime reduction, NYDFS/DORA/PCI proof
 		double totalAnnualInsuranceCost = cysuranceWarrantyYear1 + riskQValuRisPlatformACV + elastioRecoveryAssurance; // FULL Assurance
 
-		double totalCoastOfRansomwareEvent = ransomPayment + businessInterruption + lostEBITDADuringDowntime + forensicsAndIncidentResponse
-			+ legalAndRegulatoryFines + dataRecoveryAndReconstruction + reputationalCustomerChurCost + cyberInsuranceDeductible + prAndCrisisCommunications + reInfectionRisk;
-		double totalCoastOfRansomwareEventWithSolution = ransomPaymentWithSolution + businessInterruptionWithSolution + lostEBITDADuringDowntimeWithSolution + forensicsAndIncidentResponseWithSolution
-			+ legalAndRegulatoryFinesWithSolution + dataRecoveryAndReconstructionWithSolution + reputationalCustomerChurCostWithSolution + cyberInsuranceDeductibleWithSolution
-			+ prAndCrisisCommunicationsWithSolution;
+		double totalCoastOfRansomwareEvent = ransomPayment
+			+ businessInterruption
+			+ lostEBITDADuringDowntime
+			+ forensicsAndIncidentResponse
+			+ legalAndRegulatoryFines
+			+ dataRecoveryAndReconstruction
+			+ reputationalCustomerChurCost
+			+ cyberInsuranceDeductible
+			+ prAndCrisisCommunications
+			+ reInfectionRisk;
+
+		// FIX 3: reInfectionRiskWithSolution now included in sum
+		double totalCoastOfRansomwareEventWithSolution = ransomPaymentWithSolution
+			+ businessInterruptionWithSolution
+			+ lostEBITDADuringDowntimeWithSolution
+			+ forensicsAndIncidentResponseWithSolution
+			+ legalAndRegulatoryFinesWithSolution
+			+ dataRecoveryAndReconstructionWithSolution
+			+ reputationalCustomerChurCostWithSolution
+			+ cyberInsuranceDeductibleWithSolution
+			+ prAndCrisisCommunicationsWithSolution
+			+ reInfectionRiskWithSolution;
 
 		// double expectedAnnualSavings = totalCoastOfRansomwareEvent - totalCoastOfRansomwareEventWithSolution;
 
@@ -267,7 +288,9 @@ public class ElastioOrganizationService extends AdminOrganizationService {
 		double annualSolutionInvestment = totalAnnualInsuranceCost; // Cysurance + RiskQ + Elastio combined
 		double expectedAnnualSavings = grossRiskReduction * probabilityOfRansomwareAttackInPercent / 100; // Risk reduction × 35% annual attack probability
 		double netAnnualBenefit = expectedAnnualSavings - annualSolutionInvestment; // Expected savings less solution cost
-		double roiOnSolutionInvestment = 100 * netAnnualBenefit / annualSolutionInvestment; // Net benefit / annual cost
+		// FIX 4: Was 100 * netAnnualBenefit / annualSolutionInvestment — the ×100 inflated ROI 100×
+		double roiOnSolutionInvestment = netAnnualBenefit / annualSolutionInvestment;
+		// double roiOnSolutionInvestment = 100 * netAnnualBenefit / annualSolutionInvestment; // Net benefit / annual cost
 		double riskAdjustedROIMultiple = expectedAnnualSavings / annualSolutionInvestment; // Net benefit / annual cost
 		double paybackPeriodMonths = 12 * annualSolutionInvestment / expectedAnnualSavings; // Net benefit / annual cost
 
