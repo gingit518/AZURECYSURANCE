@@ -1,7 +1,6 @@
-package com.cyberintech.vrisk.server.model.dto.dashboards.elements;
+package com.cyberintech.vrisk.server.model.dto.dashboards;
 
-import com.cyberintech.vrisk.server.model.dto.dashboards.DashboardDataItemDTO;
-import com.cyberintech.vrisk.server.model.dto.dashboards.DashboardItemDTO;
+import com.cyberintech.vrisk.server.model.dto.dashboards.elements.RichDashboardElementDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.DashboardItemType;
 import com.cyberintech.vrisk.server.service.dashboards.DashboardDataEvaluator;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -6,6 +6,7 @@ import com.cyberintech.vrisk.server.model.dao.GDPRSystemStatusModelDAO;
 import com.cyberintech.vrisk.server.model.dao.PagedResult;
 import com.cyberintech.vrisk.server.model.data.GDPRFilter;
 import com.cyberintech.vrisk.server.model.dto.dashboards.*;
+import com.cyberintech.vrisk.server.model.dto.dashboards.elements.RichDashboardElementDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRArticleStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPROrganizationStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRSystemArticleStatusDTO;
@@ -21,6 +22,7 @@ import com.cyberintech.vrisk.server.service.integrations.elastio.ElastioOrganiza
 import com.cyberintech.vrisk.server.util.ClientMessage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -607,6 +609,7 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		List<CysuranceQueryResponseDataEntityRating> ratingData = cysuranceIntegrationService.getCysuranceIntegrationsData(riskModel.getOrganizationId());
 		Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (o, o2) -> o2));
 		Map<String, List<CysuranceQueryResponseDataEntityRating>> ratingValuesByCategoryMap = ratingData.stream().collect(Collectors.groupingBy(CysuranceQueryResponseDataEntityRating::getCategoryCode));
+		// Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesByCodeMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (t, t2) -> t2));
 
 		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Cysurance Dashboard: " + organization.getName(), "RiskQ Cysurance Dashboard", DashboardType.Organization);
 
@@ -620,15 +623,46 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
 
 		// DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
-		DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Warranty Control Conditions Compliance");
+		DashboardGridLayoutDTO headerBlock = new DashboardGridLayoutDTO(1000005L, "Warranty Control Conditions Compliance");
+		DashboardControlTextBlockDTO controlsPassing = DashboardControlTextBlockDTO.of(1000006L, "Controls Passing", "0", "#3b82f6", "#3b82f6");
+		DashboardControlTextBlockDTO complianceRate = DashboardControlTextBlockDTO.of(1000007L, "Controls Passing", "0", "#959ca7", "#f59e0b");
+		headerBlock.addRowItems(new RichDashboardElementDTO(controlsPassing), new RichDashboardElementDTO(complianceRate));
+		section1.getDashboardItems().add(headerBlock);
+
+		DashboardItemDTO dashboardItem = new DashboardItemDTO(102006L, "Warranty Control Assessments", null, DashboardItemType.Text);
 		section1.getDashboardItems().add(dashboardItem);
 
-		section1.getDashboardItems().add(DashboardCheckStatustemDTO.of(1L, "Next Gen Antivirus / EDR", 70, 72, null));
-		section1.getDashboardItems().add(DashboardCheckStatustemDTO.of(2L, "MDR / SIEM", 85, 48, "Update to Managed MDR"));
+		CysuranceFactorResult factorsResult = new CysuranceFactorResult();
+
+		// "EDR-P"
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("NGAV-P"), "Next Gen Antivirus / EDR", 70, "Deploy an endpoint protection platform such as CrowdStrike Falcon, SentinelOne, or Microsoft Defender for Endpoint across all devices. Ensure definitions and agent versions are kept current via auto-update policies. Verify coverage with an asset inventory — no unmanaged endpoints.");
+		// MDR-P
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("SIEM-P"), "MDR / SIEM", 60, "Engage a Managed Detection and Response provider or deploy a SIEM (e.g., Splunk, Microsoft Sentinel, Rapid7 InsightIDR). At minimum, centralize log collection from endpoints, firewalls, and identity systems with 24/7 alerting. If budget is limited, an MDR service is faster to stand up than a self-managed SIEM.");
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MFA-P"), "MFA (Multi Factor Authentication)", 80, "Enable MFA on all email accounts (Microsoft 365, Google Workspace) immediately — this is the highest-ROI control. Use an authenticator app (not SMS where possible). Extend MFA to VPN, remote access, and any admin consoles. Enforce via Conditional Access or equivalent policy so it can't be bypassed.");
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("BACK-P"), "Backups", 85, "Implement the 3-2-1 rule: 3 copies, 2 different media, 1 offsite. Backups must be immutable (write-once, cannot be deleted or encrypted by ransomware). Test restores on a regular schedule — an untested backup is not a backup. Solutions: Veeam, Acronis, or cloud-native options like AWS Backup.");
+		// Data Privacy and Compliance
+		// applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MFA-P"), "Data Privacy Compliance / Encryption", 80, "");
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("PATCH-P"), "Patch Updates", 75, "Stand up a patch management process with a hard SLA: critical/high patches applied within 60 days of release (per the warranty condition), ideally sooner for critical CVEs. Tools: Microsoft WSUS/Intune, Automox, Qualys Patch Management, or NinjaRMM. Run monthly vulnerability scans to verify compliance and catch missed patches.");
+		// applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MFA-P"), "Security Awareness Training", 80, "");
+		// applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MFA-P"), "Invoice and Wire Change Procedures", 80, "");
 
 		// dashboardItem.getGridItems().add(Arrays.asList(sI("Current state without Elastio implementation").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
 
+		controlsPassing.setTitle(String.format("%s of %s", factorsResult.getControlsPassing(), factorsResult.getControlsTotal()));
+		complianceRate.setTitle(factorsResult.getComplianceRate() + "%");
+		complianceRate.setTitleColor(factorsResult.getComplianceRate() > 75 ? "#22c55e" : "#f59e0b");
+
 		return dashboard;
+	}
+
+	private void applyDashboardCheckAction(DashboardSectionDTO section, CysuranceFactorResult factorsResult, CysuranceQueryResponseDataEntityRating currentValue, String label, Integer requirement, String defaultAction) {
+		if (currentValue != null) {
+			Integer valueInteger = (Integer) currentValue.getValue();
+			section.getDashboardItems().add(DashboardCheckStatusItemDTO.of(1L, label, requirement, valueInteger, (valueInteger < requirement ? defaultAction : null)));
+
+			factorsResult.setControlsPassing(factorsResult.getControlsPassing() + (valueInteger < requirement ? 0 : 1));
+			factorsResult.setControlsTotal(factorsResult.getControlsTotal() + 1);
+		}
 	}
 
 	@Data
@@ -638,6 +672,21 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		private Double value;
 		private Double required;
 		private String measurementUnit;
+	}
+
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class CysuranceFactorResult {
+		private Integer controlsPassing = 0;
+		private Integer controlsTotal = 0;
+		public Integer getComplianceRate() {
+			if (controlsTotal.equals(0)) {
+				return 0;
+			}
+
+			return (controlsPassing * 100) / controlsTotal;
+		}
 	}
 
 

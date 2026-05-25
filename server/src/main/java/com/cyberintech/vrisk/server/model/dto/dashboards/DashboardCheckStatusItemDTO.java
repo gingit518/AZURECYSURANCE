@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class DashboardCheckStatustemDTO extends DashboardItemDTO {
+public class DashboardCheckStatusItemDTO extends DashboardItemDTO {
 
 	@Schema
 	private Integer requirement;
@@ -28,18 +28,18 @@ public class DashboardCheckStatustemDTO extends DashboardItemDTO {
 	/**
 	 * Default constructor
 	 */
-	public DashboardCheckStatustemDTO() {
+	public DashboardCheckStatusItemDTO() {
 		super();
 		setDashboardItemType(DashboardItemType.CheckStatus);
 	}
 
 	@java.beans.ConstructorProperties({"id", "name"})
-	public DashboardCheckStatustemDTO(Long id, String name) {
+	public DashboardCheckStatusItemDTO(Long id, String name) {
 		super(id, name, null, DashboardItemType.CheckStatus);
 	}
 
-	public static DashboardCheckStatustemDTO of(Long id, String name, Integer requirement, Integer value, String action) {
-		DashboardCheckStatustemDTO result = new DashboardCheckStatustemDTO(id, name);
+	public static DashboardCheckStatusItemDTO of(Long id, String name, Integer requirement, Integer value, String action) {
+		DashboardCheckStatusItemDTO result = new DashboardCheckStatusItemDTO(id, name);
 		result.setRequirement(requirement);
 		result.setValue(value);
 		result.setAction(action);
