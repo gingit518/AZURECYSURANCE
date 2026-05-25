@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * Dashboard Item Definition
  *
@@ -21,6 +23,9 @@ public class DashboardControlTextBlockDTO extends DashboardItemDTO {
 
 	@Schema
 	private String label;
+
+	@Schema
+	private List<String> footerLines;
 
 	@Schema
 	private String borderColor;
@@ -44,11 +49,16 @@ public class DashboardControlTextBlockDTO extends DashboardItemDTO {
 	}
 
 	public static DashboardControlTextBlockDTO of(Long id, String label, String title, String borderColor, String titleColor) {
+		return of(id, label, title, borderColor, titleColor, null);
+	}
+
+	public static DashboardControlTextBlockDTO of(Long id, String label, String title, String borderColor, String titleColor, List<String> footerLines) {
 		DashboardControlTextBlockDTO result = new DashboardControlTextBlockDTO(id, label);
 		result.setLabel(label);
 		result.setTitle(title);
 		result.setBorderColor(borderColor);
 		result.setTitleColor(titleColor);
+		result.setFooterLines(footerLines);
 
 		return result;
 	}

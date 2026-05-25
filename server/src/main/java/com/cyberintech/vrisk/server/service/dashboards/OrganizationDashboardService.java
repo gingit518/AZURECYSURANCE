@@ -611,7 +611,7 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		Map<String, List<CysuranceQueryResponseDataEntityRating>> ratingValuesByCategoryMap = ratingData.stream().collect(Collectors.groupingBy(CysuranceQueryResponseDataEntityRating::getCategoryCode));
 		// Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesByCodeMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (t, t2) -> t2));
 
-		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Cysurance Dashboard: " + organization.getName(), "RiskQ Cysurance Dashboard", DashboardType.Organization);
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "Cysurance Warranty Requirement: " + organization.getName(), "Cysurance Warranty Requirement", DashboardType.Organization);
 
 		// Create Initial Sections
 		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Cysurance Dashboard: " + organization.getName(), null);
@@ -655,6 +655,7 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		controlsPassing.setTitle(String.format("%s of %s", factorsResult.getControlsPassing(), factorsResult.getControlsTotal()));
 		complianceRate.setTitle(factorsResult.getComplianceRate() + "%");
 		complianceRate.setTitleColor(factorsResult.getComplianceRate() > 75 ? "#22c55e" : "#f59e0b");
+		complianceRate.setFooterLines(List.of("New footer text line"));
 
 		return dashboard;
 	}
