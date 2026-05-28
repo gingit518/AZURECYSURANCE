@@ -6,18 +6,23 @@ import com.cyberintech.vrisk.server.model.dao.GDPRSystemStatusModelDAO;
 import com.cyberintech.vrisk.server.model.dao.PagedResult;
 import com.cyberintech.vrisk.server.model.data.GDPRFilter;
 import com.cyberintech.vrisk.server.model.dto.dashboards.*;
+import com.cyberintech.vrisk.server.model.dto.dashboards.elements.RichDashboardElementDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRArticleStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPROrganizationStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRSystemArticleStatusDTO;
 import com.cyberintech.vrisk.server.model.dto.gdpr.GDPRSystemStatusDTO;
+import com.cyberintech.vrisk.server.model.dto.organization.ElastioOrganizationViewDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.*;
 import com.cyberintech.vrisk.server.model.jpa.entity.*;
-import com.cyberintech.vrisk.server.repository.jpa.QuantMetricsRepository;
-import com.cyberintech.vrisk.server.repository.jpa.RegulationRepository;
-import com.cyberintech.vrisk.server.repository.jpa.RiskModelRepository;
-import com.cyberintech.vrisk.server.repository.jpa.SystemRepository;
+import com.cyberintech.vrisk.server.repository.jpa.*;
 import com.cyberintech.vrisk.server.service.*;
+import com.cyberintech.vrisk.server.service.integrations.cysurance.CysuranceIntegrationService;
+import com.cyberintech.vrisk.server.service.integrations.cysurance.dto.CysuranceQueryResponseDataEntityRating;
+import com.cyberintech.vrisk.server.service.integrations.elastio.ElastioOrganizationService;
 import com.cyberintech.vrisk.server.util.ClientMessage;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -50,6 +55,9 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 
 	@Autowired
 	private ExposureMetricsDashboardService exposureMetricsDashboardService;
+
+	@Autowired
+	private OrganizationRepository organizationRepository;
 
 	@Autowired
 	private PermissionService permissionService;
@@ -85,8 +93,13 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 	private GDPRArticleStatusService gdprArticleStatusService;
 
 	@Autowired
+	private ElastioOrganizationService elastioOrganizationService;
+
+	@Autowired
 	@Qualifier("organizationService")
 	private OrganizationService organizationService;
+	@Autowired
+	private CysuranceIntegrationService cysuranceIntegrationService;
 
 	/**
 	 * Get Dashboard definition
@@ -248,7 +261,7 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 			rowItems.add(sI(regulations));
 			rowItems.add(sI(industries));
 			rowItems.add(sI(exposureMetricResult.getFormulaBuilder().getFormulaString()));
-			rowItems.add($I(exposureMetricResult.getResult(), "$").round(0).applyDrilldown(drilldown));
+			rowItems.add($I(exposureMetricResult.getResult(), exposureMetricResult.getMeasurementUnit("$")).round(0).applyDrilldown(drilldown));
 			dashboardItem4.getGridItems().add(rowItems);
 		}
 		section4.getDashboardItems().add(dashboardItem4);
@@ -508,6 +521,275 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 			}
 		}
 	}
+
+
+	/**
+	 * Get Dashboard definition
+	 *
+	 * @return Dashboard
+	 */
+	public DashboardDTO getElastioDashboardDetails(Long riskModelId, Long dashboardId) {
+
+		boolean isGDPRRegulatoryQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.GDPR_REGULATORY_EXPOSURE);
+		boolean isPrivacyQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.PRIVACY_EXPOSURE);
+
+		// Create breadcrumbs
+		DashboardBreadcrumbsHelper breadcrumbsTop;
+		breadcrumbsTop = DashboardBreadcrumbsHelper.DASHBOARD_EXECUTIVE(clientMessage).add("DASHBOARD_CYBER_INSURANCE", SLCT.DASHBOARDS$CYBER_INSURANCE$NAME, "/private/dashboards/2000");
+
+		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
+		// List<Systems> allSystemsList = systemRepository.getAllByOrganizationAndNotEtl(riskModel.getOrganizationId());
+
+		ElastioOrganizationViewDTO elastioOrganizationDTO = new ElastioOrganizationViewDTO();
+		elastioOrganizationDTO.setId(riskModel.getOrganizationId());
+		elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
+
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "RiskQ Elastio Dashboard: " + elastioOrganizationDTO.getName(), "RiskQ Elastio Dashboard", DashboardType.Organization);
+
+		// Create Initial Sections
+		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Elastio Dashboard: " + elastioOrganizationDTO.getName(), null);
+
+		dashboard.getSections().add(section1);
+
+		// Create breadcrumbs
+		// section1.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_CYBER_INSURANCE_1", SLCT.DASHBOARDS$CYBER_INSURANCE$AGGREGATE_LIMIT$ITEM_NAME, "/private/dashboards/2").getBreadcrumbs());
+		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
+
+		// DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Baseline Scenario");
+		section1.getDashboardItems().add(dashboardItem);
+
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Current state without Elastio implementation").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
+
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Risk Exposure").applyTextAlign("right").applyHeader(true).applyColspan(2L)));
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Baseline Ransomware Exposure").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getBaselineRansomwareExposure()).applyColor("#ff0000").round(0)));
+		dashboardItem.getGridItems().add(Arrays.asList(sI("Baseline Downtime Loss").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getBaselineDowntimeLoss()).applyColor("#ff0000").round(0)));
+
+		DashboardTableItemDTO dashboardItem2 = new DashboardTableItemDTO(1000000L, "ROI & Payback Analysis");
+		section1.getDashboardItems().add(dashboardItem2);
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Financial Impact with Elastio Implementation").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Cost Savings").applyTextAlign("right").applyHeader(true).applyColspan(2L)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Downtime Loss Post Elastio").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getDowntimeLossPostElastio()).applyColor("#00ff00").round(0)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("Downtime Savings").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getDowntimeSavings()).applyColor("#00ff00").round(0)));
+		dashboardItem2.getGridItems().add(Arrays.asList(sI("ROI Ransomware").applyTextAlign("left").applyHeader(true), $I(elastioOrganizationDTO.getEvaluationResult().getRoiRansomware()).applySymbol("%").round(2)));
+
+		DashboardTableItemDTO dashboardItem3 = new DashboardTableItemDTO(1000000L, "");
+		section1.getDashboardItems().add(dashboardItem3);
+		dashboardItem3.getGridItems().add(Arrays.asList(sI("Ransomware").applyTextAlign("right").applyHeader(true).applyColspan(2L)));
+		dashboardItem3.getGridItems().add(Arrays.asList(sI("Payback Period Ransomware").applyTextAlign("left").applyHeader(true), sI(elastioOrganizationDTO.getEvaluationResult().getPaybackPeriodRansomware()).applySymbol("month").applyColor("#9333ea").round(2)));
+
+		DashboardTableItemDTO dashboardItem4 = new DashboardTableItemDTO(1000000L, "");
+		section1.getDashboardItems().add(dashboardItem4);
+		dashboardItem4.getGridItems().add(Arrays.asList(sI("").applyParam("width", "50%").applyParam("border", "none"),
+														sI("Total Annual Savings").applyTextAlign("right").applyHeader(true).applyParam("border", "none"),
+														$I(elastioOrganizationDTO.getEvaluationResult().getTotalAnnualSavings()).applyParam("width", "200px").applyParam("border", "none").applyColor("#00ff00").round(2)));
+
+		return dashboard;
+	}
+
+	/**
+	 * Get Dashboard definition
+	 *
+	 * @return Dashboard
+	 */
+	public DashboardDTO getCysuranceDashboardDetails(Long riskModelId, Long dashboardId) {
+
+		boolean isGDPRRegulatoryQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.GDPR_REGULATORY_EXPOSURE);
+		boolean isPrivacyQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.PRIVACY_EXPOSURE);
+
+		// Create breadcrumbs
+		DashboardBreadcrumbsHelper breadcrumbsTop;
+		breadcrumbsTop = DashboardBreadcrumbsHelper.DASHBOARD_EXECUTIVE(clientMessage).add("DASHBOARD_CYBER_INSURANCE", SLCT.DASHBOARDS$CYBER_INSURANCE$NAME, "/private/dashboards/2000");
+
+		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
+		Organizations organization = organizationRepository.findById(riskModel.getOrganizationId()).get();
+		// elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
+
+
+		List<CysuranceQueryResponseDataEntityRating> ratingData = cysuranceIntegrationService.getCysuranceIntegrationsData(riskModel.getOrganizationId());
+		Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (o, o2) -> o2));
+		Map<String, List<CysuranceQueryResponseDataEntityRating>> ratingValuesByCategoryMap = ratingData.stream().collect(Collectors.groupingBy(CysuranceQueryResponseDataEntityRating::getCategoryCode));
+		// Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesByCodeMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (t, t2) -> t2));
+
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "Cysurance Warranty Requirement: " + organization.getName(), "Cysurance Warranty Requirement", DashboardType.Organization);
+
+		// Create Initial Sections
+		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "RiskQ Cysurance Dashboard: " + organization.getName(), null);
+
+		dashboard.getSections().add(section1);
+
+		// Create breadcrumbs
+		// section1.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_CYBER_INSURANCE_1", SLCT.DASHBOARDS$CYBER_INSURANCE$AGGREGATE_LIMIT$ITEM_NAME, "/private/dashboards/2").getBreadcrumbs());
+		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
+
+		// DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		DashboardGridLayoutDTO headerBlock = new DashboardGridLayoutDTO(1000005L, "Warranty Control Conditions Compliance");
+		DashboardControlTextBlockDTO controlsPassing = DashboardControlTextBlockDTO.of(1000006L, "Controls Passing", "0", "#3b82f6", "#3b82f6");
+		DashboardControlTextBlockDTO complianceRate = DashboardControlTextBlockDTO.of(1000007L, "Controls Passing", "0", "#959ca7", "#f59e0b");
+		headerBlock.addRowItems(new RichDashboardElementDTO(controlsPassing), new RichDashboardElementDTO(complianceRate));
+		section1.getDashboardItems().add(headerBlock);
+
+		DashboardItemDTO dashboardItem = new DashboardItemDTO(102006L, "Warranty Control Assessments", null, DashboardItemType.Text);
+		section1.getDashboardItems().add(dashboardItem);
+
+		CysuranceFactorResult factorsResult = new CysuranceFactorResult();
+
+		// applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("NGAV-P"), "Next Gen Antivirus / EDR", 70, "Deploy an endpoint protection platform such as CrowdStrike Falcon, SentinelOne, or Microsoft Defender for Endpoint across all devices. Ensure definitions and agent versions are kept current via auto-update policies. Verify coverage with an asset inventory — no unmanaged endpoints.");
+		// applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("SIEM-P"), "MDR / SIEM", 60, "Engage a Managed Detection and Response provider or deploy a SIEM (e.g., Splunk, Microsoft Sentinel, Rapid7 InsightIDR). At minimum, centralize log collection from endpoints, firewalls, and identity systems with 24/7 alerting. If budget is limited, an MDR service is faster to stand up than a self-managed SIEM.");
+
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("EDR-P"), "EDR", 70, "Deploy an endpoint protection platform such as CrowdStrike Falcon, SentinelOne, or Microsoft Defender for Endpoint across all devices. Ensure definitions and agent versions are kept current via auto-update policies. Verify coverage with an asset inventory — no unmanaged endpoints.");
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("NGAV-P"), "Next Gen Antivirus", 70, "Deploy an endpoint protection platform such as CrowdStrike Falcon, SentinelOne, or Microsoft Defender for Endpoint across all devices. Ensure definitions and agent versions are kept current via auto-update policies. Verify coverage with an asset inventory — no unmanaged endpoints.");
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MDR-P"), "MDR", 60, "Engage a Managed Detection and Response provider. At minimum, centralize log collection from endpoints, firewalls, and identity systems with 24/7 alerting. If budget is limited, an MDR service is faster to stand up than a self-managed SIEM.");
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("SIEM-P"), "SIEM", 60, "Deploy a SIEM (e.g., Splunk, Microsoft Sentinel, Rapid7 InsightIDR). At minimum, centralize log collection from endpoints, firewalls, and identity systems with 24/7 alerting. If budget is limited, an MDR service is faster to stand up than a self-managed SIEM.");
+
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MFA-P"), "MFA (Multi Factor Authentication)", 80, "Enable MFA on all email accounts (Microsoft 365, Google Workspace) immediately — this is the highest-ROI control. Use an authenticator app (not SMS where possible). Extend MFA to VPN, remote access, and any admin consoles. Enforce via Conditional Access or equivalent policy so it can't be bypassed.");
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("BACK-P"), "Backups", 85, "Implement the 3-2-1 rule: 3 copies, 2 different media, 1 offsite. Backups must be immutable (write-once, cannot be deleted or encrypted by ransomware). Test restores on a regular schedule — an untested backup is not a backup. Solutions: Veeam, Acronis, or cloud-native options like AWS Backup.");
+		// Data Privacy and Compliance
+		// applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MFA-P"), "Data Privacy Compliance / Encryption", 80, "");
+		applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("PATCH-P"), "Patch Updates", 75, "Stand up a patch management process with a hard SLA: critical/high patches applied within 60 days of release (per the warranty condition), ideally sooner for critical CVEs. Tools: Microsoft WSUS/Intune, Automox, Qualys Patch Management, or NinjaRMM. Run monthly vulnerability scans to verify compliance and catch missed patches.");
+		// applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MFA-P"), "Security Awareness Training", 80, "");
+		// applyDashboardCheckAction(section1, factorsResult, ratingValuesMap.get("MFA-P"), "Invoice and Wire Change Procedures", 80, "");
+
+		// dashboardItem.getGridItems().add(Arrays.asList(sI("Current state without Elastio implementation").applyTextAlign("left").applyHeader(true).applyColspan(2L)));
+
+		controlsPassing.setTitle(String.format("%s of %s", factorsResult.getControlsPassing(), factorsResult.getControlsTotal()));
+		complianceRate.setTitle(factorsResult.getComplianceRate() + "%");
+		complianceRate.setTitleColor(factorsResult.getComplianceRate() > 75 ? "#22c55e" : "#f59e0b");
+		complianceRate.setFooterLines(List.of("New footer text line"));
+
+		return dashboard;
+	}
+
+	/**
+	 * Get Dashboard definition
+	 *
+	 * @return Dashboard
+	 */
+	public DashboardDTO getCysuranceFinancialExposureDashboardDetails(Long riskModelId, Long dashboardId) {
+
+		boolean isGDPRRegulatoryQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.GDPR_REGULATORY_EXPOSURE);
+		boolean isPrivacyQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.PRIVACY_EXPOSURE);
+
+		// Create breadcrumbs
+		DashboardBreadcrumbsHelper breadcrumbsTop;
+		breadcrumbsTop = DashboardBreadcrumbsHelper.DASHBOARD_EXECUTIVE(clientMessage).add("DASHBOARD_CYBER_INSURANCE", SLCT.DASHBOARDS$CYBER_INSURANCE$NAME, "/private/dashboards/2000");
+
+		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
+		Organizations organization = organizationRepository.findById(riskModel.getOrganizationId()).get();
+		// elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
+
+		List<CysuranceQueryResponseDataEntityRating> ratingData = cysuranceIntegrationService.getCysuranceIntegrationsData(riskModel.getOrganizationId());
+		Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (o, o2) -> o2));
+		Map<String, List<CysuranceQueryResponseDataEntityRating>> ratingValuesByCategoryMap = ratingData.stream().collect(Collectors.groupingBy(CysuranceQueryResponseDataEntityRating::getCategoryCode));
+		// Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesByCodeMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (t, t2) -> t2));
+
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "Financial Exposure and Breach Cost Scenarios: " + organization.getName(), "Cysurance Warranty Requirement", DashboardType.Organization);
+
+		// Create Initial Sections
+		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "Financial Exposure and Breach Cost Scenarios", null);
+
+		dashboard.getSections().add(section1);
+
+		// Create breadcrumbs
+		// section1.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_CYBER_INSURANCE_1", SLCT.DASHBOARDS$CYBER_INSURANCE$AGGREGATE_LIMIT$ITEM_NAME, "/private/dashboards/2").getBreadcrumbs());
+		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
+
+		Double totalDataAtRisk = 250000D;
+		Double averageCostOfRecord = 8.5D;
+		Double baseLossIfBreached = 2100000D;
+		Double annualLossExpectancy = baseLossIfBreached * 0.05;
+
+		// DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		// DashboardGridLayoutDTO headerBlock = new DashboardGridLayoutDTO(1000005L, "Warranty Control Conditions Compliance");
+		DashboardGridLayoutDTO headerBlock = new DashboardGridLayoutDTO(1000005L, null);
+		// DashboardControlTextBlockDTO controlsPassing = DashboardControlTextBlockDTO.of(1000006L, "Controls Passing", "0", "#3b82f6", "#3b82f6");
+		DashboardControlTextBlockDTO totalDataAtRiskBlock = DashboardControlTextBlockDTO.of(1000007L, "Total Data at Risk", String.format("%,.0f", totalDataAtRisk), "#959ca7", "#f59e0b", List.of("Customer records, payment data, employee PII"));
+		DashboardControlTextBlockDTO averageCostOfRecordBlock = DashboardControlTextBlockDTO.of(1000007L, "Avg Cost/Record", String.format("$%,.0f", averageCostOfRecord), "#959ca7", "#f59e0b", List.of("Industry benchmark for financial services"));
+		DashboardControlTextBlockDTO baseLossIfBreachedBlock = DashboardControlTextBlockDTO.of(1000007L, "Base Loss if Breached", String.format("$%,.0f", baseLossIfBreached), "#959ca7", "#f59e0b", List.of("Industry benchmark for financial services"));
+		DashboardControlTextBlockDTO annualLossExpectancyBlock = DashboardControlTextBlockDTO.of(1000007L, "Annual Loss Expectancy", String.format("$%,.0f", annualLossExpectancy), "#959ca7", "#f59e0b", List.of("Base Loss * 5% probability"));
+		headerBlock.addRowItems(new RichDashboardElementDTO(totalDataAtRiskBlock), new RichDashboardElementDTO(averageCostOfRecordBlock), new RichDashboardElementDTO(baseLossIfBreachedBlock), new RichDashboardElementDTO(annualLossExpectancyBlock));
+		section1.getDashboardItems().add(headerBlock);
+
+		DashboardChartItemDTO pieChartItem = new DashboardChartItemDTO(1L, "Breach Cost Breakdown by Component", "", DashboardItemType.PieChart);
+		pieChartItem.setXAxis("Scores");
+		pieChartItem.setYAxis("Component");
+		pieChartItem.setIncludeLegend(true);
+		pieChartItem.getParameters().put("isSortable", false);
+		List<List<DashboardDataItemDTO>> chartItemsData = List.of(
+			List.of(sI("Detection").applyBackgroundColor("#3b82f6"), $I(8D, "%").round(2)),
+			List.of(sI("Containment").applyBackgroundColor("#06b6d4"), $I(20D, "%").round(2)),
+			List.of(sI("Notification").applyBackgroundColor("#8b5cf6"), $I(15D, "%").round(2)),
+			List.of(sI("Regulatory").applyBackgroundColor("#f97316"), $I(12D, "%").round(2)),
+			List.of(sI("Business Loss").applyBackgroundColor("#ef4444"), $I(35D, "%").round(2)),
+			List.of(sI("Recovery").applyBackgroundColor("#10b981"), $I(10D, "%").round(2))
+		);
+		for (List<DashboardDataItemDTO> chartItems : chartItemsData) {
+			pieChartItem.getGridItems().add(chartItems);
+		}
+		section1.getDashboardItems().add(pieChartItem);
+
+		DashboardChartItemDTO barChartItem = new DashboardChartItemDTO(1L, "Financial Impact by Breach Size", "", DashboardItemType.BarChart);
+		barChartItem.setXAxis("Financial Impact");
+		barChartItem.setYAxis("Breach Size");
+		barChartItem.getParameters().put("isSortable", false);
+		List<List<DashboardDataItemDTO>> barChartItemsData = List.of(
+			List.of(sI("100K"), sI("1000000")),
+			List.of(sI("250K"), sI("2000000")),
+			List.of(sI("500K"), sI("4200000")),
+			List.of(sI("1M"), sI("8500000"))
+		);
+		for (List<DashboardDataItemDTO> chartItems : barChartItemsData) {
+			barChartItem.getGridItems().add(chartItems);
+		}
+		section1.getDashboardItems().add(barChartItem);
+
+		DashboardItemDTO dashboardItem = new DashboardItemDTO(102006L, "Warranty Control Assessments", null, DashboardItemType.Text);
+		section1.getDashboardItems().add(dashboardItem);
+
+		/*
+		controlsPassing.setTitle(String.format("%s of %s", factorsResult.getControlsPassing(), factorsResult.getControlsTotal()));
+		complianceRateBlock.setTitle(factorsResult.getComplianceRate() + "%");
+		complianceRateBlock.setTitleColor(factorsResult.getComplianceRate() > 75 ? "#22c55e" : "#f59e0b");
+		complianceRateBlock.setFooterLines(List.of("New footer text line"));
+		*/
+
+		return dashboard;
+	}
+
+	private void applyDashboardCheckAction(DashboardSectionDTO section, CysuranceFactorResult factorsResult, CysuranceQueryResponseDataEntityRating currentValue, String label, Integer requirement, String defaultAction) {
+		if (currentValue != null) {
+			Integer valueInteger = (Integer) currentValue.getValue();
+			section.getDashboardItems().add(DashboardCheckStatusItemDTO.of(1L, label, requirement, valueInteger, (valueInteger < requirement ? defaultAction : null)));
+
+			factorsResult.setControlsPassing(factorsResult.getControlsPassing() + (valueInteger < requirement ? 0 : 1));
+			factorsResult.setControlsTotal(factorsResult.getControlsTotal() + 1);
+		}
+	}
+
+	@Data
+	@AllArgsConstructor
+	public static class CysuranceFactorInfo {
+		private String factorName;
+		private Double value;
+		private Double required;
+		private String measurementUnit;
+	}
+
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class CysuranceFactorResult {
+		private Integer controlsPassing = 0;
+		private Integer controlsTotal = 0;
+		public Integer getComplianceRate() {
+			if (controlsTotal.equals(0)) {
+				return 0;
+			}
+
+			return (controlsPassing * 100) / controlsTotal;
+		}
+	}
+
 
 	// ========== Cyber Insurance Dashboard ========== //
 

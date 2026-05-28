@@ -25,6 +25,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 @EqualsAndHashCode(of = {"id"})
 public class PackagePlans {
 
+	public static final Long PACKAGE_PLAN_CCPA = 1L;
+	public static final Long PACKAGE_PLAN_ELASTIO = 2L;
+	public static final Long PACKAGE_PLAN_CYSURANCE = 3L;
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

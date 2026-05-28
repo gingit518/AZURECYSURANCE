@@ -1,5 +1,6 @@
 package com.cyberintech.vrisk.server.security;
 
+import com.cyberintech.vrisk.server.model.jpa.domains.RoleType;
 import com.cyberintech.vrisk.server.rest.exception.ForbiddenException;
 import com.cyberintech.vrisk.server.service.PermissionService;
 import com.cyberintech.vrisk.server.service.UserService;
@@ -34,6 +35,10 @@ public class CustomSecurityService {
 	 */
 	public boolean isSuperAdmin() {
 		return userService.isSuperAdmin();
+	}
+
+	public boolean hasRole(RoleType role) {
+		return userService.hasRole(role) || userService.isSuperAdmin();
 	}
 
 	public boolean hasPermission(String action) {

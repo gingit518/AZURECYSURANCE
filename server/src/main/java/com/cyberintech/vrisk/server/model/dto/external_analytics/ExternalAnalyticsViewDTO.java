@@ -2,19 +2,14 @@ package com.cyberintech.vrisk.server.model.dto.external_analytics;
 
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.dto.document.DocumentDTO;
-import com.cyberintech.vrisk.server.model.dto.organization.OrganizationRefDTO;
-import com.cyberintech.vrisk.server.model.dto.role.RoleListDTO;
-import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsQlikParameters;
+import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsParameterType;
 import com.cyberintech.vrisk.server.model.jpa.domains.ExternalAnalyticsType;
 import com.cyberintech.vrisk.server.model.jpa.entity.ExternalAnalytics;
 import com.cyberintech.vrisk.server.model.jpa.entity.ExternalAnalyticsParameters;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * External Analytics Entity Definition
@@ -70,7 +65,7 @@ public class ExternalAnalyticsViewDTO extends DTOBase<ExternalAnalytics> {
 		if (entity.getLogoDocument() != null) setLogoDocument(new DocumentDTO(entity.getLogoDocument(), true));
 
 		if (ExternalAnalyticsType.DASHBOARD.equals(externalAnalyticsType)) {
-			Optional<ExternalAnalyticsParameters> dashboardIdOpt = entity.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.DASHBOARD_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+			Optional<ExternalAnalyticsParameters> dashboardIdOpt = entity.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.DASHBOARD_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
 			if (dashboardIdOpt.isPresent()) {
 				try {
 					dashboardId = Long.parseLong(dashboardIdOpt.get().getValue().trim());

@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +30,6 @@ import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Data Export Controller
@@ -94,6 +92,8 @@ public class DataExportController {
 	private QuantMetricsService quantMetricsService;
 	@Autowired
 	private RiskModelRepository riskModelRepository;
+	@Autowired
+	private TechnologyAssetsService technologyAssetsService;
 
 	/**
 	 * Obtain download URL for the document
@@ -491,6 +491,25 @@ public class DataExportController {
 		response.setHeader("Content-Disposition", MessageFormat.format("attachment; filename=\"{0}\"", fileName));
 		OutputStream outputStream = response.getOutputStream();
 		outputStream.write(fileBytes, 0, fileBytes.length);
+	}
+
+	/**
+	 * Download CSV document with Technologies Data for Organization.
+	 *
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/csv/technology-assets/export", name = "Get Technologies Data in CSV")
+	@Produces("application/vnd.ms-excel")
+	@Parameters({
+		@Parameter(name = "authorization", description = "oAuth Access token for API calls", example = "Bearer DF0310", required = true, in = ParameterIn.HEADER)
+	})
+	@PreAuthorize("@apiSecurity.hasPermission(T(com.cyberintech.vrisk.api.config.APIAction).TECHNOLOGY_EXPORT)")
+	public void downloadTechnologyAssetsAsCSV(HttpServletResponse response) throws IOException {
+		// Build HTTP Response
+		Organizations organization = organizationService.getCurrentOrganizationEntity();
+		String fileName = applicationProperties.buildExportFileName("Technology Assets", organization.getName(), "csv");
+		response.setHeader("Content-Disposition", MessageFormat.format("attachment; filename=\"{0}\"", fileName));
+		technologyAssetsService.exportTechnologyAssets(response.getOutputStream());
 	}
 
 	/**

@@ -636,6 +636,7 @@ public class OrganizationService {
 
 			// Update item details
 			Organizations updatedItem = existingItem;
+			updatedItem.setUpdatedAt(new Date());
 
 			applyEntityChanges(itemDTO, updatedItem);
 
@@ -712,6 +713,8 @@ public class OrganizationService {
 	 * @param entity
 	 */
 	protected void applyEntityChanges(OrganizationEditDTO itemDTO, Organizations entity) {
+
+		if (entity.getUid() == null) entity.setUid(UUID.randomUUID().toString());
 
 		entity.setName(itemDTO.getName());
 		entity.setDescription(itemDTO.getDescription());
@@ -938,9 +941,9 @@ public class OrganizationService {
 
 						// Refreshing Reports
 						for (ExternalAnalytics externalAnalytics : powerBIReports) {
-							Optional<ExternalAnalyticsParameters> applicationIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.POWERBI_CLIENT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
-							Optional<ExternalAnalyticsParameters> workspaceIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.POWERBI_WORKSPACE_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
-							Optional<ExternalAnalyticsParameters> reportIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.POWERBI_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+							Optional<ExternalAnalyticsParameters> applicationIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.POWERBI_CLIENT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+							Optional<ExternalAnalyticsParameters> workspaceIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.POWERBI_WORKSPACE_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+							Optional<ExternalAnalyticsParameters> reportIdOpt = externalAnalytics.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.POWERBI_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
 							if (applicationIdOpt.isPresent() && workspaceIdOpt.isPresent() && reportIdOpt.isPresent()) {
                                 try {
                                     powerBIService.refreshPowerBIReportDataset(applicationIdOpt.get().getValue(), workspaceIdOpt.get().getValue(), reportIdOpt.get().getValue());
@@ -1028,7 +1031,7 @@ public class OrganizationService {
 	 */
 	protected AuditLogItemId[] collectAuditLogItems(OrganizationEditDTO existingItemDTO, Long organizationId) {
 		List<AuditLogItemId> logItems = new ArrayList<>(Arrays.asList(AuditLogItemId.of(VItemType.ORGANIZATION, organizationId)));
-		if (existingItemDTO.getOwner() != null) logItems.add(AuditLogItemId.of(VItemType.VENDOR_OWNER, existingItemDTO.getOwner().getId()));
+		if (existingItemDTO != null && existingItemDTO.getOwner() != null) logItems.add(AuditLogItemId.of(VItemType.VENDOR_OWNER, existingItemDTO.getOwner().getId()));
 
 		return logItems.stream().toArray(AuditLogItemId[]::new);
 	}

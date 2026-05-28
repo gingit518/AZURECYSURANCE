@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import java.io.*;
 import java.text.MessageFormat;
@@ -145,14 +144,14 @@ public class FormulaBuilder implements Cloneable {
 				} else if (formulaItem.getVariableType().getCode().equalsIgnoreCase("risk_model_constant")) {
 					variableName = "variable" + i;
 					MetricFormulaItems metricFormulaItem = (MetricFormulaItems) formulaItem;
-					engine.put(variableName, metricFormulaItem.getRiskModelConstantRef() != null && metricFormulaItem.getRiskModelConstantRef().getValue() != null ? metricFormulaItem.getRiskModelConstantRef().getValue().longValue() : 0d);
+					engine.put(variableName, metricFormulaItem.getRiskModelConstantRef() != null && metricFormulaItem.getRiskModelConstantRef().getValue() != null ? metricFormulaItem.getRiskModelConstantRef().getValue() : 0d);
 					formulaString += metricFormulaItem.getRiskModelConstantRef() != null && metricFormulaItem.getRiskModelConstantRef().getValue() != null ? String.format("%,.2f", metricFormulaItem.getRiskModelConstantRef().getValue()) : "";
 					i++;
 				} else if (formulaItem.getVariableType().getCode().equalsIgnoreCase("quant_metric")) {
 					if (getQuantMetrics().getQuantMetricLevel().equals(QuantMetricLevel.ORGANIZATION) && formulaItem instanceof MetricFormulaItems) {
 						MetricFormulaItems metricFormulaInner = ((MetricFormulaItems) formulaItem);
 						variableName = String.format("QUANT_%s", metricFormulaInner.getQuantMetricRefId());
-						formulaString += metricFormulaInner.getQuantMetricRef() != null ? metricFormulaInner.getQuantMetricRef().getName() : metricFormulaInner.getVariableType().getName();
+						formulaString += metricFormulaInner.getQuantMetricRef() != null ? "[" + metricFormulaInner.getQuantMetricRef().getName() + "]" : metricFormulaInner.getVariableType().getName();
 					} else {
 						StringBuilder deepScript = new StringBuilder();
 						StringBuilder deepFormulaString = new StringBuilder();
@@ -420,6 +419,16 @@ public class FormulaBuilder implements Cloneable {
 		}
 
 		result = getFormulaResult(result);
+
+		return result;
+	}
+
+	public String getMeasurementUnit() {
+		String result = null;
+
+		if (quantMetrics != null && quantMetrics.getMeasurementUnit() != null) {
+			result = quantMetrics.getMeasurementUnit();
+		}
 
 		return result;
 	}
@@ -757,14 +766,20 @@ public class FormulaBuilder implements Cloneable {
 
 		// Calculate DEEP level of the metric
 		if (quantMetric != null && quantMetric.getMetricFormulaItems() != null) {
+			Long maxChildQuantLevel = result;
 			for (MetricFormulaItems formulaItem: quantMetric.getMetricFormulaItems()) {
 				if (formulaItem != null && formulaItem.getQuantMetricRef() != null) {
 					Long childQuantLevel = buildQuantMetricEmbedLevel(formulaItem.getQuantMetricRef(), result);
-					if (childQuantLevel > result) {
-						result = childQuantLevel;
-						break;
+					if (childQuantLevel > maxChildQuantLevel) {
+						maxChildQuantLevel = childQuantLevel;
+						// break;
 					}
 				}
+			}
+
+			// Detect Max Child Quant Level
+			if (maxChildQuantLevel > result) {
+				result = maxChildQuantLevel;
 			}
 		}
 

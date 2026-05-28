@@ -181,8 +181,8 @@ public class DashboardService extends DashboardServiceBase {
 		List<ExternalAnalytics> analyticDashbardList = externalAnalyticsRepository.getListByOrganizationIdAndType(organizationId, ExternalAnalyticsType.DASHBOARD);
 		Map<Long, String> dashboardMenuNames = new HashMap<>();
 		for (ExternalAnalytics externalAnalytic : analyticDashbardList) {
-			Optional<ExternalAnalyticsParameters> dashboardIdOpt = externalAnalytic.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.DASHBOARD_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
-			Optional<ExternalAnalyticsParameters> dashboardCaption = externalAnalytic.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsQlikParameters.DASHBOARD_SECTION_NAME.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+			Optional<ExternalAnalyticsParameters> dashboardIdOpt = externalAnalytic.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.DASHBOARD_REPORT_ID.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
+			Optional<ExternalAnalyticsParameters> dashboardCaption = externalAnalytic.getExternalAnalyticsParameters().stream().filter(externalAnalyticsParameter -> ExternalAnalyticsParameterType.DASHBOARD_SECTION_NAME.name().equalsIgnoreCase(externalAnalyticsParameter.getName())).findFirst();
 			if (dashboardIdOpt.isPresent() && dashboardCaption.isPresent()) {
 				try {
 					Long dashboardId = Long.parseLong(dashboardIdOpt.get().getValue().trim());
@@ -338,6 +338,14 @@ public class DashboardService extends DashboardServiceBase {
 			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_CFO_VENDOR, "DASHBOARDS$VENDOR$NAME", "Displays the vendor exposures and scores", DashboardType.Vendor, "fa fa-th-list", CFO_DASHBOARD_GROUP, dashboardMenuNames));
 		}
 
+		if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ELASTIO)) {
+			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_ELASTIO, "Elastio Dashboard", "Displays ELASTIO Dashboard", DashboardType.None, "fa fa-money", "ELASTIO", dashboardMenuNames));
+		}
+		if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_CYSURANCE)) {
+			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_CYSURANCE, "Cysurance Dashboard", "Displays CYSURANCE Dashboard", DashboardType.None, "fa fa-money", "CYSURANCE", dashboardMenuNames));
+			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_CYSURANCE_FINANCIAL_EXPOSURE, "Financial Exposure", "Displays CYSURANCE Financial Exposure and Breach Cost Scenarios Dashboard", DashboardType.None, "fa fa-euro", "CYSURANCE", dashboardMenuNames));
+		}
+
 		// items.add(new DashboardRefDTO(DashboardsConfig.FFIEC_CAT_CYBER_MATURITY, "FFIEC CAT Cyber Maturity", "Displays the FFIEC CAT Cyber Maturity", DashboardType.Vendor, "fa fa-question-circle", CFO_DASHBOARD_GROUP, dashboardMenuNames));
 		// items.add(new DashboardRefDTO(DashboardsConfig.FFIEC_CAT_INHERENT_RISK, "FFIEC CAT Inherent Risk", "Displays the FFIEC CAT Inherent Risk", DashboardType.Organization, "fa fa-question-circle", CFO_DASHBOARD_GROUP, dashboardMenuNames));
 
@@ -477,6 +485,12 @@ public class DashboardService extends DashboardServiceBase {
 		} else if (DashboardsConfig.FFIEC_CAT_INHERENT_RISK.equals(dashboardId)) {
 			// if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ASSESSMENT_FINDING, true))
 			dashboard = questionStatusDashboardService.getFFIECCATInherentRiskDashboardDetails(riskModelId, dashboardState);
+		} else if (DashboardsConfig.DASHBOARD_ELASTIO.equals(dashboardId)) {
+			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ELASTIO, true)) dashboard = organizationDashboardService.getElastioDashboardDetails(riskModelId, dashboardId);
+		} else if (DashboardsConfig.DASHBOARD_CYSURANCE.equals(dashboardId)) {
+			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_CYSURANCE, true)) dashboard = organizationDashboardService.getCysuranceDashboardDetails(riskModelId, dashboardId);
+		} else if (DashboardsConfig.DASHBOARD_CYSURANCE_FINANCIAL_EXPOSURE.equals(dashboardId)) {
+			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_CYSURANCE, true)) dashboard = organizationDashboardService.getCysuranceFinancialExposureDashboardDetails(riskModelId, dashboardId);
 		}
 
 		/*
@@ -1665,12 +1679,12 @@ public class DashboardService extends DashboardServiceBase {
 
 		DashboardSectionDTO section1 = new DashboardSectionDTO(3601L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$SYSTEM_ASSIGNMENTS$ITEM_NAME), clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$SYSTEM_ASSIGNMENTS$ITEM_DESCRIPTION));
 		dashboard.getSections().add(section1);
-		DashboardTableItemDTO dashboardItem1 = new DashboardTableItemDTO(3601L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$SYSTEM_ASSIGNMENTS$SYSTEM_ASSIGNMENTS$ITEM_NAME), true);
+		DashboardTableItemDTO dashboardItem1 = DashboardTableItemDTO.of(3601L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$SYSTEM_ASSIGNMENTS$SYSTEM_ASSIGNMENTS$ITEM_NAME), true);
 		section1.getDashboardItems().add(dashboardItem1);
 
 		DashboardSectionDTO section2 = new DashboardSectionDTO(3602L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$PEOPLE_ASSIGNMENTS$ITEM_NAME), clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$PEOPLE_ASSIGNMENTS$ITEM_DESCRIPTION));
 		dashboard.getSections().add(section2);
-		DashboardTableItemDTO dashboardItem2 = new DashboardTableItemDTO(3602L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$PEOPLE_ASSIGNMENTS$PEOPLE_ASSIGNMENTS$ITEM_NAME), true);
+		DashboardTableItemDTO dashboardItem2 = DashboardTableItemDTO.of(3602L, clientMessage.getMessage(SLCT.DASHBOARDS$ASSIGNMENTS_STATUS$PEOPLE_ASSIGNMENTS$PEOPLE_ASSIGNMENTS$ITEM_NAME), true);
 		section2.getDashboardItems().add(dashboardItem2);
 
 		// Create breadcrumbs

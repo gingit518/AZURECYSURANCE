@@ -4,7 +4,6 @@ import com.cyberintech.vrisk.server.model.dao.PagedResult;
 import com.cyberintech.vrisk.server.model.dao.TechnologyAssetModelDAO;
 import com.cyberintech.vrisk.server.model.data.FilteredRequest;
 import com.cyberintech.vrisk.server.model.data.FilteredResponse;
-import com.cyberintech.vrisk.server.model.data.SystemFilter;
 import com.cyberintech.vrisk.server.model.data.TechnologyAssetFilter;
 import com.cyberintech.vrisk.server.model.dto.DTOBase;
 import com.cyberintech.vrisk.server.model.dto.systems.TechnologyAssetEditDTO;
@@ -16,16 +15,27 @@ import com.cyberintech.vrisk.server.model.jpa.entity.*;
 import com.cyberintech.vrisk.server.repository.jpa.TechnologyAssetRepository;
 import com.cyberintech.vrisk.server.rest.exception.ConflictException;
 import com.cyberintech.vrisk.server.rest.exception.ForbiddenException;
+import com.cyberintech.vrisk.server.rest.exception.InternalServerErrorException;
 import com.cyberintech.vrisk.server.rest.exception.ItemNotFoundException;
-import org.apache.commons.collections4.CollectionUtils;
+import com.cyberintech.vrisk.server.service.utils.CSVUtils;
+import com.cyberintech.vrisk.server.service.utils.ExportUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.ServletOutputStream;
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -36,6 +46,7 @@ import java.util.*;
  * @since    2024-01-09
  */
 @Service
+@Slf4j
 public class TechnologyAssetsService {
 
 	@Autowired
@@ -87,6 +98,8 @@ public class TechnologyAssetsService {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	@Autowired
+	private SystemsService systemsService;
 
 	/**
 	 * Get TechnologyAssets List
@@ -249,6 +262,7 @@ public class TechnologyAssetsService {
 		if (itemDTO.getWarrantyExpiration() != null) entity.setWarrantyExpiration(itemDTO.getWarrantyExpiration());
 		if (itemDTO.getAssetName() != null) entity.setAssetName(itemDTO.getAssetName());
 		if (itemDTO.getIpAddress() != null) entity.setIpAddress(itemDTO.getIpAddress());
+		if (itemDTO.getIpAddresses() != null) entity.setIpAddresses(itemDTO.getIpAddresses());
 		if (itemDTO.getSerialNumber() != null) entity.setSerialNumber(itemDTO.getSerialNumber());
 		if (itemDTO.getAssetDomainFunction() != null) entity.setAssetDomainFunction(itemDTO.getAssetDomainFunction());
 		if (itemDTO.getOsName() != null) entity.setOsName(itemDTO.getOsName());
@@ -269,6 +283,11 @@ public class TechnologyAssetsService {
 		if (itemDTO.getOwner() != null && itemDTO.getOwner().getId() != null) {
 			Users owner = userService.getOrganizationUser(itemDTO.getOwner().getId());
 			entity.setOwner(owner);
+		}
+
+		if (itemDTO.getSystem() != null && itemDTO.getSystem().getId() != null) {
+			Systems system = systemsService.getSystemForCurrentOrganization(itemDTO.getSystem().getId());
+			entity.setSystem(system);
 		}
 
 		if (itemDTO.getInfosecFocalPerson() != null && itemDTO.getInfosecFocalPerson().getId() != null) {
@@ -395,5 +414,112 @@ public class TechnologyAssetsService {
 
 		return logItems.stream().toArray(AuditLogItemId[]::new);
 	}
+
+	public void exportTechnologyAssets(ServletOutputStream outputStream) {
+		try {
+			CSVPrinter csvPrinter = createCsvPrinter(outputStream);
+
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+			Long organizationId = organizationService.getCurrentOrganizationId();
+			List<TechnologyAssets> technologyAssets = technologyAssetRepository.getAllByOrganization(organizationId);
+			for (TechnologyAssets technologyAsset : technologyAssets) {
+
+				csvPrinter.printRecord(
+				  technologyAsset.getName()
+					, technologyAsset.getDescription()
+					, technologyAsset.getVersionNumber()
+					, ExportUtils.asString(technologyAsset.getTechnologyCategory())
+					, (technologyAsset.getTechnology() != null ? technologyAsset.getTechnology().getName() : "")
+					, ExportUtils.userFullNameAsString(technologyAsset.getOwner())
+					, ExportUtils.userEmailAsString(technologyAsset.getOwner())
+					, ExportUtils.userFullNameAsString(technologyAsset.getInfosecFocalPerson())
+					, ExportUtils.userEmailAsString(technologyAsset.getInfosecFocalPerson())
+					, technologyAsset.getSystemStatus()
+					, technologyAsset.getAssetName()
+					, technologyAsset.getIpAddress()
+					, technologyAsset.getSerialNumber()
+					, technologyAsset.getAssetDomainFunction()
+					, technologyAsset.getOsName()
+					, technologyAsset.getLocation()
+					, technologyAsset.getHardwareSubstatus()
+					, technologyAsset.getDiscoverySource()
+					, technologyAsset.getDeviceId()
+					, technologyAsset.getOwnerType()
+					, "" // ImportDataService.SYSTEM_BU_LOCATION_HEADER
+					, "" // ImportDataService.SYSTEM_BU_DIVISION_HEADER
+					, "" // ImportDataService.SYSTEM_BU_PATH_HEADER
+					, "" // ImportDataService.SYSTEM_ASSOCIATE_VENDORS_HEADER
+					, technologyAsset.getCostToRestore()
+					, technologyAsset.getDeploymentType()
+					, (Boolean.TRUE.equals(technologyAsset.getIsMAAsset()) ? "YES" : "NO")
+					, technologyAsset.getSystemType()
+					, technologyAsset.getRto()
+					, technologyAsset.getRpo()
+					, technologyAsset.getNumberOfRecProcessed()
+					, "" // ImportDataService.SYSTEM_GEO_RECORDS_PROCESSED_HEADER
+					, (technologyAsset.getEolDate() != null ? dateFormat.format(technologyAsset.getEolDate()) : "")
+					, (technologyAsset.getWarrantyExpiration() != null ? dateFormat.format(technologyAsset.getWarrantyExpiration()) : "")
+				    , technologyAsset.getIpAddresses()
+				);
+			}
+
+			csvPrinter.flush();
+		} catch (IOException e) {
+			log.error("Failed to generate Technologies CSV Data file", e);
+			throw new InternalServerErrorException("Failed to generate Technologies CSV Data file");
+		}
+	}
+
+	/**
+	 * Create CSV Printer to build Technologies
+	 *
+	 * @param outputStream
+	 * @return
+	 * @throws IOException
+	 */
+	private CSVPrinter createCsvPrinter(OutputStream outputStream) throws IOException {
+		Writer writer = new OutputStreamWriter(outputStream);
+		CSVFormat csvFormat = CSVUtils.createCSVFormatBuilder(
+			ImportDataService.ASSET_NAME_HEADER
+			, ImportDataService.ASSET_DESCRIPTION_HEADER
+			, ImportDataService.SYSTEM_VERSION_NUMBER_HEADER
+			, ImportDataService.SYSTEM_TECHNOLOGY_CATEGORY_HEADER
+			, ImportDataService.SYSTEM_TECHNOLOGIES_HEADER
+			, ImportDataService.SYSTEM_OWNER_NAME_HEADER
+			, ImportDataService.SYSTEM_OWNER_EMAIL_HEADER
+			, ImportDataService.SYSTEM_INFOSEC_PERSON_NAME_HEADER
+			, ImportDataService.SYSTEM_INFOSEC_PERSON_EMAIL_HEADER
+			, ImportDataService.SYSTEM_STATUS_HEADER
+			, ImportDataService.ASSET_ITEM_NAME_HEADER
+			, ImportDataService.SYSTEM_IP_ADDRESS_HEADER
+			, ImportDataService.SYSTEM_SERIAL_NUMBER_HEADER
+			, ImportDataService.SYSTEM_ASSET_DOMAIN_FUNCTION_HEADER
+			, ImportDataService.SYSTEM_OS_NAME_HEADER
+			, ImportDataService.SYSTEM_LOCATION_HEADER
+			, ImportDataService.SYSTEM_HARDWARE_STATUS_HEADER
+			, ImportDataService.SYSTEM_DISCOVERY_SOURCE_HEADER
+			, ImportDataService.DEVICE_ID_HEADER
+			, ImportDataService.SYSTEM_OWNER_TYPE_HEADER
+			, ImportDataService.SYSTEM_BU_LOCATION_HEADER
+			, ImportDataService.SYSTEM_BU_DIVISION_HEADER
+			, ImportDataService.SYSTEM_BU_PATH_HEADER
+			, ImportDataService.SYSTEM_ASSOCIATE_VENDORS_HEADER
+			, ImportDataService.SYSTEM_COST_TO_RESTORE_HEADER
+			, ImportDataService.SYSTEM_ON_DEPLOYMENT_TYPE_HEADER
+			, ImportDataService.SYSTEM_MA_ASSET_HEADER
+			, ImportDataService.SYSTEM_SYSTEM_TYPE_HEADER
+			, ImportDataService.SYSTEM_RTO_HEADER
+			, ImportDataService.SYSTEM_RPO_HEADER
+			, ImportDataService.SYSTEM_RECORDS_PROCESSED_HEADER
+			, ImportDataService.SYSTEM_GEO_RECORDS_PROCESSED_HEADER
+			, ImportDataService.SYSTEM_EOL_DATE_HEADER
+			, ImportDataService.SYSTEM_WARRANTY_EXPIRATION_HEADER
+			, ImportDataService.SYSTEM_IP_ADDRESSES_HEADER
+		).build();
+
+		return new CSVPrinter(writer, csvFormat);
+	}
+
 
 }

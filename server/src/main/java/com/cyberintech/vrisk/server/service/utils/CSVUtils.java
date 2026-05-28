@@ -142,6 +142,28 @@ public class CSVUtils {
 	}
 
 	/**
+	 * Get values of {@link CSVRecord} column as a {@code String}.
+	 *
+	 * @param csvRecord CSV record.
+	 * @param name      column name.
+	 * @return The value from the column {@code name}. If column is not mapped, then
+	 *         empty string.
+	 */
+	public static String getAsString(CSVRecord csvRecord, String... name) {
+		String result = null;
+		for (int i = 0; i < name.length; i++) {
+			if (csvRecord.isMapped(name[i])) {
+				result = csvRecord.get(name[i]);
+			}
+		}
+
+		if (result == null) {
+			return "";
+		}
+		return result.trim();
+	}
+
+	/**
 	 * Get values of {@link CSVRecord} column as array of {@code String}.
 	 *
 	 * @param csvRecord CSV record.

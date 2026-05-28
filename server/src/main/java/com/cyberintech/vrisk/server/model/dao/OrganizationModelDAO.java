@@ -9,6 +9,7 @@ import com.cyberintech.vrisk.server.model.jpa.entity.Organizations;
 import com.cyberintech.vrisk.server.model.jpa.entity.Users;
 import com.cyberintech.vrisk.server.service.OrganizationService;
 import com.cyberintech.vrisk.server.service.UserService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -37,6 +38,7 @@ public class OrganizationModelDAO  implements PageableModelDAO<Organizations, Or
 	private static final Map<String, String> SORT_MAPPING = Collections.unmodifiableMap(
 		Map.ofEntries(
 			Map.entry("id", "o.id"),
+			Map.entry("createDate", "o.name"),
 			Map.entry("countryName", "ct.name"),
 			Map.entry("description", "o.description"),
 			Map.entry("name", "o.name"),
@@ -108,6 +110,9 @@ public class OrganizationModelDAO  implements PageableModelDAO<Organizations, Or
 		if (rootParentId != null) {
 			whereString += " AND rpa.id = :rootParentId ";
 		}
+		if (CollectionUtils.isNotEmpty(filter.getPackagePlanIds())) {
+			whereString += " AND o.packagePlan.id in :packagePlanIds ";
+		}
 
 		// Build Sort based on mapping
 		String searchQueryString = hqlQuery + whereString;
@@ -138,7 +143,7 @@ public class OrganizationModelDAO  implements PageableModelDAO<Organizations, Or
 		String hqlQuery = "SELECT o FROM Organizations o JOIN o.rootParent rpa LEFT JOIN o.parent pa " +
 			"LEFT JOIN FETCH o.country ct LEFT JOIN FETCH o.state st LEFT JOIN FETCH o.city ci " +
 			"LEFT JOIN FETCH o.currency cu LEFT JOIN FETCH o.language ln LEFT JOIN FETCH o.status sa " +
-			"LEFT JOIN FETCH o.owner ow ";
+			"LEFT JOIN FETCH o.owner ow LEFT JOIN FETCH o.packagePlan pp ";
 
 		// Define base count hql Query
 		String hqlQueryCount = "SELECT count(o) FROM Organizations o JOIN o.rootParent rpa ";
@@ -204,6 +209,9 @@ public class OrganizationModelDAO  implements PageableModelDAO<Organizations, Or
 		if (ownerId != null) query.setParameter("ownerId", ownerId);
 		if (parentId != null) query.setParameter("parentId", parentId);
 		if (rootParentId != null) query.setParameter("rootParentId", rootParentId);
+		if (CollectionUtils.isNotEmpty(filter.getPackagePlanIds())) {
+			query.setParameter("packagePlanIds", filter.getPackagePlanIds());
+		}
 	}
 
 	/**

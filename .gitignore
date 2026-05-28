@@ -32,6 +32,7 @@ server/server\.iml
 
 # Ignore Maven Target Directories
 api/target/
+api-elastio/target/
 build-tools/target/
 data/target/
 server/target/

@@ -8,7 +8,7 @@ package com.cyberintech.vrisk.server.model.jpa.domains;
  * @since    2019-02-05
  */
 public enum DashboardType {
-	Organization, Vendor, Admin, Drilldown, Analytics, Qlik, None;
+	Organization, Vendor, Admin, Dynamic, Drilldown, Analytics, Qlik, None;
 
 	/**
 	 * Get proper DashboardType from String

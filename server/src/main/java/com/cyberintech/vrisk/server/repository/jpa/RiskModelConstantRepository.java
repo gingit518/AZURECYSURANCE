@@ -30,7 +30,7 @@ public interface RiskModelConstantRepository extends CoreRepository<RiskModelCon
 		@Param("name") String name
 	);
 
-	@Query("SELECT rmc FROM  RiskModelConstants rmc WHERE UPPER(rmc.name) LIKE CONCAT(UPPER(:name), '%') AND rmc.riskModelId = :riskModelId")
+	@Query("SELECT rmc FROM RiskModelConstants rmc WHERE UPPER(rmc.name) LIKE UPPER(:name) AND rmc.riskModelId = :riskModelId")
 	Optional<RiskModelConstants> findByNameAndRiskModelId(@Param("name") String name, @Param("riskModelId") Long riskModelId);
 
 }

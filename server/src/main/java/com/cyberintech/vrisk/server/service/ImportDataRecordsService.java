@@ -133,8 +133,8 @@ public class ImportDataRecordsService {
 		for (CSVRecord csvRecord : csvRecordList) {
 
 			// Accessing values by Header names
-			String systemName = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_NAME_HEADER);
-			String systemDesc = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_DESCRIPTION_HEADER);
+			String systemName = CSVUtils.getAsString(csvRecord, ImportDataService.ASSET_NAME_HEADER, ImportDataService.SYSTEM_NAME_HEADER);
+			String systemDesc = CSVUtils.getAsString(csvRecord, ImportDataService.ASSET_DESCRIPTION_HEADER, ImportDataService.SYSTEM_DESCRIPTION_HEADER);
 			String systemVersionNumber = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_VERSION_NUMBER_HEADER);
 			String systemOwnerName = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_OWNER_NAME_HEADER);
 			String systemOwnerEmail = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_OWNER_EMAIL_HEADER);
@@ -212,17 +212,25 @@ public class ImportDataRecordsService {
 				String technologyName = CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_TECHNOLOGIES_HEADER);
 				Optional<TechnologyCategoryImportMappings> technologyImportMappingsOpt = technologyCategoryImportMappingRepository.getFirstByNameAndTechnologyAndOrganization(organization.getId(), technologyCategory, technologyName);
 				TechnologyCategoryImportMappings technologyImportMappings = technologyImportMappingsOpt.orElse(TechnologyCategoryImportMappings.builder().targetTechnologyCategory(technologyCategory).targetTechnologyName(technologyName).build());
+				if (StringUtils.isNotEmpty(technologyCategory) && csvRecord.isMapped(ImportDataService.SYSTEM_TECHNOLOGY_SUB_CATEGORY_HEADER)) {
+					technologyImportMappings.setTargetTechnologySubcategory(CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_TECHNOLOGY_SUB_CATEGORY_HEADER));
+					if (StringUtils.isNotEmpty(technologyImportMappings.getTargetTechnologySubcategory()) && csvRecord.isMapped(ImportDataService.SYSTEM_TECHNOLOGY_CLASS_TYPE_HEADER)) {
+						technologyImportMappings.setTargetTechnologyClass(CSVUtils.getAsString(csvRecord, ImportDataService.SYSTEM_TECHNOLOGY_CLASS_TYPE_HEADER));
+					}
+				}
 
 				if (StringUtils.isNotEmpty(technologyImportMappings.getTargetTechnologySubcategory()) && StringUtils.isNotEmpty(technologyImportMappings.getTargetTechnologyClass())) {
 					TechnologyCategories technologyCategoryDetails = technologyCategoryService.getOrCreate(organization.getId(), technologyImportMappings.getTargetTechnologyCategory());
 					TechnologySubcategories technologySubcategoryDetails = technologySubcategoryService.getOrCreate(organization.getId(), technologyCategoryDetails.getId(), technologyImportMappings.getTargetTechnologySubcategory());
 					TechnologyClassTypes technologyClassTypeDetails = technologyClassTypeService.getOrCreate(organization.getId(), technologyCategoryDetails.getId(), technologySubcategoryDetails.getId(), technologyImportMappings.getTargetTechnologyClass());
-					Technologies technologyDetails = technologyService.getOrCreate(organization.getId(), technologyCategoryDetails, technologySubcategoryDetails.getId(), technologyClassTypeDetails.getId(), technologyImportMappings.getTargetTechnologyName());
+					Technologies technologyDetails = StringUtils.isNotEmpty(technologyImportMappings.getTargetTechnologyName()) ? technologyService.getOrCreate(organization.getId(), technologyCategoryDetails, technologySubcategoryDetails.getId(), technologyClassTypeDetails.getId(), technologyImportMappings.getTargetTechnologyName()) : null;
 
 					technologyAssetEditDTO.setTechnologyCategory(new TechnologyCategoryRefDTO(technologyCategoryDetails));
 					technologyAssetEditDTO.setTechnologySubcategory(new TechnologySubcategoryRefDTO(technologySubcategoryDetails));
 					technologyAssetEditDTO.setTechnologyClassType(new TechnologyClassTypeRefDTO(technologyClassTypeDetails));
-					technologyAssetEditDTO.setTechnology(new TechnologyRefDTO(technologyDetails));
+					if (technologyDetails != null) {
+						technologyAssetEditDTO.setTechnology(new TechnologyRefDTO(technologyDetails));
+					}
 				} else {
 					// Technologies
 					Pair<List<TechnologyRefDTO>, List<String>> technologies = ImportUtils.loadTechnologies(csvRecord, ImportDataService.SYSTEM_TECHNOLOGIES_HEADER, scopeName,
@@ -237,7 +245,9 @@ public class ImportDataRecordsService {
 						technologyCategoriesCache.put(technologyCategory, technologyCategoryService.getOrCreate(organization.getId(), technologyCategory));
 					}
 
-					if (technologyCategoriesCache.containsKey(technologyCategory)) technologyAssetEditDTO.setTechnologyCategory(new TechnologyCategoryRefDTO(technologyCategoriesCache.get(technologyCategory)));
+					if (technologyCategoriesCache.containsKey(technologyCategory)) {
+						technologyAssetEditDTO.setTechnologyCategory(new TechnologyCategoryRefDTO(technologyCategoriesCache.get(technologyCategory)));
+					}
 				}
 
 				if (csvRecord.isMapped(ImportDataService.SYSTEM_EOL_DATE_HEADER)) {
@@ -246,11 +256,14 @@ public class ImportDataRecordsService {
 				if (csvRecord.isMapped(ImportDataService.SYSTEM_WARRANTY_EXPIRATION_HEADER)) {
 					technologyAssetEditDTO.setWarrantyExpiration(ImportUtils.loadDate(csvRecord.get(ImportDataService.SYSTEM_WARRANTY_EXPIRATION_HEADER)));
 				}
-				if (csvRecord.isMapped(ImportDataService.SYSTEM_ASSET_NAME_HEADER)) {
-					technologyAssetEditDTO.setAssetName(csvRecord.get(ImportDataService.SYSTEM_ASSET_NAME_HEADER));
+				if (csvRecord.isMapped(ImportDataService.ASSET_ITEM_NAME_HEADER)) {
+					technologyAssetEditDTO.setAssetName(csvRecord.get(ImportDataService.ASSET_ITEM_NAME_HEADER));
 				}
 				if (csvRecord.isMapped(ImportDataService.SYSTEM_IP_ADDRESS_HEADER)) {
 					technologyAssetEditDTO.setIpAddress(csvRecord.get(ImportDataService.SYSTEM_IP_ADDRESS_HEADER));
+				}
+				if (csvRecord.isMapped(ImportDataService.SYSTEM_IP_ADDRESSES_HEADER)) {
+					technologyAssetEditDTO.setIpAddresses(csvRecord.get(ImportDataService.SYSTEM_IP_ADDRESSES_HEADER));
 				}
 				if (csvRecord.isMapped(ImportDataService.SYSTEM_SERIAL_NUMBER_HEADER)) {
 					technologyAssetEditDTO.setSerialNumber(csvRecord.get(ImportDataService.SYSTEM_SERIAL_NUMBER_HEADER));
@@ -270,7 +283,9 @@ public class ImportDataRecordsService {
 				if (csvRecord.isMapped(ImportDataService.SYSTEM_DISCOVERY_SOURCE_HEADER)) {
 					technologyAssetEditDTO.setDiscoverySource(csvRecord.get(ImportDataService.SYSTEM_DISCOVERY_SOURCE_HEADER));
 				}
-				if (csvRecord.isMapped(ImportDataService.SYSTEM_COMPUTER_ID_HEADER)) {
+				if (csvRecord.isMapped(ImportDataService.DEVICE_ID_HEADER)) {
+					technologyAssetEditDTO.setDeviceId(csvRecord.get(ImportDataService.DEVICE_ID_HEADER));
+				} else if (csvRecord.isMapped(ImportDataService.SYSTEM_COMPUTER_ID_HEADER)) {
 					technologyAssetEditDTO.setDeviceId(csvRecord.get(ImportDataService.SYSTEM_COMPUTER_ID_HEADER));
 				}
 				if (csvRecord.isMapped(ImportDataService.SYSTEM_OWNER_TYPE_HEADER)) {

@@ -1,7 +1,7 @@
 package com.cyberintech.vrisk.server.service.dashboards;
 
 import com.cyberintech.vrisk.server.model.dto.dashboards.*;
-import com.cyberintech.vrisk.server.model.dto.dashboards.elements.DashboardGridLayoutDTO;
+import com.cyberintech.vrisk.server.model.dto.dashboards.DashboardGridLayoutDTO;
 import com.cyberintech.vrisk.server.model.dto.dashboards.elements.RichDashboardElementDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.*;
 import com.cyberintech.vrisk.server.model.jpa.entity.*;

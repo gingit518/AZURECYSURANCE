@@ -2,6 +2,7 @@ package com.cyberintech.vrisk.api.config;
 
 import com.cyberintech.vrisk.server.model.config.CacheNode;
 import com.cyberintech.vrisk.server.service.integrations.marketing.zoominfo.dto.OrganizationZoomInfoExtendedDetails;
+import com.google.common.cache.CacheBuilder;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.CacheEventListenerConfigurationBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
@@ -9,9 +10,13 @@ import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.config.units.MemoryUnit;
 import org.ehcache.event.EventType;
 import org.ehcache.jsr107.Eh107Configuration;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.Cache;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -20,6 +25,7 @@ import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.spi.CachingProvider;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Spring Application Cache Configuration
@@ -37,6 +43,17 @@ public class CacheConfig {
 
 	@Autowired
 	private Environment environment;
+
+	@Bean("inMemoryCacheManager")
+	public org.springframework.cache.CacheManager inMemoryCacheManager() {
+		return new ConcurrentMapCacheManager() {
+			@NotNull
+			@Override
+			protected Cache createConcurrentMapCache(@NotNull String name) {
+				return new ConcurrentMapCache(name, CacheBuilder.newBuilder().expireAfterWrite(900, TimeUnit.SECONDS).build().asMap(), false);
+			}
+		};
+	}
 
 	@Bean
 	CacheManager getCacheManager() {

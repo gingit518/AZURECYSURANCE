@@ -124,7 +124,8 @@ public class WebinarService {
 			if (StringUtils.isNotEmpty(uid)) {
 				webinarDetails = webinarsRepository.findByUid(uid);
 			}
-			if (!webinarDetails.isPresent() && StringUtils.isNotEmpty(url)) {
+
+			if (StringUtils.isEmpty(uid) && StringUtils.isNotEmpty(url)) {
 				webinarDetails = webinarsRepository.findFirstByUrl(url);
 			} else if (StringUtils.isEmpty(url)) {
 				result.getIgnored().add(new ItemViewDTO(MessageFormat.format("Empty webinar url, {0}, {1}", description, url)));

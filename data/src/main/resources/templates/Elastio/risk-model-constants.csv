@@ -1,0 +1,43 @@
+defaultValue,name,description
+0,0. Elastio: Prospect Annual Revenue,0. Data Needed
+0,1. Elastio: Price Quote to Prospect,1. Data Needed
+0,2. Elastio: Current Data Stored TB,2. Data Needed
+0,3. Elastio: S3 Storage (TB),3. Data Needed
+0,4. Elastio: Replication Factor,4. Data Needed
+0,5. Elastio: EBS Storage (TB),Elastio: EBS Storage
+0,6. Elastio: EBS Snapshot Price GB/Mo,Elastio: EBS Snapshot Price GB/Mo
+0,7.0.  Elastio: Down Time when Elastio is being used (hours),Down Time when Elastio is being used (hours)
+0,7.1. Elastio: Downtime when Elastio has to be installed and run  (hours),Amount of time client is down in they have to install and run Elastio
+0,8. Elastio: RRTO without Elastio,Average RRTO
+0,9. Elastio: Storage Savings (%),Saves 15 % on storage
+0,10. Elastio: Engineer Rate,Engineer Rate
+0,11. Elastio: Replication Snapshot Price/GB/mo,Replication Snapshot Price/GB/mo
+0,12. Elastio: Ops/Onboarding Annual Cost,Ops/Onboarding Annual Cost
+0,13. Elastio: S3 Price/GB/mo,S3 Price/GB/mo
+0,15. Elastio: Snapshot Multiplier,Snapshot Change Rate
+0,16. Elastio: Tests/Year,Elastio: Tests/Year
+0,17. Elastio: Validation Hours/Test,Validation Hours/Test
+0,18. Elastio: Price TB/mo,Elastio price per TB/mo Model C 
+0,19. Elastio: Baseline Storage Cost per TB/mo,Elastio: Baseline Storage Cost per TB/mo
+0,20. Elastio: Average RW Payment,Average RW Payment
+0,21. Elastio: Annual Probability of a Ransomware Incident ,Annual Probability of a Ransomware Incident 
+0,22. Elastio: Percent of data impacted,Percent of data impacted
+0,23: Elastio: Client Storage Growth Rate,Client Storage Growth Rate
+0,24. Elastio: S3 Multiplier,S3 Multiplier
+0,25. Elastio: Replication Multiplier,Replication Multiplier
+0,27: Elastio: Months to Annual,Converts Months to Annual
+0,28. Elastio: 9-5 Operating Hours per Year,Elastio: 9 -5 Operating Hours per Year
+0,Elastio: Annual Cost,
+0,Elastio: Annualize months to years,
+0,Elastio: Engineer Rate,
+0,Elastio: Investment Credit,
+0,Elastio: Operating Hours Per Year,
+0,Elastio: Ops Onboarding Cost,
+0,Elastio: PB to GB,Convert PB to GB
+0,Elastio: S3 Storage TB,
+0,Elastio: Snapshot Price GB/Mo,0.25
+0,Elastio: Test/ Year,
+0,Elastio: Validation Hours/Test,
+0,Vendor Fine,
+0,Vendor Likelihood,
+0,Vendor Loss,

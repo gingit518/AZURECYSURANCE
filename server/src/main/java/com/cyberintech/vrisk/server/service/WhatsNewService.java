@@ -126,7 +126,7 @@ public class WhatsNewService {
 			if (StringUtils.isNotEmpty(uid)) {
 				whatsNewDetails = whatsNewRepository.findByUid(uid);
 			}
-			if (!whatsNewDetails.isPresent() && StringUtils.isNotEmpty(url)) {
+			if (StringUtils.isEmpty(uid) && StringUtils.isNotEmpty(url)) {
 				whatsNewDetails = whatsNewRepository.findFirstByUrl(url);
 			}
 			if (!whatsNewDetails.isPresent()) {

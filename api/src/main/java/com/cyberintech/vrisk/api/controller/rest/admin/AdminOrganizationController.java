@@ -7,6 +7,7 @@ import com.cyberintech.vrisk.server.model.dto.ImportResultDTO;
 import com.cyberintech.vrisk.server.model.dto.ItemViewDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationDemoDataConfigDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationEditDTO;
+import com.cyberintech.vrisk.server.model.dto.organization.OrganizationRefDTO;
 import com.cyberintech.vrisk.server.model.dto.organization.OrganizationViewDTO;
 import com.cyberintech.vrisk.server.service.admin.AdminOrganizationService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -86,6 +87,16 @@ public class AdminOrganizationController {
 	@PreAuthorize("@apiSecurity.hasPermission(T(com.cyberintech.vrisk.api.config.APIAction).ORGANIZATION_LOAD_TEST_DATA)")
 	public ImportResultDTO applyDemoData(@Parameter(description = "Organization Filtering", required = true) @RequestBody OrganizationDemoDataConfigDTO organizationDemoDataConfig) {
 		return adminOrganizationService.loadDemoData(organizationDemoDataConfig);
+	}
+
+	/**
+	 * Run Integration for Organizations
+	 */
+	@RequestMapping(method = RequestMethod.POST, value = "/integration/run/{itemId}", name = "Run Integration for Organizations", consumes = {MediaType.APPLICATION_JSON})
+	@Operation(security = {@SecurityRequirement(name = "bearer-key")})
+	@PreAuthorize("@apiSecurity.hasPermission(T(com.cyberintech.vrisk.api.config.APIAction).ORGANIZATION_UPDATE)")
+	public OrganizationRefDTO runIntegration(@PathVariable("itemId") @NotNull @Size(min = 1) Long itemId) {
+		return adminOrganizationService.runIntegration(itemId);
 	}
 
 	/**

@@ -79,6 +79,12 @@ public class QuantMetricsEditDTO extends DTOBase<QuantMetrics> {
 	@Schema
 	private DeploymentType deploymentType;
 
+	@Schema
+	private String measurementUnit;
+
+	@Schema
+	private String unitUIPosition;
+
 	/**
 	 * Entity based constructor
 	 *
@@ -97,6 +103,8 @@ public class QuantMetricsEditDTO extends DTOBase<QuantMetrics> {
 		this.ordinal = entity.getOrdinal();
 		this.quantMetricLevel = entity.getQuantMetricLevel();
 		this.deploymentType = entity.getDeploymentType();
+		this.measurementUnit = entity.getMeasurementUnit();
+		this.unitUIPosition = entity.getUnitUIPosition();
 
 		if (entity.getQuant() != null) {
 			quant = new QuantsRefDTO(entity.getQuant());

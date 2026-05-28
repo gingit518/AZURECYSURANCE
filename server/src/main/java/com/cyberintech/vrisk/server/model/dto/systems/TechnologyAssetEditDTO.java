@@ -55,6 +55,8 @@ public class TechnologyAssetEditDTO extends TechnologyAssetViewDTO {
 
 	private String ipAddress;
 
+	private String ipAddresses;
+
 	private String assetDomainFunction;
 
 	private String discoverySource;
@@ -66,6 +68,9 @@ public class TechnologyAssetEditDTO extends TechnologyAssetViewDTO {
 	private String ownerType;
 
 	private String location;
+
+	@Schema
+	private SystemRefDTO system;
 
 
 //	@Schema
@@ -99,6 +104,10 @@ public class TechnologyAssetEditDTO extends TechnologyAssetViewDTO {
 		hardwareSubstatus = entity.getHardwareSubstatus();
 		ownerType = entity.getOwnerType();
 		location = entity.getLocation();
+
+		if (entity.getSystem() != null) {
+			system = new SystemRefDTO(entity.getSystem());
+		}
 
 		// technologies = Optional.ofNullable(entity.getTechnologies()).orElse(new HashSet<>()).stream().map(TechnologyRefDTO::of).collect(Collectors.toList());
 	}

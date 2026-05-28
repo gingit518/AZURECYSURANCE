@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0430.quant_metrics_units" author="Eugene A. Kalosha">
+
+		<sql>
+            -- update quant_metrics table
+			ALTER TABLE quant_metrics ADD measurement_unit character varying (64) DEFAULT NULL;
+			ALTER TABLE quant_metrics ADD unit_ui_position character varying (32) DEFAULT NULL;
+		</sql>
+
+		<rollback>
+			<sql>
+				ALTER TABLE quant_metrics DROP COLUMN measurement_unit;
+				ALTER TABLE quant_metrics DROP COLUMN unit_ui_position;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

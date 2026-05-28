@@ -1,0 +1,289 @@
+Permission Group,Permission Title,Permissions/Roles,Description,Url,ELASTIO,ELASTIO_ADMIN
+Organization,Read,organization_read,,,Y,Y
+Organization,Update,organization_update,,,,Y
+Organization,Record Price Limit,organization_record_price_limit,,,,Y
+Organization,Aggregate Insurance Limit,organization_aggregate_insurance_limit,,,,Y
+Organization,Cyber Insurance Deductible,organization_cyber_insurance_deductible,,,,Y
+Organization,Average Revenue,organization_average_revenue,,,,Y
+Organization,Market Capitalization,organization_market_capitalization,,,,Y
+Organization,Risk Scoring Read,organization_risk_scoring_read,,,,
+Organization,Supported Languages Update,organization_supported_languages_update,,,,
+Organization,Cyber Security Maturity Read,cybersecurity_maturity_read,,,,
+Organization,Cyber Insurance Information,organization_cyber_insurance_information,,,,
+Subsidiary Organization,Read,subsidiary_read,,,Y,Y
+Subsidiary Organization,Create,subsidiary_create,,,,Y
+Subsidiary Organization,Update,subsidiary_update,,,,Y
+Subsidiary Organization,Delete,subsidiary_delete,,,,Y
+Subsidiary Organization,Export CSV,export_subsidiary,,,,
+Subsidiary Organization,Import from CSV,import_subsidiary,,,,
+Business Unit,Read,business_unit_read,,,Y,Y
+Business Unit,Create,business_unit_create,,,,Y
+Business Unit,Update,business_unit_update,,,,Y
+Business Unit,Delete,business_unit_delete,,,,Y
+Business Unit,Export CSV,export_business_unit,,,,
+Business Unit,Export CSV Template,export_business_unit_template,,,,
+Business Unit,Import from CSV,import_business_unit,,,,
+Asset Class,Read,asset_class_read,,,Y,Y
+Asset Class,Create,asset_class_create,,,Y,Y
+Asset Class,Update,asset_class_update,,,,
+Asset Class,Delete,asset_class_delete,,,,
+Data Class,Read,data_class_read,,,Y,Y
+Data Class,Create,data_class_create,,,,Y
+Data Class,Update,data_class_update,,,,Y
+Data Class,Delete,data_class_delete,,,,Y
+Data Domain,Read,data_domain_read,,,Y,Y
+Data Domain,Create,data_domain_create,,,,Y
+Data Domain,Update,data_domain_update,,,,Y
+Data Domain,Delete,data_domain_delete,,,,Y
+Data Field,Read,data_field_read,,,Y,Y
+Data Field,Create,data_field_create,,,,Y
+Data Field,Update,data_field_update,,,,Y
+Data Field,Delete,data_field_delete,,,,Y
+Environment Type,Read,environment_type_read,,,Y,Y
+Environment Type,Create,environment_type_create,,,,
+Environment Type,Update,environment_type_update,,,,
+Environment Type,Delete,environment_type_delete,,,,
+System,Read,system_read,,,Y,Y
+System,Create,system_create,,,,Y
+System,Update,system_update,,,,Y
+System,Delete,system_delete,,,,Y
+System,Export CSV,export_system_risk,,,,
+System,Import from CSV,import_system_risk,,,,
+Process,Read,process_read,,,Y,Y
+Process,Create,process_create,,,,Y
+Process,Update,process_update,,,,Y
+Process,Delete,process_delete,,,,Y
+Process,Export CSV,export_process,,,,
+Process,Export CSV Template,export_process_template,,,,
+Process,Import from CSV,import_process,,,,
+Technology Category,Read,technology_category_read,,,Y,Y
+Technology Category,Create,technology_category_create,,,,
+Technology Category,Update,technology_category_update,,,,
+Technology Category,Delete,technology_category_delete,,,,
+Technology,Read,technology_read,,,Y,Y
+Technology,Create,technology_create,,,,Y
+Technology,Update,technology_update,,,,Y
+Technology,Delete,technology_delete,,,,Y
+Technology,Export CSV,export_technology,,,,
+Technology,Export CSV Template,export_technology_template,,,,
+Technology,Import from CSV,import_technology,,,,
+Data Gathering,Read Data Exfiltration,data_exfiltration_read,,,Y,Y
+Data Gathering,Update Data Exfiltration,data_exfiltration_update,,,Y,Y
+Data Gathering,Read Business Interruption,business_interruption_read,,,Y,Y
+Data Gathering,Update Business Interruption,business_interruption_update,,,Y,Y
+Data Gathering,Read Regulatory Exposure,regulatory_exposure_read,,,,
+Data Gathering,Update Regulatory Exposure,regulatory_exposure_update,,,,
+Data Gathering,Read Risk Scoring,risk_scoring_read,,,,
+Data Gathering,Answer Rick Scoring Questions,risk_scoring_question,,,,
+Policy,Read,policy_read,,,Y,Y
+Policy,Create,policy_create,,,,Y
+Policy,Update,policy_update,,,,Y
+Policy,Delete,policy_delete,,,,Y
+Policy,Annual Review,policy_annual_review,,,,Y
+Policy,Approval,policy_approval,,,,Y
+Cyber Roles,Read,cyber_role_read,,,,Y
+Vendor Contract,Read,contract_read,,,,
+Cyber Roles,Create,cyber_role_create,,,,Y
+Vendor Contract,Create,contract_create,,,,
+Cyber Roles,Update,cyber_role_update,,,,Y
+Vendor Contract,Update,contract_update,,,,
+Cyber Roles,Delete,cyber_role_delete,,,,Y
+Vendor Contract,Delete,contract_delete,,,,
+Control Functions,Read,nist_csf_category_read,,,,
+Control Functions,Create,nist_csf_category_create,,,,
+Control Functions,Update,nist_csf_category_update,,,,
+Control Functions,Delete,nist_csf_category_delete,,,,
+Control Tests,Read,control_test_read,,,,
+Control Tests,Create,control_test_create,,,,
+Control Tests,Update,control_test_update,,,,
+Control Tests,Delete,control_test_delete,,,,
+Control Guidelines,Read,control_guideline_read,,,,
+Control Guidelines,Create,control_guideline_create,,,,
+Control Guidelines,Update,control_guideline_update,,,,
+Control Guidelines,Delete,control_guideline_delete,,,,
+Control Guidelines,Export CSV,export_control_guideline,,,,
+Control Guidelines,Import from CSV,import_control_guideline,,,,
+Control Maturity,Read,control_maturity_read,,,,
+Control Maturity,Create,control_maturity_create,,,,
+Control Maturity,Update,control_maturity_update,,,,
+Control Maturity,Delete,control_maturity_delete,,,,
+Users,Read,user_read,,,,Y
+Users,Create,user_create,,,,Y
+Users,Update,user_update,,,,Y
+Users,Delete,user_delete,,,,Y
+Users,Export CSV,export_user,,,,
+Users,Import from CSV,import_user,,,,
+Risk Model,Read,risk_model_read,,,Y,Y
+Risk Model,Create,risk_model_create,,,,
+Risk Model,Update,risk_model_update,,,,
+Risk Model,Delete,risk_model_delete,,,,
+Risk Model,Recalculate Cache,risk_model_recalculate_cache,,,,
+Risk Model Domain,Read,domain_read,,,,
+Risk Model Domain,Create,domain_create,,,,
+Risk Model Domain,Update,domain_update,,,,
+Risk Model Domain,Delete,domain_delete,,,,
+Risk Model Category,Read,category_read,,,,
+Risk Model Category,Create,category_create,,,,
+Risk Model Category,Update,category_update,,,,
+Risk Model Constant,Create,risk_model_constant_read,,,,
+Risk Model Constant,Read,risk_model_constant_create,,,,
+Risk Model Constant,Create,risk_model_constant_update,,,,
+Risk Model Constant,Update,risk_model_constant_delete,,,,
+Risk Model Exposure,Model Read,quantification_model_read,,,,
+Risk Model Exposure Metric,Read,quantification_metric_read,,,,
+Risk Model Exposure Metric,Create,quantification_metric_create,,,,
+Risk Model Exposure Metric,Update,quantification_metric_update,,,,
+Risk Model Exposure Metric,Delete,quantification_metric_delete,,,,
+Risk Model Metric Domain,Read,qualitative_metric_read,,,,
+Risk Model Exposure Metric,Export CSV,quantification_metric_export,,,,
+Risk Model Metric Domain,Create,qualitative_metric_create,,,,
+Risk Model Exposure Metric,Import from CSV,quantification_metric_import,,,,
+Risk Model Metric Domain,Update,qualitative_metric_update,,,,
+Risk Model Scoring Question,Read,qualitative_question_read,,,,
+Risk Model Scoring Question,Create,qualitative_question_create,,,,
+Risk Model Scoring Question,Update,qualitative_question_update,,,,
+Risk Model Scoring Question,Delete,qualitative_question_delete,,,,
+Risk Model Scoring Question,Export CSV,export_qualitative_question,,,,
+Risk Model Scoring Question,Import from CSV,import_qualitative_question,,,,
+Risk Model Scoring Question,Export Answers CSV,export_qualitative_question_answers,,,,
+Risk Model Scoring Question,Import Answers from CSV,import_qualitative_question_answers,,,,
+Risk Model Scoring Question,Risk Answers Read,risk_answer_read,,,,
+Risk Model Scoring Question,Risk Answers Update,risk_answer_update,,,,
+Risk Metric,Read,risk_metric_read,,,,
+Risk Metric,Create,risk_metric_create,,,,
+Risk Metric,Update,risk_metric_update,,,,
+Risk Metric,Delete,risk_metric_delete,,,,
+Associate Model,Read,associate_model_read,,,,
+Associate Model,Create,associate_model_create,,,,
+Associate Model,Update,associate_model_update,,,,
+Associate Model,Delete,associate_model_delete,,,,
+Security Framework,Read,assessment_type_read,,,Y,Y
+Security Framework,Create,assessment_type_create,,,,Y
+Security Framework,Update,assessment_type_update,,,,Y
+Security Framework,Delete,assessment_type_delete,,,,Y
+Security Framework,Export CSV,import_assessment_framework,,,,
+Security Framework,Import from CSV,export_assessment_framework,,,,
+Security Control,Read,security_requirement_read,,,Y,Y
+Security Control,Create,security_requirement_create,,,,
+Security Control,Update,security_requirement_update,,,,
+Security Control,Delete,security_requirement_delete,,,,
+Security Control,Export CSV,import_security_requirements,,,,
+Security Control,Import from CSV,export_security_requirements,,,,
+Assessment,Read,assessment_read,,,Y,Y
+Assessment,Create,assessment_create,,,,Y
+Assessment,Update,assessment_update,,,,Y
+Assessment,Delete,assessment_delete,,,,Y
+Organization Control Test Results,Read,control_test_result_read,,,Y,Y
+Organization Control Test Results,Update,control_test_result_update,,,Y,Y
+Organization Control Test Results,Download,organization_control_test_result_download,,,,
+System Control Test Results,Read,system_control_test_result_read,,,Y,Y
+System Control Test Results,Update,system_control_test_result_update,,,Y,Y
+System Control Test Results,Drilldown,system_control_test_result_drilldown,,,Y,Y
+System Control Test Results,Download,system_control_test_result_download,,,,
+Assessment Finding,Read,assessment_finding_read,,,Y,Y
+Assessment Finding,Create,assessment_finding_create,,,,
+Assessment Finding,Update,assessment_finding_update,,,,
+Assessment Finding,Delete,assessment_finding_delete,,,,
+Vulnerability,Read,vulnerability_read,,,,
+Vulnerability,Create,vulnerability_create,,,,
+Vulnerability,Update,vulnerability_update,,,,
+Vulnerability,Delete,vulnerability_delete,,,,
+Tasks,Read,task_read,,,Y,Y
+Tasks,Create,task_create,,,,Y
+Tasks,Update,task_update,,,,Y
+Tasks,Delete,task_delete,,,,Y
+Tasks,Read,task_category_read,,,,Y
+Tasks,Create,task_category_create,,,,Y
+Tasks,Update,task_category_update,,,,Y
+Tasks,Delete,task_category_delete,,,,Y
+Vendor Inventory,Read,vendor_read,,,Y,Y
+Vendor Inventory,Create,vendor_create,,,Y,Y
+Vendor Inventory,Update,vendor_update,,,Y,Y
+Vendor Inventory,Delete,vendor_delete,,,Y,Y
+Vendor Inventory,Scoring Questions,vendor_scoring_question,,,Y,Y
+Vendor Inventory,Scoring Questions Level 2,vendor_internal_question,,,Y,Y
+Vendor Inventory,Export CSV,export_vendor,,,,
+Vendor Inventory,Import from CSV,import_vendor,,,,
+Cloud Scoring,Read,cloud_scoring_read,,,Y,Y
+Cloud Scoring,Scoring Question,cloud_scoring_question,,,Y,Y
+Cloud Scoring,Scoring Questions Level 2,cloud_internal_question,,,Y,Y
+Associate System,Read,associate_system_read,,,Y,Y
+Associate System,Update,associate_system_update,,,,Y
+GDPR Organization Compliance,Read,gdpr_organization_compliance_read,,,,
+GDPR Organization Compliance,Update,gdpr_organization_compliance_update,,,,
+GDPR Organization Compliance,Scoring Questions,gdpr_organization_compliance_scoring_question,,,,
+GDPR System Compliance,Read,gdpr_system_compliance_read,,,,
+GDPR System Compliance,Article Read,gdpr_system_article_compliance_read,,,,
+GDPR System Compliance,Article Update,gdpr_system_article_compliance_update,,,,
+GDPR System Compliance,Articles Export CSV,export_gdpr_article,,,,
+GDPR System Compliance,Articles Import from CSV,import_gdpr_article,,,,
+GDPR System Compliance,Scoring Questions,gdpr_system_compliance_scoring_question,,,,
+GDPR Evidence Document,Read,gdpr_evidence_document_read,,,,
+GDPR Evidence Document,Update,gdpr_evidence_document_update,,,,
+GDPR Evidence Document,Import from CSV,import_gdpr_evidence_articles,,,,
+Privacy Impact Assessment,Read,privacy_impact_assessment_read,,,,
+Security Tools,Read,security_tool_read,,,,
+Security Tools,Create,security_tool_create,,,,
+Security Tools,Update,security_tool_update,,,,
+Security Tools,Delete,security_tool_delete,,,,
+Fixed Operational Costs,Read,operational_cost_read,,,,
+Fixed Operational Costs,Create,operational_cost_create,,,,
+Fixed Operational Costs,Update,operational_cost_update,,,,
+Fixed Operational Costs,Delete,operational_cost_delete,,,,
+Fixed Capital Costs,Read,capital_cost_read,,,,
+Fixed Capital Costs,Create,capital_cost_create,,,,
+Fixed Capital Costs,Update,capital_cost_update,,,,
+Fixed Capital Costs,Delete,capital_cost_delete,,,,
+Variable Cost,Read,variable_cost_read,,,,
+Variable Cost,Create,variable_cost_create,,,,
+Variable Cost,Update,variable_cost_update,,,,
+Variable Cost,Delete,variable_cost_delete,,,,
+System Risk Reduction,Read,system_risk_reduction_read,,,,
+System Risk Reduction,Update,system_risk_reduction_update,,,,
+User Settings,Read,user_settings_read,,,,
+User Settings,Update,user_settings_update,,,,
+Audit Log,Read,audit_log_read,,,,Y
+Audit Log,Details,audit_log_details,,,,Y
+External Analytics,Read,external_analytics_read,,,,
+External Analytics,Create,external_analytics_create,,,,
+External Analytics,Update,external_analytics_update,,,,
+External Analytics,Delete,external_analytics_delete,,,,
+Dashboards / Set Up Dashboard,My Assignment,dashboard_my_assignments,,,Y,Y
+Dashboards / Set Up Dashboard,Cyber Risk Scoring Status,dashboard_question_status,,,,
+Dashboards / Set Up Dashboard,Vendor Cyber Risk Scoring Status,dashboard_vendor_question_status,,,,
+Dashboards / Set Up Dashboard,Set Up Assignment Status,dashboard_assignment_status,,,,
+Dashboards / Executive Dashboard,Vendor,dashboard_vendor,,,Y,Y
+Dashboards / Executive Dashboard,Vendors and Systems,dashboard_vendor_and_systems,,,,
+Dashboards / Executive Dashboard,Cyber Insurance,dashboard_organization,,,,
+Dashboards / Executive Dashboard,M & A Dashboard,dashboard_m_and_a,,,,
+Dashboards / Executive Dashboard,Uninsurable Exposures,dashboard_uninsurable_exposures,,,,
+Dashboards / Vendor Cyber Risk Manager,Vendor Types,dashboard_vendor_status,,,Y,Y
+Dashboards / Vendor Cyber Risk Manager,Assessments,dashboard_vendor_self_assessment,,,Y,Y
+Dashboards / Vendor Cyber Risk Manager,Vendor Privacy Risk,dashboard_privacy,,,,
+Dashboards / Vendor Cyber Risk Manager,ETL Systems Exposure,dashboard_etl_systems_exposures,,,,
+Dashboards / CISO,Digital Asses Dashboard,dashboard_ciso_digital_asset,,,,
+Dashboards / CISO,Residual Cyber Risk,dashboard_residual_cyber_risk,,,,
+Dashboards / CISO,Cloud Cyber Risk Scores,dashboard_cloud,,,,
+Dashboards / CISO,IoT Exposures,dashboard_iot_exposures,,,,
+Dashboards / CISO,Crown Jewel Asset,dashboard_crown_jewel_asset,,,,
+Dashboards / CISO,Cybersecurity Tool ROI,dashboard_cybersecurity_tool_roi,,,,
+Dashboards / CISO,Budgeting,dashboard_budgeting,,,,
+Dashboards / CISO,Task Status,dashboard_task,,,,
+Dashboards / CISO,Assessments,dashboard_assessment,,,,
+Dashboards / CISO,Assessment Finding,dashboard_assessment_findings,,,,
+Dashboards / CISO,Resource Utilization,dashboard_resources,,,,
+Dashboards / DPO,PHI Data,dashboard_phi_data,,,,
+Dashboards / DPO,System Privacy Risk,dashboard_privacy_risk,,,,
+Dashboards / Audit Dashboard,Assessment Audit,dashboard_audit_assessment_audit,,,,
+Dashboards / CFO,Crown Jewel Asses,dashboard_cfo_crown_jewel_asset,CFO Crown Jewel Asset Dashboard,,,
+Dashboards / CFO,Cybersecurity Tool ROI,dashboard_cfo_cybersecurity_tool_roi,Cybersecurity tool ROI Dashboard,,,
+Dashboards / CFO,M & A Dashboard,dashboard_cfo_m_and_a,M and A Dashboard,,,
+Dashboards / CFO,Organization Dashboard,dashboard_cfo_organization,Organization Dashboard,,,
+Dashboards / CFO,Vendor Dashboard,dashboard_cfo_vendor,Vendor Dashboard,,,
+Dashboards,BU Exposures and Scores,dashboard_admin,,,,
+Dashboards,GDPR Dashboard,dashboard_organization_system_gdpr,,,,
+Dashboards,Risk Register,dashboard_risk_register,,,,
+Dashboards,Data Exfiltrations,dashboard_data_exfiltrations,,,,
+Dashboards,Budget Scenario Analysis,dashboard_budget_scenario_analysis,,,,
+Dashboards,ELASTIO,dashboard_elastio,,,Y,Y
+Dashboards,CYSURANSE,dashboard_cysuranse,,,,

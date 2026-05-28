@@ -78,4 +78,14 @@ public class UserDetailsImpl extends User {
 
 		return userDetails;
 	}
+
+	/**
+	 * Apply/Override Organization ID for User
+	 *
+	 * @param organizationId
+	 */
+	public void applyOrganizationId(Long organizationId) {
+		this.organizationId = organizationId;
+	}
+
 }

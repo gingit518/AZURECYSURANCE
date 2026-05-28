@@ -2,11 +2,13 @@ package com.cyberintech.vrisk.server.model.dto.dashboards;
 
 import com.cyberintech.vrisk.server.model.dto.audit.ItemTypeDTO;
 import com.cyberintech.vrisk.server.model.jpa.domains.DashboardItemType;
+import com.cyberintech.vrisk.server.service.dashboards.DashboardDataEvaluator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,25 +44,9 @@ public class DashboardDataGridItemDTO extends DashboardItemDTO {
 		gridItems = new ArrayList<>();
 	}
 
-	@java.beans.ConstructorProperties({"id", "name", "description"})
-	public DashboardDataGridItemDTO(Long id, String name, String description) {
-		super(id, name, description, DashboardItemType.DataGrid);
-
-		gridHeaders = new ArrayList<>();
-		gridItems = new ArrayList<>();
-	}
-
 	@java.beans.ConstructorProperties({"id", "name"})
 	public DashboardDataGridItemDTO(Long id, String name) {
 		super(id, name, null, DashboardItemType.DataGrid);
-
-		gridHeaders = new ArrayList<>();
-		gridItems = new ArrayList<>();
-	}
-
-	@java.beans.ConstructorProperties({"id"})
-	public DashboardDataGridItemDTO(Long id) {
-		super(id, null, null, DashboardItemType.DataGrid);
 
 		gridHeaders = new ArrayList<>();
 		gridItems = new ArrayList<>();
@@ -95,6 +81,17 @@ public class DashboardDataGridItemDTO extends DashboardItemDTO {
 				i++;
 			}
 			gridHeaders.add(itemsList);
+		}
+	}
+
+	@Override
+	public void evaluate(DashboardDataEvaluator dataEvaluator) {
+		if (CollectionUtils.isNotEmpty(gridItems)) {
+			for (List<DashboardDataItemDTO> row : gridItems) {
+				for (DashboardDataItemDTO dataItem : row) {
+					dataItem.evaluate(dataEvaluator);
+				}
+			}
 		}
 	}
 

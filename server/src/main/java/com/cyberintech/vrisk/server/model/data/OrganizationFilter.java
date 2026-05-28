@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * Implementation of Name Filtering Logic
  *
@@ -23,4 +25,5 @@ public class OrganizationFilter extends NameFilter {
 	private OrganizationRefDTO rootParent;
 	private UserRefDTO owner;
 	private Boolean globalOnly;
+	private List<Long> packagePlanIds;
 }

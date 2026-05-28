@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0438.organization_asset_info" author="Eugene A. Kalosha">
+		<sql>
+
+			CREATE TABLE organization_asset_info
+			(
+				id serial,
+				organization_id integer NOT NULL,
+				uid varchar(64) DEFAULT null,
+				platform_type varchar(64) DEFAULT null,
+				asset_type varchar(64) DEFAULT null,
+				amount_of_data_in_terabytes float DEFAULT null,
+				CONSTRAINT pk_organization_asset_info PRIMARY KEY (id)
+				, CONSTRAINT fk_organization_asset_info_to_organization FOREIGN KEY (organization_id) REFERENCES organizations (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE
+			);
+			CREATE INDEX i_organization_asset_info_organization ON organization_asset_info (organization_id);
+			CREATE INDEX i_organization_asset_info_uid ON organization_asset_info (uid);
+
+		</sql>
+
+		<rollback>
+			<sql>
+				DROP TABLE organization_asset_info;
+			</sql>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

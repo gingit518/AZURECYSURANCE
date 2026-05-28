@@ -377,6 +377,8 @@ public class QuantMetricsService {
 			});
 		}
 
+		Map<MetricFormulaItems, MetricFormulaItemViewDTO> itemsToVerify = new HashMap<>();
+
 		// Set Metric Formula Items
 		Optional.ofNullable(itemDTO.getMetricFormulaItems()).ifPresent(metricFormulaItemViewDTOList -> {
 			entity.setMetricFormulaItems(new HashSet<>());
@@ -401,6 +403,8 @@ public class QuantMetricsService {
 					entity.getMetricFormulaItems().add(metricVariable);
 				} else {
 //					MetricFormulaItems metricVariable = metricFormulaItemViewDTO.toEntity();
+
+					boolean needVerification = false;
 					MetricFormulaItems metricVariable = new MetricFormulaItems();
 					metricVariable.setName(metricFormulaItemViewDTO.getName());
 					metricVariable.setDescription(metricFormulaItemViewDTO.getDescription());
@@ -412,13 +416,19 @@ public class QuantMetricsService {
 						metricVariable.setVariableTypeId(metricFormulaItemViewDTO.getVariableType().getId());
 					}
 					if (metricFormulaItemViewDTO.getQuantMetricRef() != null && metricFormulaItemViewDTO.getQuantMetricRef().getId() != null) {
-						metricVariable.setQuantMetricRefId(metricFormulaItemViewDTO.getQuantMetricRef().getId());
+						// metricVariable.setQuantMetricRefId(metricFormulaItemViewDTO.getQuantMetricRef().getId());
+						needVerification = true;
 					}
 					if (metricFormulaItemViewDTO.getRiskModelConstantRef() != null && metricFormulaItemViewDTO.getRiskModelConstantRef().getId() != null) {
-						metricVariable.setRiskModelConstantRefId(metricFormulaItemViewDTO.getRiskModelConstantRef().getId());
+						// metricVariable.setRiskModelConstantRefId(metricFormulaItemViewDTO.getRiskModelConstantRef().getId());
+						needVerification = true;
 					}
 					metricFormulaItemsRepository.save(metricVariable);
 					entity.getMetricFormulaItems().add(metricVariable);
+
+					if (needVerification) {
+						itemsToVerify.put(metricVariable, metricFormulaItemViewDTO);
+					}
 				}
 			});
 		});
@@ -438,12 +448,52 @@ public class QuantMetricsService {
 		});
 		*/
 
+		for (Map.Entry<MetricFormulaItems, MetricFormulaItemViewDTO> itemToVerify : itemsToVerify.entrySet()) {
+			MetricFormulaItems metricVariable = itemToVerify.getKey();
+			MetricFormulaItemViewDTO metricFormulaItemViewDTO = itemToVerify.getValue();
+			if (metricFormulaItemViewDTO.getQuantMetricRef() != null && metricFormulaItemViewDTO.getQuantMetricRef().getId() != null) {
+				Optional<QuantMetrics> quantMetricRefOpt = quantMetricsRepository.findFirstByRiskModelIdAndName(entity.getRiskModelId(), metricFormulaItemViewDTO.getQuantMetricRef().getName());
+				if (quantMetricRefOpt.isEmpty()) {
+					throw new ItemNotFoundException(String.format("Import Quant with Name '%s' is not found in Current Risk Model.", metricFormulaItemViewDTO.getQuantMetricRef().getName()));
+				}
+
+				metricVariable.setQuantMetricRefId(quantMetricRefOpt.get().getId());
+			}
+			if (metricFormulaItemViewDTO.getRiskModelConstantRef() != null && metricFormulaItemViewDTO.getRiskModelConstantRef().getId() != null) {
+				Optional<RiskModelConstants> constantRefOpt = riskModelConstantRepository.findByNameAndRiskModelId(metricFormulaItemViewDTO.getRiskModelConstantRef().getName().trim(), entity.getRiskModelId());
+
+				RiskModelConstants constantRef = null;
+				if (constantRefOpt.isPresent()) {
+					constantRef = constantRefOpt.get();
+				} else {
+					constantRef = new RiskModelConstants();
+					constantRef.setRiskModelId(entity.getRiskModelId());
+					constantRef.setName(metricFormulaItemViewDTO.getRiskModelConstantRef().getName().trim());
+					constantRef.setDescription(metricFormulaItemViewDTO.getRiskModelConstantRef().getDescription());
+					constantRef.setValue(metricFormulaItemViewDTO.getRiskModelConstantRef().getValue());
+					constantRef.setCreatedAt(new Date());
+					constantRef.setUpdatedAt(new Date());
+					constantRef = riskModelConstantRepository.save(constantRef);
+				}
+
+				metricVariable.setRiskModelConstantRefId(constantRef.getId());
+			}
+
+			metricFormulaItemsRepository.save(metricVariable);
+		}
+
 		if (itemDTO.getQuant() != null) {
 			entity.setQuant(quantsRepository.findById(itemDTO.getQuant().getId()).get());
 		}
 
 		// Set Deployment Type restriction
 		entity.setDeploymentType(itemDTO.getDeploymentType());
+		if (itemDTO.getMeasurementUnit() != null) {
+			entity.setMeasurementUnit(itemDTO.getMeasurementUnit());
+		}
+		if (itemDTO.getUnitUIPosition() != null) {
+			entity.setUnitUIPosition(itemDTO.getUnitUIPosition());
+		}
 
 		entity.setUpdatedBy(userService.getCurrentUserEntity());
 		entity.setUpdatedAt(new Date());
@@ -798,6 +848,8 @@ public class QuantMetricsService {
 
 		} catch (IOException | ParseException e) {
 			log.error("Failed to import Quant Metric", e);
+		} catch (Exception e) {
+			log.error("Failed to import Quant Metric due to global exception", e);
 		}
 		return result;
 	}

@@ -31,7 +31,7 @@ public interface ExternalAnalyticsRepository extends CoreRepository<ExternalAnal
 		"WHERE ea.organization_id = :organizationId AND (ea.is_public = true OR r.role_id IN :roles) ORDER BY randomOrder LIMIT :limit", nativeQuery = true)
 	List<ExternalAnalytics> getRandomListByRoles(@Param("roles") List<Long> roles, @Param("organizationId") Long organizationId, @Param("limit") Long limit);
 
-	@Query("SELECT distinct ea FROM ExternalAnalytics ea LEFT JOIN ea.roles r WHERE ea.organizationId = :organizationId AND (ea.isPublic = true OR r.id IN :roles) ORDER BY ea.name ASC")
+	@Query("SELECT distinct ea FROM ExternalAnalytics ea LEFT JOIN ea.roles r LEFT JOIN FETCH ea.externalAnalyticsParameters eap WHERE ea.organizationId = :organizationId AND (ea.isPublic = true OR r.id IN :roles) ORDER BY ea.name ASC")
 	List<ExternalAnalytics> getListByRolesAndOrganizationId(@Param("roles") List<Long> roles, @Param("organizationId") Long organizationId);
 
 	@Query("SELECT distinct ea FROM ExternalAnalytics ea LEFT JOIN ea.roles r WHERE ea.organizationId = :organizationId AND (ea.isPublic = true OR r.id IN :roles) AND ea.externalAnalyticsType = :externalAnalyticsType ORDER BY ea.name ASC")

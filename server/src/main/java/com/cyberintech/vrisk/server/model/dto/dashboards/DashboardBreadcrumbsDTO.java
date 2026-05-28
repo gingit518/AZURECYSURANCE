@@ -46,17 +46,12 @@ public class DashboardBreadcrumbsDTO {
 		this.href = href;
 	}
 
-	@java.beans.ConstructorProperties({"id", "name", "link"})
-	public DashboardBreadcrumbsDTO(String id, String title, String link) {
-		this(id, title, link, null);
-	}
-
 	public static DashboardBreadcrumbsDTO of(String id, String title, String link, String href) {
 		return new DashboardBreadcrumbsDTO(id, title, link, href);
 	}
 
 	public static DashboardBreadcrumbsDTO of(String id, String title, String link) {
-		return new DashboardBreadcrumbsDTO(id, title, link);
+		return new DashboardBreadcrumbsDTO(id, title, link, null);
 	}
 
 }

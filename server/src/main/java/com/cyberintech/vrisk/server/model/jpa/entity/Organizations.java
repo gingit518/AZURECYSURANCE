@@ -3,29 +3,20 @@ package com.cyberintech.vrisk.server.model.jpa.entity;
 import com.cyberintech.vrisk.server.model.jpa.domains.AssessmentFrameworkLevel;
 import com.cyberintech.vrisk.server.model.jpa.domains.OrganizationType;
 import com.cyberintech.vrisk.server.model.jpa.domains.TwoFactorType;
+import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformAssetType;
+import com.cyberintech.vrisk.server.model.jpa.domains.elastio.PlatformType;
 import com.cyberintech.vrisk.server.model.jpa.entity.common.IMetadataAware;
+import com.cyberintech.vrisk.server.model.jpa.entity.converters.MapOfObjectsConverter;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -54,11 +45,22 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
+	@Column(name = "uid")
+	private String uid;
+
 	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
 	@Column(name = "description")
 	private String description;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_at")
+	private Date createdAt;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "updated_at")
+	private Date updatedAt;
 
 	@Column(name = "tax_id")
 	private String taxId;
@@ -324,6 +326,9 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<OrganizationsMetadata> metadata = new HashSet<>();
 
+	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private Set<OrganizationAssetInfo> assetInfoList = new HashSet<>();
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "package_plan_id")
 	private PackagePlans packagePlan;
@@ -333,5 +338,24 @@ public class Organizations implements IMetadataAware<OrganizationsMetadata> {
 
 	@Column(name = "past_security_incidents")
 	private String pastSecurityIncidents;
+
+	@Column(name = "platform_type")
+	@Enumerated(EnumType.STRING)
+	private PlatformType platformType;
+
+	@Column(name = "asset_type")
+	@Enumerated(EnumType.STRING)
+	private PlatformAssetType assetType;
+
+	@Column(name = "amount_of_data_in_terabytes")
+	private Double amountOfDataInTerabytes;
+
+	@Column(name = "replication_factor")
+	private Double replicationFactor;
+
+	@SuppressWarnings("JpaAttributeTypeInspection")
+	@Column(name = "integration_properties")
+	@Convert(converter = MapOfObjectsConverter.class)
+	private Map<String, String> integrationProperties;
 
 }
