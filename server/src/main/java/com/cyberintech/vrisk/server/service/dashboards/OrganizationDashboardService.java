@@ -660,6 +660,102 @@ public class OrganizationDashboardService extends DashboardServiceBase {
 		return dashboard;
 	}
 
+	/**
+	 * Get Dashboard definition
+	 *
+	 * @return Dashboard
+	 */
+	public DashboardDTO getCysuranceFinancialExposureDashboardDetails(Long riskModelId, Long dashboardId) {
+
+		boolean isGDPRRegulatoryQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.GDPR_REGULATORY_EXPOSURE);
+		boolean isPrivacyQuantDefined = quantMetricsService.isQuanDefined(riskModelId, QuantsDomain.PRIVACY_EXPOSURE);
+
+		// Create breadcrumbs
+		DashboardBreadcrumbsHelper breadcrumbsTop;
+		breadcrumbsTop = DashboardBreadcrumbsHelper.DASHBOARD_EXECUTIVE(clientMessage).add("DASHBOARD_CYBER_INSURANCE", SLCT.DASHBOARDS$CYBER_INSURANCE$NAME, "/private/dashboards/2000");
+
+		RiskModels riskModel = riskModelRepository.findById(riskModelId).get();
+		Organizations organization = organizationRepository.findById(riskModel.getOrganizationId()).get();
+		// elastioOrganizationDTO = elastioOrganizationService.evaluateElastio(elastioOrganizationDTO);
+
+		List<CysuranceQueryResponseDataEntityRating> ratingData = cysuranceIntegrationService.getCysuranceIntegrationsData(riskModel.getOrganizationId());
+		Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (o, o2) -> o2));
+		Map<String, List<CysuranceQueryResponseDataEntityRating>> ratingValuesByCategoryMap = ratingData.stream().collect(Collectors.groupingBy(CysuranceQueryResponseDataEntityRating::getCategoryCode));
+		// Map<String, CysuranceQueryResponseDataEntityRating> ratingValuesByCodeMap = ratingData.stream().collect(Collectors.toMap(CysuranceQueryResponseDataEntityRating::getFactorCode, v -> v, (t, t2) -> t2));
+
+		DashboardDTO dashboard = new DashboardDTO(dashboardId, "Financial Exposure and Breach Cost Scenarios: " + organization.getName(), "Cysurance Warranty Requirement", DashboardType.Organization);
+
+		// Create Initial Sections
+		DashboardSectionDTO section1 = new DashboardSectionDTO(2001001L, "Financial Exposure and Breach Cost Scenarios", null);
+
+		dashboard.getSections().add(section1);
+
+		// Create breadcrumbs
+		// section1.setBreadcrumbs(breadcrumbsTop.extend("DASHBOARD_CYBER_INSURANCE_1", SLCT.DASHBOARDS$CYBER_INSURANCE$AGGREGATE_LIMIT$ITEM_NAME, "/private/dashboards/2").getBreadcrumbs());
+		section1.setBreadcrumbs(breadcrumbsTop.getBreadcrumbs());
+
+		Double totalDataAtRisk = 250000D;
+		Double averageCostOfRecord = 8.5D;
+		Double baseLossIfBreached = 2100000D;
+		Double annualLossExpectancy = baseLossIfBreached * 0.05;
+
+		// DashboardTableItemDTO dashboardItem = new DashboardTableItemDTO(1000000L, "Elastio ROI Analysis");
+		// DashboardGridLayoutDTO headerBlock = new DashboardGridLayoutDTO(1000005L, "Warranty Control Conditions Compliance");
+		DashboardGridLayoutDTO headerBlock = new DashboardGridLayoutDTO(1000005L, null);
+		// DashboardControlTextBlockDTO controlsPassing = DashboardControlTextBlockDTO.of(1000006L, "Controls Passing", "0", "#3b82f6", "#3b82f6");
+		DashboardControlTextBlockDTO totalDataAtRiskBlock = DashboardControlTextBlockDTO.of(1000007L, "Total Data at Risk", String.format("%,.0f", totalDataAtRisk), "#959ca7", "#f59e0b", List.of("Customer records, payment data, employee PII"));
+		DashboardControlTextBlockDTO averageCostOfRecordBlock = DashboardControlTextBlockDTO.of(1000007L, "Avg Cost/Record", String.format("$%,.0f", averageCostOfRecord), "#959ca7", "#f59e0b", List.of("Industry benchmark for financial services"));
+		DashboardControlTextBlockDTO baseLossIfBreachedBlock = DashboardControlTextBlockDTO.of(1000007L, "Base Loss if Breached", String.format("$%,.0f", baseLossIfBreached), "#959ca7", "#f59e0b", List.of("Industry benchmark for financial services"));
+		DashboardControlTextBlockDTO annualLossExpectancyBlock = DashboardControlTextBlockDTO.of(1000007L, "Annual Loss Expectancy", String.format("$%,.0f", annualLossExpectancy), "#959ca7", "#f59e0b", List.of("Base Loss * 5% probability"));
+		headerBlock.addRowItems(new RichDashboardElementDTO(totalDataAtRiskBlock), new RichDashboardElementDTO(averageCostOfRecordBlock), new RichDashboardElementDTO(baseLossIfBreachedBlock), new RichDashboardElementDTO(annualLossExpectancyBlock));
+		section1.getDashboardItems().add(headerBlock);
+
+		DashboardChartItemDTO pieChartItem = new DashboardChartItemDTO(1L, "Breach Cost Breakdown by Component", "", DashboardItemType.PieChart);
+		pieChartItem.setXAxis("Scores");
+		pieChartItem.setYAxis("Component");
+		pieChartItem.setIncludeLegend(true);
+		pieChartItem.getParameters().put("isSortable", false);
+		List<List<DashboardDataItemDTO>> chartItemsData = List.of(
+			List.of(sI("Detection").applyBackgroundColor("#3b82f6"), $I(8D, "%").round(2)),
+			List.of(sI("Containment").applyBackgroundColor("#06b6d4"), $I(20D, "%").round(2)),
+			List.of(sI("Notification").applyBackgroundColor("#8b5cf6"), $I(15D, "%").round(2)),
+			List.of(sI("Regulatory").applyBackgroundColor("#f97316"), $I(12D, "%").round(2)),
+			List.of(sI("Business Loss").applyBackgroundColor("#ef4444"), $I(35D, "%").round(2)),
+			List.of(sI("Recovery").applyBackgroundColor("#10b981"), $I(10D, "%").round(2))
+		);
+		for (List<DashboardDataItemDTO> chartItems : chartItemsData) {
+			pieChartItem.getGridItems().add(chartItems);
+		}
+		section1.getDashboardItems().add(pieChartItem);
+
+		DashboardChartItemDTO barChartItem = new DashboardChartItemDTO(1L, "Financial Impact by Breach Size", "", DashboardItemType.BarChart);
+		barChartItem.setXAxis("Financial Impact");
+		barChartItem.setYAxis("Breach Size");
+		barChartItem.getParameters().put("isSortable", false);
+		List<List<DashboardDataItemDTO>> barChartItemsData = List.of(
+			List.of(sI("100K"), sI("1000000")),
+			List.of(sI("250K"), sI("2000000")),
+			List.of(sI("500K"), sI("4200000")),
+			List.of(sI("1M"), sI("8500000"))
+		);
+		for (List<DashboardDataItemDTO> chartItems : barChartItemsData) {
+			barChartItem.getGridItems().add(chartItems);
+		}
+		section1.getDashboardItems().add(barChartItem);
+
+		DashboardItemDTO dashboardItem = new DashboardItemDTO(102006L, "Warranty Control Assessments", null, DashboardItemType.Text);
+		section1.getDashboardItems().add(dashboardItem);
+
+		/*
+		controlsPassing.setTitle(String.format("%s of %s", factorsResult.getControlsPassing(), factorsResult.getControlsTotal()));
+		complianceRateBlock.setTitle(factorsResult.getComplianceRate() + "%");
+		complianceRateBlock.setTitleColor(factorsResult.getComplianceRate() > 75 ? "#22c55e" : "#f59e0b");
+		complianceRateBlock.setFooterLines(List.of("New footer text line"));
+		*/
+
+		return dashboard;
+	}
+
 	private void applyDashboardCheckAction(DashboardSectionDTO section, CysuranceFactorResult factorsResult, CysuranceQueryResponseDataEntityRating currentValue, String label, Integer requirement, String defaultAction) {
 		if (currentValue != null) {
 			Integer valueInteger = (Integer) currentValue.getValue();

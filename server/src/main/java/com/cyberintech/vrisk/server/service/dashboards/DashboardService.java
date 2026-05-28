@@ -343,6 +343,7 @@ public class DashboardService extends DashboardServiceBase {
 		}
 		if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_CYSURANCE)) {
 			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_CYSURANCE, "Cysurance Dashboard", "Displays CYSURANCE Dashboard", DashboardType.None, "fa fa-money", "CYSURANCE", dashboardMenuNames));
+			items.add(new DashboardRefDTO(DashboardsConfig.DASHBOARD_CYSURANCE_FINANCIAL_EXPOSURE, "Financial Exposure", "Displays CYSURANCE Financial Exposure and Breach Cost Scenarios Dashboard", DashboardType.None, "fa fa-euro", "CYSURANCE", dashboardMenuNames));
 		}
 
 		// items.add(new DashboardRefDTO(DashboardsConfig.FFIEC_CAT_CYBER_MATURITY, "FFIEC CAT Cyber Maturity", "Displays the FFIEC CAT Cyber Maturity", DashboardType.Vendor, "fa fa-question-circle", CFO_DASHBOARD_GROUP, dashboardMenuNames));
@@ -488,6 +489,8 @@ public class DashboardService extends DashboardServiceBase {
 			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_ELASTIO, true)) dashboard = organizationDashboardService.getElastioDashboardDetails(riskModelId, dashboardId);
 		} else if (DashboardsConfig.DASHBOARD_CYSURANCE.equals(dashboardId)) {
 			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_CYSURANCE, true)) dashboard = organizationDashboardService.getCysuranceDashboardDetails(riskModelId, dashboardId);
+		} else if (DashboardsConfig.DASHBOARD_CYSURANCE_FINANCIAL_EXPOSURE.equals(dashboardId)) {
+			if (checkDashboardPermissions(permissionNames, PermissionType.DASHBOARD_CYSURANCE, true)) dashboard = organizationDashboardService.getCysuranceFinancialExposureDashboardDetails(riskModelId, dashboardId);
 		}
 
 		/*

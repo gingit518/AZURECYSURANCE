@@ -30,6 +30,9 @@ public class DashboardChartItemDTO extends DashboardTableItemDTO {
 	@Schema
 	private String yAxis;
 
+	@Schema
+	private Boolean includeLegend;
+
 	private DashboardChartThresholdDTO threshold;
 
 	/**
